@@ -1,0 +1,274 @@
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li,
+a {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header styles */
+header {
+    display: flex;
+    align-items: center;
+    background-color: black; /* Black background for the entire header */
+    
+}
+
+header nav {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1; /* Push nav to take available space */
+    background-color: #F76902;
+    padding: 10px 20px;
+}
+
+header .black-bar {
+    flex: 1; /* Adjust the width as needed */
+    background-color: black;
+}
+
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+/* Dropdown styling */
+select {
+    padding: 5px;
+    font-size: 14px;
+}
+
+/* Section for the h1 */
+section#main-title {
+    text-align: left;
+    padding-top: 30px;
+    height: 15vh;
+    margin-left: 50px; /* Offset to accommodate black bar */
+}
+
+/* Home page styles */
+main {
+    padding: 20px;
+}
+
+.card-container {
+    display: flex;
+    gap: 20px; /* Space between the cards */
+    justify-content: center; /* Centers the cards horizontally */
+    flex-wrap: nowrap; /* Ensures cards stay on the same row */
+}
+
+.card {
+    position: relative;
+    width: 45%; /* Makes cards take 45% of the container width */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #ffffff;
+}
+
+.card-content h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+  }
+  
+  .card-content button {
+    background: #f57c00;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+.card-content button:hover {
+    background: #e57000;
+}
+
+/* Profile page styles */
+
+.tabs {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.tablinks {
+
+    background-color: #F76902;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+.tablinks:hover {
+    background-color: #bbb;
+}
+
+.chart-and-calendar {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+#graph-section {
+    flex: 1;
+    padding: 20px;
+    background-color: #E9ECEF;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.chart-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.legend {
+    margin-bottom: 20px;
+}
+
+.legend-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+#calendar {
+    flex: 1;
+    padding: 20px;
+    background-color: #000000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+#calendar table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#calendar th,
+#calendar td {
+    width: 14%;
+    height: 50px;
+    text-align: center;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+#calendar th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    color: #F76902;
+}
+
+#calendar td {
+    background-color: #fff;
+}
+
+#calendar h3 {
+    color: #fff;
+}
+
+#calendar td:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+/* Bar chart styles */
+svg {
+    display: block;
+    margin: auto;
+}
+
+/* Bottom section */
+.wic-learn-more{
+    font-family: inter;
+    font-size: 1.166875rem;
+    color: #F76902;
+    background-color: transparent;
+    border: solid 3px #F76902;
+    position: absolute;
+    bottom: 10px;
+   
+    
+    
+}
+.wic-learn-more-section {
+    display: flex;
+    width: 50%;
+    gap: 20px; /* Add some space between the boxes */
+}
+
+.wic-learn-more-section p {
+    flex: 1;
+    margin: 0;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #E9ECEF; /* Optional: Add background color to the boxes */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+

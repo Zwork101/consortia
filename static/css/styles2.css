@@ -109,9 +109,10 @@ main {
     margin: 0 0 10px;
     font-size: 18px;
     font-weight: bold;
-}
-
-.card-content button {
+    position: relative;
+  }
+  
+  .card-content button {
     background: #f57c00;
     border: none;
     color: #fff;
@@ -120,8 +121,9 @@ main {
     font-size: 14px;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
+    position: relative;
+  }
+  
 .card-content button:hover {
     background: #e57000;
 }
@@ -158,7 +160,7 @@ main {
 #graph-section {
     flex: 1;
     padding: 20px;
-    background-color: #fff;
+    background-color: #E9ECEF;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
@@ -239,3 +241,34 @@ svg {
     display: block;
     margin: auto;
 }
+
+/* Bottom section */
+.wic-learn-more{
+    font-family: inter;
+    font-size: 1.166875rem;
+    color: #F76902;
+    background-color: transparent;
+    border: solid 3px #F76902;
+    position: absolute;
+    bottom: 10px;
+   
+    
+    
+}
+.wic-learn-more-section {
+    display: flex;
+    width: 50%;
+    gap: 20px; /* Add some space between the boxes */
+}
+
+.wic-learn-more-section p {
+    flex: 1;
+    margin: 0;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #E9ECEF; /* Optional: Add background color to the boxes */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+

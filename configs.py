@@ -7,7 +7,7 @@ class Config:
 class DevelopmentConfig(Config):
     TESTING = True,
     DEBUG = True
-    SERVER_NAME = "ec2-3-88-17-77.compute-1.amazonaws.com:8080"
+    SERVER_NAME = "ec2-54-196-105-29.compute-1.amazonaws.com:8080"
     SQLALCHEMY_DATABASE_URI = "sqlite:///dev.db"
 
 

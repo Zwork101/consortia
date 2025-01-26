@@ -1,18 +1,6 @@
-<!doctype html>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/normalize/normalize.css">
-</head>
-<style>
-    .demo-container {
-        padding: 2%;
-        margin: 2%;
-        border: solid 5px black;
-    }
-</style>
-<body>
-
+{% extends "base.html" %}
+{% block title %}Semester{% endblock %}
+{% block content %}
 <h1>COMMS SPECIFIC INTERNAL BOX MOCKUP</h1>
 <p>Read comments in the source code for more notes</p>
 
@@ -107,10 +95,4 @@
         <p>Miscellaneous points are available for helping the organization. Please reach out to <span class="external-url">email address</span> to find out more.</p>
     </section>   
 </article>
-
-<!-- Everything above this section will be part of the final code-->
-
-</div>
-
-</body>
-</html>
+{% endblock %}

@@ -72,8 +72,8 @@ section#main-title {
     text-align: left;
     padding-top: 30px;
     height: 15vh;
-    margin-left: 50px;
     /* Offset to accommodate black bar */
+    margin-left: 50px;
 }
 
 /* Home page styles */

@@ -37,5 +37,5 @@ def create_app(config_file: Config) -> Flask:
     return app
 
 if __name__ == "__main__":
-    app = create_app(DevelopmentConfig)
-    app.run()
+    app = create_app(LocalConfig)
+    app.run(load_dotenv=True)

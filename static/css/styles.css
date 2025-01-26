@@ -187,7 +187,7 @@ Items specifc to COMMS below
 
 */
 
-article:has(.chart-bar) {
+.points-bar {
     padding: 2em 0;
 }
 

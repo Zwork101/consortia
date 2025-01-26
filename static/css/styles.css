@@ -10,6 +10,7 @@
     --label-blue: #009CBD;
     --label-green: #84BC00;
     --label-yellow: #F6BE00;
+    --medium-gray: #E9ECEF;
     --label-opacity: .5;
     --article-child-margin: 1%;
     --article-child-padding: 4%;
@@ -129,7 +130,7 @@ Classes relating to "info-box-gray"
 .info-box-gray {
     display: flex;
     flex-direction: column;
-    background-color: #E9ECEF;
+    background-color: var(--medium-gray);
     position: relative;
     padding: 2% var(--article-child-padding) ;
     margin: var(--article-child-margin);

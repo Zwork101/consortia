@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/styles2.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/normalize/normalize.css">
+    
+</head>
+<body>
+    <header>
+        <div class="black-bar"></div> <!-- Black section on the left -->
+        <nav>
+            <ul>
+                <li><a href="#notifications">NOTIFICATIONS</a></li>
+                <li><a href="#settings">SETTINGS</a></li>
+                <li><a href="#profile">PROFILE</a></li>
+                <li>
+                    <label for="student" style="color: white;">Student:</label>
+                    <select name="student" id="student">
+                        <option value="profile">Profile</option>
+                        <option value="settings">Settings</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section id="main-title">
+        <h1>WICS & COMMS</h1>
+    </section>
+
+    
+    <main>
+        <div class="card-container">
+          <div class="card">
+            
+            <div class="card-content">
+              <h2>Women in Computing</h2>
+              <button>See Profile</button>
+            </div>
+            <img src="/images/women-in-computing.jpg" alt="Women in Computing">
+          </div>
+          <div class="card">
+           
+            <div class="card-content">
+              <h2>Computing Organization for Multicultural Students</h2>
+              <button>See Profile</button>
+            </div>
+            <img src="/images/coms.jpg" alt="COMMS">
+          </div>
+        </div>
+      </main>
+</body>
+</html>

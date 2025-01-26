@@ -36,6 +36,12 @@ def create_app(config_file: Config) -> Flask:
 
     return app
 
+def database_setup(app):
+    with app.app_context():
+        db.create_all()
+        db.session.commit()
+
 if __name__ == "__main__":
     app = create_app(DevelopmentConfig)
+    database_setup(app)
     app.run()

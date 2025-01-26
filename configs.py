@@ -1,4 +1,7 @@
 import os
+import dotenv
+
+dotenv.load_dotenv()
 
 class Config:
     SECRET_KEY = os.environ["SECRET_KEY"]
@@ -7,7 +10,7 @@ class Config:
 class DevelopmentConfig(Config):
     TESTING = True,
     DEBUG = True
-    SERVER_NAME = "ec2-3-88-17-77.compute-1.amazonaws.com:8080"
+    SERVER_NAME = "localhost"
     SQLALCHEMY_DATABASE_URI = "sqlite:///dev.db"
 
 

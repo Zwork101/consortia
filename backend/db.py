@@ -1,10 +1,17 @@
+from enum import Enum as EnumClass
+
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import ForeignKey, DateTime, Integer, String, Text, SmallInteger, Enum, ARRAY
+from sqlalchemy_utils import database_exists, create_database
 
 db = SQLAlchemy()
 class Base(DeclarativeBase):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True)
+
+
+class MeetingType(EnumClass):
+    GENERAL = 0
 
 class Profile(db.Model):
     __tablename__ = 'Profile'
@@ -31,25 +38,25 @@ class Award(db.Model):
     conditions = relationship('AwardCondition', back_populates='award')
     profile_awards = relationship('ProfileAward', back_populates='award')
 
-class AwardCondition(db.Model):
-    __tablename__ = 'AwardCondition'
-    condition_id = db.Column(Integer, primary_key=True, autoincrement=True, nullable=False)
-    name = db.Column(Text, nullable=False)
-    point_requirement = db.Column(Integer)
-    meeting_requirement = db.Column(Integer)
-    meeting_type = db.Column(ARRAY(String))
-    check_time = db.Column(Text)
-    award_id = db.Column(Integer, ForeignKey('Award.award_id'))
-    award = relationship('Award', back_populates='conditions')
+# class AwardCondition(db.Model):
+#     __tablename__ = 'AwardCondition'
+#     condition_id = db.Column(Integer, primary_key=True, autoincrement=True, nullable=False)
+#     name = db.Column(Text, nullable=False)
+#     point_requirement = db.Column(Integer)
+#     meeting_requirement = db.Column(Integer)
+#     meeting_type = db.Column(ARRAY(String))
+#     check_time = db.Column(Text)
+#     award_id = db.Column(Integer, ForeignKey('Award.award_id'))
+#     award = relationship('Award', back_populates='conditions')
 
-class ProfileAward(db.Model):
-    __tablename__ = 'ProfileAward'
-    id = db.Column(Integer, primary_key=True, autoincrement=True)
-    profile_id = db.Column(Integer, ForeignKey('Profile.profile_id'), nullable=False)
-    award_id = db.Column(Integer, ForeignKey('Award.award_id'), nullable=False)
-    date_received = db.Column(DateTime, nullable=False)
-    profile = relationship('Profile', back_populates='awards')
-    award = relationship('Award', back_populates='profile_awards')
+# class ProfileAward(db.Model):
+#     __tablename__ = 'ProfileAward'
+#     id = db.Column(Integer, primary_key=True, autoincrement=True)
+#     profile_id = db.Column(Integer, ForeignKey('Profile.profile_id'), nullable=False)
+#     award_id = db.Column(Integer, ForeignKey('Award.award_id'), nullable=False)
+#     date_received = db.Column(DateTime, nullable=False)
+#     profile = relationship('Profile', back_populates='awards')
+#     award = relationship('Award', back_populates='profile_awards')
 
 class Administrator(db.Model):
     __tablename__ = 'Administrators'
@@ -69,7 +76,7 @@ class Event(db.Model):
     __tablename__ = 'Event'
     event_id = db.Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     campus_group_id = db.Column(Integer, nullable=False)
-    meeting_type_id = db.Column(Integer, ForeignKey('MeetingType.id'), nullable=False)
+    meeting_type= db.Column(Enum(MeetingType), nullable=False)
     name = db.Column(Text, nullable=False)
     start_time = db.Column(DateTime, nullable=False)
     end_time = db.Column(DateTime, nullable=False)

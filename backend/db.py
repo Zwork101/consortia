@@ -1,12 +1,13 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import relationship
-from sqlalchemy import ForeignKey, DateTime, Integer, String, Text, SmallInteger, Enum, ARRAY
+from sqlalchemy.orm import relationship, DeclarativeBase
+from sqlalchemy import create_engine, ForeignKey, DateTime, Integer, String, Text, SmallInteger, Enum, ARRAY
 
 db = SQLAlchemy()
 
+engine = create_engine("mariadb://localhost/consortia")
+
 class Base(DeclarativeBase):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True)
-
 
 class Profile(db.Model):
     __tablename__ = 'Profile'

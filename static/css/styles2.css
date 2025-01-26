@@ -22,22 +22,20 @@ body {
 header {
     display: flex;
     align-items: center;
-    background-color: black;
-    /* Black background for the entire header */
+    background-color: black; /* Black background for the entire header */
+    
 }
 
 header nav {
     display: flex;
     justify-content: flex-end;
-    flex: 1;
-    /* Push nav to take available space */
+    flex: 1; /* Push nav to take available space */
     background-color: #F76902;
     padding: 10px 20px;
 }
 
 header .black-bar {
-    flex: 1;
-    /* Adjust the width as needed */
+    flex: 1; /* Adjust the width as needed */
     background-color: black;
 }
 
@@ -71,8 +69,7 @@ select {
 section#main-title {
     text-align: left;
     padding-top: 30px;
-    height: 15vh;
-    /* Offset to accommodate black bar */
+    height: 15vh; /* Offset to accommodate black bar */
     margin-left: 50px;
 }
 
@@ -83,18 +80,14 @@ main {
 
 .card-container {
     display: flex;
-    gap: 20px;
-    /* Space between the cards */
-    justify-content: center;
-    /* Centers the cards horizontally */
-    flex-wrap: nowrap;
-    /* Ensures cards stay on the same row */
+    gap: 20px; /* Space between the cards */
+    justify-content: center; /* Centers the cards horizontally */
+    flex-wrap: nowrap; /* Ensures cards stay on the same row */
 }
 
 .card {
     position: relative;
-    width: 45%;
-    /* Makes cards take 45% of the container width */
+    width: 45%; /* Makes cards take 45% of the container width */
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

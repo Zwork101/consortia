@@ -10,6 +10,7 @@
     --label-blue: #009CBD;
     --label-green: #84BC00;
     --label-yellow: #F6BE00;
+    --medium-gray: #E9ECEF;
     --label-opacity: .5;
     --article-child-margin: 1%;
     --article-child-padding: 4%;
@@ -36,6 +37,52 @@ p {
 .external-url {
     font-style: italic;
     font-weight: lighter;
+}
+
+/*
+Items in nav bar on top
+*/
+
+nav {
+    width: 100%;
+    height: 40px;
+    background-color: #000;
+}
+
+.nav-options-box {
+    background-color: #F76902;
+    width: fit-content;
+    margin: 0 auto;
+    float: right;
+    padding: 0px 36px;
+    height: 40px;
+}
+
+.nav-options-box:first-child {
+    padding-left: 0px;
+}
+
+.nav-options-box li {
+    display: inline-block;
+    padding-left: 32px;
+}
+
+.nav-options-box p {
+    margin: 12px 0px;
+    color: #FFF;
+    font-size: 0.8rem;
+}
+
+.nav-options-box a {
+    text-decoration: none;
+}
+
+.nav-options-box section {
+    font-weight: 800;
+}
+
+.nav-options-box img {
+    transform: translateY(-2px);
 }
 
 /*
@@ -129,7 +176,7 @@ Classes relating to "info-box-gray"
 .info-box-gray {
     display: flex;
     flex-direction: column;
-    background-color: #E9ECEF;
+    background-color: var(--medium-gray);
     position: relative;
     padding: 2% var(--article-child-padding) ;
     margin: var(--article-child-margin);

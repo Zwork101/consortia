@@ -74,13 +74,15 @@ main {
   .card-container {
     display: flex;
     gap: 20px; /* Space between the cards */
-    justify-content: center; /* Centers the cards horizontally */
-    flex-wrap: nowrap; /* Ensures cards stay on the same row */
+    justify-content: space-evenly; /* Spreads cards evenly, even on smaller screens */
+    flex-wrap: wrap; /* Allows cards to wrap to the next row if needed */
   }
+  
   
   .card {
     position: relative;
-    width: 45%; /* Makes cards take 45% of the container width */
+    width: 400px;
+    height: 400px;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -95,16 +97,12 @@ main {
     position: absolute;
     bottom: 20px;
     left: 20px;
+    right: 20px;
     color: #ffffff;
+    text-align: center; /* Aligns the text when there's no image */
   }
   
-  .card-content h2 {
-    margin: 0 0 10px;
-    font-size: 18px;
-    font-weight: bold;
-    position: relative;
-  }
-  
+
   .card-content button {
     background: #f57c00;
     border: none;
@@ -114,7 +112,7 @@ main {
     font-size: 14px;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    position: relative;
+    float: right;
   }
   
   .card-content button:hover {
@@ -143,12 +141,14 @@ main {
     background-color: #bbb;
 }
 
+
 .chart-and-calendar {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
     gap: 20px;
 }
+
 
 #graph-section {
     flex: 1;
@@ -165,13 +165,19 @@ main {
 }
 
 .legend {
-    margin-bottom: 20px;
+    position: relative;
+    top: 10px;
+    right: 10px;
+    font-size: 10px;
+    color: black;
+    
 }
 
 .legend-row {
     display: flex;
-    justify-content: space-between;
+    justify-content:right ;
     margin-bottom: 10px;
+    gap: 10px;
 }
 
 .legend-item {
@@ -186,6 +192,14 @@ main {
     border-radius: 50%;
 }
 
+
+
+
+
+
+
+
+/* calendar */
 #calendar {
     flex: 1;
     padding: 20px;
@@ -232,6 +246,8 @@ svg {
     display: block;
     margin: auto;
 }
+
+
 /* Bottom section */
 .wic-learn-more{
     font-family: inter;
@@ -242,22 +258,38 @@ svg {
     position: absolute;
     bottom: 10px;
    
-    
-    
 }
 .wic-learn-more-section {
+    margin: 10px;
     display: flex;
-    width: 50%;
+    width: 57%;
     gap: 20px; /* Add some space between the boxes */
 }
 
 .wic-learn-more-section p {
+    padding-top: 10px;
     flex: 1;
-    margin: 0;
+    margin: 10px;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #E9ECEF; /* Optional: Add background color to the boxes */
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    
+.info-box-gray h2 {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    text-align: left
+}
+.info-box-gray {
+    display: flex;
+    flex-direction: column;
+    background-color: #E9ECEF;
+    position: relative;
+    padding: 2% var(--article-child-padding) ;
+    margin: var(--article-child-margin);
+
+}
+.info-box-gray div {
+    border-bottom: solid 1px black;
 }

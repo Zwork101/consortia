@@ -1,11 +1,5 @@
-body,
-h1,
-h2,
-h3,
-p,
-ul,
-li,
-a {
+
+body, h1, h2, h3, p, ul, li, a {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -23,7 +17,6 @@ header {
     display: flex;
     align-items: center;
     background-color: black; /* Black background for the entire header */
-    
 }
 
 header nav {
@@ -74,62 +67,44 @@ section#main-title {
 }
 
 /* Home page styles */
-main {
-    padding: 20px;
-}
 
-.card-container {
+  
+  .card-container {
     display: flex;
-    gap: 20px; /* Space between the cards */
-<<<<<<< HEAD
-    justify-content: space-evenly; /* Spreads cards evenly, even on smaller screens */
-    flex-wrap: wrap; /* Allows cards to wrap to the next row if needed */
+    flex: 1;
+    gap: 20px;
+    justify-content: center; /* Center cards horizontally */
+    align-items: stretch; /* Stretch cards to be equal height */
+    padding: 20px;
+    width: 80%; /* Occupy 80% of the screen width */
+    margin: 0 auto; /* Center the container horizontally */
   }
   
+    .card {
+        position: relative;
+        width: 400px;
+        height: 400px;
+        border-radius: 8px;
+
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        
+    }
   
-  .card {
-=======
-    justify-content: center; /* Centers the cards horizontally */
-    flex-wrap: nowrap; /* Ensures cards stay on the same row */
-}
-
-.card {
->>>>>>> 99d1ee1ccf383bf86706ca8374a5e17f169755ff
-    position: relative;
-    width: 400px;
-    height: 400px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.card img {
+  .card img {
     width: 100%;
     height: auto;
-}
-
-.card-content {
+  }
+  
+  .card-content {
     position: absolute;
     bottom: 20px;
     left: 20px;
     right: 20px;
     color: #ffffff;
-<<<<<<< HEAD
     text-align: center; /* Aligns the text when there's no image */
   }
   
 
-=======
-}
-
-.card-content h2 {
-    margin: 0 0 10px;
-    font-size: 18px;
-    font-weight: bold;
-    position: relative;
-  }
-  
->>>>>>> 99d1ee1ccf383bf86706ca8374a5e17f169755ff
   .card-content button {
     background: #f57c00;
     border: none;
@@ -142,10 +117,10 @@ main {
     float: right;
   }
   
-.card-content button:hover {
+  .card-content button:hover {
     background: #e57000;
-}
-
+  }
+  
 /* Profile page styles */
 
 .tabs {
@@ -155,8 +130,8 @@ main {
 }
 
 .tablinks {
-
-    background-color: #F76902;
+    
+    background-color:#F76902 ;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -178,7 +153,7 @@ main {
 
 
 #graph-section {
-    flex: 1;
+    
     padding: 20px;
     background-color: #E9ECEF;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -242,8 +217,7 @@ main {
     margin-top: 20px;
 }
 
-#calendar th,
-#calendar td {
+#calendar th, #calendar td {
     width: 14%;
     height: 50px;
     text-align: center;
@@ -260,7 +234,6 @@ main {
 #calendar td {
     background-color: #fff;
 }
-
 #calendar h3 {
     color: #fff;
 }
@@ -276,10 +249,7 @@ svg {
     margin: auto;
 }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 99d1ee1ccf383bf86706ca8374a5e17f169755ff
 /* Bottom section */
 .wic-learn-more{
     font-family: inter;
@@ -313,7 +283,6 @@ svg {
     margin-bottom: 2rem;
     text-align: left
 }
-<<<<<<< HEAD
 .info-box-gray {
     display: flex;
     flex-direction: column;
@@ -326,6 +295,3 @@ svg {
 .info-box-gray div {
     border-bottom: solid 1px black;
 }
-=======
-
->>>>>>> 99d1ee1ccf383bf86706ca8374a5e17f169755ff

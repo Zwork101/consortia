@@ -1,4 +1,4 @@
-from db import Event, Profile
+from backend.db import Event, Profile
 from flask import Blueprint, jsonify
 from datetime import date
 

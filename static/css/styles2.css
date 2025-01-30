@@ -81,20 +81,11 @@ main {
 .card-container {
     display: flex;
     gap: 20px; /* Space between the cards */
-<<<<<<< HEAD
-    justify-content: space-evenly; /* Spreads cards evenly, even on smaller screens */
-    flex-wrap: wrap; /* Allows cards to wrap to the next row if needed */
-  }
-  
-  
-  .card {
-=======
     justify-content: center; /* Centers the cards horizontally */
     flex-wrap: nowrap; /* Ensures cards stay on the same row */
 }
 
 .card {
->>>>>>> 99d1ee1ccf383bf86706ca8374a5e17f169755ff
     position: relative;
     width: 400px;
     height: 400px;
@@ -114,12 +105,6 @@ main {
     left: 20px;
     right: 20px;
     color: #ffffff;
-<<<<<<< HEAD
-    text-align: center; /* Aligns the text when there's no image */
-  }
-  
-
-=======
 }
 
 .card-content h2 {
@@ -129,7 +114,6 @@ main {
     position: relative;
   }
   
->>>>>>> 99d1ee1ccf383bf86706ca8374a5e17f169755ff
   .card-content button {
     background: #f57c00;
     border: none;
@@ -276,10 +260,6 @@ svg {
     margin: auto;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 99d1ee1ccf383bf86706ca8374a5e17f169755ff
 /* Bottom section */
 .wic-learn-more{
     font-family: inter;
@@ -307,25 +287,10 @@ svg {
     background-color: #E9ECEF; /* Optional: Add background color to the boxes */
     display: flex;
     justify-content: space-between;
-    
+}
+
 .info-box-gray h2 {
     font-size: 1rem;
     margin-bottom: 2rem;
     text-align: left
 }
-<<<<<<< HEAD
-.info-box-gray {
-    display: flex;
-    flex-direction: column;
-    background-color: #E9ECEF;
-    position: relative;
-    padding: 2% var(--article-child-padding) ;
-    margin: var(--article-child-margin);
-
-}
-.info-box-gray div {
-    border-bottom: solid 1px black;
-}
-=======
-
->>>>>>> 99d1ee1ccf383bf86706ca8374a5e17f169755ff

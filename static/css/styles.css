@@ -1,10 +1,10 @@
 @font-face {
-    font-family: Inter;
-    src: url(fonts/Inter-VariableFont_opsz\,wght.ttf);
+    font-family: Roboto;
+    src: url(fonts/Roboto-VariableFont_opsz\,wght.ttf);
 }
 
 :root {
-    --main-font: "Inter", sans-serif;
+    --main-font: "Roboto", sans-serif;
     --orange: #F76902;
     --label-purple: #9747FF;
     --label-blue: #009CBD;

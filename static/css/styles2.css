@@ -71,6 +71,7 @@ section#main-title {
   
   .card-container {
     display: flex;
+<<<<<<< HEAD
     flex: 1;
     gap: 20px;
     justify-content: center; /* Center cards horizontally */
@@ -91,6 +92,23 @@ section#main-title {
     }
   
   .card img {
+=======
+    gap: 20px; /* Space between the cards */
+    justify-content: center; /* Centers the cards horizontally */
+    flex-wrap: nowrap; /* Ensures cards stay on the same row */
+}
+
+.card {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+>>>>>>> 690d6773262a80c8b3446f3de07caefa99613471
     width: 100%;
     height: auto;
   }
@@ -101,10 +119,22 @@ section#main-title {
     left: 20px;
     right: 20px;
     color: #ffffff;
+<<<<<<< HEAD
     text-align: center; /* Aligns the text when there's no image */
   }
   
 
+=======
+}
+
+.card-content h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+  }
+  
+>>>>>>> 690d6773262a80c8b3446f3de07caefa99613471
   .card-content button {
     background: #f57c00;
     border: none;
@@ -249,7 +279,10 @@ svg {
     margin: auto;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 690d6773262a80c8b3446f3de07caefa99613471
 /* Bottom section */
 .wic-learn-more{
     font-family: inter;
@@ -277,12 +310,14 @@ svg {
     background-color: #E9ECEF; /* Optional: Add background color to the boxes */
     display: flex;
     justify-content: space-between;
-    
+}
+
 .info-box-gray h2 {
     font-size: 1rem;
     margin-bottom: 2rem;
     text-align: left
 }
+<<<<<<< HEAD
 .info-box-gray {
     display: flex;
     flex-direction: column;
@@ -295,3 +330,5 @@ svg {
 .info-box-gray div {
     border-bottom: solid 1px black;
 }
+=======
+>>>>>>> 690d6773262a80c8b3446f3de07caefa99613471

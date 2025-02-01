@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>WiC Current Semester</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/normalize/normalize.css">
+</head>
+<body>
+
+    <div class="titletabssection">
+        <h2>Women in Computing</h2>
+        <h3 class="status">Status: Non-Active Member</h3>
+        <div class="tabs">
+            <button class="tablinks" onclick="location.href='test.html'">Current Semester</button>
+            <button class="tablinks" onclick="location.href='current-semester-comms-interior.html'">History</button>
+        </div>
+        
+    </div>
+
+    <div class="wicsdemo-container"> 
+        <div class="wicspoints-info-container">
+            <div class="tabcontent">
+                <!-- Legend -->
+                <div class="legend">
+                    <p class="chart-title">Requirements Breakdown</p>
+                    <div class="legend-row">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #F5D76E;"></div>
+                            General Meetings
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #A3C85A;"></div>
+                            Committee Meetings
+                        </div>
+                    </div>
+                    <div class="legend-row">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #75C0C5;"></div>
+                            Volunteering
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #A86EBE;"></div>
+                            Social Event
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bar chart -->
+                <svg width="1050px" height="200" viewBox="0 0 800 200" preserveAspectRatio="none">
+                    <!-- X-axis Labels -->
+                    <text x="50" y="180" font-size="12">0</text>
+                    <text x="150" y="180" font-size="12">2</text>
+                    <text x="250" y="180" font-size="12">4</text>
+                    <text x="350" y="180" font-size="12">6</text>
+                    <text x="450" y="180" font-size="12">8</text>
+                    <text x="550" y="180" font-size="12">10</text>
+                    <text x="650" y="180" font-size="12">12</text>
+                    <text x="750" y="180" font-size="12">14</text>
+
+                    <!-- Background bars -->
+                    <rect x="50" y="10" width="700" height="20" fill="#ccc"></rect>
+                    <rect x="50" y="50" width="700" height="20" fill="#ccc"></rect>
+                    <rect x="50" y="90" width="700" height="20" fill="#ccc"></rect>
+                    <rect x="50" y="130" width="700" height="20" fill="#ccc"></rect>
+
+                    <!-- Data bars -->
+                    <rect id="generalMeetingsBar" x="50" y="10" width="300" height="20" fill="#F5D76E"></rect>
+                    <rect id="committeeMeetingsBar" x="50" y="50" width="200" height="20" fill="#A3C85A"></rect>
+                    <rect id="volunteeringBar" x="50" y="90" width="400" height="20" fill="#75C0C5"></rect>
+                    <rect id="socialEventBar" x="50" y="130" width="150" height="20" fill="#A86EBE"></rect>
+
+                    <!-- Grid lines -->
+                    <line x1="50" y1="0" x2="50" y2="160" stroke="#D9D9D9" stroke-width="1"></line>
+                    <line x1="150" y1="0" x2="150" y2="160" stroke="#D9D9D9" stroke-width="1"></line>
+                    <line x1="250" y1="0" x2="250" y2="160" stroke="#D9D9D9" stroke-width="1"></line>
+                    <line x1="350" y1="0" x2="350" y2="160" stroke="#D9D9D9" stroke-width="1"></line>
+                    <line x1="450" y1="0" x2="450" y2="160" stroke="#D9D9D9" stroke-width="1"></line>
+                    <line x1="550" y1="0" x2="550" y2="160" stroke="#D9D9D9" stroke-width="1"></line>
+                    <line x1="650" y1="0" x2="650" y2="160" stroke="#D9D9D9" stroke-width="1"></line>
+                    <line x1="750" y1="0" x2="750" y2="160" stroke="#D9D9D9" stroke-width="1"></line>
+                </svg>
+            </div>
+        </div>
+
+        <section class="wicinfo-container">
+            <div class="wicinfo-box-gray">
+                <h2>Social Events</h2>                  
+                <div class="extra-info">
+                    <p> 
+                        There are various social events hosted by WiC throughout the year. To find out more about these events, please visit the website.
+                    </p>
+                    <button class="wiclearn-more">Learn More</button>
+                </div>
+            </div>
+            <div class="wicinfo-box-gray">
+                <h2>Volunteering</h2>
+                <div class="extra-info">
+                    <p>
+                        To find more information about volunteering opportunities, please visit the website. 
+                    </p>
+                    <button class="wiclearn-more">Learn More</button>
+                </div>
+            </div>
+        </section>
+    </div>    
+
+    <!-- Script -->
+    <script>
+        // Example data for the number of meetings attended (these values should be dynamic)
+        var generalMeetingsAttended = 5; // Replace with actual data
+        var committeeMeetingsAttended = 3; // Replace with actual data
+        var volunteeringAttended = 14; // Replace with actual data
+        var socialEventsAttended = 2; // Replace with actual data
+
+        // Maximum value for the X-axis (to normalize the bar lengths)
+        var maxMeetings = 14; 
+
+        // Function to update bar widths
+        function updateBarWidths() {
+            var generalMeetingsWidth = (generalMeetingsAttended / maxMeetings) * 700; 
+            var committeeMeetingsWidth = (committeeMeetingsAttended / maxMeetings) * 700; 
+            var volunteeringWidth = (volunteeringAttended / maxMeetings) * 700; 
+            var socialEventsWidth = (socialEventsAttended / maxMeetings) * 700; 
+            
+            document.getElementById('generalMeetingsBar').setAttribute('width', generalMeetingsWidth);
+            document.getElementById('committeeMeetingsBar').setAttribute('width', committeeMeetingsWidth);
+            document.getElementById('volunteeringBar').setAttribute('width', volunteeringWidth);
+            document.getElementById('socialEventBar').setAttribute('width', socialEventsWidth);
+        }
+
+        // Call the function to update the bar widths
+        updateBarWidths();
+    </script>       
+
+</body>
+</html>

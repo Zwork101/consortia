@@ -726,4 +726,129 @@ input[type="text"] {
     border-color: #9747FF;;
   }
 
+  /* Wics Current Semester */
   
+  .tablinks {
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+    text-decoration: none; /* Ensures no underline by default */
+}
+
+
+
+.titletabssection{    
+    font-family: var(--main-font);
+    padding: 2%;
+    margin: 2%;
+    
+}
+.titletabssection h3{
+    font-family: var(--main-font);
+    font-size: smaller;
+    font-weight: normal;
+
+   
+  }
+
+.tablinks:hover {
+    
+    text-decoration: underline #F76902 ; /* Underlines the text on hover */
+}
+
+.tabs {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+
+.chart-title {
+    font-family: var(--main-font);
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.legend {
+    position: relative;
+    top: 10px;
+    right: 10px;
+    font-size: 10px;
+    padding: 10px;
+    /* color: black; */
+   
+    
+    
+}
+
+.legend-row {
+    display: flex;
+    justify-content:right ;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+svg {
+    /* position: relative; */
+    font-family: var(--main-font);
+    display: block;
+    margin-bottom: 20px;
+    
+    
+}
+.tabcontent{
+    background-color: var(--medium-gray);
+    width: 100%;
+    max-width: 1000px;
+    
+}
+
+.wicinfo-box-gray{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--medium-gray);
+    position: relative;
+    padding: 2% var(--article-child-padding) ;
+    margin: var(--article-child-margin);
+
+}
+.wicinfo-container{
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.wiclearn-more {
+    font-family: var(--main-font);
+    font-size: 1.166875rem;
+    color: #F76902;
+    background-color: transparent;
+    border: solid 3px var(--orange);
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+}
+.wiclearn-more:hover {
+    border-color: #9747FF;;
+}

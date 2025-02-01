@@ -333,3 +333,314 @@ Items specific to membership-history-container
 .membership-history-container > div span:not(:last-of-type) {
     margin-right: 2%;
 }
+
+/*
+    Items in large database dropdowns
+*/
+.database-dropdown-large1, .database-dropdown-large2 {
+    position: relative;
+    display: inline-block;
+    margin-top: 64px;
+    margin-left: 64px;
+    border: 1.5px #727578 solid;
+    border-radius: 2px;
+    z-index: 3;
+}
+
+.database-dropdown-large2 {
+    margin-left: 32px;
+}
+
+    .database-dropdown-large1 button, .database-dropdown-large2 button {
+        width: 420px;
+        height: 60px;
+        font-size: 1rem;
+        font-family: var(--main-font);
+        background-color: #fff;
+        text-align: left;
+        padding-left: 12px;
+        border: none;
+    }
+
+.dropDownArrow {
+    float: right;
+    transform: translateX(-8px);
+}
+
+    .dropDownArrow img {
+        transition: transform 0.3s ease-in-out;
+    }
+
+.database-dropdown-large1:focus-within .dropDownArrow img, .database-dropdown-large2:focus-within .dropDownArrow img {
+    transform: rotate(-180deg);
+}
+
+.dropdown-content-large1, .dropdown-content-large2 {
+    width: 420px;
+    display: none;
+    position: absolute;
+    overflow: auto;
+    z-index: 1;
+    border: 1.5px solid #DEDEDE;
+    border-top: none;
+    border-radius: 0 0 2px 2px;
+    transform: translateX(-1px);
+}
+
+    .dropdown-content-large1 a, .dropdown-content-large2 a {
+        font-size: 1rem;
+        font-family: var(--main-font);
+        padding: 12px 12px;
+        display: block;
+        background-color: #fff;
+    }
+
+        .dropdown-content-large1 a:hover, .dropdown-content-large2 a:hover {
+            background-color: #E9ECEF;
+        }
+
+
+.show1, .show2, .show3 {
+    display: block;
+}
+
+.database-dropdown-large1:focus-within, .database-dropdown-large2:focus-within {
+    border-color: #DEDEDE;
+    border-bottom: none;
+    border-radius: 0 0 2px 2px;
+}
+
+/*
+    Items in large database dropdowns
+*/
+
+.database-dropdown-medium {
+    position: absolute;
+    display: block;
+    width: 256px;
+    margin-top: 48px;
+    margin-left: 36px;
+    transform: translateX(320px);
+    border: 1.5px #727578 solid;
+    border-radius: 2px;
+    z-index: 2;
+}
+
+
+    .database-dropdown-medium button {
+        width: 256px;
+        height: 60px;
+        font-size: 1rem;
+        font-family: var(--main-font);
+        background-color: #fff;
+        text-align: left;
+        padding-left: 12px;
+        border: none;
+    }
+
+    .database-dropdown-medium:focus-within .dropDownArrow img {
+        transform: rotate(-180deg);
+    }
+
+.dropdown-content-medium {
+    width: 256px;
+    display: none;
+    position: absolute;
+    overflow: auto;
+    z-index: 1;
+    border: 1.5px solid #DEDEDE;
+    border-top: none;
+    border-radius: 0 0 2px 2px;
+    transform: translateX(-1px);
+}
+
+    .dropdown-content-medium a {
+        font-size: 1rem;
+        font-family: var(--main-font);
+        padding: 12px 12px;
+        display: block;
+        background-color: #fff;
+    }
+
+        .dropdown-content-medium a:hover {
+            background-color: #E9ECEF;
+        }
+
+
+.show1, .show2, .show3 {
+    display: block;
+}
+
+.database-dropdown-medium:focus-within {
+    border-color: #DEDEDE;
+    border-bottom: none;
+    border-radius: 0 0 2px 2px;
+}
+/*
+    Search field
+*/
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-top: 48px;
+    margin-left: 64px;
+}
+
+input[type="text"] {
+    font-family: var(--main-font);
+    font-size: 1rem !important;
+    width: 100%;
+    max-width: 236px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #727578;
+    border-radius: 2px;
+    font-size: 16px;
+}
+/*
+    Orange buttons on admin pages
+*/
+
+.optbutton {
+    position: relative;
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    background-color: #F76902;
+    margin-left: 32px;
+    transform: translate(616px, -60px) !important;
+    border-radius: 2px;
+}
+
+    .optbutton button, .confbutton button {
+        background-color: transparent;
+        border: none;
+        align-items: center;
+        height: 60px;
+        width: 60px;
+        border-radius: 2px;
+    }
+
+    .optbutton img {
+        margin: 0 auto;
+        padding: 0;
+    }
+
+.confbutton {
+    position: relative;
+    display: inline-block;
+    float: right;
+    height: 60px;
+    width: 60px;
+    background-color: #000;
+    transform: translate(-64px, -60px);
+    border-radius: 2px;
+}
+
+/*
+    Everything in admin tables
+*/
+.dbTable {
+    width: calc(100vw - 128px) !important;
+    font-family: var(--main-font);
+    font-size: 0.75rem;
+    margin-left: 64px;
+    text-align: left;
+    border-collapse: collapse;
+    table-layout: auto;
+    transform: translateY(-32px);
+}
+
+.dbTableTop {
+    background-color: #E9ECEF;
+}
+
+.dbTableRow {
+    border-bottom: solid 1.5px #DEDEDE;
+}
+
+    .dbTableTop th, .dbTableRow td {
+        padding: 8px 16px;
+    }
+
+.dbTablePH {
+    width: 15%;
+}
+
+.dbTableTop th {
+    width: max-content;
+    white-space: nowrap;
+}
+
+.tableFlex {
+    width: fit-content;
+}
+
+.dbTableRow input {
+    width: 40px;
+}
+
+/*
+    Checkboxes
+*/
+.container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transform: translate(-4px, -10px);
+}
+
+    .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 2px;
+}
+
+.container:hover input ~ .checkmark {
+    background-color: #E9ECEF;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: #F76902;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    left: 7px;
+    top: 4px;
+    width: 3px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

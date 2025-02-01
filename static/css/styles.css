@@ -644,3 +644,86 @@ input[type="text"] {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
+/* Index */
+
+.wicsdemo-container {
+    padding: 2%;
+    margin: 2%;
+}
+
+.titlewics{
+    font-family: var(--main-font);
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 2%;
+    margin: 2%;
+}
+.wics-coms-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Space between columns */
+  }
+  
+  .wics-coms-container h2{
+    font-family: var(--main-font);
+    text-align: left;
+    margin-bottom: 20px; /* Adjust spacing below the heading */
+    margin: 2%;
+    padding: 2%;
+   
+  }
+  .wics, .coms {
+    flex: 1;
+    text-align: center;
+    padding: 40px 20px; /* More padding for better content visibility */
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    color: white; /* Ensures text remains readable */
+    font-weight: bold;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    position: relative;
+  }
+
+  .wics {
+    background-image: url("../images/women-in-computing.jpg");
+
+  }
+  
+  .coms {
+    background-image: url("../images/coms.jpg"); 
+    
+  }
+  
+ 
+
+  .wicsextra-info {
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    right: 20px;  /* Adjust as needed */
+  }
+
+.wicscomsbutton {
+    font-family: var(--main-font);
+    width: 200px; 
+    height: 60px;
+    padding: 8px 12px;
+    border: 2px solid white;
+    background-color: #F76902;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+  }
+
+
+.wicscomsbutton:hover {
+    /* background-color: rgba(0, 86, 179, 0.9); */
+    border-color: #9747FF;;
+  }
+
+  

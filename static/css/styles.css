@@ -333,3 +333,7 @@ Items specific to membership-history-container
 .membership-history-container > div span:not(:last-of-type) {
     margin-right: 2%;
 }
+
+.membership-history-container img {
+    height: 2.5em;
+}

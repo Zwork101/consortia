@@ -334,6 +334,526 @@ Items specific to membership-history-container
     margin-right: 2%;
 }
 
+
 .membership-history-container img {
     height: 2.5em;
+}
+
+/*
+    Items in large database dropdowns
+*/
+.database-dropdown-large1, .database-dropdown-large2 {
+    position: relative;
+    display: inline-block;
+    margin-top: 64px;
+    margin-left: 64px;
+    border: 1.5px #727578 solid;
+    border-radius: 2px;
+    z-index: 3;
+}
+
+.database-dropdown-large2 {
+    margin-left: 32px;
+}
+
+    .database-dropdown-large1 button, .database-dropdown-large2 button {
+        width: 420px;
+        height: 60px;
+        font-size: 1rem;
+        font-family: var(--main-font);
+        background-color: #fff;
+        text-align: left;
+        padding-left: 12px;
+        border: none;
+    }
+
+.dropDownArrow {
+    float: right;
+    transform: translateX(-8px);
+}
+
+    .dropDownArrow img {
+        transition: transform 0.3s ease-in-out;
+    }
+
+.database-dropdown-large1:focus-within .dropDownArrow img, .database-dropdown-large2:focus-within .dropDownArrow img {
+    transform: rotate(-180deg);
+}
+
+.dropdown-content-large1, .dropdown-content-large2 {
+    width: 420px;
+    display: none;
+    position: absolute;
+    overflow: auto;
+    z-index: 1;
+    border: 1.5px solid #DEDEDE;
+    border-top: none;
+    border-radius: 0 0 2px 2px;
+    transform: translateX(-1px);
+}
+
+    .dropdown-content-large1 a, .dropdown-content-large2 a {
+        font-size: 1rem;
+        font-family: var(--main-font);
+        padding: 12px 12px;
+        display: block;
+        background-color: #fff;
+    }
+
+        .dropdown-content-large1 a:hover, .dropdown-content-large2 a:hover {
+            background-color: #E9ECEF;
+        }
+
+
+.show1, .show2, .show3 {
+    display: block;
+}
+
+.database-dropdown-large1:focus-within, .database-dropdown-large2:focus-within {
+    border-color: #DEDEDE;
+    border-bottom: none;
+    border-radius: 0 0 2px 2px;
+}
+
+/*
+    Items in large database dropdowns
+*/
+
+.database-dropdown-medium {
+    position: absolute;
+    display: block;
+    width: 256px;
+    margin-top: 48px;
+    margin-left: 36px;
+    transform: translateX(320px);
+    border: 1.5px #727578 solid;
+    border-radius: 2px;
+    z-index: 2;
+}
+
+
+    .database-dropdown-medium button {
+        width: 256px;
+        height: 60px;
+        font-size: 1rem;
+        font-family: var(--main-font);
+        background-color: #fff;
+        text-align: left;
+        padding-left: 12px;
+        border: none;
+    }
+
+    .database-dropdown-medium:focus-within .dropDownArrow img {
+        transform: rotate(-180deg);
+    }
+
+.dropdown-content-medium {
+    width: 256px;
+    display: none;
+    position: absolute;
+    overflow: auto;
+    z-index: 1;
+    border: 1.5px solid #DEDEDE;
+    border-top: none;
+    border-radius: 0 0 2px 2px;
+    transform: translateX(-1px);
+}
+
+    .dropdown-content-medium a {
+        font-size: 1rem;
+        font-family: var(--main-font);
+        padding: 12px 12px;
+        display: block;
+        background-color: #fff;
+    }
+
+        .dropdown-content-medium a:hover {
+            background-color: #E9ECEF;
+        }
+
+
+.show1, .show2, .show3 {
+    display: block;
+}
+
+.database-dropdown-medium:focus-within {
+    border-color: #DEDEDE;
+    border-bottom: none;
+    border-radius: 0 0 2px 2px;
+}
+/*
+    Search field
+*/
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-top: 48px;
+    margin-left: 64px;
+}
+
+input[type="text"] {
+    font-family: var(--main-font);
+    font-size: 1rem !important;
+    width: 100%;
+    max-width: 236px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #727578;
+    border-radius: 2px;
+    font-size: 16px;
+}
+/*
+    Orange buttons on admin pages
+*/
+
+.optbutton {
+    position: relative;
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    background-color: #F76902;
+    margin-left: 32px;
+    transform: translate(616px, -60px) !important;
+    border-radius: 2px;
+}
+
+    .optbutton button, .confbutton button {
+        background-color: transparent;
+        border: none;
+        align-items: center;
+        height: 60px;
+        width: 60px;
+        border-radius: 2px;
+    }
+
+    .optbutton img {
+        margin: 0 auto;
+        padding: 0;
+    }
+
+.confbutton {
+    position: relative;
+    display: inline-block;
+    float: right;
+    height: 60px;
+    width: 60px;
+    background-color: #000;
+    transform: translate(-64px, -60px);
+    border-radius: 2px;
+}
+
+/*
+    Everything in admin tables
+*/
+.dbTable {
+    width: calc(100vw - 128px) !important;
+    font-family: var(--main-font);
+    font-size: 0.75rem;
+    margin-left: 64px;
+    text-align: left;
+    border-collapse: collapse;
+    table-layout: auto;
+    transform: translateY(-32px);
+}
+
+.dbTableTop {
+    background-color: #E9ECEF;
+}
+
+.dbTableRow {
+    border-bottom: solid 1.5px #DEDEDE;
+}
+
+    .dbTableTop th, .dbTableRow td {
+        padding: 8px 16px;
+    }
+
+.dbTablePH {
+    width: 15%;
+}
+
+.dbTableTop th {
+    width: max-content;
+    white-space: nowrap;
+}
+
+.tableFlex {
+    width: fit-content;
+}
+
+.dbTableRow input {
+    width: 40px;
+}
+
+/*
+    Checkboxes
+*/
+.container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transform: translate(-4px, -10px);
+}
+
+    .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 2px;
+}
+
+.container:hover input ~ .checkmark {
+    background-color: #E9ECEF;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: #F76902;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    left: 7px;
+    top: 4px;
+    width: 3px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* Index */
+
+.wicsdemo-container {
+    padding: 2%;
+    margin: 2%;
+}
+
+.titlewics{
+    font-family: var(--main-font);
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 2%;
+    margin: 2%;
+}
+.wics-coms-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Space between columns */
+  }
+  
+  .wics-coms-container h2{
+    font-family: var(--main-font);
+    text-align: left;
+    margin-bottom: 20px; /* Adjust spacing below the heading */
+    margin: 2%;
+    padding: 2%;
+   
+  }
+  .wics, .coms {
+    flex: 1;
+    text-align: center;
+    padding: 40px 20px; /* More padding for better content visibility */
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    color: white; /* Ensures text remains readable */
+    font-weight: bold;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    position: relative;
+  }
+
+  .wics {
+    background-image: url("../images/women-in-computing.jpg");
+
+  }
+  
+  .coms {
+    background-image: url("../images/coms.jpg"); 
+    
+  }
+  
+ 
+
+  .wicsextra-info {
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    right: 20px;  /* Adjust as needed */
+  }
+
+.wicscomsbutton {
+    font-family: var(--main-font);
+    width: 200px; 
+    height: 60px;
+    padding: 8px 12px;
+    border: 2px solid white;
+    background-color: #F76902;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+  }
+
+
+.wicscomsbutton:hover {
+    /* background-color: rgba(0, 86, 179, 0.9); */
+    border-color: #9747FF;;
+  }
+
+  /* Wics Current Semester */
+  
+  .tablinks {
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+    text-decoration: none; /* Ensures no underline by default */
+}
+
+
+
+.titletabssection{    
+    font-family: var(--main-font);
+    padding: 2%;
+    margin: 2%;
+    
+}
+.titletabssection h3{
+    font-family: var(--main-font);
+    font-size: smaller;
+    font-weight: normal;
+
+   
+  }
+
+.tablinks:hover {
+    
+    text-decoration: underline #F76902 ; /* Underlines the text on hover */
+}
+
+.tabs {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+
+.chart-title {
+    font-family: var(--main-font);
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.legend {
+    position: relative;
+    top: 10px;
+    right: 10px;
+    font-size: 10px;
+    padding: 10px;
+    /* color: black; */
+   
+    
+    
+}
+
+.legend-row {
+    display: flex;
+    justify-content:right ;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+svg {
+    /* position: relative; */
+    font-family: var(--main-font);
+    display: block;
+    margin-bottom: 20px;
+    
+    
+}
+.tabcontent{
+    background-color: var(--medium-gray);
+    width: 100%;
+    max-width: 1000px;
+    
+}
+
+.wicinfo-box-gray{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--medium-gray);
+    position: relative;
+    padding: 2% var(--article-child-padding) ;
+    margin: var(--article-child-margin);
+
+}
+.wicinfo-container{
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.wiclearn-more {
+    font-family: var(--main-font);
+    font-size: 1.166875rem;
+    color: #F76902;
+    background-color: transparent;
+    border: solid 3px var(--orange);
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+}
+.wiclearn-more:hover {
+    border-color: #9747FF;;
 }

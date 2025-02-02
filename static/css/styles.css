@@ -334,6 +334,11 @@ Items specific to membership-history-container
     margin-right: 2%;
 }
 
+
+.membership-history-container img {
+    height: 2.5em;
+}
+
 /*
     Items in large database dropdowns
 */

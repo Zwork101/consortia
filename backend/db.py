@@ -4,9 +4,7 @@ from typing import Optional
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import ForeignKey, Integer, String, Text, SmallInteger, Enum, ARRAY
-
-db = SQLAlchemy()
+from sqlalchemy import ForeignKey, Integer, String, Text, SmallInteger, Enum, ARRAY, Table, Column
 
 
 class MeetingType(EnumClass):
@@ -16,21 +14,37 @@ class MeetingType(EnumClass):
 class RoleType(EnumClass):
     ADMIN = "ADMIN"
     PLANNER = "PLANNER"
+    
+    
+class Base(DeclarativeBase):
+    pass
+
+
+db = SQLAlchemy(model_class=Base)
+
+
+attendance_table = Table(
+    "attendance",
+    Base.metadata,
+    Column("profile_id", ForeignKey("Profile.profile_id"), primary_key=True),
+    Column("event_id", ForeignKey("Event.event_id"), primary_key=True)
+)
+
 
 class Profile(db.Model):
     __tablename__ = 'Profile'
 
     profile_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
-    rit_id: Mapped[int]
+    rit_id: Mapped[Optional[int]]
     last_name: Mapped[str]
     first_name: Mapped[str]
-    email: Mapped[str]
-    graduation_year: Mapped[int]
-    degree: Mapped[str]
-    pronouns: Mapped[str]
-    avatar_path: Mapped[str]
+    email: Mapped[str] = mapped_column(unique=True)
+    graduation_year: Mapped[Optional[int]]
+    degree: Mapped[Optional[str]]
+    pronouns: Mapped[Optional[str]]
+    avatar_path: Mapped[Optional[str]]
 
-    attendance: Mapped[list["Event"]] = relationship(secondary="Attendance", back_populates="attendants")
+    attendance: Mapped[list["Event"]] = relationship(secondary=attendance_table, back_populates="attendants")
     awards: Mapped[list["Award"]] = relationship(secondary="ProfileAward", back_populates="recipients")
     administrator: Mapped["Administrator"] = relationship(back_populates="profile")
 
@@ -77,6 +91,7 @@ class AwardCondition(db.Model):
     # meeting_type: Mapped[list[MeetingType]]
     check_time: Mapped[str]
     award: Mapped["Award"] = relationship(back_populates="conditions")
+    award_id: Mapped[int] = mapped_column(ForeignKey("Award.award_id"))
 
     # condition_id = db.Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     # name = db.Column(Text, nullable=False)
@@ -106,6 +121,7 @@ class Administrator(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
     role: Mapped[RoleType]
     profile: Mapped["Profile"] = relationship("Profile", back_populates="administrator")
+    profile_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
     # id = db.Column(Integer, primary_key=True, autoincrement=True)
     # profile_id = db.Column(Integer, ForeignKey('Profile.profile_id'), nullable=False)
     # role = db.Column(Enum('roleType'), nullable=False)
@@ -130,12 +146,13 @@ class Event(db.Model):
     event_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
     meeting_type: Mapped[MeetingType]
     name: Mapped[str]
-    start_time: Mapped[datetime]
-    end_time: Mapped[datetime]
-    description: Mapped[str]
-    point_value: Mapped[int]
+    start_time: Mapped[Optional[datetime]]
+    end_time: Mapped[Optional[datetime]]
+    description: Mapped[Optional[str]]
+    point_value: Mapped[int] = mapped_column(default=0)
     organizer: Mapped["Organizer"] = relationship(back_populates="events")
-    attendants: Mapped["Profile"] = relationship(secondary="Attendance", back_populates="attendance")
+    organizer_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
+    attendants: Mapped[list["Profile"]] = relationship(secondary=attendance_table, back_populates="attendance")
     # event_id = db.Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     # campus_group_id = db.Column(Integer, nullable=False)
     # meeting_type= db.Column(Enum(MeetingType), nullable=False)
@@ -148,14 +165,52 @@ class Event(db.Model):
     # organizer = relationship('Organizer', back_populates='events')
     # attendance = relationship('Attendance', back_populates='event')
 
-class Attendance(db.Model):
-    __tablename__ = 'Attendance'
+# class Attendance(db.Model):
+#     __tablename__ = 'Attendance'
 
-    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
-    profile_id: Mapped[int] = relationship(ForeignKey("Profile.profile_id"))
-    event_id: Mapped[int] = relationship(ForeignKey("Event.event_id"))
+#     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
+#     profile_id: Mapped[int] = relationship(ForeignKey("Profile.profile_id"))
+#     event_id: Mapped[int] = relationship(ForeignKey("Event.event_id"))
+    
     # id = db.Column(Integer, primary_key=True, autoincrement=True)
     # profile_id = db.Column(Integer, ForeignKey('Profile.profile_id'), nullable=False)
     # event_id = db.Column(Integer, ForeignKey('Event.event_id'), nullable=False)
     # profile = relationship('Profile', back_populates='attendance')
     # event = relationship('Event', back_populates='attendance')
+    
+    
+def db_testing_setup():
+    event = Event(
+        event_id = 8080,
+        meeting_type = MeetingType.GENERAL,
+        name = "General Meeting",
+        organizer_id = 0
+    )
+    db.session.add_all([
+        event
+    ])
+    db.session.commit()
+
+
+def create_attendance(email: str, event_id: int, first_name: str = None, last_name: str = None):
+    """
+    Creates an attendance object that has NOT been committed yet
+    """
+    user = Profile.query.where(Profile.email == email).first()
+    event = Event.query.get(event_id)
+    
+    if user is None:
+        user = Profile(email = email, first_name = first_name, last_name = last_name)
+        db.session.add(user)
+        db.session.commit()
+    
+    if event not in user.attendance:
+        user.attendance.append(event)
+    
+    return user
+
+def commit(*objects: Base):
+    if objects:
+        db.session.add_all(objects)
+    db.session.commit()
+        

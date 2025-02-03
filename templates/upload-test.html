@@ -1,0 +1,9 @@
+{% from "_formhelpers.html" import render_field %}
+<form method=post enctype="multipart/form-data">
+  <dl>
+    {{ form.meeting_id() }}
+    {{ render_field(form.csv_data) }}
+    {{ form.csrf_token }}
+  </dl>
+  <p><input type=submit value=Register>
+</form>

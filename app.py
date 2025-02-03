@@ -2,7 +2,7 @@ import importlib
 import os
 import logging
 
-from backend.db import db
+from backend.db import db, db_testing_setup, Event
 from configs import *
 
 from flask import Flask, Blueprint
@@ -39,6 +39,10 @@ def create_app(config_file: Config) -> Flask:
 def database_setup(app):
     with app.app_context():
         db.create_all()
+        
+        if Event.query.get(8080) is None:
+            db_testing_setup()
+        
         db.session.commit()
 
 if __name__ == "__main__":

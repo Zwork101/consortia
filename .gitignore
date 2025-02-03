@@ -6,3 +6,6 @@ venv/
 
 # Ignore environment settings
 .env
+
+# Ignore database file
+instance/*

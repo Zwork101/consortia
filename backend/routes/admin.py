@@ -2,9 +2,9 @@ import csv
 import os
 
 from backend.email import send_email
-from backend.db import create_attendance, commit
+from backend.db import create_attendance, commit, Event
 
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, jsonify
 from flask_wtf import FlaskForm
 from wtforms import FileField, IntegerField
 from wtforms.validators import DataRequired, ValidationError
@@ -55,6 +55,29 @@ def update_attendance_data():
     else:
         return render_template("upload-test.html", form=form)
     
+@admin.route("/meetings/<int:meeting_id>/attendance")
+def get_attendance_data(meeting_id: int):
+    event = Event.query.get(meeting_id)
+    if event is None:
+        return 404
+    
+    try:
+        skip = request.args.get("skip", 0, type = int)
+        count = request.args.get("count", 100, type = int)
+    except TypeError:
+        return 400
+    
+    persons = event.attendants[skip:skip+count]
+    
+    return jsonify(
+        [
+            {
+                "first_name": person.first_name,
+                "last_name": person.last_name,
+                "email": person.email
+            } for person in persons
+        ]
+    )
 
 
 @admin.route("/email")

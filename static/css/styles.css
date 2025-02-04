@@ -773,39 +773,41 @@ input[type="text"] {
 
 .chart-title {
     font-family: var(--main-font);
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-left: 20px;
+    font-size: 1.5em;
+    padding-top: 1%;
+    /* font-weight: bold; */
 }
 
-.legend {
+/* .legend {
     position: relative;
     top: 10px;
     right: 10px;
     font-size: 10px;
     padding: 10px;
-    /* color: black; */
-   
-    
-    
+    /* color: black;   
+} */
+
+.legend {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .legend-row {
     display: flex;
-    justify-content:right ;
-    margin-bottom: 10px;
-    gap: 10px;
+    justify-content: left ;
+    gap: 2em;
 }
 
 .legend-item {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: .25em;
 }
 
 .legend-color {
-    width: 20px;
-    height: 20px;
+    width: 1em;
+    height: 1em;
     border-radius: 50%;
 }
 
@@ -817,11 +819,20 @@ svg {
     
     
 }
-.tabcontent{
+/* .tabcontent{
     background-color: var(--medium-gray);
     width: 100%;
     max-width: 1000px;
     
+} */
+
+.tabcontent {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--medium-gray);
+    position: relative;
+    padding: 2% var(--article-child-padding);
+    margin: var(--article-child-margin);
 }
 
 .wicinfo-box-gray{

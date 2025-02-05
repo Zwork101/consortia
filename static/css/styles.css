@@ -6,17 +6,17 @@
 :root {
     --main-font: "Roboto", sans-serif;
     --orange: #F76902;
-    --label-purple: #9747FF;
-    --label-blue: #009CBD;
-    --label-green: #84BC00;
-    --label-yellow: #F6BE00;
+    --label-purple: #C099F7;
+    --label-blue: #66B4C4;
+    --label-green: #B7D478;
+    --label-yellow: #EEDA8F;
     --medium-gray: #E9ECEF;
     --stroke-gray: #DEDEDE;
     --label-opacity: .5;
     --article-child-margin: 1%;
     --article-child-padding: 4%;
     --info-box-padding: 4%;
-    --bar-height:25px;
+    --bar-height: 25px;
 }
 
 html {
@@ -135,10 +135,6 @@ Classes related to "chart-bar" and related subitems
     height: var(--bar-height);
 }
 
-.chart-bar div {
-    opacity: var(--label-opacity);
-}
-
 .chart-bar div:nth-child(1) {
     background-color: var(--label-purple);
 }
@@ -155,14 +151,99 @@ Classes related to "chart-bar" and related subitems
     background-color: var(--label-yellow);
 }
 
+.wic-bar{
+    margin-bottom: 32px;
+}
+
+/*
+    Styling the backdrop of the WiC chart
+*/
+.chart-background {
+    width: 91%;
+    height: 260px;
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    z-index:-1;
+ 
+}
+.chart-bckg1 {
+    grid-row: 1;
+    height: 240px;
+    border-right: solid 2px #DFDFDF;
+}
+.chart-bckg2 {
+    grid-row: 1/2;
+    height: 240px;
+    border-right: solid 2px #DFDFDF;
+}
+.chart-bckg3 {
+
+    height: 240px;
+    border-right: solid 2px #DFDFDF;
+}
+.chart-bckg4 {
+
+    height: 240px;
+    border-right: solid 2px #DFDFDF;
+}
+.chart-bckg5 {
+
+    height: 240px;
+    border-right: solid 2px #DFDFDF;
+}
+.chart-bckg6 {
+
+    height: 240px;
+    border-right: solid 2px #DFDFDF;
+}
+.chart-bckg7 {
+
+    height: 240px;
+    border-right: solid 2px #DFDFDF;
+}
+.chart-background {
+    width: 91%;
+    height: 260px;
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    z-index:-1;
+ 
+}
+.chart-background div{
+    height: 240px;
+    border-right: solid 2px #DFDFDF;
+}
+.chart-bckg1 {
+    grid-row: 1;
+    height: 240px;
+    border-right: solid 2px #DFDFDF;
+}
+.chart-bckg2 {
+    grid-row: 1/2;
+    height: 240px;
+    border-right: solid 2px #DFDFDF;
+}
+.chart-background p{
+    float: right;
+    transform: translate(10px, 240px);
+}
+.chart-first-zero{
+    position: absolute;
+    transform: translateY(240px);
+}
+
+.one-dig-num p{
+    transform: translate(6px, 240px);
+}
 /*
 
 Classes related to "chart-labels" and related subitems
 
 */
-
 .chart-labels {
-    display:flex;
+    display: flex;
     flex-direction: row;
 }
 
@@ -175,7 +256,6 @@ Classes related to "chart-labels" and related subitems
     width: 1rem;
     height: 1rem;
     border-radius: 50%;
-    opacity: var(--label-opacity);
     margin-top: 1rem;
     margin-right: 0.25rem;
 }
@@ -254,23 +334,26 @@ Classes relating to "info-box-gray"
 .learn-more{
     font-family: var(--main-font);
     font-size: 1.166875rem;
+    font-weight: 600;
     color: #F76902;
     background-color: transparent;
     border: solid 3px var(--orange);
-    margin-left: 27.5%;
-    margin-right: 27.5%;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
+    padding: 10px 20px;
+    width: 160px;
     margin-top: 5%;
     margin-bottom: 5%;
 }
 
+.learn-more-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* 
 
 Items specifc to COMMS below
 
 */
-
 .points-bar {
     padding: 2em 0;
 }
@@ -279,6 +362,11 @@ Items specifc to COMMS below
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
+}
+
+.points-info-container2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .mentorship-points-box {
@@ -303,6 +391,16 @@ Items specifc to COMMS below
 .miscellaneous-points-box {
     grid-row: 2;
     grid-column: 3;
+}
+
+.social-events {
+    grid-column: 1/3;
+    margin: 5px;
+}
+
+.volunteering {
+    grid-column: 3/5;
+    margin: 5px;
 }
 
 /* 
@@ -728,7 +826,7 @@ input[type="text"] {
 
 .wicscomsbutton:hover {
     /* background-color: rgba(0, 86, 179, 0.9); */
-    border-color: #9747FF;;
+    border-color: #9747FF;
   }
 
   /* Wics Current Semester */
@@ -867,5 +965,5 @@ svg {
     margin-left: auto;
 }
 .wiclearn-more:hover {
-    border-color: #9747FF;;
+    border-color: #9747FF;
 }

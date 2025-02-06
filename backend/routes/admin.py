@@ -46,6 +46,9 @@ class AddUserForm(FlaskForm):
             raise ValidationError("Email must be a @rit.edu email address")
 
 
+class DeleteUserForm(FlaskForm):
+    user_id = IntegerField("User ID", validators=[DataRequired("Please provide a user ID")])
+
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
 
 
@@ -124,3 +127,17 @@ def add_user():
         db.session.commit()
         return f"User {new_user.first_name} {new_user.last_name} added successfully."
     return render_template("add-user.html", form=form)
+
+
+@admin.route("/admin/delete_user", methods=["GET", "POST"])
+def delete_user():
+    form = DeleteUserForm()
+    if form.validate_on_submit():
+        user = Profile.query.get(form.user_id.data)
+        if user:
+            db.session.delete(user)
+            db.session.commit()
+            return f"User with ID {form.user_id.data} deleted successfully."
+        else:
+            return f"No user found with ID {form.user_id.data}."
+    return render_template("delete-user.html", form=form)

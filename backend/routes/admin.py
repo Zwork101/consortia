@@ -41,6 +41,10 @@ class AddUserForm(FlaskForm):
     pronouns = StringField("Pronouns (Optional)")
     avatar_path = StringField("Avatar Path (Optional)")
 
+    def validate_email(self, field):
+        if not field.data.lower().endswith("@rit.edu"):
+            raise ValidationError("Email must be a @rit.edu email address")
+
 
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
 

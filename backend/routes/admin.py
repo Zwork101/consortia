@@ -4,7 +4,7 @@ import os
 from flask import Blueprint, jsonify, render_template, request
 from flask_wtf import FlaskForm
 from wtforms import FileField, IntegerField, StringField
-from wtforms.validators import DataRequired, ValidationError
+from wtforms.validators import DataRequired, ValidationError, Email
 
 from backend.db import Event, commit, create_attendance, Profile, db
 from backend.email import send_email
@@ -32,7 +32,7 @@ class AttendanceForm(FlaskForm):
 
 
 class AddUserForm(FlaskForm):
-    email = StringField("Email", validators=[DataRequired("Email is required")])
+    email = StringField("Email", validators=[DataRequired("Email is required"), Email(message="Invalid email address")])
     first_name = StringField("First Name", validators=[DataRequired("First name is required")])
     last_name = StringField("Last Name", validators=[DataRequired("Last name is required")])
     rit_id = IntegerField("RIT ID (Optional)")

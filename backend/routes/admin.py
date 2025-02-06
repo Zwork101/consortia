@@ -1,13 +1,13 @@
 import csv
 import os
 
-from backend.email import send_email
-from backend.db import create_attendance, commit, Event
-
-from flask import Blueprint, request, render_template, jsonify
+from flask import Blueprint, jsonify, render_template, request
 from flask_wtf import FlaskForm
-from wtforms import FileField, IntegerField
+from wtforms import FileField, IntegerField, StringField
 from wtforms.validators import DataRequired, ValidationError
+
+from backend.db import Event, commit, create_attendance, Profile, db
+from backend.email import send_email
 
 
 class CampusGroupsValidator:
@@ -30,6 +30,16 @@ class AttendanceForm(FlaskForm):
         "Invalid fields in CSV file, missing 'Email' column. Ensure correct file was uploaded.",
     )])
 
+
+class AddUserForm(FlaskForm):
+    email = StringField("Email", validators=[DataRequired("Email is required")])
+    first_name = StringField("First Name", validators=[DataRequired("First name is required")])
+    last_name = StringField("Last Name", validators=[DataRequired("Last name is required")])
+    rit_id = IntegerField("RIT ID (Optional)")
+    graduation_year = IntegerField("Graduation Year (Optional)")
+    degree = StringField("Degree (Optional)")
+    pronouns = StringField("Pronouns (Optional)")
+    avatar_path = StringField("Avatar Path (Optional)")
 
 
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
@@ -90,3 +100,23 @@ def send_update():
         password=os.environ["EMAIL_PASSWORD"]
     )
     return "Email sent!"
+
+
+@admin.route("/admin/add_user", methods=["GET", "POST"])
+def add_user():
+    form = AddUserForm()
+    if form.validate_on_submit():
+        new_user = Profile(
+            email=form.email.data,
+            first_name=form.first_name.data,
+            last_name=form.last_name.data,
+            rit_id=form.rit_id.data,
+            graduation_year=form.graduation_year.data,
+            degree=form.degree.data,
+            pronouns=form.pronouns.data,
+            avatar_path=form.avatar_path.data
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        return f"User {new_user.first_name} {new_user.last_name} added successfully."
+    return render_template("add-user.html", form=form)

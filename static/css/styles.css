@@ -159,51 +159,7 @@ Classes related to "chart-bar" and related subitems
     Styling the backdrop of the WiC chart
 */
 .chart-background {
-    width: 91%;
-    height: 260px;
-    position: absolute;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    z-index:-1;
- 
-}
-.chart-bckg1 {
-    grid-row: 1;
-    height: 240px;
-    border-right: solid 2px #DFDFDF;
-}
-.chart-bckg2 {
-    grid-row: 1/2;
-    height: 240px;
-    border-right: solid 2px #DFDFDF;
-}
-.chart-bckg3 {
-
-    height: 240px;
-    border-right: solid 2px #DFDFDF;
-}
-.chart-bckg4 {
-
-    height: 240px;
-    border-right: solid 2px #DFDFDF;
-}
-.chart-bckg5 {
-
-    height: 240px;
-    border-right: solid 2px #DFDFDF;
-}
-.chart-bckg6 {
-
-    height: 240px;
-    border-right: solid 2px #DFDFDF;
-}
-.chart-bckg7 {
-
-    height: 240px;
-    border-right: solid 2px #DFDFDF;
-}
-.chart-background {
-    width: 91%;
+    width: 91.4%;
     height: 260px;
     position: absolute;
     display: grid;

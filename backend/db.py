@@ -69,6 +69,7 @@ class Award(db.Model):
     description: Mapped[str]
     icon_path: Mapped[str]
     prize: Mapped[str]
+    organization_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
 
     conditions: Mapped[list["AwardCondition"]] = relationship(back_populates="award")
     recipients: Mapped[list["Profile"]] = relationship(secondary="ProfileAward", back_populates="awards")
@@ -186,8 +187,43 @@ def db_testing_setup():
         name = "General Meeting",
         organizer_id = 0
     )
+    
+    organization = Organizer(
+        organization_id = 9090,
+        name = "My Org",
+        email = "kjindfouinwfiouaebnf"
+    )
+    
+    award = Award(
+        award_id = 2020,
+        name = "Grammy Award",
+        description = "Nonsense here",
+        icon_path = "Icon Here",
+        prize = "Golden Ticket",
+        organization_id = 9090
+    )
+    
+    admin_profile = Profile(
+        profile_id = 1000,
+        rit_id = 1000,
+        last_name = "Smith",
+        first_name = "Will",
+        email = "will.smith@rit.edu",
+        graduation_year = 2025,
+        degree = "Comuputer and Information Technologies",
+        pronouns = "He/Him",
+        avatar_path = "file path here",
+        
+        attendance = [event], 
+        awards = [award],
+        administrator = Administrator(
+            id = 1000,
+            role = RoleType.PLANNER
+        )
+    )
+    
     db.session.add_all([
-        event
+        event, organization, award, admin_profile
     ])
     db.session.commit()
 

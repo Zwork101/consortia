@@ -7,7 +7,7 @@ from configs import *
 
 from flask import Flask, Blueprint
 
-def create_app(config_file: Config) -> Flask:
+def create_app(config_file: Config = DevelopmentConfig) -> Flask:
 
     logging.basicConfig(level=logging.INFO)
     

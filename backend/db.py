@@ -3,8 +3,9 @@ from enum import Enum as EnumClass
 from typing import Optional
 
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import ForeignKey, Integer, String, Text, SmallInteger, Enum, ARRAY, Table, Column
+from sqlalchemy import ForeignKey, Integer, String, Text, SmallInteger, Enum, ARRAY, Table, Column, func
 
 
 class MeetingType(EnumClass):
@@ -47,6 +48,11 @@ class Profile(db.Model):
     attendance: Mapped[list["Event"]] = relationship(secondary=attendance_table, back_populates="attendants")
     awards: Mapped[list["Award"]] = relationship(secondary="ProfileAward", back_populates="recipients")
     administrator: Mapped["Administrator"] = relationship(back_populates="profile")
+    bonuses: Mapped[list["BonusPoints"]] = relationship(back_populates="recipient")
+    
+    @property
+    def points(self):
+        return sum(a.point_value for a in self.awards) + (b.point_value for b in self.bonuses)
 
     # profile_id = db.Column(Integer, primary_key=True, autoincrement=True, unique=True, nullable=False)
     # rit_id = db.Column(Text, nullable=False)
@@ -60,6 +66,19 @@ class Profile(db.Model):
     # awards = relationship('ProfileAward', back_populates='profile')
     # administrators = relationship('Administrator', back_populates='profile')
     # attendance = relationship('Attendance', back_populates='profile')
+
+
+class BonusPoints(db.Model):
+    __tablename__ = "BonusPoints"
+    
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
+    point_value: Mapped[int]
+    recipient: Mapped["Profile"] = relationship(back_populates="bonuses")
+    recipient_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
+    giver: Mapped["Profile"] = relationship(back_populates="grants")
+    giver_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
+    reason: Mapped[str]
+    
 
 class Award(db.Model):
     __tablename__ = 'Award'

@@ -6,8 +6,8 @@ from backend.db import create_attendance, commit, Event
 
 from flask import Blueprint, request, render_template, jsonify
 from flask_wtf import FlaskForm
-from wtforms import FileField, IntegerField
-from wtforms.validators import DataRequired, ValidationError
+from wtforms import FileField, IntegerField, StringField
+from wtforms.validators import DataRequired, ValidationError, NumberRange, Length
 
 
 class CampusGroupsValidator:
@@ -31,6 +31,12 @@ class AttendanceForm(FlaskForm):
     )])
 
 
+class BonusForm(FlaskForm):
+    recipient_id = IntegerField("Recipient ID", validators=[DataRequired("Please provide a profile ID to receive the points.")])
+    giver_id = IntegerField("Giver ID", validators=[DataRequired("Please provide a profile ID to grant the points.")])
+    point_value = IntegerField("Point Value", validators=[NumberRange(min=1, message="Please provide a point value greater than 0")])
+    reason = StringField("Reason for points", validators=Length(min=2, max=500, message="Please keep the reason between 2 nad 500 characters."))
+    
 
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
 
@@ -79,6 +85,7 @@ def get_attendance_data(meeting_id: int):
         ]
     )
 
+@admin.route("/")
 
 @admin.route("/email")
 def send_update():

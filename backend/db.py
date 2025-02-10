@@ -264,6 +264,16 @@ def create_attendance(email: str, event_id: int, first_name: str = None, last_na
     
     return user
 
+def create_bonus(point_value: int, recipient_id: int, giver_id: int, reason: str):
+    grant = BonusPoints(
+        point_value = point_value,
+        recipient_id = recipient_id,
+        giver_id = giver_id,
+        reason = reason
+    )
+    db.session.add(grant)
+    return grant
+
 def commit(*objects: Base):
     if objects:
         db.session.add_all(objects)

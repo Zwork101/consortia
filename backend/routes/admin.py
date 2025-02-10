@@ -2,7 +2,7 @@ import csv
 import os
 
 from backend.email import send_email
-from backend.db import create_attendance, commit, Event, Profile
+from backend.db import create_attendance, commit, Event, Profile, create_bonus
 
 from flask import Blueprint, request, render_template, jsonify
 from flask_wtf import FlaskForm
@@ -32,7 +32,6 @@ class AttendanceForm(FlaskForm):
 
 
 class BonusForm(FlaskForm):
-    recipient_id = IntegerField("Recipient ID", validators=[DataRequired("Please provide a profile ID to receive the points.")])
     giver_id = IntegerField("Giver ID", validators=[DataRequired("Please provide a profile ID to grant the points.")])
     point_value = IntegerField("Point Value", validators=[NumberRange(min=1, message="Please provide a point value greater than 0")])
     reason = StringField("Reason for points", validators=Length(min=2, max=500, message="Please keep the reason between 2 nad 500 characters."))
@@ -144,7 +143,21 @@ def get_profile_data(person_id: int):
         })
         
 
-@admin.route("/")
+@admin.route("/profile/<int:person_id>/bonuses", methods=["POST"])
+def grant_bonus(person_id: int):
+    form = BonusForm()
+    
+    if form.validate_on_submit():
+        create_bonus(
+            form.point_value.data,
+            person_id,
+            form.giver_id.data,
+            form.reason.data
+        )
+        commit()
+        return 201
+    return 400, "Unable to validate request"
+        
 
 @admin.route("/email")
 def send_update():

@@ -1,22 +1,11 @@
-<!doctype html>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/normalize/normalize.css">
-</head>
-<body>
-
-    <!-- Everything below this section will be part of the final code-->
-
-    <nav>
-        <ul class="nav-options-box">
-            <li><a href=""><p>NOTIFICATIONS</p></a></li>
-            <li><a href=""><p>SETTINGS</p></a></li>
-            <li><section><p>WILL SMITH <img src="../static/images/down-arrow-white.png" width="10em" /> </p></section></li>
-        </ul>
-    </nav>
-
-<!-- Everything above this section will be part of the final code-->
-
-</body>
-</html>
+{% extends "base.html.j2" %}
+{% block content %}
+{% include "nav.html.j2" %}
+<nav>
+    <ul class="nav-options-box">
+        <li><a href=""><p>NOTIFICATIONS</p></a></li>
+        <li><a href=""><p>SETTINGS</p></a></li>
+        <li><section><p>WILL SMITH <img src="../static/images/down-arrow-white.png" width="10em" /> </p></section></li>
+    </ul>
+</nav> 
+{% endblock %}

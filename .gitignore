@@ -1,0 +1,11 @@
+# Ignore all cache files
+**/__pycache__/
+
+# Ignore Virtual Environment
+venv/
+
+# Ignore environment settings
+.env
+
+# Ignore database file
+instance/*

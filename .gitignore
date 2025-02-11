@@ -9,3 +9,7 @@ venv/
 
 # Ignore database file
 instance/*
+
+.vs/
+
+.DS_Store

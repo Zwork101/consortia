@@ -3,8 +3,9 @@ from enum import Enum as EnumClass
 from typing import Any, Optional
 
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import ForeignKey, Integer, String, Text, SmallInteger, Enum, ARRAY, Table, Column
+from sqlalchemy import ForeignKey, Integer, String, Text, SmallInteger, Enum, ARRAY, Table, Column, func
 
 
 class MeetingType(EnumClass):
@@ -47,6 +48,11 @@ class Profile(db.Model):
     attendance: Mapped[list["Event"]] = relationship(secondary=attendance_table, back_populates="attendants")
     awards: Mapped[list["Award"]] = relationship(secondary="ProfileAward", back_populates="recipients")
     administrator: Mapped["Administrator"] = relationship(back_populates="profile")
+    bonuses: Mapped[list["BonusPoints"]] = relationship(back_populates="recipient")
+    
+    @property
+    def points(self):
+        return sum(a.point_value for a in self.awards) + (b.point_value for b in self.bonuses)
 
     # profile_id = db.Column(Integer, primary_key=True, autoincrement=True, unique=True, nullable=False)
     # rit_id = db.Column(Text, nullable=False)
@@ -61,6 +67,7 @@ class Profile(db.Model):
     # administrators = relationship('Administrator', back_populates='profile')
     # attendance = relationship('Attendance', back_populates='profile')
 
+<<<<<<< HEAD
     def serialize(self, org_id: Optional[int] = None) -> dict[str, Any]:
         base_profile_json = {
             "first_name": self.first_name,
@@ -106,6 +113,20 @@ class Profile(db.Model):
                 "incomplete": False,
                 "profile": base_profile_json
             }
+=======
+
+class BonusPoints(db.Model):
+    __tablename__ = "BonusPoints"
+    
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
+    point_value: Mapped[int]
+    recipient: Mapped["Profile"] = relationship(back_populates="bonuses")
+    recipient_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
+    giver: Mapped["Profile"] = relationship(back_populates="grants")
+    giver_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
+    reason: Mapped[str]
+    
+>>>>>>> 646f38fb96f4a8da887e9eabed3066468e7d71bf
 
 class Award(db.Model):
     __tablename__ = 'Award'
@@ -290,6 +311,16 @@ def create_attendance(email: str, event_id: int, first_name: str = None, last_na
         user.attendance.append(event)
     
     return user
+
+def create_bonus(point_value: int, recipient_id: int, giver_id: int, reason: str):
+    grant = BonusPoints(
+        point_value = point_value,
+        recipient_id = recipient_id,
+        giver_id = giver_id,
+        reason = reason
+    )
+    db.session.add(grant)
+    return grant
 
 def commit(*objects: Base):
     if objects:

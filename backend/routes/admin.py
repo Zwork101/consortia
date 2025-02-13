@@ -1,11 +1,13 @@
 import csv
+from sqlalchemy import or_
 import os
 
 from backend.email import send_email
-from backend.db import create_attendance, commit, Event, Profile
+from backend.db import create_attendance, commit, Event, Profile, create_bonus
 
 from flask import Blueprint, request, render_template, jsonify
 from flask_wtf import FlaskForm
+<<<<<<< HEAD
 from wtforms import FileField, IntegerField, StringField
 from wtforms.validators import DataRequired, ValidationError, Email
 
@@ -13,6 +15,10 @@ from backend.db import Event, commit, create_attendance, Profile, db
 from backend.email import send_email
 
 from sqlalchemy.orm import Session
+=======
+from wtforms import FileField, IntegerField, StringField, SubmitField
+from wtforms.validators import DataRequired, ValidationError, NumberRange, Length
+>>>>>>> 646f38fb96f4a8da887e9eabed3066468e7d71bf
 
 
 class CampusGroupsValidator:
@@ -53,6 +59,17 @@ class AddUserForm(FlaskForm):
 
 class DeleteUserForm(FlaskForm):
     user_id = IntegerField("User ID", validators=[DataRequired("Please provide a user ID")])
+
+# creates a search bar and searches rit id
+class serachId(FlaskForm):
+    rit_id = StringField("RIT ID", validators=[DataRequired("Please provide a RIT ID")], render_kw = {'hidden': 'true'})
+    submit = SubmitField("Check RIT ID")
+
+
+class BonusForm(FlaskForm):
+    giver_id = IntegerField("Giver ID", validators=[DataRequired("Please provide a profile ID to grant the points.")])
+    point_value = IntegerField("Point Value", validators=[NumberRange(min=1, message="Please provide a point value greater than 0")])
+    reason = StringField("Reason for points", validators=Length(min=2, max=500, message="Please keep the reason between 2 nad 500 characters."))
 
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
 
@@ -123,6 +140,37 @@ def get_profile_data(person_id: int):
     })
         
 
+@admin.route("/profile/<int:person_id>/bonuses", methods=["POST"])
+def grant_bonus(person_id: int):
+    form = BonusForm()
+    
+    if form.validate_on_submit():
+        create_bonus(
+            form.point_value.data,
+            person_id,
+            form.giver_id.data,
+            form.reason.data
+        )
+        commit()
+        return 201
+    return 400, "Unable to validate request"
+
+
+# search for id in the meetings attendance
+@admin.route("/", methods=['GET', 'POST'])
+def id_search(rit_id : int):
+   form = serachId()
+   filtered_data = None
+   
+   if form.validate_on_submit():
+        search_query = request.args.get('search')
+        filtered_data = Event.query.filter(
+            or_(
+                Event.name.ilike(f"%{search_query}%"),
+                Event.description.ilike(f"%{search_query}%")
+            )).all()
+        return render_template('/', form = form, data = filtered_data)
+        
 
 @admin.route("/email")
 def send_update():

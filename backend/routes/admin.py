@@ -1,7 +1,7 @@
 import csv
 import os
 
-from flask import Blueprint, jsonify, render_template, request
+from flask import Blueprint, jsonify, render_template, request, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import FileField, IntegerField, StringField
 from wtforms.validators import DataRequired, ValidationError, Email
@@ -46,8 +46,10 @@ class AddUserForm(FlaskForm):
             raise ValidationError("Email must be a @rit.edu email address")
 
 
-class DeleteUserForm(FlaskForm):
+class SelectUserForm(FlaskForm):
     user_id = IntegerField("User ID", validators=[DataRequired("Please provide a user ID")])
+
+# class EditUserForm(FlaskForm):
 
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
 
@@ -129,15 +131,20 @@ def add_user():
     return render_template("add-user.html", form=form)
 
 
-@admin.route("/admin/delete_user", methods=["GET", "POST"])
-def delete_user():
-    form = DeleteUserForm()
+@admin.route("/admin/select_user", methods=["PUT"])
+def select_user():
+    form = SelectUserForm()
     if form.validate_on_submit():
         user = Profile.query.get(form.user_id.data)
         if user:
-            db.session.delete(user)
-            db.session.commit()
-            return f"User with ID {form.user_id.data} deleted successfully."
+            return redirect(url_for('edit_user', messages=user))
         else:
             return f"No user found with ID {form.user_id.data}."
-    return render_template("delete-user.html", form=form)
+    return render_template("select-user.html", form=form)
+
+# @admin.route("edit_user", methods=["GET", "POST"])
+# def edit_user():
+#     user = request.args['messages']
+#     form = EditUserForm()
+#     if form.validate_on_submit():
+#         db.

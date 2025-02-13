@@ -108,58 +108,15 @@ def get_profile_data(person_id: int):
     profile = Profile.query.get(person_id)
     if profile is None:
         return 404
-    
-    incomplete = profile.rit_id is None
-    
+        
     try:
         org = request.args.get("org_id", None, type = int)
     except TypeError:
         return 400
     
-    base_profile_json = {
-            "first_name": profile.first_name,
-            "last_name": profile.last_name,
-            "email": profile.email,
-            "attendance": [
-                {
-                    "event_id": event.event_id,
-                    "name": event.name,
-                    "description": event.description,
-                    "meeting_type": event.meeting_type.value
-                    
-                } for event in profile.attendance if org is None or event.organizer_id == org
-            ]
-        }
-    
-    if incomplete:
-        return jsonify({
-            "incomplete": True,
-            "profile": base_profile_json
-        })
-    else:
-        base_profile_json.update({
-            "rit_id": profile.rit_id,
-            "graduation_year": profile.graduation_year,
-            "degree": profile.degree,
-            "pronouns": profile.pronouns,
-            "avatar_path": profile.avatar_path,
-            
-            "awards": [
-                {
-                    "award_id": award.award_id,
-                    "name": award.name,
-                    "description": award.description,
-                    "icon_path": award.icon_path        ,
-                    "prize": award.prize            
-                } for award in profile.awards if org is None or award.organization_id == org
-            ],
-            
-            "administrator": None if not profile.administrator else profile.administrator.role.value
-        })
-        return jsonify({
-            "incomplete": False,
-            "profile": base_profile_json
-        })
+    return jsonify({
+        profile.serialize(org)
+    })
         
 
 

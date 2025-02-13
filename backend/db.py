@@ -48,7 +48,7 @@ class Profile(db.Model):
     attendance: Mapped[list["Event"]] = relationship(secondary=attendance_table, back_populates="attendants")
     awards: Mapped[list["Award"]] = relationship(secondary="ProfileAward", back_populates="recipients")
     administrator: Mapped["Administrator"] = relationship(back_populates="profile")
-    bonuses: Mapped[list["BonusPoints"]] = relationship(back_populates="recipient")
+    bonuses: Mapped[list["BonusPoints"]] = relationship(back_populates="recipient", foreign_keys="BonusPoints.recipient_id")
     
     @property
     def points(self):
@@ -67,7 +67,6 @@ class Profile(db.Model):
     # administrators = relationship('Administrator', back_populates='profile')
     # attendance = relationship('Attendance', back_populates='profile')
 
-<<<<<<< HEAD
     def serialize(self, org_id: Optional[int] = None) -> dict[str, Any]:
         base_profile_json = {
             "first_name": self.first_name,
@@ -113,7 +112,6 @@ class Profile(db.Model):
                 "incomplete": False,
                 "profile": base_profile_json
             }
-=======
 
 class BonusPoints(db.Model):
     __tablename__ = "BonusPoints"
@@ -122,11 +120,10 @@ class BonusPoints(db.Model):
     point_value: Mapped[int]
     recipient: Mapped["Profile"] = relationship(back_populates="bonuses")
     recipient_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
-    giver: Mapped["Profile"] = relationship(back_populates="grants")
-    giver_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
+    # giver: Mapped["Profile"] = relationship(back_populates="grants")
+    # giver_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
     reason: Mapped[str]
     
->>>>>>> 646f38fb96f4a8da887e9eabed3066468e7d71bf
 
 class Award(db.Model):
     __tablename__ = 'Award'

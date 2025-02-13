@@ -1,13 +1,15 @@
 import csv
 import os
 
-from flask import Blueprint, jsonify, render_template, request
+from flask import Blueprint, json, jsonify, render_template, request
 from flask_wtf import FlaskForm
 from wtforms import FileField, IntegerField, StringField
 from wtforms.validators import DataRequired, ValidationError, Email
 
 from backend.db import Event, commit, create_attendance, Profile, db
 from backend.email import send_email
+
+from sqlalchemy.orm import Session
 
 
 class CampusGroupsValidator:
@@ -68,7 +70,9 @@ def update_attendance_data():
             )
         
         commit(*updated_users)
-        return f"Updated attendance records for {len(updated_users)} profiles."
+        return jsonify({
+            "msg": f"Updated attendance records for {len(updated_users)} profiles."
+        })
     else:
         return render_template("upload-test.html", form=form)
     
@@ -107,6 +111,29 @@ def send_update():
         password=os.environ["EMAIL_PASSWORD"]
     )
     return "Email sent!"
+
+
+@admin.route("/admin/profiles/<int:organization>", methods=["GET"])
+def list_users(organization: int):
+
+    try:
+        skip = request.args.get("skip", 0, type = int)
+        count = request.args.get("count", 100, type = int)
+    except TypeError:
+        return 400
+
+    rows = db.session.query(Profile, Event).filter(
+        Event.organizer_id == organization
+    ).limit(count).offset(skip).all()
+
+    users: list[Profile] = []
+    for row in rows:
+        if row[0] not in users:
+            users.append(row[0])
+
+    return jsonify([
+        user.serialize(organization) for user in users
+    ])
 
 
 @admin.route("/admin/add_user", methods=["GET", "POST"])

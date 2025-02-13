@@ -1,4 +1,5 @@
 import csv
+from sqlalchemy import or_
 import os
 
 from backend.email import send_email
@@ -30,10 +31,11 @@ class AttendanceForm(FlaskForm):
         "Invalid fields in CSV file, missing 'Email' column. Ensure correct file was uploaded.",
     )])
 
+
 # creates a search bar and searches rit id
 class serachId(FlaskForm):
     rit_id = StringField("RIT ID", validators=[DataRequired("Please provide a RIT ID")], render_kw = {'hidden': 'true'})
-    submit = SubmitField("Check ID")
+    submit = SubmitField("Check RIT ID")
 
 
 class BonusForm(FlaskForm):
@@ -162,6 +164,22 @@ def grant_bonus(person_id: int):
         commit()
         return 201
     return 400, "Unable to validate request"
+
+
+# search for id in the meetings attendance
+@admin.route("/", methods=['GET', 'POST'])
+def id_search(rit_id : int):
+   form = serachId()
+   filtered_data = None
+   
+   if form.validate_on_submit():
+        search_query = request.args.get('search')
+        filtered_data = Event.query.filter(
+            or_(
+                Event.name.ilike(f"%{search_query}%"),
+                Event.description.ilike(f"%{search_query}%")
+            )).all()
+        return render_template('/', form = form, data = filtered_data)
         
 
 @admin.route("/email")

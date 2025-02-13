@@ -1,6 +1,6 @@
 from datetime import datetime
 from enum import Enum as EnumClass
-from typing import Optional
+from typing import Any, Optional
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -67,6 +67,53 @@ class Profile(db.Model):
     # administrators = relationship('Administrator', back_populates='profile')
     # attendance = relationship('Attendance', back_populates='profile')
 
+<<<<<<< HEAD
+    def serialize(self, org_id: Optional[int] = None) -> dict[str, Any]:
+        base_profile_json = {
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "email": self.email,
+            "attendance": [
+                {
+                    "event_id": event.event_id,
+                    "name": event.name,
+                    "description": event.description,
+                    "meeting_type": event.meeting_type.value
+                    
+                } for event in self.attendance if org_id is None or event.organizer_id == org_id
+            ]
+        }
+
+        if self.rit_id is None:
+            return {
+                "incomplete": True,
+                "profile": base_profile_json
+            }
+        else:
+            base_profile_json.update({
+                "rit_id": self.rit_id,
+                "graduation_year": self.graduation_year,
+                "degree": self.degree,
+                "pronouns": self.pronouns,
+                "avatar_path": self.avatar_path,
+                
+                "awards": [
+                    {
+                        "award_id": award.award_id,
+                        "name": award.name,
+                        "description": award.description,
+                        "icon_path": award.icon_path        ,
+                        "prize": award.prize            
+                    } for award in self.awards if org_id is None or award.organization_id == org_id
+                ],
+                
+                "administrator": None if not self.administrator else self.administrator.role.value
+            })
+            return {
+                "incomplete": False,
+                "profile": base_profile_json
+            }
+=======
 
 class BonusPoints(db.Model):
     __tablename__ = "BonusPoints"
@@ -79,6 +126,7 @@ class BonusPoints(db.Model):
     giver_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
     reason: Mapped[str]
     
+>>>>>>> 646f38fb96f4a8da887e9eabed3066468e7d71bf
 
 class Award(db.Model):
     __tablename__ = 'Award'

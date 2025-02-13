@@ -7,7 +7,7 @@ subject = "Email Subject"
 body = "This is the body of the text message"
 sender = "rit.consortia@gmail.com"
 recipients = ["njz8626@g.rit.edu"]
-password = os.environ["EMAIL_PASSWORD"]
+password = os.environ.get("EMAIL_PASSWORD")
 
 
 def send_email(subject, body, sender, recipients, password):

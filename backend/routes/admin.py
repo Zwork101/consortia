@@ -5,8 +5,15 @@ import os
 from backend.email import send_email
 from backend.db import create_attendance, commit, Event, Profile, create_bonus
 
-from flask import Blueprint, request, render_template, jsonify
+from flask import Blueprint, jsonify, render_template, request, redirect, url_for
 from flask_wtf import FlaskForm
+from wtforms import FileField, IntegerField, StringField
+from wtforms.validators import DataRequired, ValidationError, Email
+
+from backend.db import Event, commit, create_attendance, Profile, db
+from backend.email import send_email
+
+from sqlalchemy.orm import Session
 from wtforms import FileField, IntegerField, StringField, SubmitField
 from wtforms.validators import DataRequired, ValidationError, NumberRange, Length
 
@@ -32,6 +39,24 @@ class AttendanceForm(FlaskForm):
     )])
 
 
+class AddUserForm(FlaskForm):
+    email = StringField("Email", validators=[DataRequired("Email is required"), Email(message="Invalid email address")])
+    first_name = StringField("First Name", validators=[DataRequired("First name is required")])
+    last_name = StringField("Last Name", validators=[DataRequired("Last name is required")])
+    rit_id = IntegerField("RIT ID (Optional)")
+    graduation_year = IntegerField("Graduation Year (Optional)")
+    degree = StringField("Degree (Optional)")
+    pronouns = StringField("Pronouns (Optional)")
+    avatar_path = StringField("Avatar Path (Optional)")
+
+    def validate_email(self, field):
+        if not field.data.lower().endswith("@rit.edu"):
+            raise ValidationError("Email must be a @rit.edu email address")
+
+
+class SelectUserForm(FlaskForm):
+    user_id = IntegerField("User ID", validators=[DataRequired("Please provide a user ID")])
+
 # creates a search bar and searches rit id
 class serachId(FlaskForm):
     rit_id = StringField("RIT ID", validators=[DataRequired("Please provide a RIT ID")], render_kw = {'hidden': 'true'})
@@ -42,10 +67,14 @@ class BonusForm(FlaskForm):
     giver_id = IntegerField("Giver ID", validators=[DataRequired("Please provide a profile ID to grant the points.")])
     point_value = IntegerField("Point Value", validators=[NumberRange(min=1, message="Please provide a point value greater than 0")])
     reason = StringField("Reason for points", validators=Length(min=2, max=500, message="Please keep the reason between 2 nad 500 characters."))
-    
+
 
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
 
+
+@admin.route("/admin")
+def admin_interface():
+    return render_template("database-view-coms.html.j2")
 
 @admin.route("/meetings/upload", methods=["POST", "GET"])
 def update_attendance_data():
@@ -63,7 +92,9 @@ def update_attendance_data():
             )
         
         commit(*updated_users)
-        return f"Updated attendance records for {len(updated_users)} profiles."
+        return jsonify({
+            "msg": f"Updated attendance records for {len(updated_users)} profiles."
+        })
     else:
         return render_template("upload-test.html", form=form)
     
@@ -96,58 +127,15 @@ def get_profile_data(person_id: int):
     profile = Profile.query.get(person_id)
     if profile is None:
         return 404
-    
-    incomplete = profile.rit_id is None
-    
+        
     try:
         org = request.args.get("org_id", None, type = int)
     except TypeError:
         return 400
     
-    base_profile_json = {
-            "first_name": profile.first_name,
-            "last_name": profile.last_name,
-            "email": profile.email,
-            "attendance": [
-                {
-                    "event_id": event.event_id,
-                    "name": event.name,
-                    "description": event.description,
-                    "meeting_type": event.meeting_type.value
-                    
-                } for event in profile.attendance if org is None or event.organizer_id == org
-            ]
-        }
-    
-    if incomplete:
-        return jsonify({
-            "incomplete": True,
-            "profile": base_profile_json
-        })
-    else:
-        base_profile_json.update({
-            "rit_id": profile.rit_id,
-            "graduation_year": profile.graduation_year,
-            "degree": profile.degree,
-            "pronouns": profile.pronouns,
-            "avatar_path": profile.avatar_path,
-            
-            "awards": [
-                {
-                    "award_id": award.award_id,
-                    "name": award.name,
-                    "description": award.description,
-                    "icon_path": award.icon_path        ,
-                    "prize": award.prize            
-                } for award in profile.awards if org is None or award.organization_id == org
-            ],
-            
-            "administrator": None if not profile.administrator else profile.administrator.role.value
-        })
-        return jsonify({
-            "incomplete": False,
-            "profile": base_profile_json
-        })
+    return jsonify({
+        profile.serialize(org)
+    })
         
 
 @admin.route("/profile/<int:person_id>/bonuses", methods=["POST"])
@@ -192,3 +180,65 @@ def send_update():
         password=os.environ["EMAIL_PASSWORD"]
     )
     return "Email sent!"
+
+
+@admin.route("/admin/profiles/<int:organization>", methods=["GET"])
+def list_users(organization: int):
+
+    try:
+        skip = request.args.get("skip", 0, type = int)
+        count = request.args.get("count", 100, type = int)
+    except TypeError:
+        return 400
+
+    rows = db.session.query(Profile, Event).filter(
+        Event.organizer_id == organization
+    ).limit(count).offset(skip).all()
+
+    users: list[Profile] = []
+    for row in rows:
+        if row[0] not in users:
+            users.append(row[0])
+
+    return jsonify([
+        user.serialize(organization) for user in users
+    ])
+
+
+@admin.route("/admin/add_user", methods=["GET", "POST"])
+def add_user():
+    form = AddUserForm()
+    if form.validate_on_submit():
+        new_user = Profile(
+            email=form.email.data,
+            first_name=form.first_name.data,
+            last_name=form.last_name.data,
+            rit_id=form.rit_id.data,
+            graduation_year=form.graduation_year.data,
+            degree=form.degree.data,
+            pronouns=form.pronouns.data,
+            avatar_path=form.avatar_path.data
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        return f"User {new_user.first_name} {new_user.last_name} added successfully."
+    return render_template("add-user.html", form=form)
+
+
+@admin.route("/admin/select_user", methods=["PUT"])
+def select_user():
+    form = SelectUserForm()
+    if form.validate_on_submit():
+        user = Profile.query.get(form.user_id.data)
+        if user:
+            return redirect(url_for('edit_user', messages=user))
+        else:
+            return f"No user found with ID {form.user_id.data}."
+    return render_template("select-user.html", form=form)
+
+# @admin.route("edit_user", methods=["GET", "POST"])
+# def edit_user():
+#     user = request.args['messages']
+#     form = EditUserForm()
+#     if form.validate_on_submit():
+#         db.

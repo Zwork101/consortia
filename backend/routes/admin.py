@@ -6,7 +6,7 @@ from backend.db import create_attendance, commit, Event, Profile, create_bonus
 
 from flask import Blueprint, request, render_template, jsonify
 from flask_wtf import FlaskForm
-from wtforms import FileField, IntegerField, StringField
+from wtforms import FileField, IntegerField, StringField, SubmitField
 from wtforms.validators import DataRequired, ValidationError, NumberRange, Length
 
 
@@ -29,6 +29,11 @@ class AttendanceForm(FlaskForm):
         "Unable to parse attendance file, ensure correct file was uploaded.",
         "Invalid fields in CSV file, missing 'Email' column. Ensure correct file was uploaded.",
     )])
+
+# creates a search bar and searches rit id
+class serachId(FlaskForm):
+    rit_id = StringField("RIT ID", validators=[DataRequired("Please provide a RIT ID")], render_kw = {'hidden': 'true'})
+    submit = SubmitField("Check ID")
 
 
 class BonusForm(FlaskForm):

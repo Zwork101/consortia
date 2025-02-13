@@ -57,6 +57,10 @@ class DeleteUserForm(FlaskForm):
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
 
 
+@admin.route("/admin")
+def admin_interface():
+    return render_template("database-view-coms.html.j2")
+
 @admin.route("/meetings/upload", methods=["POST", "GET"])
 def update_attendance_data():
     form = AttendanceForm()

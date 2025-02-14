@@ -3,6 +3,68 @@
 <script src="../static/js/mainjavascript.js"></script>
 {% endblock %}
 {% block content %}
+
+<div id="filter-dialog-box" title="Filters">
+    <form name="filter-settings" id="filter-settings" method="post">
+        <fieldset>
+            <div>
+                <select name="filter-sort-by" id="filter-sort-by">
+                    <option>Sort by: First Name</option>
+                    <option>Sort by: Last Name</option>
+                </select>
+                <select name="filter-sort-order" id="filter-sort-order">
+                    <option>Ascending</option>
+                    <option>Decending</option>
+                </select>
+            </div>
+            <div> 
+                <label for="filter-membership">Membership</label>
+                <select name="filter-membership" id="filter-membership">
+                    <option>All</option>
+                    <option>None</option>
+                </select>    
+            </div>
+            <div>
+                <label for="filter-semesters">Semesters</label>
+                <select name="filter-semesters" id="filter-semesters">
+                    <option>All</option>
+                    <option>None</option>
+                </select>
+            </div>
+            <div>
+                <label for="filter-gen-meetings">Gen. Meetings</label>
+                <select name="filter-gen-meetings" id="filter-gen-meetings">
+                    <option>All</option>
+                    <option>None</option>
+                </select>
+            </div>
+            <div>
+                <label for="filter-con-meetings">Com. Meetings</label>
+                <select name="filter-con-meetings" id="filter-con-meetings">
+                    <option>All</option>
+                    <option>None</option>
+                </select>
+            </div>
+            <div>
+                <label for="filter-social-event">Social Event</label>
+                <select name="filter-social-event" id="filter-social-event">
+                    <option>All</option>
+                    <option>None</option>
+                </select>
+            </div>
+            <div>
+                <label for="filter-volunteering">Volunteering</label>
+                <select name="filter-volunteering" id="filter-volunteering">
+                    <option>All</option>
+                    <option>None</option>
+                </select>
+            </div>
+            <!-- allow for form submission without duplicating the dialog button-->
+            <!-- <input type="submit" tabindex="-1" style="position: absolute; top: -1000px"> -->
+        </fieldset>
+    </form>
+</div>
+
 <nav>
     <ul class="nav-options-box">
         <li><a href=""><p>NOTIFICATIONS</p></a></li>
@@ -58,7 +120,7 @@
     </div>
 
     <div class="optbutton">
-        <button><img src="../static/images/opticon1.png" width="32" /></button>
+        <button id="filter-button"><img src="../static/images/opticon1.png" width="32" /></button>
     </div>
 
     <div class="optbutton">

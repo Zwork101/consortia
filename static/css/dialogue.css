@@ -1,0 +1,44 @@
+.ui-dialog fieldset {
+    border: 0;
+}
+
+#filter-dialog-box fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
+#filter-dialog-box fieldset label {
+    display: flex;
+    align-items: center;
+    /* flex-grow: 1; */
+    padding-right: 5%;
+    font-weight: bold;
+    
+}
+
+/* #filter-dialog-box fieldset span{
+    flex-grow: 3;
+} */
+
+#filter-dialog-box fieldset select{
+    /* display: flex;
+    align-items: center; */
+    flex-grow: 3;
+    padding-right: 5%;
+    
+}
+
+#filter-dialog-box fieldset div:first-of-type {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 5%;
+}
+
+#filter-dialog-box fieldset div:not(div:first-of-type){
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    padding-bottom: 2%;
+}

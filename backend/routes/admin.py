@@ -117,7 +117,8 @@ def get_attendance_data(meeting_id: int):
             {
                 "first_name": person.first_name,
                 "last_name": person.last_name,
-                "email": person.email
+                "email": person.email,
+                "id": person.profile_id
             } for person in persons
         ]
     )
@@ -133,9 +134,9 @@ def get_profile_data(person_id: int):
     except TypeError:
         return 400
     
-    return jsonify({
+    return jsonify(
         profile.serialize(org)
-    })
+    )
         
 
 @admin.route("/profile/<int:person_id>/bonuses", methods=["POST"])

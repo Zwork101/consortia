@@ -5,7 +5,7 @@ from datetime import date
 student = Blueprint("/student", __name__, static_folder="static/", template_folder="templates/")
 
 @student.route("/meetings")
-def upcoming_meetings():
+def upcoming_meetings():  # This needs to be Paginated
     upcoming_meetings = Event.query.filter(Event.start_time >= date.today()).order_by(Event.start_time).all()
     meetings = [
         {

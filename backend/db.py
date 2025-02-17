@@ -5,7 +5,7 @@ from typing import Any, Optional
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import ForeignKey, Integer, String, Text, SmallInteger, Enum, ARRAY, Table, Column, func
+from sqlalchemy import ForeignKey, Integer, String, Text, SmallInteger, Enum, ARRAY, Table, Column, func, PrimaryKeyConstraint
 
 
 class MeetingType(EnumClass):
@@ -27,8 +27,8 @@ db = SQLAlchemy(model_class=Base)
 attendance_table = Table(
     "attendance",
     Base.metadata,
-    Column("profile_id", ForeignKey("Profile.profile_id"), primary_key=True),
-    Column("event_id", ForeignKey("Event.event_id"), primary_key=True)
+    Column("profile_id", ForeignKey("Profile.profile_id"), nullable=False),
+    Column("event_id", ForeignKey("Event.event_id"), nullable=False),
 )
 
 
@@ -245,49 +245,45 @@ class Event(db.Model):
     
     
 def db_testing_setup():
-    event = Event(
-        event_id = 8080,
-        meeting_type = MeetingType.GENERAL,
-        name = "General Meeting",
-        organizer_id = 0
+    import json
+    import random
+    from datetime import datetime
+    
+    users = []
+    events= []
+    
+    WiC = Organizer(
+        name = "Women in Computing",
+        email = "wic@rit.edu"
     )
     
-    organization = Organizer(
-        organization_id = 9090,
-        name = "My Org",
-        email = "kjindfouinwfiouaebnf"
+    COMS = Organizer(
+        name = "Computing Organization for Multicultural Students",
+        email = "coms@rit.edu"
     )
     
-    award = Award(
-        award_id = 2020,
-        name = "Grammy Award",
-        description = "Nonsense here",
-        icon_path = "Icon Here",
-        prize = "Golden Ticket",
-        organization_id = 9090
-    )
-    
-    admin_profile = Profile(
-        profile_id = 1000,
-        rit_id = 1000,
-        last_name = "Smith",
-        first_name = "Will",
-        email = "will.smith@rit.edu",
-        graduation_year = 2025,
-        degree = "Comuputer and Information Technologies",
-        pronouns = "He/Him",
-        avatar_path = "file path here",
+    with open("testing_data/users.json") as f:
+        user_data = json.load(f)
         
-        attendance = [event], 
-        awards = [award],
-        administrator = Administrator(
-            id = 1000,
-            role = RoleType.PLANNER
+    for user in user_data:
+        users.append(
+            Profile(**user)
         )
-    )
+        
+    with open("testing_data/events.json") as f:
+        event_data = json.load(f)
+        
+    for event in event_data:
+        events.append(Event(
+            **event,
+            organizer=random.choice([WiC, COMS]),
+            attendants=random.choices(users, k=random.randint(0, 120))
+        ))
+        events[-1].start_time = datetime.strptime(events[-1].start_time, "%Y-%m-%d %H:%M:%S")
+        events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S")
     
     db.session.add_all([
-        event, organization, award, admin_profile
+        *users, *events, WiC, COMS
     ])
     db.session.commit()
 

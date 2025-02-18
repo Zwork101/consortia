@@ -1,0 +1,16 @@
+{% from "_formhelpers.html" import render_field %}
+<!-- ...existing code or layout... -->
+<h1>Edit User</h1>
+<form method="post">
+  {{ form.hidden_tag() }}
+  <input type="hidden" name="user_id" value="{{ user.profile_id }}">
+  {{ render_field(form.email) }}
+  {{ render_field(form.first_name) }}
+  {{ render_field(form.last_name) }}
+  {{ render_field(form.rit_id) }}
+  {{ render_field(form.graduation_year) }}
+  {{ render_field(form.degree) }}
+  {{ render_field(form.pronouns) }}
+  {{ render_field(form.avatar_path) }}
+  <p><input type="submit" value="Update User"></p>
+</form>

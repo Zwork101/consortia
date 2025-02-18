@@ -1,0 +1,67 @@
+{% from "_formhelpers.html" import render_field %}
+<!-- ...existing layout code... -->
+<h1>Confirm Changes</h1>
+<p>Please review the changes below before submitting:</p>
+<table border="1" cellspacing="0" cellpadding="5">
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Original Value</th>
+      <th>Updated Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Email</td>
+      <td>{{ user.email }}</td>
+      <td>{{ updated_data.email }}</td>
+    </tr>
+    <tr>
+      <td>First Name</td>
+      <td>{{ user.first_name }}</td>
+      <td>{{ updated_data.first_name }}</td>
+    </tr>
+    <tr>
+      <td>Last Name</td>
+      <td>{{ user.last_name }}</td>
+      <td>{{ updated_data.last_name }}</td>
+    </tr>
+    <tr>
+      <td>RIT ID</td>
+      <td>{{ user.rit_id }}</td>
+      <td>{{ updated_data.rit_id }}</td>
+    </tr>
+    <tr>
+      <td>Graduation Year</td>
+      <td>{{ user.graduation_year }}</td>
+      <td>{{ updated_data.graduation_year }}</td>
+    </tr>
+    <tr>
+      <td>Degree</td>
+      <td>{{ user.degree }}</td>
+      <td>{{ updated_data.degree }}</td>
+    </tr>
+    <tr>
+      <td>Pronouns</td>
+      <td>{{ user.pronouns }}</td>
+      <td>{{ updated_data.pronouns }}</td>
+    </tr>
+    <tr>
+      <td>Avatar Path</td>
+      <td>{{ user.avatar_path }}</td>
+      <td>{{ updated_data.avatar_path }}</td>
+    </tr>
+  </tbody>
+</table>
+<form method="post" action="{{ url_for('admin.confirm_edit_user') }}">
+  <input type="hidden" name="user_id" value="{{ user.profile_id }}">
+  <input type="hidden" name="email" value="{{ updated_data.email }}">
+  <input type="hidden" name="first_name" value="{{ updated_data.first_name }}">
+  <input type="hidden" name="last_name" value="{{ updated_data.last_name }}">
+  <input type="hidden" name="rit_id" value="{{ updated_data.rit_id }}">
+  <input type="hidden" name="graduation_year" value="{{ updated_data.graduation_year }}">
+  <input type="hidden" name="degree" value="{{ updated_data.degree }}">
+  <input type="hidden" name="pronouns" value="{{ updated_data.pronouns }}">
+  <input type="hidden" name="avatar_path" value="{{ updated_data.avatar_path }}">
+  <p><input type="submit" value="Confirm Changes"></p>
+</form>

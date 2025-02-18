@@ -5,7 +5,7 @@ import os
 from backend.email import send_email
 from backend.db import create_attendance, commit, Event, Profile, create_bonus
 
-from flask import Blueprint, jsonify, render_template, request, redirect, url_for
+from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash
 from flask_wtf import FlaskForm
 from wtforms import FileField, IntegerField, StringField
 from wtforms.validators import DataRequired, ValidationError, Email
@@ -48,6 +48,22 @@ class AddUserForm(FlaskForm):
     degree = StringField("Degree (Optional)")
     pronouns = StringField("Pronouns (Optional)")
     avatar_path = StringField("Avatar Path (Optional)")
+
+    def validate_email(self, field):
+        if not field.data.lower().endswith("@rit.edu"):
+            raise ValidationError("Email must be a @rit.edu email address")
+
+
+class EditUserForm(FlaskForm):
+    email = StringField("Email", validators=[DataRequired("Email is required"), Email(message="Invalid email address")])
+    first_name = StringField("First Name", validators=[DataRequired("First name is required")])
+    last_name = StringField("Last Name", validators=[DataRequired("Last name is required")])
+    rit_id = IntegerField("RIT ID (Optional)")
+    graduation_year = IntegerField("Graduation Year (Optional)")
+    degree = StringField("Degree (Optional)")
+    pronouns = StringField("Pronouns (Optional)")
+    avatar_path = StringField("Avatar Path (Optional)")
+    submit = SubmitField("Update User")
 
     def validate_email(self, field):
         if not field.data.lower().endswith("@rit.edu"):
@@ -225,20 +241,68 @@ def add_user():
     return render_template("add-user.html", form=form)
 
 
-@admin.route("/admin/select_user", methods=["PUT"])
+@admin.route("/admin/select_user", methods=["GET", "POST"])
 def select_user():
     form = SelectUserForm()
     if form.validate_on_submit():
         user = Profile.query.get(form.user_id.data)
         if user:
-            return redirect(url_for('edit_user', messages=user))
+            return redirect(url_for('admin.edit_user', user_id=user.profile_id))
         else:
             return f"No user found with ID {form.user_id.data}."
     return render_template("select-user.html", form=form)
 
-# @admin.route("edit_user", methods=["GET", "POST"])
-# def edit_user():
-#     user = request.args['messages']
-#     form = EditUserForm()
-#     if form.validate_on_submit():
-#         db.
+@admin.route("/admin/edit_user", methods=["GET", "POST"])
+def edit_user():
+    user_id = request.args.get("user_id", type=int)
+    if not user_id:
+        return "User ID required", 400
+
+    user = Profile.query.get(user_id)
+    if not user:
+        return f"No user found with ID {user_id}", 404
+
+    form = EditUserForm(obj=user)
+
+    if form.validate_on_submit():
+        # Gather updated data without committing yet.
+        updated_data = {
+            "email": form.email.data,
+            "first_name": form.first_name.data,
+            "last_name": form.last_name.data,
+            "rit_id": form.rit_id.data,
+            "graduation_year": form.graduation_year.data,
+            "degree": form.degree.data,
+            "pronouns": form.pronouns.data,
+            "avatar_path": form.avatar_path.data,
+        }
+        # Pass both original and updated data to confirmation view.
+        return render_template("edit-user-confirmation.html",
+                               user=user,
+                               updated_data=updated_data)
+    # GET: render form prepopulated with user's current data.
+    return render_template("edit-user.html", form=form, user=user)
+
+@admin.route("/admin/edit_user/confirm", methods=["POST"])
+def confirm_edit_user():
+    user_id = request.form.get("user_id", type=int)
+    if not user_id:
+        return "User ID required", 400
+
+    user = Profile.query.get(user_id)
+    if not user:
+        return f"No user found with ID {user_id}", 404
+
+    # The confirmation form submits updated fields as hidden values.
+    user.email = request.form.get("email")
+    user.first_name = request.form.get("first_name")
+    user.last_name = request.form.get("last_name")
+    user.rit_id = request.form.get("rit_id", type=int)
+    user.graduation_year = request.form.get("graduation_year", type=int)
+    user.degree = request.form.get("degree")
+    user.pronouns = request.form.get("pronouns")
+    user.avatar_path = request.form.get("avatar_path")
+
+    db.session.commit()
+    flash("User updated successfully.")
+    return redirect(url_for("admin.admin_interface"))

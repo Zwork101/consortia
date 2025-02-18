@@ -48,7 +48,8 @@ class Profile(db.Model):
     attendance: Mapped[list["Event"]] = relationship(secondary=attendance_table, back_populates="attendants")
     awards: Mapped[list["Award"]] = relationship(secondary="ProfileAward", back_populates="recipients")
     administrator: Mapped["Administrator"] = relationship(back_populates="profile")
-    bonuses: Mapped[list["BonusPoints"]] = relationship(back_populates="recipient")
+    bonuses: Mapped[list["BonusPoints"]] = relationship("BonusPoints", foreign_keys="[BonusPoints.recipient_id]", back_populates="recipient")
+    grants: Mapped[list["BonusPoints"]] = relationship("BonusPoints", foreign_keys="[BonusPoints.giver_id]", back_populates="giver")
     
     @property
     def points(self):
@@ -118,12 +119,12 @@ class BonusPoints(db.Model):
     
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
     point_value: Mapped[int]
-    recipient: Mapped["Profile"] = relationship(back_populates="bonuses")
     recipient_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
-    giver: Mapped["Profile"] = relationship(back_populates="grants")
+    recipient: Mapped["Profile"] = relationship("Profile", foreign_keys=[recipient_id], back_populates="bonuses")
     giver_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
+    giver: Mapped["Profile"] = relationship("Profile", foreign_keys=[giver_id], back_populates="grants")
     reason: Mapped[str]
-    
+
 
 class Award(db.Model):
     __tablename__ = 'Award'
@@ -323,4 +324,3 @@ def commit(*objects: Base):
     if objects:
         db.session.add_all(objects)
     db.session.commit()
-        

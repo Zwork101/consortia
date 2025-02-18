@@ -67,7 +67,6 @@ class Profile(db.Model):
     # administrators = relationship('Administrator', back_populates='profile')
     # attendance = relationship('Attendance', back_populates='profile')
 
-<<<<<<< HEAD
     def serialize(self, org_id: Optional[int] = None) -> dict[str, Any]:
         base_profile_json = {
             "first_name": self.first_name,
@@ -113,7 +112,6 @@ class Profile(db.Model):
                 "incomplete": False,
                 "profile": base_profile_json
             }
-=======
 
 class BonusPoints(db.Model):
     __tablename__ = "BonusPoints"
@@ -126,7 +124,6 @@ class BonusPoints(db.Model):
     giver_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
     reason: Mapped[str]
     
->>>>>>> 646f38fb96f4a8da887e9eabed3066468e7d71bf
 
 class Award(db.Model):
     __tablename__ = 'Award'

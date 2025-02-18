@@ -66,7 +66,7 @@ class serachId(FlaskForm):
 class BonusForm(FlaskForm):
     giver_id = IntegerField("Giver ID", validators=[DataRequired("Please provide a profile ID to grant the points.")])
     point_value = IntegerField("Point Value", validators=[NumberRange(min=1, message="Please provide a point value greater than 0")])
-    reason = StringField("Reason for points", validators=Length(min=2, max=500, message="Please keep the reason between 2 nad 500 characters."))
+    reason = StringField("Reason for points", validators=[Length(min=2, max=500, message="Please keep the reason between 2 and 500 characters.")])
 
 
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")

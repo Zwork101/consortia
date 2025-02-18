@@ -306,3 +306,28 @@ def confirm_edit_user():
     db.session.commit()
     flash("User updated successfully.")
     return redirect(url_for("admin.admin_interface"))
+
+@admin.route("/admin/delete_user", methods=["GET", "POST"])
+def delete_user():
+    if request.method == "GET":
+        user_id = request.args.get("user_id", type=int)
+        if not user_id:
+            return "User ID required", 400
+        user = Profile.query.get(user_id)
+        if not user:
+            return f"No user found with ID {user_id}", 404
+        return render_template("confirm-delete-user.html", user=user)
+    else:
+        user_id = request.form.get("user_id", type=int)
+        if not user_id:
+            return "User ID required", 400
+        user = Profile.query.get(user_id)
+        if not user:
+            return f"No user found with ID {user_id}", 404
+        # If user has an associated administrator, delete it first.
+        if user.administrator:
+            db.session.delete(user.administrator)
+        db.session.delete(user)
+        db.session.commit()
+        flash("User deleted successfully.")
+        return redirect(url_for("admin.admin_interface"))

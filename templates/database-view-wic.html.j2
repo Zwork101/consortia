@@ -65,6 +65,146 @@
     </form>
 </div>
 
+<div id="create-meeting-dialog-box" title="Create Meeting">
+    <form name="create-meeting" id="create-meeting" method="post">
+        <fieldset>
+            <div class="dialog-item">
+                <label for="meeting-title">Title:</label>
+                <input type="text" name="meeting-title" id="meeting-title">
+            </div>
+            <div class="dialog-row">
+                <div>
+                    <label for="meeting-date">Date:</label>
+                    <input type="date" name="meeting-date" id="meeing-date">
+                </div>
+                <div>
+                    <label for="meeting-time-start">Start Time:</label>
+                    <select name="meeting-time-start" id="meeting-time-start">
+                        <option>12am</option>
+                        <option>1am</option>
+                        <option>2am</option>
+                        <option>3am</option>
+                        <option>4am</option>
+                        <option>5am</option>
+                        <option>6am</option>
+                        <option>7am</option>
+                        <option>8am</option>
+                        <option>9am</option>
+                        <option>10am</option>
+                        <option>11am</option>
+                        <option>12pm</option>
+                        <option>1pm</option>
+                        <option>2pm</option>
+                        <option>3pm</option>
+                        <option>4pm</option>
+                        <option>5pm</option>
+                        <option>6pm</option>
+                        <option>7pm</option>
+                        <option>8pm</option>
+                        <option>9pm</option>
+                        <option>10pm</option>
+                        <option>11pm</option>
+                    </select>
+                </div> 
+                <div>
+                    <label for="meeting-time-end">End Time:</label>
+                    <select name="meeting-time-end" id="meeting-time-end">
+                        <option>12am</option>
+                        <option>1am</option>
+                        <option>2am</option>
+                        <option>3am</option>
+                        <option>4am</option>
+                        <option>5am</option>
+                        <option>6am</option>
+                        <option>7am</option>
+                        <option>8am</option>
+                        <option>9am</option>
+                        <option>10am</option>
+                        <option>11am</option>
+                        <option>12pm</option>
+                        <option>1pm</option>
+                        <option>2pm</option>
+                        <option>3pm</option>
+                        <option>4pm</option>
+                        <option>5pm</option>
+                        <option>6pm</option>
+                        <option>7pm</option>
+                        <option>8pm</option>
+                        <option>9pm</option>
+                        <option>10pm</option>
+                        <option>11pm</option>
+                    </select>
+                </div>
+            </div>
+            <div class="dialog-row">
+                <div>
+                    <div class="week-row">
+                        <input type="checkbox" id="repeat-days" name="repeat-days"><label for="repeat-days">Repeat Every:</label>
+                    </div>
+                    <div class="week-row">
+                        <input type="checkbox" id="M" name="M"><label for="M">M</label>
+                        <input type="checkbox" id="Tu" name="Tu"><label for="Tu">T</label>
+                        <input type="checkbox" id="W" name="W"><label for="W">W</label>
+                        <input type="checkbox" id="Th" name="Th"><label for="Th">T</label>
+                        <input type="checkbox" id="F" name="F"><label for="F">F</label>
+                        <input type="checkbox" id="Sat" name="Sat"><label for="Sat">S</label>
+                        <input type="checkbox" id="Sun" name="Sun"><label for="Sun">S</label>
+                    </div>
+                </div>
+                <div>
+                    <label for="meeting-location">Meeting Location:</label>
+                    <input type="text" name="meeting-location" id="meeting-location">
+                </div>
+            </div>
+            <div class="dialog-item">
+                <label for="description">Description</label>
+                <textarea id="description" rows="6" cols="58"></textarea>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<div id="import-data-dialog-box" title="Import Data">
+    <form name="import-data" id="import-data">
+        <fieldset>
+            <div>
+                <p>Drag and Drop or <span>Choose file</span> to file.</p>
+                <p>CSV files only.</p>
+            </div>
+            <div>
+            <!-- left blank for file upload -->
+            </div>
+            <div>
+                <select name="data-event-name" id="data-event-name">
+                    <option>Tutoring with Katie</option>
+                    <option>Option2</option>
+                </select>
+                <select name="data-event-date" id="data-event-date">
+                    <option>11/22/24</option>
+                    <option>Option2</option>
+                </select>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<div id="send-email-dialog-box" title="Send Email">
+    <form name="send-email" id="send-email">
+        <fieldset>
+            <div>
+                <label for="send-to">To:</label>
+                <input type="text" name="send-to" id="send-to">
+            </div>
+            <div>
+                <textarea id="email-message" rows="6" cols="58"></textarea>
+            </div>
+            <div class="add-file-button">
+                <button>Add Files</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
 <nav>
     <ul class="nav-options-box">
         <li><a href=""><p>NOTIFICATIONS</p></a></li>
@@ -124,15 +264,15 @@
     </div>
 
     <div class="optbutton">
-        <button><img src="../static/images/opticon2.png" width="32" /></button>
+        <button id="create-meeting-button"><img src="../static/images/opticon2.png" width="32" /></button>
     </div>
 
     <div class="optbutton">
-        <button><img src="../static/images/opticon3.png" width="32" /></button>
+        <button id="import-data-button"><img src="../static/images/opticon3.png" width="32" /></button>
     </div>
 
     <div class="optbutton">
-        <button><img src="../static/images/opticon4.png" width="32" /></button>
+        <button id="send-email-button"><img src="../static/images/opticon4.png" width="32" /></button>
     </div>
 
     <div class="confbutton">

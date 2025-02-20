@@ -1,5 +1,5 @@
 const listProfiles = async () => {
-	const endpoint = "http://localhost:8080/admin/profiles/0";
+	const endpoint = "http://localhost:8080/admin/profiles/1";
 	try {
     	const response = await fetch(endpoint);
 	    if (!response.ok) {

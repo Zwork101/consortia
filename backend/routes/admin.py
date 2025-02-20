@@ -98,6 +98,7 @@ def update_attendance_data():
     else:
         return render_template("upload-test.html", form=form)
     
+
 @admin.route("/meetings/<int:meeting_id>/attendance")
 def get_attendance_data(meeting_id: int):
     event = Event.query.get(meeting_id)

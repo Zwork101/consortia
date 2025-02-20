@@ -1,0 +1,8 @@
+{% from "_formhelpers.html" import render_field %}
+<form method="post">
+  <dl>
+    {{ render_field(form.user_id) }}
+    {{ form.csrf_token }}
+  </dl>
+  <p><input type="submit" value="Delete User"></p>
+</form>

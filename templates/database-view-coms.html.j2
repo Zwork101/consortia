@@ -1,16 +1,10 @@
 {% extends "base.html.j2" %}
 {% block head %}
 <script src="../static/js/mainjavascript.js"></script>
+<script src="{{ url_for("static", filename="js/admin.js") }}" defer></script>
 {% endblock %}
 {% block content %}
-<nav>
-    <ul class="nav-options-box">
-        <li><a href=""><p>NOTIFICATIONS</p></a></li>
-        <li><a href=""><p>SETTINGS</p></a></li>
-        <li><section><p>WILL SMITH <img src="../static/images/down-arrow-white.png" width="10" /> </p></section></li>
-    </ul>
-</nav>
-
+{% include "nav.html.j2" %}
 <main>
 
     <div class="database-dropdown-large1">
@@ -77,7 +71,7 @@
         <button><img src="../static/images/conficon1.png" width="32" /></button>
     </div>
 
-    <table class="dbTable">
+    <table class="dbTable" id="orgMembers">
         <tr class="dbTableTop">
             <th></th>
             <th>FIRST NAME</th>
@@ -93,27 +87,7 @@
             <th class="dbTablePH"></th>
             <th></th>
         </tr>
-        <tr class="dbTableRow">
-            <td>
-                <label class="container">
-                    <input type="checkbox" >
-                    <span class="checkmark"></span>
-                </label>
-            </td>
-            <td>Will</td>
-            <td>Smith</td>
-            <td>non-active</td>
-            <td>9 semesters</td>
-            <td>wms6730@rit.edu</td>
-            <td>0 Points</td>
-            <td>1 Point</td>
-            <td>4 Points</td>
-            <td>3 Points</td>
-            <td>8 Points</td>
-            <td class="dbTablePH"></td>
-            <td><img src="../static/images/options.png" width="16" /></td>
-        </tr>
+        
     </table>
-
 </main>
 {% endblock %}

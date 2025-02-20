@@ -1,0 +1,123 @@
+.ui-dialog fieldset {
+    border: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+
+Create Filter Dialog
+
+*/
+
+#filter-dialog-box fieldset {
+    gap: 10%;
+}
+
+/* #filter-dialog-box  */
+fieldset label {
+    display: flex;
+    align-items: center;
+    /* flex-grow: 1; */
+    padding-right: 5%;
+    font-weight: bold;
+    
+}
+
+/* #filter-dialog-box fieldset span{
+    flex-grow: 3;
+} */
+
+#filter-dialog-box fieldset select{
+    /* display: flex;
+    align-items: center; */
+    flex-grow: 3;
+    padding-right: 5%;
+    
+}
+
+#filter-dialog-box fieldset div:first-of-type {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 5%;
+}
+
+#filter-dialog-box fieldset div:not(div:first-of-type){
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    padding-bottom: 2%;
+}
+
+/*
+
+Create Meeting Dialog
+
+*/
+
+#create-meeting-dialog-box fieldset .dialog-row, #create-meeting-dialog-box fieldset .week-row{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+}
+
+#create-meeting-dialog-box fieldset .dialog-row div {
+    flex-grow: 1;
+}
+
+#create-meeting-dialog-box fieldset div div {
+    display: flex;
+    flex-direction: column;
+}
+
+#create-meeting-dialog-box fieldset input {
+    padding: 0%;
+}
+
+/*
+
+Create Import Data Dialog
+
+*/
+
+#import-data-dialog-box fieldset div:first-child {
+    width: 100%;
+    padding: 10% 0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px black;
+    margin-bottom: 5%;
+}
+
+#import-data-dialog-box fieldset > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/*
+
+Create Send Email Dialog
+
+*/
+
+/* #send-email-dialog-box fieldset div:first-child {
+
+} */
+
+#send-email-dialog-box fieldset > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#send-email-dialog-box fieldset label {
+    flex-grow: 1;
+}
+
+#send-email-dialog-box fieldset input {
+    flex-grow: 3;
+}

@@ -10,6 +10,7 @@ from flask import Flask, Blueprint
 def create_app(config_file: Config = DevelopmentConfig) -> Flask:
 
     logging.basicConfig(level=logging.INFO)
+    logging.getLogger("sqlalchemy.engine").setLevel(logging.DEBUG)
     
     app = Flask(__name__, static_folder="static/", template_folder="templates/")
 

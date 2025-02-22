@@ -1,11 +1,12 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from enum import Enum as EnumClass
 from typing import Any, Optional
+import logging
 
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import ForeignKey, Integer, String, Text, SmallInteger, Enum, ARRAY, Table, Column, func, PrimaryKeyConstraint
+from sqlalchemy import ForeignKey, Integer, String, Text, SmallInteger, Enum, ARRAY, Table, Column, func, PrimaryKeyConstraint, case, literal
 
 
 class MeetingType(EnumClass):
@@ -50,9 +51,58 @@ class Profile(db.Model):
     administrator: Mapped["Administrator"] = relationship(back_populates="profile")
     bonuses: Mapped[list["BonusPoints"]] = relationship(back_populates="recipient", foreign_keys="BonusPoints.recipient_id")
     
-    @property
-    def points(self):
-        return sum(a.point_value for a in self.awards) + (b.point_value for b in self.bonuses)
+    @hybrid_method
+    def membership(self, org: int):
+        count = 0
+        for event in attendance_table:
+            if event.end_time > (datetime.utcnow() - timedelta(weeks=10)) and event.organizer_id == org:
+                count += 1
+        return 'active' if count > 5 else ('inactive' if count == 0 else 'incomplete')
+    
+    @membership.expression
+    def membership(cls, org: int):
+        query = db.session.query(func.count(attendance_table.c.event_id))\
+            .join(Event, Event.event_id == attendance_table.c.event_id)\
+            .where(attendance_table.c.profile_id == cls.profile_id)\
+            .where(Event.organizer_id == org)\
+            .where(Event.end_time > (datetime.utcnow() - timedelta(weeks=10)))\
+            .scalar_subquery()
+            
+        return case(
+            (query > 5, "Member"),
+            else_ = "Non-Member"
+        )
+        
+    @hybrid_method
+    def bonus_points(self, org: int):
+        return sum(b.point_value for b in self.bonuses if b.organization_id == org)
+        
+        
+    @bonus_points.expression
+    @classmethod
+    def bonus_points(cls, org: int):
+        return db.session.query(func.coalesce(func.sum(BonusPoints.point_value), 0))\
+            .where(BonusPoints.recipient_id == cls.profile_id)\
+            .where(BonusPoints.organization_id == org)\
+            .scalar_subquery()
+    
+    @hybrid_method
+    def event_points(self, org: int):
+        return sum(e.point_value for e in self.attendance if e.organizer_id == org)
+    
+    @event_points.expression
+    @classmethod
+    def event_points(cls, org: int):
+        return db.session.query(func.coalesce(func.sum(Event.point_value), 0))\
+            .select_from(Event)\
+            .join(attendance_table, attendance_table.c.profile_id == cls.profile_id)\
+            .where(Event.event_id == attendance_table.c.event_id)\
+            .where(Event.organizer_id == org)\
+            .scalar_subquery()
+    
+    @hybrid_method
+    def points(self, org: int):
+        return self.event_points(org) + self.bonus_points(org)
 
     # profile_id = db.Column(Integer, primary_key=True, autoincrement=True, unique=True, nullable=False)
     # rit_id = db.Column(Text, nullable=False)
@@ -69,6 +119,7 @@ class Profile(db.Model):
 
     def serialize(self, org_id: Optional[int] = None) -> dict[str, Any]:
         base_profile_json = {
+            "profile_id": self.profile_id,
             "first_name": self.first_name,
             "last_name": self.last_name,
             "email": self.email,
@@ -82,6 +133,9 @@ class Profile(db.Model):
                 } for event in self.attendance if org_id is None or event.organizer_id == org_id
             ]
         }
+        
+        if org_id is not None:
+            base_profile_json['membership'] = self.membership(org_id)
 
         if self.rit_id is None:
             return {
@@ -101,7 +155,7 @@ class Profile(db.Model):
                         "award_id": award.award_id,
                         "name": award.name,
                         "description": award.description,
-                        "icon_path": award.icon_path        ,
+                        "icon_path": award.icon_path,
                         "prize": award.prize            
                     } for award in self.awards if org_id is None or award.organization_id == org_id
                 ],
@@ -120,6 +174,7 @@ class BonusPoints(db.Model):
     point_value: Mapped[int]
     recipient: Mapped["Profile"] = relationship(back_populates="bonuses")
     recipient_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
+    organization_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
     # giver: Mapped["Profile"] = relationship(back_populates="grants")
     # giver_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
     reason: Mapped[str]

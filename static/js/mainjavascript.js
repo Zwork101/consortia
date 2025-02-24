@@ -10,6 +10,10 @@ function dropDown3() {
     document.getElementById("DropdownContent3").classList.toggle("show3");
 }
 
+function dropDown4() {
+    document.getElementById("DropdownContent4").classList.toggle("show4");
+}
+
 window.onclick = function (event) {
     if (!event.target.matches('.dropbtn1')) {
         var dropdowns = document.getElementsByClassName("dropdown-content-large1");
@@ -38,6 +42,16 @@ window.onclick = function (event) {
             var openDropdown = dropdowns[i];
             if (openDropdown.classList.contains('show3')) {
                 openDropdown.classList.remove('show3');
+            }
+        }
+    }
+    if (!event.target.matches('.dropbtn4')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content-navbar");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show4')) {
+                openDropdown.classList.remove('show4');
             }
         }
     }

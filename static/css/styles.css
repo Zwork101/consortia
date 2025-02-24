@@ -21,6 +21,7 @@
 
 html {
     background-color: #FFFFFF;
+    overflow-x:hidden;
 }
 
 p, h1, h2, h3, h4, h5 {
@@ -57,6 +58,7 @@ nav {
     float: right;
     padding: 0px 36px;
     height: 40px;
+    transform: translateX(-70px);
 }
 
 .nav-options-box:first-child {
@@ -84,6 +86,72 @@ nav {
 
 .nav-options-box img {
     transform: translateY(-2px);
+}
+
+/*
+
+    Classes related to navbar dropdown
+
+*/
+
+.navbar-dropdown {
+    position: absolute;
+    display: block;
+    width: 128px;
+    z-index: 2;
+}
+
+
+.navbar-dropdown button {
+    width: 128px;
+    height: 40px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    font-family: var(--main-font);
+    background-color: #F76902;
+    color: #fff;
+    text-align: left;
+    padding-left: 12px;
+    border: none;
+    transform: translate(-16px, -23.5px);
+}
+
+.navbar-dropdown .dropDownArrow img {
+    transform: translate(-12px, -2px);
+}
+
+.navbar-dropdown:focus-within .dropDownArrow img {
+    transform: rotate(-180deg) translate(12px, 2px);
+}
+
+.dropdown-content-navbar {
+    width: 128px;
+    display: none;
+    position: absolute;
+    overflow: auto;
+    z-index: 1;
+    border: 1.5px solid #DEDEDE;
+    border-top: none;
+    border-radius: 0 0 2px 2px;
+    transform: translate(-17px, -23.5px);
+}
+
+.dropdown-content-navbar a {
+    font-size: 0.8rem;
+    font-family: var(--main-font);
+    padding: 12px 12px;
+    display: block;
+    background-color: #fff;
+}
+
+.dropdown-content-navbar a:hover {
+    background-color: #E9ECEF;
+}
+
+.navbar-dropdown:focus-within {
+    border-color: #DEDEDE;
+    border-bottom: none;
+    border-radius: 0 0 2px 2px;
 }
 
 /*
@@ -462,7 +530,7 @@ Items specific to membership-history-container
         }
 
 
-.show1, .show2, .show3 {
+.show1, .show2, .show3, .show4 {
     display: block;
 }
 
@@ -473,7 +541,7 @@ Items specific to membership-history-container
 }
 
 /*
-    Items in large database dropdowns
+    Items in medium database dropdowns
 */
 
 .database-dropdown-medium {

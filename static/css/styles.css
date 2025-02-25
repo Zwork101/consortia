@@ -996,6 +996,7 @@ svg {
     transform: translateX(-4px);
     margin-bottom: 40px;
     opacity: 50%;
+    font-family: var(--main-font);
 }
 .membership-sec button.active {
     opacity: 100%;

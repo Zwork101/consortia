@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Membership Update & Upcoming Events</title>
-    <style>
-    
-        .emailcontainer {
+    <title>COMS Membership Update & Upcoming Events</title>
+   <style>
+    .emailcontainer {
         max-width: 600px;
         margin: 20px auto;
         background: #ffffff;
@@ -32,7 +31,6 @@
         margin: 10px 0;
         border-left: 4px solid #F76902;
     }
-    
     .emailbutton {
         display: inline-block;
         padding: 10px 20px;
@@ -42,8 +40,7 @@
         border-radius: 5px;
         margin-top: 10px;
     }
-       </style>
-   
+   </style>
 </head>
 <body>
     <div class="emailcontainer">
@@ -51,40 +48,27 @@
             <h2>Membership Update & Upcoming Events</h2>
         </div>
         <div class="emailcontent">
-            <p>Dear [Member Name],</p>
+            <p>Dear {{ member_name }},</p>
             <p>We are excited to share some updates regarding your membership status and upcoming events you might be interested in!</p>
-            <h3>Your Membership Status</h3>
-            <p><strong>Status:</strong> [Status]</p>
-            <p>General Meetings: x/14</p>
-            <p>Committee Meetings: x/6</p>
-            <p>Volunteering: x/1</p>
-            <p>Social Event: x/1</p>
+            <h3>Number of points</h3>
+            <p><strong>Points:</strong> {{ points }}/18</p>
             
             <h3>Upcoming Events</h3>
+            {% for event in events %}
             <div class="emailevent">
-                <h4>[Event Title]</h4>
-                <p><strong>Date:</strong> [MM/DD/YYYY]</p>
-                <p><strong>Location:</strong> [Event Location]</p>
-                <p>[Brief Description]</p>
-                <p>Meeting type:  </p>
-                <a href="[Event Link]" class="emailbutton">Register Now</a>
+                <h4>{{ event['title'] }}</h4>
+                <p><strong>Date:</strong> {{ event['date'] }}</p>
+                <p><strong>Location:</strong> {{ event['location'] }}</p>
+                <p>{{ event['description'] }}</p>
+                <p>Number of Points: {{ event['points'] }}</p>
+                <a href="{{ event['link'] }}" class="emailbutton">Register Now</a>
             </div>
-            <div class="emailevent">
-                <h4>[Event Title]</h4>
-                <p><strong>Date:</strong> [MM/DD/YYYY]</p>
-                <p><strong>Location:</strong> [Event Location]</p>
-                <p>[Brief Description]</p>
-                <p>Meeting type:  </p>
-                <a href="[Event Link]" class="emailbutton">Register Now</a>
-            </div>
+            {% endfor %}
 
             <p>We look forward to seeing you at our upcoming events!</p>
             <p>Best regards,</p>
-            <p><strong>[WIC]</strong></p>
+            <p><strong>{{ org_name }}</strong></p>
         </div>
-       
     </div>
 </body>
 </html>
-
-

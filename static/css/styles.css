@@ -41,6 +41,11 @@ p {
     font-weight: lighter;
 }
 
+.external-url a{
+    color: #F76902;
+    text-decoration: none;
+}
+
 /*
 Items in nav bar on top
 */

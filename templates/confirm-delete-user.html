@@ -1,0 +1,15 @@
+<!-- ...existing layout code... -->
+<h1>Confirm Deletion</h1>
+<p>Are you sure you want to delete the following user?</p>
+<ul>
+  <li>Email: {{ user.email }}</li>
+  <li>Name: {{ user.first_name }} {{ user.last_name }}</li>
+  <!-- ...add any other user info if desired... -->
+</ul>
+<form method="post" action="{{ url_for('admin.delete_user') }}">
+  <input type="hidden" name="user_id" value="{{ user.profile_id }}">
+  <p>
+    <input type="submit" value="Delete User">
+    <a href="{{ url_for('admin.edit_user', user_id=user.profile_id) }}">Cancel</a>
+  </p>
+</form>

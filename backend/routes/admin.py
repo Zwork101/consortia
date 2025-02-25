@@ -1,6 +1,7 @@
 import csv
 from sqlalchemy import or_
 import os
+import logging
 
 from backend.email import send_email
 from backend.db import create_attendance, commit, Event, Profile, create_bonus
@@ -114,6 +115,7 @@ def update_attendance_data():
     else:
         return render_template("upload-test.html", form=form)
     
+
 @admin.route("/meetings/<int:meeting_id>/attendance")
 def get_attendance_data(meeting_id: int):
     event = Event.query.get(meeting_id)
@@ -133,7 +135,8 @@ def get_attendance_data(meeting_id: int):
             {
                 "first_name": person.first_name,
                 "last_name": person.last_name,
-                "email": person.email
+                "email": person.email,
+                "id": person.profile_id
             } for person in persons
         ]
     )
@@ -149,9 +152,9 @@ def get_profile_data(person_id: int):
     except TypeError:
         return 400
     
-    return jsonify({
+    return jsonify(
         profile.serialize(org)
-    })
+    )
         
 
 @admin.route("/profile/<int:person_id>/bonuses", methods=["POST"])
@@ -171,7 +174,7 @@ def grant_bonus(person_id: int):
 
 
 # search for id in the meetings attendance
-@admin.route("/", methods=['GET', 'POST'])
+@admin.route("/search", methods=['GET', 'POST'])
 def id_search(rit_id : int):
    form = serachId()
    filtered_data = None
@@ -204,20 +207,32 @@ def list_users(organization: int):
     try:
         skip = request.args.get("skip", 0, type = int)
         count = request.args.get("count", 100, type = int)
+        sort = request.args.get("sort", "first_name")
+        decending = request.args.get("decending", True, type = bool)
     except TypeError:
         return 400
-
-    rows = db.session.query(Profile, Event).filter(
-        Event.organizer_id == organization
-    ).limit(count).offset(skip).all()
-
-    users: list[Profile] = []
-    for row in rows:
-        if row[0] not in users:
-            users.append(row[0])
-
+    
+    rows = db.session.query(
+        Profile.first_name, 
+        Profile.last_name, 
+        Profile.email,
+        Profile.profile_id,
+        Profile.membership(organization),
+        Profile.points(organization))\
+            .join(Event.organizer)\
+            .filter(Event.organizer_id == organization).\
+            group_by(Profile.profile_id).limit(count).offset(skip).all()
+                    
     return jsonify([
-        user.serialize(organization) for user in users
+        {
+            "profile": {
+                "first_name": row[0],
+                "last_name": row[1],
+                "email": row[2],
+                "membership": row[4],
+                "points": row[5]
+            }
+        } for row in rows
     ])
 
 

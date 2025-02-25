@@ -10,6 +10,7 @@ from flask import Flask, Blueprint
 def create_app(config_file: Config = DevelopmentConfig) -> Flask:
 
     logging.basicConfig(level=logging.INFO)
+    logging.getLogger("sqlalchemy.engine").setLevel(logging.DEBUG)
     
     app = Flask(__name__, static_folder="static/", template_folder="templates/")
 
@@ -40,7 +41,7 @@ def database_setup(app):
     with app.app_context():
         db.create_all()
         
-        if Event.query.get(8080) is None:
+        if Event.query.first() is None:
             db_testing_setup()
         
         db.session.commit()

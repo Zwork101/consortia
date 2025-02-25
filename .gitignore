@@ -13,3 +13,5 @@ instance/*
 .vs/
 
 .DS_Store
+
+pyrightconfig.json

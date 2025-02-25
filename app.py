@@ -40,7 +40,7 @@ def database_setup(app):
     with app.app_context():
         db.create_all()
         
-        if Event.query.get(8080) is None:
+        if Event.query.first() is None:
             db_testing_setup()
         
         db.session.commit()

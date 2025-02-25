@@ -1,10 +1,11 @@
 from datetime import datetime
 from enum import Enum as EnumClass
-from typing import Optional
+from typing import Any, Optional
 
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import ForeignKey, Integer, String, Text, SmallInteger, Enum, ARRAY, Table, Column
+from sqlalchemy import ForeignKey, Integer, String, Text, SmallInteger, Enum, ARRAY, Table, Column, func, PrimaryKeyConstraint
 
 
 class MeetingType(EnumClass):
@@ -26,8 +27,8 @@ db = SQLAlchemy(model_class=Base)
 attendance_table = Table(
     "attendance",
     Base.metadata,
-    Column("profile_id", ForeignKey("Profile.profile_id"), primary_key=True),
-    Column("event_id", ForeignKey("Event.event_id"), primary_key=True)
+    Column("profile_id", ForeignKey("Profile.profile_id"), nullable=False),
+    Column("event_id", ForeignKey("Event.event_id"), nullable=False),
 )
 
 
@@ -47,6 +48,11 @@ class Profile(db.Model):
     attendance: Mapped[list["Event"]] = relationship(secondary=attendance_table, back_populates="attendants")
     awards: Mapped[list["Award"]] = relationship(secondary="ProfileAward", back_populates="recipients")
     administrator: Mapped["Administrator"] = relationship(back_populates="profile")
+    bonuses: Mapped[list["BonusPoints"]] = relationship(back_populates="recipient", foreign_keys="BonusPoints.recipient_id")
+    
+    @property
+    def points(self):
+        return sum(a.point_value for a in self.awards) + (b.point_value for b in self.bonuses)
 
     # profile_id = db.Column(Integer, primary_key=True, autoincrement=True, unique=True, nullable=False)
     # rit_id = db.Column(Text, nullable=False)
@@ -60,6 +66,64 @@ class Profile(db.Model):
     # awards = relationship('ProfileAward', back_populates='profile')
     # administrators = relationship('Administrator', back_populates='profile')
     # attendance = relationship('Attendance', back_populates='profile')
+
+    def serialize(self, org_id: Optional[int] = None) -> dict[str, Any]:
+        base_profile_json = {
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "email": self.email,
+            "attendance": [
+                {
+                    "event_id": event.event_id,
+                    "name": event.name,
+                    "description": event.description,
+                    "meeting_type": event.meeting_type.value
+                    
+                } for event in self.attendance if org_id is None or event.organizer_id == org_id
+            ]
+        }
+
+        if self.rit_id is None:
+            return {
+                "incomplete": True,
+                "profile": base_profile_json
+            }
+        else:
+            base_profile_json.update({
+                "rit_id": self.rit_id,
+                "graduation_year": self.graduation_year,
+                "degree": self.degree,
+                "pronouns": self.pronouns,
+                "avatar_path": self.avatar_path,
+                
+                "awards": [
+                    {
+                        "award_id": award.award_id,
+                        "name": award.name,
+                        "description": award.description,
+                        "icon_path": award.icon_path        ,
+                        "prize": award.prize            
+                    } for award in self.awards if org_id is None or award.organization_id == org_id
+                ],
+                
+                "administrator": None if not self.administrator else self.administrator.role.value
+            })
+            return {
+                "incomplete": False,
+                "profile": base_profile_json
+            }
+
+class BonusPoints(db.Model):
+    __tablename__ = "BonusPoints"
+    
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
+    point_value: Mapped[int]
+    recipient: Mapped["Profile"] = relationship(back_populates="bonuses")
+    recipient_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
+    # giver: Mapped["Profile"] = relationship(back_populates="grants")
+    # giver_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
+    reason: Mapped[str]
+    
 
 class Award(db.Model):
     __tablename__ = 'Award'
@@ -181,49 +245,45 @@ class Event(db.Model):
     
     
 def db_testing_setup():
-    event = Event(
-        event_id = 8080,
-        meeting_type = MeetingType.GENERAL,
-        name = "General Meeting",
-        organizer_id = 0
+    import json
+    import random
+    from datetime import datetime
+    
+    users = []
+    events= []
+    
+    WiC = Organizer(
+        name = "Women in Computing",
+        email = "wic@rit.edu"
     )
     
-    organization = Organizer(
-        organization_id = 9090,
-        name = "My Org",
-        email = "kjindfouinwfiouaebnf"
+    COMS = Organizer(
+        name = "Computing Organization for Multicultural Students",
+        email = "coms@rit.edu"
     )
     
-    award = Award(
-        award_id = 2020,
-        name = "Grammy Award",
-        description = "Nonsense here",
-        icon_path = "Icon Here",
-        prize = "Golden Ticket",
-        organization_id = 9090
-    )
-    
-    admin_profile = Profile(
-        profile_id = 1000,
-        rit_id = 1000,
-        last_name = "Smith",
-        first_name = "Will",
-        email = "will.smith@rit.edu",
-        graduation_year = 2025,
-        degree = "Comuputer and Information Technologies",
-        pronouns = "He/Him",
-        avatar_path = "file path here",
+    with open("testing_data/users.json") as f:
+        user_data = json.load(f)
         
-        attendance = [event], 
-        awards = [award],
-        administrator = Administrator(
-            id = 1000,
-            role = RoleType.PLANNER
+    for user in user_data:
+        users.append(
+            Profile(**user)
         )
-    )
+        
+    with open("testing_data/events.json") as f:
+        event_data = json.load(f)
+        
+    for event in event_data:
+        events.append(Event(
+            **event,
+            organizer=random.choice([WiC, COMS]),
+            attendants=random.choices(users, k=random.randint(0, 120))
+        ))
+        events[-1].start_time = datetime.strptime(events[-1].start_time, "%Y-%m-%d %H:%M:%S")
+        events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S")
     
     db.session.add_all([
-        event, organization, award, admin_profile
+        *users, *events, WiC, COMS
     ])
     db.session.commit()
 
@@ -244,6 +304,16 @@ def create_attendance(email: str, event_id: int, first_name: str = None, last_na
         user.attendance.append(event)
     
     return user
+
+def create_bonus(point_value: int, recipient_id: int, giver_id: int, reason: str):
+    grant = BonusPoints(
+        point_value = point_value,
+        recipient_id = recipient_id,
+        giver_id = giver_id,
+        reason = reason
+    )
+    db.session.add(grant)
+    return grant
 
 def commit(*objects: Base):
     if objects:

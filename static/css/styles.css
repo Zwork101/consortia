@@ -88,6 +88,11 @@ nav {
     transform: translateY(-2px);
 }
 
+.backarrow{
+    position: absolute;
+    transform: translate(10px, 10px);
+}
+
 /*
 
     Classes related to navbar dropdown
@@ -97,13 +102,14 @@ nav {
 .navbar-dropdown {
     position: absolute;
     display: block;
-    width: 128px;
+    width: 136px;
     z-index: 2;
+    cursor: pointer;
 }
 
 
 .navbar-dropdown button {
-    width: 128px;
+    width: 136px;
     height: 40px;
     font-size: 0.8rem;
     font-weight: 800;
@@ -117,15 +123,15 @@ nav {
 }
 
 .navbar-dropdown .dropDownArrow img {
-    transform: translate(-12px, -2px);
+    transform: translate(-20px, -2px);
 }
 
 .navbar-dropdown:focus-within .dropDownArrow img {
-    transform: rotate(-180deg) translate(12px, 2px);
+    transform: rotate(-180deg) translate(20px, 2px);
 }
 
 .dropdown-content-navbar {
-    width: 128px;
+    width: 136px;
     display: none;
     position: absolute;
     overflow: auto;
@@ -227,13 +233,12 @@ Classes related to "chart-bar" and related subitems
     Styling the backdrop of the WiC chart
 */
 .chart-background {
-    width: 91.4%;
+    width: 58.6%;
     height: 260px;
     position: absolute;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     z-index:-1;
- 
 }
 .chart-background div{
     height: 240px;
@@ -369,6 +374,14 @@ Classes relating to "info-box-gray"
     width: 160px;
     margin-top: 5%;
     margin-bottom: 5%;
+    cursor: pointer;
+}
+
+.learn-more:hover{
+    background-color: #000;
+    border-color: #000;
+    color: #fff;
+
 }
 
 .learn-more-cont {
@@ -475,6 +488,7 @@ Items specific to membership-history-container
     border: 1.5px #727578 solid;
     border-radius: 2px;
     z-index: 3;
+    cursor: pointer;
 }
 
 .database-dropdown-large2 {
@@ -554,6 +568,7 @@ Items specific to membership-history-container
     border: 1.5px #727578 solid;
     border-radius: 2px;
     z-index: 2;
+    cursor: pointer;
 }
 
 
@@ -854,25 +869,27 @@ input[type="text"] {
     font-weight: bold;
 }
 
-
 .wicscomsbutton:hover {
-    /* background-color: rgba(0, 86, 179, 0.9); */
-    border-color: #9747FF;
+    border-color: #000;
+    background-color: #000;
   }
+
+wicscomsbutton:active {
+    border-color: #000;
+    background-color: #fff;
+    color: #000;
+}
 
   /* Wics Current Semester */
   
   .tablinks {
     background-color: transparent;
     border: none;
-    padding: 10px 20px;
     cursor: pointer;
     font-size: 1em;
     border-radius: 5px;
     text-decoration: none; /* Ensures no underline by default */
 }
-
-
 
 .titletabssection{    
     font-family: var(--main-font);
@@ -884,9 +901,7 @@ input[type="text"] {
     font-family: var(--main-font);
     font-size: smaller;
     font-weight: normal;
-
-   
-  }
+}
 
 .tablinks:hover {
     
@@ -899,22 +914,11 @@ input[type="text"] {
     gap: 10px;
 }
 
-
 .chart-title {
     font-family: var(--main-font);
     font-size: 1.5em;
     padding-top: 1%;
-    /* font-weight: bold; */
 }
-
-/* .legend {
-    position: relative;
-    top: 10px;
-    right: 10px;
-    font-size: 10px;
-    padding: 10px;
-    /* color: black;   
-} */
 
 .legend {
     display: flex;
@@ -948,53 +952,47 @@ svg {
     
     
 }
-/* .tabcontent{
-    background-color: var(--medium-gray);
-    width: 100%;
-    max-width: 1000px;
-    
-} */
 
-.tabcontent {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--medium-gray);
-    position: relative;
-    padding: 2% var(--article-child-padding);
-    margin: calc(var(--article-child-margin)/2) ;
-}
 
-.wicinfo-box-gray{
-    display: flex;
-    flex-direction: column;
-    background-color: var(--medium-gray);
-    position: relative;
-    padding: 2% var(--article-child-padding) ;
-    margin: var(--article-child-margin);
+/*
+    All classes containing layout for student views
+*/
 
-}
-
-.wicinfo-container{
-    max-width: 100%;
+.profile-view-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
+    grid-template-columns: repeat(21, 1fr);
+    height: calc(100vhF - 120px);
+    margin-top: 20px;
+    width: calc(100vw - 80px);
+    margin-left: 40px;
+}
+.membership-sec{
+    grid-column: 1/14;
+    grid-row: 1;
+}
+.calendar-sec {
+    grid-column: 15/20;
+    grid-row: 1;
+}
+#history{
+    display:none;
 }
 
-.wiclearn-more {
-    font-family: var(--main-font);
-    font-size: 1.166875rem;
-    color: #F76902;
-    background-color: transparent;
-    border: solid 3px var(--orange);
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    display: block;
-    width: fit-content;
-    margin-left: auto;
+/*
+    All classes containing styling for membership profile elementes
+*/
+.profile-view-grid h3{
+    font-weight: 400;
+    margin-top: 40px;
 }
-.wiclearn-more:hover {
-    border-color: #9747FF;
+.prof-view-btn {
+    background-color: #fff;
+    border: none;
+    transform: translateX(-4px);
+    margin-bottom: 40px;
+    opacity: 50%;
+}
+.membership-sec button.active {
+    opacity: 100%;
+    text-decoration: underline #F76902;
 }

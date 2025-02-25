@@ -6,7 +6,8 @@
     <title>Homepage</title>
     <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
     <link rel="stylesheet" type="text/css" href="../static/css/normalize/normalize.css">
-   
+    <script src="../static/js/mainjavascript.js"></script>
+
 </head>
 
 <body>
@@ -14,7 +15,18 @@
         <ul class="nav-options-box">
             <li><a href=""><p>NOTIFICATIONS</p></a></li>
             <li><a href=""><p>SETTINGS</p></a></li>
-            <li><section><p>WILL SMITH <img src="../static/images/down-arrow-white.png" width="10" /> </p></section></li>
+            <li>
+                <div class="navbar-dropdown">
+                    <button onclick="dropDown4()" class="dropbtn4">
+                        WILL SMITH
+                        <span class="dropDownArrow"><img src="../static/images/down-arrow-white.png" width="10" /></span>
+                    </button>
+                    <div id="DropdownContent4" class="dropdown-content-navbar">
+                        <a>Profile</a>
+                        <a>Logout</a>
+                    </div>
+                </div>
+            </li>
         </ul>
     </nav>
 
@@ -29,7 +41,7 @@
                 <section class="wics">
                     <h2>Women in Computing</h2>
                     <div class="wicsextra-info">
-                        <button class="wicscomsbutton">See Profile</button>
+                        <button class="wicscomsbutton" onclick="location.href='wics-profile.html'">See Profile</button>
                     </div>
                 </section>
 

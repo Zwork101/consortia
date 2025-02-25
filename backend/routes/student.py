@@ -5,24 +5,44 @@ from datetime import date
 student = Blueprint("/student", __name__, static_folder="static/", template_folder="templates/")
 
 @student.route("/meetings")
-def upcoming_meetings():  # This needs to be Paginated
-    upcoming_meetings = Event.query.filter(Event.start_time >= date.today()).order_by(Event.start_time).all()
-    meetings = [
-        {
-            "event_id": meeting.event_id,
-            "meeting_type": meeting.meeting_type,
-            "name": meeting.name,
-            "start_time": meeting.start_time,
-            "end_time": meeting.end_time,
-            "description": meeting.description,
-            "point_value": meeting.point_value,
-            "organizer_id": meeting.organizer_id,
-            "organizer": meeting.organizer,
-            "attendants": meeting.attendants
-        }
-        for meeting in upcoming_meetings
-    ]
-    return jsonify(meetings)
+def upcoming_meetings(): 
+
+    try:
+        skip = request.args.get("skip", 0, type = int)
+        count = request.args.get("count", 20, type = int)
+
+        if skip < 0 or count <= 0:
+            return jsonify({"Error": "Invalid pagination parameters"}), 
+
+        total_meetings = Event.query.filter(Event.start_time >= date.today()).count()
+
+        upcoming_meetings = (
+                Event.query.filter(Event.start_time >= date.today())
+                .order_by(Event.start_time)
+                .limit(count)
+                .offset(skip)
+                .all()
+            )
+
+        meetings = [
+            {
+                "event_id": meeting.event_id,
+                "meeting_type": meeting.meeting_type,
+                "name": meeting.name,
+                "start_time": meeting.start_time,
+                "end_time": meeting.end_time,
+                "description": meeting.description,
+                "point_value": meeting.point_value,
+                "organizer_id": meeting.organizer_id,
+                "organizer": meeting.organizer,
+                "attendants": meeting.attendants
+            }
+            for meeting in upcoming_meetings
+        ]
+        return jsonify({"Total": total_meetings, "Meetings": meetings})
+    
+    except ValueError:
+        return jsonify({"Error": "Invalid input type"}), 400
 
 @student.route("/attendance")
 def member_attendance():

@@ -1,0 +1,41 @@
+@media screen and (max-width: 600px) {
+    .points-bar, .chart-background {
+        transform: rotate(-90deg);
+        width: 93vw;
+        top: 60vw;
+        right: 5vw;
+        position: absolute;
+    }
+    .chart-background {
+        top:64vw;
+    }
+
+    .chart-background p {
+        transform: rotate(90deg) translate(5vw, -11vw) !important;
+        position: absolute;
+        top: 57vw;
+        
+    }
+
+    .chart-placeholder{
+        height: 120vw;
+        width: 100%;
+        color: #ff0000;
+    }
+
+    .chart-first-zero{
+        opacity: 0;
+    }
+
+    .points-info-container2 {
+        grid-template-columns: 1fr;
+    }
+
+    .social-events,
+    .volunteering {
+        grid-column: 1 / -1; 
+        margin: 5px 0;
+    }
+    
+
+}

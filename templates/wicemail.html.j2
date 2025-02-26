@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIC Membership Update & Upcoming Events</title>
+    <style>
+    
+        .emailcontainer {
+        max-width: 600px;
+        margin: 20px auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .emailheader {
+        background: #F76902;
+        color: #ffffff;
+        padding: 10px;
+        text-align: center;
+        border-radius: 8px 8px 0 0;
+    }
+    .emailcontent {
+        padding: 20px;
+        font-size: 16px;
+        color: #333;
+    }
+    .emailevent {
+        background: #f9f9f9;
+        padding: 10px;
+        margin: 10px 0;
+        border-left: 4px solid #F76902;
+    }
+    
+    .emailbutton {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #F76902;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+       </style>
+   
+</head>
+<body>
+     <div class="emailcontainer">
+        <div class="emailheader">
+            <h2>Membership Update & Upcoming Events</h2>
+        </div>
+        <div class="emailcontent">
+            <p>Dear {{ member_name }},</p>
+            <p>We are excited to share some updates regarding your membership status and upcoming events you might be interested in!</p>
+            <h3>Your Membership Status</h3>
+            <p><strong>Status:</strong> {{ status }}</p>
+            <p>General Meetings: {{ general_meetings }} / 14</p>
+            <p>Committee Meetings: {{ committee_meetings }} / 6</p>
+            <p>Volunteering: {{ volunteering }} / 1</p>
+            <p>Social Event: {{ social_event }} / 1</p>
+            
+            <h3>Upcoming Events</h3>
+            {% for event in events %}
+            <div class="emailevent">
+                <h4>{{ event['title'] }}</h4>
+                <p><strong>Date:</strong> {{ event.date }}</p>
+                <p><strong>Location:</strong> {{ event.location }}</p>
+                <p>{{ event.description }}</p>
+                <p>Meeting type: {{ event.meeting_type }}</p>
+                <a href="{{ event.link }}" class="emailbutton">Register Now</a>
+            </div>
+            {% endfor %}
+
+            <p>We look forward to seeing you at our upcoming events!</p>
+            <p>Best regards,</p>
+            <p><strong>{{ org_name }}</strong></p>
+        </div>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,4982 @@
+[
+	{
+		"first_name": "Avram",
+		"email": "magna.cras.convallis@google.org",
+		"last_name": "Ball",
+		"rit_id": 0,
+		"graduation_year": 2024,
+		"degree": "tellus. Phasellus",
+		"pronouns": "egestas.",
+		"avatar_path": "http://baidu.com/en-us"
+	},
+	{
+		"first_name": "Quinlan",
+		"email": "sed.facilisis.vitae@aol.net",
+		"last_name": "Carver",
+		"rit_id": 5,
+		"graduation_year": 2025,
+		"degree": "Donec egestas.",
+		"pronouns": "orci",
+		"avatar_path": "http://reddit.com/en-us"
+	},
+	{
+		"first_name": "Paula",
+		"email": "dictum.proin@outlook.ca",
+		"last_name": "Holloway",
+		"rit_id": 10,
+		"graduation_year": 2025,
+		"degree": "Cras convallis",
+		"pronouns": "Pellentesque",
+		"avatar_path": "http://facebook.com/en-ca"
+	},
+	{
+		"first_name": "Merritt",
+		"email": "aliquet.metus@yahoo.com",
+		"last_name": "Leonard",
+		"rit_id": 15,
+		"graduation_year": 2025,
+		"degree": "erat vitae",
+		"pronouns": "magna.",
+		"avatar_path": "http://twitter.com/sub/cars"
+	},
+	{
+		"first_name": "Levi",
+		"email": "lobortis.ultrices@protonmail.ca",
+		"last_name": "Jennings",
+		"rit_id": 20,
+		"graduation_year": 2024,
+		"degree": "Quisque fringilla",
+		"pronouns": "ac",
+		"avatar_path": "http://pinterest.com/site"
+	},
+	{
+		"first_name": "Walter",
+		"email": "non.lacinia@icloud.couk",
+		"last_name": "Vance",
+		"rit_id": 25,
+		"graduation_year": 2024,
+		"degree": "mus. Aenean",
+		"pronouns": "Duis",
+		"avatar_path": "https://facebook.com/settings"
+	},
+	{
+		"first_name": "Kelly",
+		"email": "tincidunt.congue@yahoo.edu",
+		"last_name": "Kirkland",
+		"rit_id": 30,
+		"graduation_year": 2025,
+		"degree": "nascetur ridiculus",
+		"pronouns": "lacus",
+		"avatar_path": "http://walmart.com/fr"
+	},
+	{
+		"first_name": "Herman",
+		"email": "molestie.in.tempus@protonmail.ca",
+		"last_name": "Tanner",
+		"rit_id": 35,
+		"graduation_year": 2024,
+		"degree": "cursus luctus,",
+		"pronouns": "sem",
+		"avatar_path": "https://google.com/fr"
+	},
+	{
+		"first_name": "Emerald",
+		"email": "eget.mollis@outlook.com",
+		"last_name": "Jennings",
+		"rit_id": 40,
+		"graduation_year": 2024,
+		"degree": "Duis mi",
+		"pronouns": "facilisis,",
+		"avatar_path": "http://yahoo.com/sub/cars"
+	},
+	{
+		"first_name": "Lars",
+		"email": "auctor@yahoo.org",
+		"last_name": "Baird",
+		"rit_id": 45,
+		"graduation_year": 2025,
+		"degree": "Donec tincidunt.",
+		"pronouns": "hendrerit",
+		"avatar_path": "https://wikipedia.org/site"
+	},
+	{
+		"first_name": "Beatrice",
+		"email": "integer@outlook.com",
+		"last_name": "Bridges",
+		"rit_id": 50,
+		"graduation_year": 2025,
+		"degree": "Curabitur sed",
+		"pronouns": "adipiscing",
+		"avatar_path": "https://facebook.com/site"
+	},
+	{
+		"first_name": "Amos",
+		"email": "per.conubia@outlook.ca",
+		"last_name": "Burks",
+		"rit_id": 55,
+		"graduation_year": 2025,
+		"degree": "commodo at,",
+		"pronouns": "ornare",
+		"avatar_path": "http://bbc.co.uk/sub/cars"
+	},
+	{
+		"first_name": "Silas",
+		"email": "fringilla@icloud.edu",
+		"last_name": "Long",
+		"rit_id": 60,
+		"graduation_year": 2025,
+		"degree": "per inceptos",
+		"pronouns": "est.",
+		"avatar_path": "http://yahoo.com/fr"
+	},
+	{
+		"first_name": "Kevyn",
+		"email": "sit@yahoo.ca",
+		"last_name": "Holder",
+		"rit_id": 65,
+		"graduation_year": 2025,
+		"degree": "aliquet lobortis,",
+		"pronouns": "porttitor",
+		"avatar_path": "http://ebay.com/site"
+	},
+	{
+		"first_name": "Channing",
+		"email": "dapibus.id@aol.ca",
+		"last_name": "Joseph",
+		"rit_id": 70,
+		"graduation_year": 2024,
+		"degree": "Pellentesque tincidunt",
+		"pronouns": "elit",
+		"avatar_path": "https://whatsapp.com/fr"
+	},
+	{
+		"first_name": "Naomi",
+		"email": "morbi@yahoo.couk",
+		"last_name": "Morris",
+		"rit_id": 75,
+		"graduation_year": 2025,
+		"degree": "adipiscing elit.",
+		"pronouns": "libero.",
+		"avatar_path": "https://walmart.com/site"
+	},
+	{
+		"first_name": "Xander",
+		"email": "dui.cum.sociis@outlook.net",
+		"last_name": "Acosta",
+		"rit_id": 80,
+		"graduation_year": 2024,
+		"degree": "Ut tincidunt",
+		"pronouns": "ut,",
+		"avatar_path": "https://cnn.com/sub"
+	},
+	{
+		"first_name": "Genevieve",
+		"email": "enim.mauris@google.edu",
+		"last_name": "Dunlap",
+		"rit_id": 85,
+		"graduation_year": 2025,
+		"degree": "sit amet",
+		"pronouns": "a,",
+		"avatar_path": "http://ebay.com/group/9"
+	},
+	{
+		"first_name": "Chancellor",
+		"email": "sapien.imperdiet.ornare@yahoo.com",
+		"last_name": "Gould",
+		"rit_id": 90,
+		"graduation_year": 2024,
+		"degree": "Sed eu",
+		"pronouns": "Donec",
+		"avatar_path": "https://wikipedia.org/fr"
+	},
+	{
+		"first_name": "Logan",
+		"email": "penatibus.et@aol.net",
+		"last_name": "Macias",
+		"rit_id": 95,
+		"graduation_year": 2025,
+		"degree": "lacinia mattis.",
+		"pronouns": "mattis.",
+		"avatar_path": "http://guardian.co.uk/settings"
+	},
+	{
+		"first_name": "Ezekiel",
+		"email": "vulputate.nisi@hotmail.org",
+		"last_name": "Neal",
+		"rit_id": 100,
+		"graduation_year": 2025,
+		"degree": "Nunc sed",
+		"pronouns": "nostra,",
+		"avatar_path": "http://bbc.co.uk/fr"
+	},
+	{
+		"first_name": "Darryl",
+		"email": "ac.nulla@google.couk",
+		"last_name": "Donaldson",
+		"rit_id": 105,
+		"graduation_year": 2025,
+		"degree": "diam. Pellentesque",
+		"pronouns": "magna.",
+		"avatar_path": "http://yahoo.com/en-ca"
+	},
+	{
+		"first_name": "Benjamin",
+		"email": "erat.volutpat@outlook.ca",
+		"last_name": "Ford",
+		"rit_id": 110,
+		"graduation_year": 2024,
+		"degree": "sit amet",
+		"pronouns": "eu,",
+		"avatar_path": "https://zoom.us/site"
+	},
+	{
+		"first_name": "Kylynn",
+		"email": "et.magnis@icloud.couk",
+		"last_name": "Mason",
+		"rit_id": 115,
+		"graduation_year": 2024,
+		"degree": "augue eu",
+		"pronouns": "aliquet",
+		"avatar_path": "http://wikipedia.org/sub"
+	},
+	{
+		"first_name": "Sierra",
+		"email": "duis@yahoo.ca",
+		"last_name": "Gomez",
+		"rit_id": 120,
+		"graduation_year": 2024,
+		"degree": "montes, nascetur",
+		"pronouns": "elit",
+		"avatar_path": "http://walmart.com/group/9"
+	},
+	{
+		"first_name": "Bevis",
+		"email": "tristique.pellentesque@icloud.org",
+		"last_name": "Morton",
+		"rit_id": 125,
+		"graduation_year": 2026,
+		"degree": "diam eu",
+		"pronouns": "enim.",
+		"avatar_path": "http://yahoo.com/en-ca"
+	},
+	{
+		"first_name": "Victoria",
+		"email": "et@google.net",
+		"last_name": "Cash",
+		"rit_id": 130,
+		"graduation_year": 2024,
+		"degree": "Nullam vitae",
+		"pronouns": "id",
+		"avatar_path": "https://walmart.com/fr"
+	},
+	{
+		"first_name": "Ian",
+		"email": "hendrerit.id.ante@yahoo.org",
+		"last_name": "Solomon",
+		"rit_id": 135,
+		"graduation_year": 2025,
+		"degree": "sit amet",
+		"pronouns": "ultrices",
+		"avatar_path": "https://twitter.com/settings"
+	},
+	{
+		"first_name": "Yoko",
+		"email": "curabitur.vel@icloud.net",
+		"last_name": "Stevenson",
+		"rit_id": 140,
+		"graduation_year": 2024,
+		"degree": "Aenean egestas",
+		"pronouns": "eu",
+		"avatar_path": "https://pinterest.com/sub/cars"
+	},
+	{
+		"first_name": "Ignacia",
+		"email": "commodo.ipsum@aol.ca",
+		"last_name": "Pena",
+		"rit_id": 145,
+		"graduation_year": 2024,
+		"degree": "vel pede",
+		"pronouns": "eu",
+		"avatar_path": "http://nytimes.com/user/110"
+	},
+	{
+		"first_name": "Robert",
+		"email": "ut.lacus@google.org",
+		"last_name": "Baxter",
+		"rit_id": 150,
+		"graduation_year": 2024,
+		"degree": "est, vitae",
+		"pronouns": "Sed",
+		"avatar_path": "http://baidu.com/en-ca"
+	},
+	{
+		"first_name": "Abdul",
+		"email": "lectus.quis@outlook.couk",
+		"last_name": "Waller",
+		"rit_id": 155,
+		"graduation_year": 2024,
+		"degree": "eu, accumsan",
+		"pronouns": "semper",
+		"avatar_path": "https://cnn.com/settings"
+	},
+	{
+		"first_name": "Katelyn",
+		"email": "urna@hotmail.edu",
+		"last_name": "Mcgowan",
+		"rit_id": 160,
+		"graduation_year": 2025,
+		"degree": "pede et",
+		"pronouns": "lobortis",
+		"avatar_path": "https://wikipedia.org/sub"
+	},
+	{
+		"first_name": "Scott",
+		"email": "sociis@icloud.couk",
+		"last_name": "William",
+		"rit_id": 165,
+		"graduation_year": 2025,
+		"degree": "mauris sit",
+		"pronouns": "ut,",
+		"avatar_path": "http://youtube.com/sub"
+	},
+	{
+		"first_name": "Briar",
+		"email": "neque@google.edu",
+		"last_name": "Ortega",
+		"rit_id": 170,
+		"graduation_year": 2025,
+		"degree": "at risus.",
+		"pronouns": "ut",
+		"avatar_path": "https://twitter.com/sub"
+	},
+	{
+		"first_name": "Autumn",
+		"email": "dapibus.rutrum@protonmail.org",
+		"last_name": "Casey",
+		"rit_id": 175,
+		"graduation_year": 2024,
+		"degree": "egestas. Aliquam",
+		"pronouns": "fermentum",
+		"avatar_path": "https://pinterest.com/sub/cars"
+	},
+	{
+		"first_name": "Ira",
+		"email": "arcu.sed.eu@protonmail.org",
+		"last_name": "Ryan",
+		"rit_id": 180,
+		"graduation_year": 2025,
+		"degree": "nulla vulputate",
+		"pronouns": "elit.",
+		"avatar_path": "https://yahoo.com/user/110"
+	},
+	{
+		"first_name": "Upton",
+		"email": "id.blandit@icloud.ca",
+		"last_name": "Spence",
+		"rit_id": 185,
+		"graduation_year": 2025,
+		"degree": "nonummy ac,",
+		"pronouns": "Praesent",
+		"avatar_path": "http://netflix.com/sub/cars"
+	},
+	{
+		"first_name": "Chantale",
+		"email": "nulla.cras@yahoo.edu",
+		"last_name": "Diaz",
+		"rit_id": 190,
+		"graduation_year": 2025,
+		"degree": "imperdiet dictum",
+		"pronouns": "lectus,",
+		"avatar_path": "https://cnn.com/settings"
+	},
+	{
+		"first_name": "Adam",
+		"email": "diam.pellentesque@hotmail.couk",
+		"last_name": "Randolph",
+		"rit_id": 195,
+		"graduation_year": 2024,
+		"degree": "molestie pharetra",
+		"pronouns": "Cras",
+		"avatar_path": "http://walmart.com/settings"
+	},
+	{
+		"first_name": "Deborah",
+		"email": "odio.a.purus@outlook.net",
+		"last_name": "Hart",
+		"rit_id": 200,
+		"graduation_year": 2024,
+		"degree": "consectetuer adipiscing",
+		"pronouns": "non",
+		"avatar_path": "http://facebook.com/sub/cars"
+	},
+	{
+		"first_name": "Melvin",
+		"email": "mus.donec.dignissim@aol.edu",
+		"last_name": "Ramsey",
+		"rit_id": 205,
+		"graduation_year": 2024,
+		"degree": "imperdiet non,",
+		"pronouns": "vel,",
+		"avatar_path": "http://nytimes.com/group/9"
+	},
+	{
+		"first_name": "Finn",
+		"email": "parturient.montes@protonmail.ca",
+		"last_name": "Baker",
+		"rit_id": 210,
+		"graduation_year": 2024,
+		"degree": "fringilla euismod",
+		"pronouns": "Morbi",
+		"avatar_path": "http://baidu.com/sub/cars"
+	},
+	{
+		"first_name": "Fletcher",
+		"email": "tempor@outlook.couk",
+		"last_name": "Hahn",
+		"rit_id": 215,
+		"graduation_year": 2025,
+		"degree": "eu arcu.",
+		"pronouns": "erat",
+		"avatar_path": "http://zoom.us/one"
+	},
+	{
+		"first_name": "Abigail",
+		"email": "sed.pede@protonmail.net",
+		"last_name": "William",
+		"rit_id": 220,
+		"graduation_year": 2026,
+		"degree": "sagittis augue,",
+		"pronouns": "vel",
+		"avatar_path": "http://google.com/fr"
+	},
+	{
+		"first_name": "Miriam",
+		"email": "ligula.aenean.euismod@icloud.couk",
+		"last_name": "Noel",
+		"rit_id": 225,
+		"graduation_year": 2025,
+		"degree": "sem magna",
+		"pronouns": "auctor",
+		"avatar_path": "https://twitter.com/settings"
+	},
+	{
+		"first_name": "Portia",
+		"email": "nunc.sit@protonmail.edu",
+		"last_name": "Poole",
+		"rit_id": 230,
+		"graduation_year": 2024,
+		"degree": "lorem. Donec",
+		"pronouns": "eget",
+		"avatar_path": "https://facebook.com/user/110"
+	},
+	{
+		"first_name": "Indira",
+		"email": "metus.aenean@protonmail.org",
+		"last_name": "Salas",
+		"rit_id": 235,
+		"graduation_year": 2024,
+		"degree": "sed dui.",
+		"pronouns": "convallis,",
+		"avatar_path": "https://facebook.com/fr"
+	},
+	{
+		"first_name": "Rosalyn",
+		"email": "class.aptent@yahoo.com",
+		"last_name": "Ballard",
+		"rit_id": 240,
+		"graduation_year": 2025,
+		"degree": "Donec non",
+		"pronouns": "sapien,",
+		"avatar_path": "https://reddit.com/fr"
+	},
+	{
+		"first_name": "Griffin",
+		"email": "ut.erat@yahoo.edu",
+		"last_name": "Guerrero",
+		"rit_id": 245,
+		"graduation_year": 2024,
+		"degree": "velit. Quisque",
+		"pronouns": "semper",
+		"avatar_path": "https://walmart.com/group/9"
+	},
+	{
+		"first_name": "Colette",
+		"email": "sapien.molestie.orci@google.com",
+		"last_name": "Riddle",
+		"rit_id": 250,
+		"graduation_year": 2026,
+		"degree": "sed dolor.",
+		"pronouns": "vulputate,",
+		"avatar_path": "https://nytimes.com/en-ca"
+	},
+	{
+		"first_name": "Keaton",
+		"email": "et.eros.proin@protonmail.ca",
+		"last_name": "Juarez",
+		"rit_id": 255,
+		"graduation_year": 2024,
+		"degree": "et ultrices",
+		"pronouns": "Fusce",
+		"avatar_path": "https://walmart.com/sub"
+	},
+	{
+		"first_name": "Florence",
+		"email": "congue.a@outlook.net",
+		"last_name": "Powell",
+		"rit_id": 260,
+		"graduation_year": 2026,
+		"degree": "purus ac",
+		"pronouns": "Aliquam",
+		"avatar_path": "https://naver.com/en-ca"
+	},
+	{
+		"first_name": "Gemma",
+		"email": "mauris.blandit@yahoo.couk",
+		"last_name": "Barlow",
+		"rit_id": 265,
+		"graduation_year": 2024,
+		"degree": "sollicitudin orci",
+		"pronouns": "at",
+		"avatar_path": "https://zoom.us/sub/cars"
+	},
+	{
+		"first_name": "Illiana",
+		"email": "eu.neque@icloud.couk",
+		"last_name": "Sears",
+		"rit_id": 270,
+		"graduation_year": 2025,
+		"degree": "libero at",
+		"pronouns": "purus",
+		"avatar_path": "https://instagram.com/en-ca"
+	},
+	{
+		"first_name": "Kiona",
+		"email": "donec.elementum.lorem@protonmail.com",
+		"last_name": "Powell",
+		"rit_id": 275,
+		"graduation_year": 2025,
+		"degree": "hendrerit neque.",
+		"pronouns": "sed",
+		"avatar_path": "https://guardian.co.uk/en-ca"
+	},
+	{
+		"first_name": "Neil",
+		"email": "quisque.porttitor@protonmail.ca",
+		"last_name": "Espinoza",
+		"rit_id": 280,
+		"graduation_year": 2024,
+		"degree": "ut mi.",
+		"pronouns": "malesuada",
+		"avatar_path": "http://whatsapp.com/site"
+	},
+	{
+		"first_name": "Breanna",
+		"email": "gravida.mauris@yahoo.couk",
+		"last_name": "Valenzuela",
+		"rit_id": 285,
+		"graduation_year": 2024,
+		"degree": "eget tincidunt",
+		"pronouns": "faucibus",
+		"avatar_path": "http://twitter.com/one"
+	},
+	{
+		"first_name": "Leandra",
+		"email": "eu.enim@google.edu",
+		"last_name": "Woodward",
+		"rit_id": 290,
+		"graduation_year": 2025,
+		"degree": "Fusce dolor",
+		"pronouns": "euismod",
+		"avatar_path": "https://reddit.com/one"
+	},
+	{
+		"first_name": "Zephr",
+		"email": "orci@hotmail.net",
+		"last_name": "Frost",
+		"rit_id": 295,
+		"graduation_year": 2024,
+		"degree": "mi fringilla",
+		"pronouns": "faucibus",
+		"avatar_path": "https://wikipedia.org/user/110"
+	},
+	{
+		"first_name": "Kane",
+		"email": "consequat.nec.mollis@hotmail.com",
+		"last_name": "Goff",
+		"rit_id": 300,
+		"graduation_year": 2024,
+		"degree": "pharetra. Quisque",
+		"pronouns": "Donec",
+		"avatar_path": "https://bbc.co.uk/en-ca"
+	},
+	{
+		"first_name": "Gage",
+		"email": "quis.turpis@google.net",
+		"last_name": "Zimmerman",
+		"rit_id": 305,
+		"graduation_year": 2024,
+		"degree": "dolor vitae",
+		"pronouns": "Cras",
+		"avatar_path": "http://wikipedia.org/sub/cars"
+	},
+	{
+		"first_name": "Raymond",
+		"email": "ligula.eu@hotmail.edu",
+		"last_name": "Nolan",
+		"rit_id": 310,
+		"graduation_year": 2025,
+		"degree": "risus. Nulla",
+		"pronouns": "urna",
+		"avatar_path": "https://guardian.co.uk/user/110"
+	},
+	{
+		"first_name": "Dieter",
+		"email": "sed@yahoo.ca",
+		"last_name": "Hendricks",
+		"rit_id": 315,
+		"graduation_year": 2025,
+		"degree": "accumsan sed,",
+		"pronouns": "lorem",
+		"avatar_path": "https://guardian.co.uk/group/9"
+	},
+	{
+		"first_name": "Imani",
+		"email": "nonummy@outlook.org",
+		"last_name": "Bean",
+		"rit_id": 320,
+		"graduation_year": 2025,
+		"degree": "elit sed",
+		"pronouns": "arcu.",
+		"avatar_path": "https://yahoo.com/fr"
+	},
+	{
+		"first_name": "Wendy",
+		"email": "ut.ipsum@outlook.net",
+		"last_name": "Holt",
+		"rit_id": 325,
+		"graduation_year": 2025,
+		"degree": "odio sagittis",
+		"pronouns": "magna,",
+		"avatar_path": "http://zoom.us/user/110"
+	},
+	{
+		"first_name": "Upton",
+		"email": "morbi.sit.amet@aol.couk",
+		"last_name": "Dunlap",
+		"rit_id": 330,
+		"graduation_year": 2024,
+		"degree": "nunc, ullamcorper",
+		"pronouns": "Nullam",
+		"avatar_path": "https://zoom.us/settings"
+	},
+	{
+		"first_name": "Timothy",
+		"email": "dapibus@yahoo.ca",
+		"last_name": "Dickson",
+		"rit_id": 335,
+		"graduation_year": 2024,
+		"degree": "malesuada ut,",
+		"pronouns": "scelerisque",
+		"avatar_path": "http://pinterest.com/site"
+	},
+	{
+		"first_name": "Daquan",
+		"email": "arcu.vestibulum@protonmail.edu",
+		"last_name": "Vinson",
+		"rit_id": 340,
+		"graduation_year": 2025,
+		"degree": "ante blandit",
+		"pronouns": "vitae",
+		"avatar_path": "https://guardian.co.uk/fr"
+	},
+	{
+		"first_name": "Anika",
+		"email": "vestibulum.ut@protonmail.ca",
+		"last_name": "Barnett",
+		"rit_id": 345,
+		"graduation_year": 2024,
+		"degree": "Pellentesque habitant",
+		"pronouns": "vel,",
+		"avatar_path": "https://whatsapp.com/user/110"
+	},
+	{
+		"first_name": "Skyler",
+		"email": "eu@outlook.couk",
+		"last_name": "Haney",
+		"rit_id": 350,
+		"graduation_year": 2025,
+		"degree": "sed consequat",
+		"pronouns": "volutpat",
+		"avatar_path": "http://bbc.co.uk/settings"
+	},
+	{
+		"first_name": "Joy",
+		"email": "neque.vitae@outlook.ca",
+		"last_name": "Evans",
+		"rit_id": 355,
+		"graduation_year": 2024,
+		"degree": "egestas. Sed",
+		"pronouns": "Class",
+		"avatar_path": "https://baidu.com/en-ca"
+	},
+	{
+		"first_name": "Dexter",
+		"email": "dolor.egestas@hotmail.org",
+		"last_name": "Estes",
+		"rit_id": 360,
+		"graduation_year": 2024,
+		"degree": "vitae, aliquet",
+		"pronouns": "Nunc",
+		"avatar_path": "https://youtube.com/one"
+	},
+	{
+		"first_name": "Nita",
+		"email": "feugiat@google.edu",
+		"last_name": "Wynn",
+		"rit_id": 365,
+		"graduation_year": 2025,
+		"degree": "mi tempor",
+		"pronouns": "magna",
+		"avatar_path": "http://youtube.com/en-us"
+	},
+	{
+		"first_name": "Berk",
+		"email": "elit.pretium@hotmail.net",
+		"last_name": "Bender",
+		"rit_id": 370,
+		"graduation_year": 2024,
+		"degree": "vulputate eu,",
+		"pronouns": "urna.",
+		"avatar_path": "http://yahoo.com/fr"
+	},
+	{
+		"first_name": "Iona",
+		"email": "nisl.quisque@protonmail.edu",
+		"last_name": "Roth",
+		"rit_id": 375,
+		"graduation_year": 2025,
+		"degree": "et, eros.",
+		"pronouns": "ut",
+		"avatar_path": "https://wikipedia.org/sub"
+	},
+	{
+		"first_name": "Tatiana",
+		"email": "velit.egestas.lacinia@protonmail.org",
+		"last_name": "Vazquez",
+		"rit_id": 380,
+		"graduation_year": 2026,
+		"degree": "quam vel",
+		"pronouns": "ut",
+		"avatar_path": "https://twitter.com/sub/cars"
+	},
+	{
+		"first_name": "Zia",
+		"email": "aliquet.libero@outlook.net",
+		"last_name": "Sanders",
+		"rit_id": 385,
+		"graduation_year": 2025,
+		"degree": "sed sem",
+		"pronouns": "tincidunt",
+		"avatar_path": "https://baidu.com/group/9"
+	},
+	{
+		"first_name": "Kaye",
+		"email": "nisl.elementum@yahoo.org",
+		"last_name": "Benson",
+		"rit_id": 390,
+		"graduation_year": 2025,
+		"degree": "blandit viverra.",
+		"pronouns": "Nulla",
+		"avatar_path": "https://facebook.com/group/9"
+	},
+	{
+		"first_name": "Ezekiel",
+		"email": "erat@hotmail.net",
+		"last_name": "Bryan",
+		"rit_id": 395,
+		"graduation_year": 2024,
+		"degree": "justo eu",
+		"pronouns": "arcu",
+		"avatar_path": "https://wikipedia.org/sub/cars"
+	},
+	{
+		"first_name": "Uriah",
+		"email": "ut.nisi@aol.ca",
+		"last_name": "Hutchinson",
+		"rit_id": 400,
+		"graduation_year": 2024,
+		"degree": "nec tempus",
+		"pronouns": "dis",
+		"avatar_path": "http://whatsapp.com/settings"
+	},
+	{
+		"first_name": "Shay",
+		"email": "adipiscing.mauris.molestie@yahoo.net",
+		"last_name": "Acosta",
+		"rit_id": 405,
+		"graduation_year": 2025,
+		"degree": "Aliquam vulputate",
+		"pronouns": "magna",
+		"avatar_path": "http://zoom.us/group/9"
+	},
+	{
+		"first_name": "Gannon",
+		"email": "porttitor@icloud.com",
+		"last_name": "Hewitt",
+		"rit_id": 410,
+		"graduation_year": 2024,
+		"degree": "tempus mauris",
+		"pronouns": "convallis",
+		"avatar_path": "https://nytimes.com/sub"
+	},
+	{
+		"first_name": "Althea",
+		"email": "lectus.rutrum@google.net",
+		"last_name": "Paul",
+		"rit_id": 415,
+		"graduation_year": 2025,
+		"degree": "lorem fringilla",
+		"pronouns": "fringilla",
+		"avatar_path": "http://cnn.com/site"
+	},
+	{
+		"first_name": "Eric",
+		"email": "justo.faucibus@google.com",
+		"last_name": "Powell",
+		"rit_id": 420,
+		"graduation_year": 2025,
+		"degree": "Vivamus molestie",
+		"pronouns": "lobortis",
+		"avatar_path": "http://ebay.com/group/9"
+	},
+	{
+		"first_name": "Gabriel",
+		"email": "ut.mi@icloud.couk",
+		"last_name": "Norman",
+		"rit_id": 425,
+		"graduation_year": 2025,
+		"degree": "Cras dolor",
+		"pronouns": "feugiat.",
+		"avatar_path": "http://wikipedia.org/site"
+	},
+	{
+		"first_name": "Rashad",
+		"email": "vel.est@hotmail.ca",
+		"last_name": "Cortez",
+		"rit_id": 430,
+		"graduation_year": 2024,
+		"degree": "natoque penatibus",
+		"pronouns": "Phasellus",
+		"avatar_path": "http://guardian.co.uk/group/9"
+	},
+	{
+		"first_name": "Asher",
+		"email": "viverra.maecenas@aol.com",
+		"last_name": "Wheeler",
+		"rit_id": 435,
+		"graduation_year": 2024,
+		"degree": "nulla. Donec",
+		"pronouns": "amet",
+		"avatar_path": "http://baidu.com/fr"
+	},
+	{
+		"first_name": "Sage",
+		"email": "nulla@yahoo.com",
+		"last_name": "Lawrence",
+		"rit_id": 440,
+		"graduation_year": 2025,
+		"degree": "non, egestas",
+		"pronouns": "in",
+		"avatar_path": "http://google.com/fr"
+	},
+	{
+		"first_name": "Celeste",
+		"email": "justo@outlook.ca",
+		"last_name": "Stevenson",
+		"rit_id": 445,
+		"graduation_year": 2024,
+		"degree": "enim mi",
+		"pronouns": "in",
+		"avatar_path": "https://naver.com/en-ca"
+	},
+	{
+		"first_name": "Chanda",
+		"email": "aliquam.iaculis.lacus@aol.com",
+		"last_name": "Kirby",
+		"rit_id": 450,
+		"graduation_year": 2025,
+		"degree": "vel, convallis",
+		"pronouns": "lorem,",
+		"avatar_path": "https://baidu.com/en-ca"
+	},
+	{
+		"first_name": "Martin",
+		"email": "tellus@outlook.com",
+		"last_name": "Velez",
+		"rit_id": 455,
+		"graduation_year": 2025,
+		"degree": "Fusce mollis.",
+		"pronouns": "malesuada",
+		"avatar_path": "http://baidu.com/fr"
+	},
+	{
+		"first_name": "Halee",
+		"email": "adipiscing.elit@outlook.couk",
+		"last_name": "James",
+		"rit_id": 460,
+		"graduation_year": 2025,
+		"degree": "nibh lacinia",
+		"pronouns": "purus,",
+		"avatar_path": "https://cnn.com/sub"
+	},
+	{
+		"first_name": "Leonard",
+		"email": "elit.nulla@outlook.org",
+		"last_name": "Owens",
+		"rit_id": 465,
+		"graduation_year": 2024,
+		"degree": "amet orci.",
+		"pronouns": "tristique",
+		"avatar_path": "http://bbc.co.uk/user/110"
+	},
+	{
+		"first_name": "Brett",
+		"email": "vestibulum.lorem@icloud.ca",
+		"last_name": "Lott",
+		"rit_id": 470,
+		"graduation_year": 2024,
+		"degree": "rutrum magna.",
+		"pronouns": "tortor.",
+		"avatar_path": "https://twitter.com/fr"
+	},
+	{
+		"first_name": "Buckminster",
+		"email": "mattis.ornare.lectus@protonmail.com",
+		"last_name": "Richmond",
+		"rit_id": 475,
+		"graduation_year": 2025,
+		"degree": "nec mauris",
+		"pronouns": "Sed",
+		"avatar_path": "http://reddit.com/sub"
+	},
+	{
+		"first_name": "Lyle",
+		"email": "dictum@hotmail.edu",
+		"last_name": "Burgess",
+		"rit_id": 480,
+		"graduation_year": 2024,
+		"degree": "at, egestas",
+		"pronouns": "congue.",
+		"avatar_path": "http://youtube.com/settings"
+	},
+	{
+		"first_name": "Todd",
+		"email": "sed.consequat@hotmail.com",
+		"last_name": "Todd",
+		"rit_id": 485,
+		"graduation_year": 2025,
+		"degree": "Aliquam ornare,",
+		"pronouns": "ac",
+		"avatar_path": "https://facebook.com/site"
+	},
+	{
+		"first_name": "Moses",
+		"email": "nunc.quisque@hotmail.com",
+		"last_name": "Poole",
+		"rit_id": 490,
+		"graduation_year": 2024,
+		"degree": "id, mollis",
+		"pronouns": "ultrices",
+		"avatar_path": "https://whatsapp.com/user/110"
+	},
+	{
+		"first_name": "Graiden",
+		"email": "dapibus@yahoo.com",
+		"last_name": "Alston",
+		"rit_id": 495,
+		"graduation_year": 2024,
+		"degree": "iaculis odio.",
+		"pronouns": "elit.",
+		"avatar_path": "http://nytimes.com/en-us"
+	},
+	{
+		"first_name": "Wayne",
+		"email": "euismod.mauris.eu@aol.ca",
+		"last_name": "Boone",
+		"rit_id": 500,
+		"graduation_year": 2025,
+		"degree": "ligula tortor,",
+		"pronouns": "enim",
+		"avatar_path": "http://yahoo.com/one"
+	},
+	{
+		"first_name": "Isabella",
+		"email": "condimentum.eget.volutpat@hotmail.edu",
+		"last_name": "Singleton",
+		"rit_id": 505,
+		"graduation_year": 2024,
+		"degree": "magna, malesuada",
+		"pronouns": "Duis",
+		"avatar_path": "http://walmart.com/fr"
+	},
+	{
+		"first_name": "Tate",
+		"email": "pellentesque@aol.ca",
+		"last_name": "Anthony",
+		"rit_id": 510,
+		"graduation_year": 2025,
+		"degree": "ac orci.",
+		"pronouns": "magna.",
+		"avatar_path": "http://twitter.com/en-us"
+	},
+	{
+		"first_name": "Kyla",
+		"email": "odio.aliquam@icloud.ca",
+		"last_name": "May",
+		"rit_id": 515,
+		"graduation_year": 2024,
+		"degree": "fringilla purus",
+		"pronouns": "Sed",
+		"avatar_path": "http://yahoo.com/sub"
+	},
+	{
+		"first_name": "Tamekah",
+		"email": "sagittis.placerat.cras@aol.org",
+		"last_name": "King",
+		"rit_id": 520,
+		"graduation_year": 2025,
+		"degree": "rhoncus. Proin",
+		"pronouns": "lobortis,",
+		"avatar_path": "http://twitter.com/user/110"
+	},
+	{
+		"first_name": "Ali",
+		"email": "diam.at@yahoo.com",
+		"last_name": "Gonzales",
+		"rit_id": 525,
+		"graduation_year": 2024,
+		"degree": "purus. Nullam",
+		"pronouns": "accumsan",
+		"avatar_path": "http://reddit.com/user/110"
+	},
+	{
+		"first_name": "Quemby",
+		"email": "fringilla.euismod@google.com",
+		"last_name": "Cole",
+		"rit_id": 530,
+		"graduation_year": 2025,
+		"degree": "egestas rhoncus.",
+		"pronouns": "sapien,",
+		"avatar_path": "http://yahoo.com/en-us"
+	},
+	{
+		"first_name": "Quyn",
+		"email": "iaculis.odio.nam@protonmail.com",
+		"last_name": "Bryant",
+		"rit_id": 535,
+		"graduation_year": 2024,
+		"degree": "convallis convallis",
+		"pronouns": "fringilla",
+		"avatar_path": "http://whatsapp.com/group/9"
+	},
+	{
+		"first_name": "Tyrone",
+		"email": "sodales.elit@hotmail.couk",
+		"last_name": "Cooke",
+		"rit_id": 540,
+		"graduation_year": 2025,
+		"degree": "et, magna.",
+		"pronouns": "eu,",
+		"avatar_path": "http://bbc.co.uk/site"
+	},
+	{
+		"first_name": "Denton",
+		"email": "vel.venenatis.vel@google.com",
+		"last_name": "Shepherd",
+		"rit_id": 545,
+		"graduation_year": 2025,
+		"degree": "semper auctor.",
+		"pronouns": "nulla",
+		"avatar_path": "https://twitter.com/sub/cars"
+	},
+	{
+		"first_name": "Prescott",
+		"email": "risus.at@hotmail.com",
+		"last_name": "O'connor",
+		"rit_id": 550,
+		"graduation_year": 2025,
+		"degree": "id enim.",
+		"pronouns": "parturient",
+		"avatar_path": "https://instagram.com/site"
+	},
+	{
+		"first_name": "Belle",
+		"email": "laoreet@hotmail.couk",
+		"last_name": "Mcleod",
+		"rit_id": 555,
+		"graduation_year": 2025,
+		"degree": "aliquet libero.",
+		"pronouns": "feugiat",
+		"avatar_path": "http://yahoo.com/site"
+	},
+	{
+		"first_name": "Rose",
+		"email": "consectetuer.euismod@protonmail.ca",
+		"last_name": "Hickman",
+		"rit_id": 560,
+		"graduation_year": 2026,
+		"degree": "aliquam eros",
+		"pronouns": "nec,",
+		"avatar_path": "https://walmart.com/group/9"
+	},
+	{
+		"first_name": "Shad",
+		"email": "et.tristique@protonmail.org",
+		"last_name": "Sheppard",
+		"rit_id": 565,
+		"graduation_year": 2025,
+		"degree": "odio. Etiam",
+		"pronouns": "ac",
+		"avatar_path": "https://zoom.us/en-us"
+	},
+	{
+		"first_name": "Baxter",
+		"email": "eu.placerat@hotmail.couk",
+		"last_name": "Bowen",
+		"rit_id": 570,
+		"graduation_year": 2024,
+		"degree": "natoque penatibus",
+		"pronouns": "orci.",
+		"avatar_path": "https://youtube.com/one"
+	},
+	{
+		"first_name": "Burton",
+		"email": "blandit.mattis@hotmail.net",
+		"last_name": "Sosa",
+		"rit_id": 575,
+		"graduation_year": 2025,
+		"degree": "semper. Nam",
+		"pronouns": "vitae",
+		"avatar_path": "http://whatsapp.com/en-ca"
+	},
+	{
+		"first_name": "Abraham",
+		"email": "iaculis.odio@hotmail.org",
+		"last_name": "Baird",
+		"rit_id": 580,
+		"graduation_year": 2025,
+		"degree": "id ante",
+		"pronouns": "volutpat",
+		"avatar_path": "https://twitter.com/settings"
+	},
+	{
+		"first_name": "Martina",
+		"email": "dictum.magna@protonmail.org",
+		"last_name": "Morton",
+		"rit_id": 585,
+		"graduation_year": 2024,
+		"degree": "mauris sit",
+		"pronouns": "sapien",
+		"avatar_path": "http://reddit.com/one"
+	},
+	{
+		"first_name": "Quintessa",
+		"email": "lorem.sit@protonmail.org",
+		"last_name": "Castillo",
+		"rit_id": 590,
+		"graduation_year": 2025,
+		"degree": "mollis. Integer",
+		"pronouns": "nulla.",
+		"avatar_path": "http://cnn.com/sub/cars"
+	},
+	{
+		"first_name": "Coby",
+		"email": "ante.dictum@yahoo.net",
+		"last_name": "Yates",
+		"rit_id": 595,
+		"graduation_year": 2025,
+		"degree": "elit, pharetra",
+		"pronouns": "Nunc",
+		"avatar_path": "https://reddit.com/en-ca"
+	},
+	{
+		"first_name": "Allistair",
+		"email": "in.hendrerit.consectetuer@hotmail.org",
+		"last_name": "Thompson",
+		"rit_id": 600,
+		"graduation_year": 2024,
+		"degree": "scelerisque scelerisque",
+		"pronouns": "ac",
+		"avatar_path": "http://zoom.us/user/110"
+	},
+	{
+		"first_name": "Kuame",
+		"email": "donec.sollicitudin@google.com",
+		"last_name": "Singleton",
+		"rit_id": 605,
+		"graduation_year": 2024,
+		"degree": "vel, vulputate",
+		"pronouns": "libero",
+		"avatar_path": "https://yahoo.com/site"
+	},
+	{
+		"first_name": "Leah",
+		"email": "auctor.nunc.nulla@outlook.couk",
+		"last_name": "Bonner",
+		"rit_id": 610,
+		"graduation_year": 2026,
+		"degree": "enim. Curabitur",
+		"pronouns": "turpis",
+		"avatar_path": "http://netflix.com/site"
+	},
+	{
+		"first_name": "Erich",
+		"email": "eu.euismod.ac@icloud.net",
+		"last_name": "Elliott",
+		"rit_id": 615,
+		"graduation_year": 2025,
+		"degree": "quis accumsan",
+		"pronouns": "vitae,",
+		"avatar_path": "http://google.com/site"
+	},
+	{
+		"first_name": "Hiroko",
+		"email": "eu@protonmail.com",
+		"last_name": "Fitzgerald",
+		"rit_id": 620,
+		"graduation_year": 2026,
+		"degree": "ornare, lectus",
+		"pronouns": "convallis",
+		"avatar_path": "http://cnn.com/sub/cars"
+	},
+	{
+		"first_name": "Zelda",
+		"email": "interdum.curabitur@outlook.edu",
+		"last_name": "Leonard",
+		"rit_id": 625,
+		"graduation_year": 2024,
+		"degree": "Suspendisse eleifend.",
+		"pronouns": "congue",
+		"avatar_path": "https://ebay.com/en-us"
+	},
+	{
+		"first_name": "Emi",
+		"email": "urna@aol.couk",
+		"last_name": "Burgess",
+		"rit_id": 630,
+		"graduation_year": 2025,
+		"degree": "nec, imperdiet",
+		"pronouns": "erat",
+		"avatar_path": "https://zoom.us/sub/cars"
+	},
+	{
+		"first_name": "Preston",
+		"email": "eget.dictum@outlook.com",
+		"last_name": "Allen",
+		"rit_id": 635,
+		"graduation_year": 2024,
+		"degree": "sed pede",
+		"pronouns": "risus.",
+		"avatar_path": "http://cnn.com/user/110"
+	},
+	{
+		"first_name": "Bianca",
+		"email": "ac.mi@outlook.edu",
+		"last_name": "Black",
+		"rit_id": 640,
+		"graduation_year": 2025,
+		"degree": "sit amet,",
+		"pronouns": "mollis.",
+		"avatar_path": "https://ebay.com/en-ca"
+	},
+	{
+		"first_name": "Wyoming",
+		"email": "nec.euismod@aol.edu",
+		"last_name": "Drake",
+		"rit_id": 645,
+		"graduation_year": 2025,
+		"degree": "dolor dolor,",
+		"pronouns": "augue",
+		"avatar_path": "https://youtube.com/group/9"
+	},
+	{
+		"first_name": "Carly",
+		"email": "varius.et@aol.org",
+		"last_name": "Rodgers",
+		"rit_id": 650,
+		"graduation_year": 2024,
+		"degree": "sagittis felis.",
+		"pronouns": "libero.",
+		"avatar_path": "https://guardian.co.uk/group/9"
+	},
+	{
+		"first_name": "Orlando",
+		"email": "donec.fringilla@protonmail.ca",
+		"last_name": "Walters",
+		"rit_id": 655,
+		"graduation_year": 2024,
+		"degree": "Suspendisse sed",
+		"pronouns": "hendrerit",
+		"avatar_path": "https://wikipedia.org/en-ca"
+	},
+	{
+		"first_name": "Tanya",
+		"email": "non.luctus.sit@protonmail.net",
+		"last_name": "Howell",
+		"rit_id": 660,
+		"graduation_year": 2025,
+		"degree": "ac, eleifend",
+		"pronouns": "id,",
+		"avatar_path": "https://yahoo.com/fr"
+	},
+	{
+		"first_name": "Chastity",
+		"email": "nisi.aenean@aol.org",
+		"last_name": "Owen",
+		"rit_id": 665,
+		"graduation_year": 2025,
+		"degree": "eu, accumsan",
+		"pronouns": "Nam",
+		"avatar_path": "http://zoom.us/group/9"
+	},
+	{
+		"first_name": "Jaden",
+		"email": "non.feugiat@yahoo.com",
+		"last_name": "Rivers",
+		"rit_id": 670,
+		"graduation_year": 2024,
+		"degree": "lacinia vitae,",
+		"pronouns": "montes,",
+		"avatar_path": "https://zoom.us/site"
+	},
+	{
+		"first_name": "Signe",
+		"email": "gravida.sagittis.duis@yahoo.net",
+		"last_name": "Sykes",
+		"rit_id": 675,
+		"graduation_year": 2024,
+		"degree": "cursus purus.",
+		"pronouns": "Aenean",
+		"avatar_path": "https://zoom.us/fr"
+	},
+	{
+		"first_name": "Renee",
+		"email": "sollicitudin.adipiscing@google.com",
+		"last_name": "Castillo",
+		"rit_id": 680,
+		"graduation_year": 2024,
+		"degree": "Mauris non",
+		"pronouns": "quam",
+		"avatar_path": "https://netflix.com/user/110"
+	},
+	{
+		"first_name": "Galena",
+		"email": "dolor@protonmail.ca",
+		"last_name": "Carver",
+		"rit_id": 685,
+		"graduation_year": 2025,
+		"degree": "faucibus ut,",
+		"pronouns": "In",
+		"avatar_path": "http://whatsapp.com/en-us"
+	},
+	{
+		"first_name": "Unity",
+		"email": "quisque.purus@google.net",
+		"last_name": "Christian",
+		"rit_id": 690,
+		"graduation_year": 2025,
+		"degree": "dolor, nonummy",
+		"pronouns": "magna.",
+		"avatar_path": "http://zoom.us/en-ca"
+	},
+	{
+		"first_name": "Linus",
+		"email": "condimentum@aol.edu",
+		"last_name": "Gilbert",
+		"rit_id": 695,
+		"graduation_year": 2024,
+		"degree": "risus. Donec",
+		"pronouns": "ornare,",
+		"avatar_path": "https://walmart.com/en-ca"
+	},
+	{
+		"first_name": "Ignatius",
+		"email": "sodales.mauris.blandit@aol.couk",
+		"last_name": "Hickman",
+		"rit_id": 700,
+		"graduation_year": 2025,
+		"degree": "interdum feugiat.",
+		"pronouns": "vel,",
+		"avatar_path": "https://ebay.com/sub"
+	},
+	{
+		"first_name": "Steven",
+		"email": "dictum.augue@protonmail.ca",
+		"last_name": "Mcbride",
+		"rit_id": 705,
+		"graduation_year": 2025,
+		"degree": "vulputate, lacus.",
+		"pronouns": "ornare",
+		"avatar_path": "http://bbc.co.uk/user/110"
+	},
+	{
+		"first_name": "Catherine",
+		"email": "at.sem@hotmail.net",
+		"last_name": "Madden",
+		"rit_id": 710,
+		"graduation_year": 2025,
+		"degree": "id, erat.",
+		"pronouns": "felis",
+		"avatar_path": "https://cnn.com/settings"
+	},
+	{
+		"first_name": "Raven",
+		"email": "ultrices.a@outlook.edu",
+		"last_name": "Kerr",
+		"rit_id": 715,
+		"graduation_year": 2025,
+		"degree": "enim. Suspendisse",
+		"pronouns": "mattis",
+		"avatar_path": "http://wikipedia.org/one"
+	},
+	{
+		"first_name": "Julie",
+		"email": "proin.non@yahoo.ca",
+		"last_name": "Camacho",
+		"rit_id": 720,
+		"graduation_year": 2025,
+		"degree": "est, mollis",
+		"pronouns": "ac",
+		"avatar_path": "http://yahoo.com/settings"
+	},
+	{
+		"first_name": "Ava",
+		"email": "dapibus.rutrum@yahoo.com",
+		"last_name": "Battle",
+		"rit_id": 725,
+		"graduation_year": 2024,
+		"degree": "Nam tempor",
+		"pronouns": "mollis.",
+		"avatar_path": "http://ebay.com/settings"
+	},
+	{
+		"first_name": "Odette",
+		"email": "augue@icloud.ca",
+		"last_name": "Medina",
+		"rit_id": 730,
+		"graduation_year": 2025,
+		"degree": "molestie. Sed",
+		"pronouns": "cursus.",
+		"avatar_path": "http://whatsapp.com/sub/cars"
+	},
+	{
+		"first_name": "Brynne",
+		"email": "lacus@google.org",
+		"last_name": "Patrick",
+		"rit_id": 735,
+		"graduation_year": 2024,
+		"degree": "nec mauris",
+		"pronouns": "amet",
+		"avatar_path": "http://instagram.com/settings"
+	},
+	{
+		"first_name": "Brianna",
+		"email": "et.malesuada@protonmail.net",
+		"last_name": "Mckinney",
+		"rit_id": 740,
+		"graduation_year": 2024,
+		"degree": "Aenean eget",
+		"pronouns": "Nullam",
+		"avatar_path": "http://nytimes.com/sub/cars"
+	},
+	{
+		"first_name": "Gareth",
+		"email": "sit@icloud.net",
+		"last_name": "Mcgowan",
+		"rit_id": 745,
+		"graduation_year": 2025,
+		"degree": "lacinia mattis.",
+		"pronouns": "nec",
+		"avatar_path": "http://bbc.co.uk/one"
+	},
+	{
+		"first_name": "Madaline",
+		"email": "sem@hotmail.com",
+		"last_name": "Baxter",
+		"rit_id": 750,
+		"graduation_year": 2025,
+		"degree": "auctor quis,",
+		"pronouns": "Morbi",
+		"avatar_path": "https://walmart.com/group/9"
+	},
+	{
+		"first_name": "Candice",
+		"email": "condimentum.donec@outlook.org",
+		"last_name": "Humphrey",
+		"rit_id": 755,
+		"graduation_year": 2024,
+		"degree": "diam. Pellentesque",
+		"pronouns": "interdum.",
+		"avatar_path": "http://naver.com/en-ca"
+	},
+	{
+		"first_name": "Candace",
+		"email": "accumsan.interdum@icloud.net",
+		"last_name": "Navarro",
+		"rit_id": 760,
+		"graduation_year": 2024,
+		"degree": "mi pede,",
+		"pronouns": "malesuada",
+		"avatar_path": "https://baidu.com/group/9"
+	},
+	{
+		"first_name": "Amaya",
+		"email": "integer.sem@hotmail.com",
+		"last_name": "Chase",
+		"rit_id": 765,
+		"graduation_year": 2024,
+		"degree": "turpis egestas.",
+		"pronouns": "et",
+		"avatar_path": "https://twitter.com/en-ca"
+	},
+	{
+		"first_name": "Gavin",
+		"email": "congue.in@aol.ca",
+		"last_name": "Bell",
+		"rit_id": 770,
+		"graduation_year": 2025,
+		"degree": "lacus. Nulla",
+		"pronouns": "aliquam",
+		"avatar_path": "http://twitter.com/group/9"
+	},
+	{
+		"first_name": "Lionel",
+		"email": "ac.arcu@yahoo.ca",
+		"last_name": "Burke",
+		"rit_id": 775,
+		"graduation_year": 2024,
+		"degree": "ligula. Nullam",
+		"pronouns": "amet,",
+		"avatar_path": "http://nytimes.com/sub/cars"
+	},
+	{
+		"first_name": "Amery",
+		"email": "facilisis.suspendisse.commodo@yahoo.org",
+		"last_name": "Stevenson",
+		"rit_id": 780,
+		"graduation_year": 2025,
+		"degree": "nunc. Quisque",
+		"pronouns": "lacus.",
+		"avatar_path": "https://naver.com/one"
+	},
+	{
+		"first_name": "Jada",
+		"email": "ullamcorper.eu.euismod@aol.com",
+		"last_name": "Douglas",
+		"rit_id": 785,
+		"graduation_year": 2024,
+		"degree": "lorem lorem,",
+		"pronouns": "pede,",
+		"avatar_path": "http://whatsapp.com/site"
+	},
+	{
+		"first_name": "Megan",
+		"email": "proin.mi.aliquam@hotmail.com",
+		"last_name": "Adams",
+		"rit_id": 790,
+		"graduation_year": 2025,
+		"degree": "fermentum vel,",
+		"pronouns": "eleifend",
+		"avatar_path": "https://zoom.us/user/110"
+	},
+	{
+		"first_name": "Sandra",
+		"email": "praesent.eu.dui@google.couk",
+		"last_name": "Jackson",
+		"rit_id": 795,
+		"graduation_year": 2026,
+		"degree": "et netus",
+		"pronouns": "quis,",
+		"avatar_path": "http://walmart.com/en-ca"
+	},
+	{
+		"first_name": "Violet",
+		"email": "dictum.magna@yahoo.couk",
+		"last_name": "Barker",
+		"rit_id": 800,
+		"graduation_year": 2025,
+		"degree": "Nunc lectus",
+		"pronouns": "arcu.",
+		"avatar_path": "http://yahoo.com/one"
+	},
+	{
+		"first_name": "Veronica",
+		"email": "laoreet.posuere.enim@hotmail.org",
+		"last_name": "Rasmussen",
+		"rit_id": 805,
+		"graduation_year": 2025,
+		"degree": "Praesent luctus.",
+		"pronouns": "nec,",
+		"avatar_path": "https://naver.com/en-us"
+	},
+	{
+		"first_name": "Devin",
+		"email": "adipiscing.ligula@google.com",
+		"last_name": "Wyatt",
+		"rit_id": 810,
+		"graduation_year": 2024,
+		"degree": "eget laoreet",
+		"pronouns": "nec,",
+		"avatar_path": "https://cnn.com/settings"
+	},
+	{
+		"first_name": "Jeremy",
+		"email": "ac.ipsum@hotmail.couk",
+		"last_name": "Gross",
+		"rit_id": 815,
+		"graduation_year": 2024,
+		"degree": "torquent per",
+		"pronouns": "auctor",
+		"avatar_path": "https://yahoo.com/user/110"
+	},
+	{
+		"first_name": "Prescott",
+		"email": "risus.morbi@icloud.org",
+		"last_name": "Roth",
+		"rit_id": 820,
+		"graduation_year": 2025,
+		"degree": "orci, consectetuer",
+		"pronouns": "eget",
+		"avatar_path": "https://twitter.com/en-ca"
+	},
+	{
+		"first_name": "Preston",
+		"email": "pellentesque.ut@hotmail.org",
+		"last_name": "Gilbert",
+		"rit_id": 825,
+		"graduation_year": 2025,
+		"degree": "tellus faucibus",
+		"pronouns": "id,",
+		"avatar_path": "http://bbc.co.uk/fr"
+	},
+	{
+		"first_name": "Griffin",
+		"email": "varius.nam@aol.ca",
+		"last_name": "Kent",
+		"rit_id": 830,
+		"graduation_year": 2025,
+		"degree": "sit amet",
+		"pronouns": "pede,",
+		"avatar_path": "http://wikipedia.org/site"
+	},
+	{
+		"first_name": "Dennis",
+		"email": "nullam@google.edu",
+		"last_name": "Bender",
+		"rit_id": 835,
+		"graduation_year": 2025,
+		"degree": "in faucibus",
+		"pronouns": "commodo",
+		"avatar_path": "http://wikipedia.org/group/9"
+	},
+	{
+		"first_name": "Hyacinth",
+		"email": "cras.pellentesque@google.edu",
+		"last_name": "Guy",
+		"rit_id": 840,
+		"graduation_year": 2024,
+		"degree": "sem molestie",
+		"pronouns": "orci",
+		"avatar_path": "https://zoom.us/sub/cars"
+	},
+	{
+		"first_name": "Carson",
+		"email": "aliquam.ultrices.iaculis@protonmail.ca",
+		"last_name": "Tyson",
+		"rit_id": 845,
+		"graduation_year": 2024,
+		"degree": "ultrices posuere",
+		"pronouns": "amet",
+		"avatar_path": "https://google.com/one"
+	},
+	{
+		"first_name": "Cheyenne",
+		"email": "massa.rutrum.magna@icloud.com",
+		"last_name": "Guy",
+		"rit_id": 850,
+		"graduation_year": 2025,
+		"degree": "cursus et,",
+		"pronouns": "Vivamus",
+		"avatar_path": "http://google.com/settings"
+	},
+	{
+		"first_name": "Lynn",
+		"email": "nec@aol.org",
+		"last_name": "Frank",
+		"rit_id": 855,
+		"graduation_year": 2025,
+		"degree": "dictum eleifend,",
+		"pronouns": "tellus.",
+		"avatar_path": "http://wikipedia.org/sub/cars"
+	},
+	{
+		"first_name": "Nash",
+		"email": "varius.et@hotmail.net",
+		"last_name": "Rice",
+		"rit_id": 860,
+		"graduation_year": 2024,
+		"degree": "a, enim.",
+		"pronouns": "eu",
+		"avatar_path": "http://youtube.com/fr"
+	},
+	{
+		"first_name": "Erich",
+		"email": "cras.sed@outlook.com",
+		"last_name": "Ross",
+		"rit_id": 865,
+		"graduation_year": 2025,
+		"degree": "amet risus.",
+		"pronouns": "vitae",
+		"avatar_path": "https://bbc.co.uk/user/110"
+	},
+	{
+		"first_name": "Orlando",
+		"email": "varius.et@google.edu",
+		"last_name": "Travis",
+		"rit_id": 870,
+		"graduation_year": 2025,
+		"degree": "Integer mollis.",
+		"pronouns": "a,",
+		"avatar_path": "https://twitter.com/sub/cars"
+	},
+	{
+		"first_name": "Joshua",
+		"email": "tortor.nibh.sit@protonmail.couk",
+		"last_name": "Rowe",
+		"rit_id": 875,
+		"graduation_year": 2025,
+		"degree": "enim, condimentum",
+		"pronouns": "Fusce",
+		"avatar_path": "https://ebay.com/en-us"
+	},
+	{
+		"first_name": "Blake",
+		"email": "quis.diam.luctus@yahoo.org",
+		"last_name": "Irwin",
+		"rit_id": 880,
+		"graduation_year": 2024,
+		"degree": "congue. In",
+		"pronouns": "in",
+		"avatar_path": "http://whatsapp.com/settings"
+	},
+	{
+		"first_name": "Jamal",
+		"email": "vulputate@hotmail.org",
+		"last_name": "Mccoy",
+		"rit_id": 885,
+		"graduation_year": 2024,
+		"degree": "lobortis, nisi",
+		"pronouns": "lorem,",
+		"avatar_path": "https://pinterest.com/sub/cars"
+	},
+	{
+		"first_name": "Edward",
+		"email": "in.magna@hotmail.org",
+		"last_name": "Ratliff",
+		"rit_id": 890,
+		"graduation_year": 2025,
+		"degree": "odio. Aliquam",
+		"pronouns": "vulputate",
+		"avatar_path": "https://facebook.com/sub"
+	},
+	{
+		"first_name": "Riley",
+		"email": "et.tristique@google.ca",
+		"last_name": "Klein",
+		"rit_id": 895,
+		"graduation_year": 2025,
+		"degree": "nulla at",
+		"pronouns": "tortor.",
+		"avatar_path": "https://instagram.com/settings"
+	},
+	{
+		"first_name": "Imelda",
+		"email": "nunc.laoreet@hotmail.ca",
+		"last_name": "Cox",
+		"rit_id": 900,
+		"graduation_year": 2024,
+		"degree": "In faucibus.",
+		"pronouns": "Nullam",
+		"avatar_path": "https://google.com/en-ca"
+	},
+	{
+		"first_name": "Aidan",
+		"email": "lorem.luctus@icloud.couk",
+		"last_name": "Strickland",
+		"rit_id": 905,
+		"graduation_year": 2026,
+		"degree": "est tempor",
+		"pronouns": "lobortis,",
+		"avatar_path": "http://bbc.co.uk/en-us"
+	},
+	{
+		"first_name": "Quon",
+		"email": "suspendisse@yahoo.net",
+		"last_name": "Fitzpatrick",
+		"rit_id": 910,
+		"graduation_year": 2024,
+		"degree": "pede, malesuada",
+		"pronouns": "a",
+		"avatar_path": "http://pinterest.com/site"
+	},
+	{
+		"first_name": "Iliana",
+		"email": "tincidunt.pede.ac@outlook.edu",
+		"last_name": "Gillespie",
+		"rit_id": 915,
+		"graduation_year": 2024,
+		"degree": "lectus. Cum",
+		"pronouns": "Quisque",
+		"avatar_path": "http://instagram.com/one"
+	},
+	{
+		"first_name": "Garrett",
+		"email": "sit.amet.orci@hotmail.ca",
+		"last_name": "Schroeder",
+		"rit_id": 920,
+		"graduation_year": 2026,
+		"degree": "Duis at",
+		"pronouns": "ornare,",
+		"avatar_path": "http://naver.com/sub"
+	},
+	{
+		"first_name": "Quinlan",
+		"email": "odio.nam@yahoo.edu",
+		"last_name": "Mcknight",
+		"rit_id": 925,
+		"graduation_year": 2025,
+		"degree": "velit. Aliquam",
+		"pronouns": "lorem",
+		"avatar_path": "http://facebook.com/en-ca"
+	},
+	{
+		"first_name": "Quon",
+		"email": "dui.nec@protonmail.com",
+		"last_name": "Sosa",
+		"rit_id": 930,
+		"graduation_year": 2025,
+		"degree": "dictum. Phasellus",
+		"pronouns": "enim",
+		"avatar_path": "http://zoom.us/en-ca"
+	},
+	{
+		"first_name": "Eric",
+		"email": "arcu.vestibulum@google.net",
+		"last_name": "Shepard",
+		"rit_id": 935,
+		"graduation_year": 2024,
+		"degree": "sit amet",
+		"pronouns": "non,",
+		"avatar_path": "https://google.com/en-ca"
+	},
+	{
+		"first_name": "Lydia",
+		"email": "nisi.dictum@aol.couk",
+		"last_name": "Castillo",
+		"rit_id": 940,
+		"graduation_year": 2025,
+		"degree": "Morbi vehicula.",
+		"pronouns": "nulla",
+		"avatar_path": "https://instagram.com/fr"
+	},
+	{
+		"first_name": "Tiger",
+		"email": "commodo.ipsum@icloud.net",
+		"last_name": "Hale",
+		"rit_id": 945,
+		"graduation_year": 2025,
+		"degree": "sem eget",
+		"pronouns": "blandit",
+		"avatar_path": "https://reddit.com/user/110"
+	},
+	{
+		"first_name": "Alice",
+		"email": "mauris.molestie.pharetra@yahoo.ca",
+		"last_name": "Whitley",
+		"rit_id": 950,
+		"graduation_year": 2025,
+		"degree": "felis orci,",
+		"pronouns": "et",
+		"avatar_path": "http://google.com/user/110"
+	},
+	{
+		"first_name": "Deanna",
+		"email": "ultrices.duis@aol.ca",
+		"last_name": "Sweet",
+		"rit_id": 955,
+		"graduation_year": 2025,
+		"degree": "iaculis aliquet",
+		"pronouns": "amet",
+		"avatar_path": "http://netflix.com/settings"
+	},
+	{
+		"first_name": "Kimberly",
+		"email": "pede.malesuada@icloud.org",
+		"last_name": "Berg",
+		"rit_id": 960,
+		"graduation_year": 2024,
+		"degree": "elit, pharetra",
+		"pronouns": "mus.",
+		"avatar_path": "https://naver.com/sub"
+	},
+	{
+		"first_name": "Timothy",
+		"email": "eu.eros@outlook.ca",
+		"last_name": "Fields",
+		"rit_id": 965,
+		"graduation_year": 2024,
+		"degree": "Suspendisse dui.",
+		"pronouns": "pretium",
+		"avatar_path": "http://ebay.com/sub"
+	},
+	{
+		"first_name": "Shana",
+		"email": "in@icloud.ca",
+		"last_name": "Chaney",
+		"rit_id": 970,
+		"graduation_year": 2024,
+		"degree": "adipiscing fringilla,",
+		"pronouns": "tellus",
+		"avatar_path": "http://yahoo.com/one"
+	},
+	{
+		"first_name": "Maggie",
+		"email": "commodo.hendrerit@google.couk",
+		"last_name": "Mullen",
+		"rit_id": 975,
+		"graduation_year": 2025,
+		"degree": "dictum mi,",
+		"pronouns": "tempus",
+		"avatar_path": "https://nytimes.com/settings"
+	},
+	{
+		"first_name": "Mohammad",
+		"email": "lectus@google.com",
+		"last_name": "Reed",
+		"rit_id": 980,
+		"graduation_year": 2025,
+		"degree": "suscipit nonummy.",
+		"pronouns": "Fusce",
+		"avatar_path": "http://walmart.com/settings"
+	},
+	{
+		"first_name": "Kitra",
+		"email": "risus@google.edu",
+		"last_name": "Melton",
+		"rit_id": 985,
+		"graduation_year": 2024,
+		"degree": "consectetuer, cursus",
+		"pronouns": "Vivamus",
+		"avatar_path": "http://reddit.com/en-us"
+	},
+	{
+		"first_name": "Quyn",
+		"email": "tellus.phasellus.elit@outlook.com",
+		"last_name": "Mccarty",
+		"rit_id": 990,
+		"graduation_year": 2024,
+		"degree": "nibh dolor,",
+		"pronouns": "vitae,",
+		"avatar_path": "https://twitter.com/one"
+	},
+	{
+		"first_name": "Ursa",
+		"email": "justo.proin@yahoo.org",
+		"last_name": "Sullivan",
+		"rit_id": 995,
+		"graduation_year": 2025,
+		"degree": "Phasellus libero",
+		"pronouns": "diam.",
+		"avatar_path": "http://guardian.co.uk/user/110"
+	},
+	{
+		"first_name": "Aquila",
+		"email": "euismod.urna.nullam@hotmail.edu",
+		"last_name": "Hines",
+		"rit_id": 1000,
+		"graduation_year": 2025,
+		"degree": "auctor, velit",
+		"pronouns": "purus.",
+		"avatar_path": "https://youtube.com/site"
+	},
+	{
+		"first_name": "Cody",
+		"email": "cras.vulputate.velit@aol.org",
+		"last_name": "Floyd",
+		"rit_id": 1005,
+		"graduation_year": 2024,
+		"degree": "tincidunt orci",
+		"pronouns": "est.",
+		"avatar_path": "http://walmart.com/group/9"
+	},
+	{
+		"first_name": "Shaeleigh",
+		"email": "tincidunt.aliquam@google.edu",
+		"last_name": "Deleon",
+		"rit_id": 1010,
+		"graduation_year": 2025,
+		"degree": "Mauris nulla.",
+		"pronouns": "primis",
+		"avatar_path": "https://baidu.com/sub/cars"
+	},
+	{
+		"first_name": "Lysandra",
+		"email": "vel@hotmail.couk",
+		"last_name": "Ramos",
+		"rit_id": 1015,
+		"graduation_year": 2025,
+		"degree": "risus. Donec",
+		"pronouns": "nibh",
+		"avatar_path": "http://youtube.com/fr"
+	},
+	{
+		"first_name": "Elton",
+		"email": "nisi@yahoo.couk",
+		"last_name": "Potter",
+		"rit_id": 1020,
+		"graduation_year": 2024,
+		"degree": "iaculis nec,",
+		"pronouns": "tellus.",
+		"avatar_path": "https://guardian.co.uk/site"
+	},
+	{
+		"first_name": "Forrest",
+		"email": "non@protonmail.edu",
+		"last_name": "Wallace",
+		"rit_id": 1025,
+		"graduation_year": 2025,
+		"degree": "est. Nunc",
+		"pronouns": "ac",
+		"avatar_path": "http://zoom.us/site"
+	},
+	{
+		"first_name": "Lavinia",
+		"email": "ridiculus.mus.donec@icloud.com",
+		"last_name": "Whitaker",
+		"rit_id": 1030,
+		"graduation_year": 2025,
+		"degree": "lobortis tellus",
+		"pronouns": "a",
+		"avatar_path": "http://bbc.co.uk/sub"
+	},
+	{
+		"first_name": "Cailin",
+		"email": "eros.turpis@aol.org",
+		"last_name": "Avila",
+		"rit_id": 1035,
+		"graduation_year": 2025,
+		"degree": "in molestie",
+		"pronouns": "ut,",
+		"avatar_path": "https://google.com/sub"
+	},
+	{
+		"first_name": "Harrison",
+		"email": "odio@outlook.com",
+		"last_name": "Hewitt",
+		"rit_id": 1040,
+		"graduation_year": 2024,
+		"degree": "id, libero.",
+		"pronouns": "egestas",
+		"avatar_path": "https://youtube.com/settings"
+	},
+	{
+		"first_name": "Tanner",
+		"email": "ornare.elit@hotmail.com",
+		"last_name": "Curry",
+		"rit_id": 1045,
+		"graduation_year": 2025,
+		"degree": "pede, ultrices",
+		"pronouns": "arcu",
+		"avatar_path": "http://twitter.com/site"
+	},
+	{
+		"first_name": "Camilla",
+		"email": "cras.vehicula@icloud.couk",
+		"last_name": "Holland",
+		"rit_id": 1055,
+		"graduation_year": 2025,
+		"degree": "viverra. Maecenas",
+		"pronouns": "felis",
+		"avatar_path": "https://baidu.com/en-ca"
+	},
+	{
+		"first_name": "Glenna",
+		"email": "non.nisi@google.ca",
+		"last_name": "Russell",
+		"rit_id": 1060,
+		"graduation_year": 2025,
+		"degree": "hymenaeos. Mauris",
+		"pronouns": "molestie",
+		"avatar_path": "https://wikipedia.org/settings"
+	},
+	{
+		"first_name": "Carol",
+		"email": "consectetuer.cursus.et@hotmail.com",
+		"last_name": "Mcpherson",
+		"rit_id": 1065,
+		"graduation_year": 2025,
+		"degree": "tellus lorem",
+		"pronouns": "lobortis",
+		"avatar_path": "http://reddit.com/user/110"
+	},
+	{
+		"first_name": "Delilah",
+		"email": "vulputate.ullamcorper@icloud.edu",
+		"last_name": "Burt",
+		"rit_id": 1070,
+		"graduation_year": 2024,
+		"degree": "consectetuer rhoncus.",
+		"pronouns": "sed",
+		"avatar_path": "https://youtube.com/en-ca"
+	},
+	{
+		"first_name": "Colt",
+		"email": "dolor.sit.amet@protonmail.ca",
+		"last_name": "Orr",
+		"rit_id": 1075,
+		"graduation_year": 2024,
+		"degree": "Quisque libero",
+		"pronouns": "dui.",
+		"avatar_path": "https://cnn.com/site"
+	},
+	{
+		"first_name": "Valentine",
+		"email": "amet.metus@icloud.ca",
+		"last_name": "Bradford",
+		"rit_id": 1080,
+		"graduation_year": 2024,
+		"degree": "mauris ut",
+		"pronouns": "lacinia",
+		"avatar_path": "https://nytimes.com/one"
+	},
+	{
+		"first_name": "Ginger",
+		"email": "leo.vivamus.nibh@google.couk",
+		"last_name": "Roberson",
+		"rit_id": 1085,
+		"graduation_year": 2026,
+		"degree": "ac tellus.",
+		"pronouns": "odio.",
+		"avatar_path": "https://reddit.com/group/9"
+	},
+	{
+		"first_name": "Chandler",
+		"email": "nulla.vulputate@protonmail.edu",
+		"last_name": "Hooper",
+		"rit_id": 1090,
+		"graduation_year": 2024,
+		"degree": "suscipit nonummy.",
+		"pronouns": "non",
+		"avatar_path": "http://twitter.com/group/9"
+	},
+	{
+		"first_name": "Keefe",
+		"email": "varius.orci.in@protonmail.couk",
+		"last_name": "Bennett",
+		"rit_id": 1095,
+		"graduation_year": 2025,
+		"degree": "sagittis felis.",
+		"pronouns": "egestas",
+		"avatar_path": "http://wikipedia.org/user/110"
+	},
+	{
+		"first_name": "Savannah",
+		"email": "quisque.fringilla@protonmail.ca",
+		"last_name": "Banks",
+		"rit_id": 1100,
+		"graduation_year": 2024,
+		"degree": "ante ipsum",
+		"pronouns": "Phasellus",
+		"avatar_path": "https://netflix.com/sub/cars"
+	},
+	{
+		"first_name": "Lilah",
+		"email": "magna.praesent@protonmail.net",
+		"last_name": "Moses",
+		"rit_id": 1105,
+		"graduation_year": 2025,
+		"degree": "dapibus id,",
+		"pronouns": "amet",
+		"avatar_path": "https://guardian.co.uk/one"
+	},
+	{
+		"first_name": "Brady",
+		"email": "massa.lobortis.ultrices@google.org",
+		"last_name": "Alston",
+		"rit_id": 1110,
+		"graduation_year": 2025,
+		"degree": "facilisis vitae,",
+		"pronouns": "Donec",
+		"avatar_path": "https://reddit.com/group/9"
+	},
+	{
+		"first_name": "Ocean",
+		"email": "facilisis.lorem.tristique@outlook.edu",
+		"last_name": "Jacobs",
+		"rit_id": 1115,
+		"graduation_year": 2024,
+		"degree": "turpis egestas.",
+		"pronouns": "Donec",
+		"avatar_path": "https://bbc.co.uk/settings"
+	},
+	{
+		"first_name": "Caldwell",
+		"email": "et.commodo@outlook.couk",
+		"last_name": "Henson",
+		"rit_id": 1120,
+		"graduation_year": 2024,
+		"degree": "dolor. Nulla",
+		"pronouns": "Suspendisse",
+		"avatar_path": "http://nytimes.com/sub"
+	},
+	{
+		"first_name": "Lucy",
+		"email": "ac@google.edu",
+		"last_name": "Stafford",
+		"rit_id": 1125,
+		"graduation_year": 2025,
+		"degree": "viverra. Maecenas",
+		"pronouns": "sed",
+		"avatar_path": "https://zoom.us/one"
+	},
+	{
+		"first_name": "Amos",
+		"email": "sodales.elit.erat@aol.couk",
+		"last_name": "Olson",
+		"rit_id": 1130,
+		"graduation_year": 2025,
+		"degree": "risus. Quisque",
+		"pronouns": "ipsum.",
+		"avatar_path": "https://cnn.com/user/110"
+	},
+	{
+		"first_name": "Merritt",
+		"email": "laoreet.libero@yahoo.couk",
+		"last_name": "Mcconnell",
+		"rit_id": 1135,
+		"graduation_year": 2024,
+		"degree": "Morbi metus.",
+		"pronouns": "Nam",
+		"avatar_path": "https://yahoo.com/user/110"
+	},
+	{
+		"first_name": "Yael",
+		"email": "ornare.fusce@hotmail.edu",
+		"last_name": "Rodriquez",
+		"rit_id": 1140,
+		"graduation_year": 2024,
+		"degree": "elit. Etiam",
+		"pronouns": "blandit",
+		"avatar_path": "https://youtube.com/group/9"
+	},
+	{
+		"first_name": "Coby",
+		"email": "molestie.dapibus.ligula@yahoo.org",
+		"last_name": "Chavez",
+		"rit_id": 1145,
+		"graduation_year": 2024,
+		"degree": "ullamcorper eu,",
+		"pronouns": "magnis",
+		"avatar_path": "http://zoom.us/en-us"
+	},
+	{
+		"first_name": "Abra",
+		"email": "nunc@protonmail.net",
+		"last_name": "Head",
+		"rit_id": 1150,
+		"graduation_year": 2025,
+		"degree": "Cras pellentesque.",
+		"pronouns": "Suspendisse",
+		"avatar_path": "http://nytimes.com/site"
+	},
+	{
+		"first_name": "Vincent",
+		"email": "eleifend@outlook.org",
+		"last_name": "Cole",
+		"rit_id": 1155,
+		"graduation_year": 2025,
+		"degree": "lectus convallis",
+		"pronouns": "egestas",
+		"avatar_path": "http://netflix.com/one"
+	},
+	{
+		"first_name": "Theodore",
+		"email": "orci.ut@yahoo.ca",
+		"last_name": "Gates",
+		"rit_id": 1160,
+		"graduation_year": 2024,
+		"degree": "dui augue",
+		"pronouns": "nulla.",
+		"avatar_path": "http://naver.com/site"
+	},
+	{
+		"first_name": "Craig",
+		"email": "nibh.vulputate.mauris@icloud.net",
+		"last_name": "White",
+		"rit_id": 1165,
+		"graduation_year": 2024,
+		"degree": "dis parturient",
+		"pronouns": "lectus",
+		"avatar_path": "http://instagram.com/user/110"
+	},
+	{
+		"first_name": "Hedda",
+		"email": "elit.pede@hotmail.net",
+		"last_name": "Sampson",
+		"rit_id": 1170,
+		"graduation_year": 2025,
+		"degree": "tempor lorem,",
+		"pronouns": "aliquam",
+		"avatar_path": "https://instagram.com/sub/cars"
+	},
+	{
+		"first_name": "Josiah",
+		"email": "et.rutrum@outlook.ca",
+		"last_name": "Valencia",
+		"rit_id": 1175,
+		"graduation_year": 2024,
+		"degree": "dapibus rutrum,",
+		"pronouns": "leo.",
+		"avatar_path": "https://nytimes.com/group/9"
+	},
+	{
+		"first_name": "Kylan",
+		"email": "condimentum.eget@protonmail.com",
+		"last_name": "Holden",
+		"rit_id": 1180,
+		"graduation_year": 2026,
+		"degree": "est arcu",
+		"pronouns": "volutpat.",
+		"avatar_path": "http://google.com/en-us"
+	},
+	{
+		"first_name": "Mason",
+		"email": "sodales.elit@google.couk",
+		"last_name": "Winters",
+		"rit_id": 1185,
+		"graduation_year": 2024,
+		"degree": "ut dolor",
+		"pronouns": "elit",
+		"avatar_path": "https://netflix.com/sub/cars"
+	},
+	{
+		"first_name": "Dominic",
+		"email": "cursus@aol.couk",
+		"last_name": "Bean",
+		"rit_id": 1190,
+		"graduation_year": 2026,
+		"degree": "et netus",
+		"pronouns": "amet,",
+		"avatar_path": "http://ebay.com/sub"
+	},
+	{
+		"first_name": "Raven",
+		"email": "lobortis.augue@yahoo.com",
+		"last_name": "Goodman",
+		"rit_id": 1195,
+		"graduation_year": 2024,
+		"degree": "neque pellentesque",
+		"pronouns": "rutrum",
+		"avatar_path": "http://cnn.com/settings"
+	},
+	{
+		"first_name": "Jamal",
+		"email": "molestie.tellus@protonmail.net",
+		"last_name": "Harvey",
+		"rit_id": 1200,
+		"graduation_year": 2024,
+		"degree": "orci, in",
+		"pronouns": "ornare",
+		"avatar_path": "http://cnn.com/sub"
+	},
+	{
+		"first_name": "Joy",
+		"email": "vitae@aol.couk",
+		"last_name": "Duncan",
+		"rit_id": 1205,
+		"graduation_year": 2025,
+		"degree": "rhoncus id,",
+		"pronouns": "sapien",
+		"avatar_path": "http://reddit.com/one"
+	},
+	{
+		"first_name": "Barclay",
+		"email": "sapien.molestie@yahoo.org",
+		"last_name": "Allen",
+		"rit_id": 1210,
+		"graduation_year": 2025,
+		"degree": "orci, adipiscing",
+		"pronouns": "id",
+		"avatar_path": "http://zoom.us/settings"
+	},
+	{
+		"first_name": "Marny",
+		"email": "augue@google.com",
+		"last_name": "Ferrell",
+		"rit_id": 1215,
+		"graduation_year": 2025,
+		"degree": "arcu. Curabitur",
+		"pronouns": "nec",
+		"avatar_path": "http://facebook.com/en-ca"
+	},
+	{
+		"first_name": "Jade",
+		"email": "urna.justo.faucibus@yahoo.com",
+		"last_name": "Terrell",
+		"rit_id": 1220,
+		"graduation_year": 2024,
+		"degree": "Phasellus at",
+		"pronouns": "leo,",
+		"avatar_path": "http://naver.com/site"
+	},
+	{
+		"first_name": "Chanda",
+		"email": "tempor.bibendum@icloud.couk",
+		"last_name": "Doyle",
+		"rit_id": 1225,
+		"graduation_year": 2026,
+		"degree": "imperdiet ullamcorper.",
+		"pronouns": "ut,",
+		"avatar_path": "https://cnn.com/en-ca"
+	},
+	{
+		"first_name": "Raphael",
+		"email": "dui.cras.pellentesque@google.com",
+		"last_name": "Lopez",
+		"rit_id": 1230,
+		"graduation_year": 2025,
+		"degree": "sem ut",
+		"pronouns": "neque.",
+		"avatar_path": "https://ebay.com/sub/cars"
+	},
+	{
+		"first_name": "Knox",
+		"email": "nisl.elementum.purus@hotmail.net",
+		"last_name": "Turner",
+		"rit_id": 1235,
+		"graduation_year": 2024,
+		"degree": "augue ut",
+		"pronouns": "pharetra",
+		"avatar_path": "http://zoom.us/en-us"
+	},
+	{
+		"first_name": "Stella",
+		"email": "auctor@outlook.net",
+		"last_name": "Macdonald",
+		"rit_id": 1240,
+		"graduation_year": 2024,
+		"degree": "a, facilisis",
+		"pronouns": "in",
+		"avatar_path": "https://reddit.com/group/9"
+	},
+	{
+		"first_name": "Shelly",
+		"email": "duis.cursus@hotmail.net",
+		"last_name": "Blevins",
+		"rit_id": 1245,
+		"graduation_year": 2025,
+		"degree": "at, egestas",
+		"pronouns": "Quisque",
+		"avatar_path": "https://ebay.com/en-ca"
+	},
+	{
+		"first_name": "David",
+		"email": "elit.aliquam.auctor@hotmail.org",
+		"last_name": "Huffman",
+		"rit_id": 1250,
+		"graduation_year": 2025,
+		"degree": "Duis ac",
+		"pronouns": "in",
+		"avatar_path": "https://netflix.com/site"
+	},
+	{
+		"first_name": "Liberty",
+		"email": "nunc@icloud.ca",
+		"last_name": "Mcfarland",
+		"rit_id": 1255,
+		"graduation_year": 2025,
+		"degree": "neque tellus,",
+		"pronouns": "id",
+		"avatar_path": "https://pinterest.com/group/9"
+	},
+	{
+		"first_name": "Kevin",
+		"email": "donec.egestas.duis@yahoo.edu",
+		"last_name": "Mcgowan",
+		"rit_id": 1260,
+		"graduation_year": 2025,
+		"degree": "et pede.",
+		"pronouns": "Aenean",
+		"avatar_path": "http://bbc.co.uk/fr"
+	},
+	{
+		"first_name": "Kennan",
+		"email": "lacinia.at.iaculis@google.org",
+		"last_name": "Mason",
+		"rit_id": 1265,
+		"graduation_year": 2024,
+		"degree": "Proin mi.",
+		"pronouns": "nec",
+		"avatar_path": "https://bbc.co.uk/en-us"
+	},
+	{
+		"first_name": "Salvador",
+		"email": "ullamcorper.velit@yahoo.com",
+		"last_name": "Blake",
+		"rit_id": 1270,
+		"graduation_year": 2025,
+		"degree": "enim mi",
+		"pronouns": "scelerisque",
+		"avatar_path": "https://reddit.com/sub/cars"
+	},
+	{
+		"first_name": "Fatima",
+		"email": "vel.venenatis@google.couk",
+		"last_name": "Pickett",
+		"rit_id": 1275,
+		"graduation_year": 2025,
+		"degree": "nisi nibh",
+		"pronouns": "diam",
+		"avatar_path": "http://naver.com/en-us"
+	},
+	{
+		"first_name": "Dara",
+		"email": "dui.fusce@aol.org",
+		"last_name": "Sparks",
+		"rit_id": 1280,
+		"graduation_year": 2026,
+		"degree": "orci, in",
+		"pronouns": "magna.",
+		"avatar_path": "https://nytimes.com/group/9"
+	},
+	{
+		"first_name": "Allegra",
+		"email": "vivamus.rhoncus.donec@google.org",
+		"last_name": "Spencer",
+		"rit_id": 1285,
+		"graduation_year": 2025,
+		"degree": "elit elit",
+		"pronouns": "arcu",
+		"avatar_path": "https://zoom.us/one"
+	},
+	{
+		"first_name": "Matthew",
+		"email": "nulla@google.edu",
+		"last_name": "Dyer",
+		"rit_id": 1290,
+		"graduation_year": 2025,
+		"degree": "ac mattis",
+		"pronouns": "Nunc",
+		"avatar_path": "https://instagram.com/en-ca"
+	},
+	{
+		"first_name": "Suki",
+		"email": "tristique.ac.eleifend@aol.ca",
+		"last_name": "Blair",
+		"rit_id": 1295,
+		"graduation_year": 2025,
+		"degree": "Aenean eget",
+		"pronouns": "Phasellus",
+		"avatar_path": "http://zoom.us/user/110"
+	},
+	{
+		"first_name": "Kitra",
+		"email": "et.magnis@outlook.edu",
+		"last_name": "Livingston",
+		"rit_id": 1300,
+		"graduation_year": 2024,
+		"degree": "fringilla purus",
+		"pronouns": "Morbi",
+		"avatar_path": "https://walmart.com/group/9"
+	},
+	{
+		"first_name": "May",
+		"email": "eu@google.couk",
+		"last_name": "Day",
+		"rit_id": 1305,
+		"graduation_year": 2025,
+		"degree": "parturient montes,",
+		"pronouns": "erat",
+		"avatar_path": "http://whatsapp.com/sub"
+	},
+	{
+		"first_name": "Yuli",
+		"email": "morbi.tristique@google.com",
+		"last_name": "Williams",
+		"rit_id": 1310,
+		"graduation_year": 2024,
+		"degree": "nascetur ridiculus",
+		"pronouns": "enim.",
+		"avatar_path": "https://reddit.com/user/110"
+	},
+	{
+		"first_name": "Francis",
+		"email": "arcu.ac.orci@outlook.net",
+		"last_name": "Gaines",
+		"rit_id": 1315,
+		"graduation_year": 2025,
+		"degree": "ac orci.",
+		"pronouns": "libero.",
+		"avatar_path": "http://google.com/sub"
+	},
+	{
+		"first_name": "Keane",
+		"email": "tempor@outlook.net",
+		"last_name": "Burch",
+		"rit_id": 1320,
+		"graduation_year": 2024,
+		"degree": "elementum, lorem",
+		"pronouns": "risus.",
+		"avatar_path": "https://youtube.com/sub/cars"
+	},
+	{
+		"first_name": "Dorothy",
+		"email": "semper.pretium@aol.edu",
+		"last_name": "Hobbs",
+		"rit_id": 1325,
+		"graduation_year": 2024,
+		"degree": "ipsum dolor",
+		"pronouns": "at",
+		"avatar_path": "https://walmart.com/site"
+	},
+	{
+		"first_name": "Briar",
+		"email": "nisl.elementum@aol.edu",
+		"last_name": "Gordon",
+		"rit_id": 1330,
+		"graduation_year": 2024,
+		"degree": "mattis velit",
+		"pronouns": "magna.",
+		"avatar_path": "http://guardian.co.uk/user/110"
+	},
+	{
+		"first_name": "Jocelyn",
+		"email": "dictum.phasellus.in@icloud.couk",
+		"last_name": "Little",
+		"rit_id": 1335,
+		"graduation_year": 2025,
+		"degree": "Cras interdum.",
+		"pronouns": "Donec",
+		"avatar_path": "https://yahoo.com/en-ca"
+	},
+	{
+		"first_name": "Rhona",
+		"email": "hendrerit.neque@aol.edu",
+		"last_name": "Holcomb",
+		"rit_id": 1340,
+		"graduation_year": 2024,
+		"degree": "penatibus et",
+		"pronouns": "arcu.",
+		"avatar_path": "https://naver.com/fr"
+	},
+	{
+		"first_name": "Perry",
+		"email": "in@yahoo.couk",
+		"last_name": "Schultz",
+		"rit_id": 1350,
+		"graduation_year": 2025,
+		"degree": "ante dictum",
+		"pronouns": "amet",
+		"avatar_path": "https://twitter.com/one"
+	},
+	{
+		"first_name": "Rebekah",
+		"email": "ac@hotmail.net",
+		"last_name": "Hebert",
+		"rit_id": 1355,
+		"graduation_year": 2025,
+		"degree": "Cras vulputate",
+		"pronouns": "eleifend",
+		"avatar_path": "http://baidu.com/group/9"
+	},
+	{
+		"first_name": "Lois",
+		"email": "aenean@protonmail.ca",
+		"last_name": "Hurst",
+		"rit_id": 1360,
+		"graduation_year": 2024,
+		"degree": "odio a",
+		"pronouns": "penatibus",
+		"avatar_path": "http://instagram.com/site"
+	},
+	{
+		"first_name": "Elizabeth",
+		"email": "adipiscing.non@outlook.couk",
+		"last_name": "Moon",
+		"rit_id": 1365,
+		"graduation_year": 2025,
+		"degree": "Nullam nisl.",
+		"pronouns": "conubia",
+		"avatar_path": "https://instagram.com/sub/cars"
+	},
+	{
+		"first_name": "Todd",
+		"email": "sed.pharetra.felis@icloud.ca",
+		"last_name": "Abbott",
+		"rit_id": 1370,
+		"graduation_year": 2025,
+		"degree": "a, arcu.",
+		"pronouns": "libero.",
+		"avatar_path": "http://wikipedia.org/site"
+	},
+	{
+		"first_name": "Amery",
+		"email": "tincidunt@outlook.com",
+		"last_name": "Travis",
+		"rit_id": 1375,
+		"graduation_year": 2025,
+		"degree": "enim diam",
+		"pronouns": "Sed",
+		"avatar_path": "https://walmart.com/group/9"
+	},
+	{
+		"first_name": "Kareem",
+		"email": "suspendisse.ac.metus@icloud.com",
+		"last_name": "Branch",
+		"rit_id": 1380,
+		"graduation_year": 2026,
+		"degree": "vestibulum, neque",
+		"pronouns": "odio",
+		"avatar_path": "https://zoom.us/site"
+	},
+	{
+		"first_name": "Signe",
+		"email": "ad@yahoo.ca",
+		"last_name": "Mann",
+		"rit_id": 1385,
+		"graduation_year": 2025,
+		"degree": "ante lectus",
+		"pronouns": "nulla",
+		"avatar_path": "https://youtube.com/en-us"
+	},
+	{
+		"first_name": "Holly",
+		"email": "nibh@google.edu",
+		"last_name": "Parsons",
+		"rit_id": 1390,
+		"graduation_year": 2024,
+		"degree": "quis accumsan",
+		"pronouns": "quis,",
+		"avatar_path": "https://wikipedia.org/en-us"
+	},
+	{
+		"first_name": "Jasper",
+		"email": "mollis@protonmail.couk",
+		"last_name": "Carr",
+		"rit_id": 1395,
+		"graduation_year": 2024,
+		"degree": "interdum. Sed",
+		"pronouns": "blandit",
+		"avatar_path": "https://cnn.com/site"
+	},
+	{
+		"first_name": "Blake",
+		"email": "cursus.a@google.couk",
+		"last_name": "Hammond",
+		"rit_id": 1400,
+		"graduation_year": 2024,
+		"degree": "eu nibh",
+		"pronouns": "mollis.",
+		"avatar_path": "http://wikipedia.org/group/9"
+	},
+	{
+		"first_name": "Lee",
+		"email": "quis.lectus@hotmail.com",
+		"last_name": "Howard",
+		"rit_id": 1405,
+		"graduation_year": 2025,
+		"degree": "tortor. Nunc",
+		"pronouns": "turpis",
+		"avatar_path": "http://netflix.com/en-us"
+	},
+	{
+		"first_name": "Daria",
+		"email": "ipsum.phasellus.vitae@icloud.ca",
+		"last_name": "Logan",
+		"rit_id": 1410,
+		"graduation_year": 2024,
+		"degree": "euismod ac,",
+		"pronouns": "montes,",
+		"avatar_path": "http://baidu.com/site"
+	},
+	{
+		"first_name": "Orla",
+		"email": "ante.maecenas.mi@google.org",
+		"last_name": "Morrow",
+		"rit_id": 1415,
+		"graduation_year": 2024,
+		"degree": "augue scelerisque",
+		"pronouns": "metus",
+		"avatar_path": "http://naver.com/en-ca"
+	},
+	{
+		"first_name": "Aimee",
+		"email": "sed.dolor@outlook.org",
+		"last_name": "Prince",
+		"rit_id": 1420,
+		"graduation_year": 2026,
+		"degree": "nunc. Quisque",
+		"pronouns": "sapien",
+		"avatar_path": "https://instagram.com/en-us"
+	},
+	{
+		"first_name": "Jonah",
+		"email": "non@icloud.com",
+		"last_name": "Kennedy",
+		"rit_id": 1425,
+		"graduation_year": 2025,
+		"degree": "egestas a,",
+		"pronouns": "lacinia",
+		"avatar_path": "http://whatsapp.com/en-ca"
+	},
+	{
+		"first_name": "Marshall",
+		"email": "duis.volutpat.nunc@icloud.couk",
+		"last_name": "Rocha",
+		"rit_id": 1430,
+		"graduation_year": 2024,
+		"degree": "imperdiet ullamcorper.",
+		"pronouns": "mus.",
+		"avatar_path": "https://google.com/fr"
+	},
+	{
+		"first_name": "Quynn",
+		"email": "sed@google.ca",
+		"last_name": "Cash",
+		"rit_id": 1435,
+		"graduation_year": 2025,
+		"degree": "enim. Nunc",
+		"pronouns": "malesuada",
+		"avatar_path": "http://guardian.co.uk/en-ca"
+	},
+	{
+		"first_name": "Neil",
+		"email": "blandit.nam@hotmail.org",
+		"last_name": "England",
+		"rit_id": 1440,
+		"graduation_year": 2024,
+		"degree": "orci lacus",
+		"pronouns": "tempor",
+		"avatar_path": "https://wikipedia.org/en-ca"
+	},
+	{
+		"first_name": "Ashton",
+		"email": "cursus.non@outlook.ca",
+		"last_name": "Hahn",
+		"rit_id": 1445,
+		"graduation_year": 2026,
+		"degree": "tellus. Aenean",
+		"pronouns": "leo",
+		"avatar_path": "http://facebook.com/fr"
+	},
+	{
+		"first_name": "Charlotte",
+		"email": "interdum.libero@icloud.edu",
+		"last_name": "Madden",
+		"rit_id": 1450,
+		"graduation_year": 2025,
+		"degree": "hendrerit id,",
+		"pronouns": "Duis",
+		"avatar_path": "http://pinterest.com/fr"
+	},
+	{
+		"first_name": "Clark",
+		"email": "tristique.pharetra@icloud.net",
+		"last_name": "Graham",
+		"rit_id": 1455,
+		"graduation_year": 2024,
+		"degree": "Praesent eu",
+		"pronouns": "adipiscing",
+		"avatar_path": "http://google.com/sub/cars"
+	},
+	{
+		"first_name": "Price",
+		"email": "sem.consequat.nec@google.com",
+		"last_name": "Campos",
+		"rit_id": 1460,
+		"graduation_year": 2026,
+		"degree": "et magnis",
+		"pronouns": "egestas.",
+		"avatar_path": "http://whatsapp.com/sub"
+	},
+	{
+		"first_name": "Yoshio",
+		"email": "nullam.vitae@aol.com",
+		"last_name": "Sheppard",
+		"rit_id": 1465,
+		"graduation_year": 2025,
+		"degree": "lacinia vitae,",
+		"pronouns": "ante,",
+		"avatar_path": "https://wikipedia.org/sub"
+	},
+	{
+		"first_name": "Quinlan",
+		"email": "hymenaeos.mauris@aol.org",
+		"last_name": "Green",
+		"rit_id": 1470,
+		"graduation_year": 2026,
+		"degree": "massa. Vestibulum",
+		"pronouns": "Sed",
+		"avatar_path": "https://guardian.co.uk/sub"
+	},
+	{
+		"first_name": "Chandler",
+		"email": "aliquam.ultrices@icloud.com",
+		"last_name": "Crawford",
+		"rit_id": 1475,
+		"graduation_year": 2024,
+		"degree": "semper erat,",
+		"pronouns": "Nulla",
+		"avatar_path": "http://pinterest.com/site"
+	},
+	{
+		"first_name": "Adria",
+		"email": "accumsan.convallis@yahoo.edu",
+		"last_name": "Wyatt",
+		"rit_id": 1480,
+		"graduation_year": 2024,
+		"degree": "non, feugiat",
+		"pronouns": "metus.",
+		"avatar_path": "https://bbc.co.uk/one"
+	},
+	{
+		"first_name": "Pandora",
+		"email": "donec@protonmail.org",
+		"last_name": "Guy",
+		"rit_id": 1485,
+		"graduation_year": 2024,
+		"degree": "ac mattis",
+		"pronouns": "elit",
+		"avatar_path": "http://whatsapp.com/settings"
+	},
+	{
+		"first_name": "Quinn",
+		"email": "lobortis.risus.in@aol.edu",
+		"last_name": "Glover",
+		"rit_id": 1490,
+		"graduation_year": 2026,
+		"degree": "sed, hendrerit",
+		"pronouns": "Nulla",
+		"avatar_path": "https://zoom.us/settings"
+	},
+	{
+		"first_name": "Wyatt",
+		"email": "eleifend.nunc@protonmail.com",
+		"last_name": "Bullock",
+		"rit_id": 1495,
+		"graduation_year": 2024,
+		"degree": "Vivamus euismod",
+		"pronouns": "ut,",
+		"avatar_path": "https://pinterest.com/settings"
+	},
+	{
+		"first_name": "Xyla",
+		"email": "auctor@protonmail.net",
+		"last_name": "Singleton",
+		"rit_id": 1500,
+		"graduation_year": 2025,
+		"degree": "scelerisque mollis.",
+		"pronouns": "neque",
+		"avatar_path": "http://facebook.com/sub/cars"
+	},
+	{
+		"first_name": "Ray",
+		"email": "eu.tellus.phasellus@google.ca",
+		"last_name": "Levine",
+		"rit_id": 1505,
+		"graduation_year": 2024,
+		"degree": "interdum libero",
+		"pronouns": "laoreet",
+		"avatar_path": "http://walmart.com/en-us"
+	},
+	{
+		"first_name": "Patrick",
+		"email": "nunc.ut.erat@google.ca",
+		"last_name": "Gross",
+		"rit_id": 1510,
+		"graduation_year": 2024,
+		"degree": "et malesuada",
+		"pronouns": "amet",
+		"avatar_path": "http://google.com/fr"
+	},
+	{
+		"first_name": "Mason",
+		"email": "leo.in@yahoo.ca",
+		"last_name": "Decker",
+		"rit_id": 1515,
+		"graduation_year": 2025,
+		"degree": "sed, sapien.",
+		"pronouns": "Nunc",
+		"avatar_path": "http://twitter.com/fr"
+	},
+	{
+		"first_name": "Ross",
+		"email": "convallis.dolor.quisque@hotmail.org",
+		"last_name": "Bridges",
+		"rit_id": 1520,
+		"graduation_year": 2025,
+		"degree": "augue eu",
+		"pronouns": "lorem,",
+		"avatar_path": "https://netflix.com/group/9"
+	},
+	{
+		"first_name": "Alexis",
+		"email": "neque.sed@icloud.org",
+		"last_name": "Soto",
+		"rit_id": 1525,
+		"graduation_year": 2025,
+		"degree": "ultrices posuere",
+		"pronouns": "Integer",
+		"avatar_path": "http://twitter.com/sub"
+	},
+	{
+		"first_name": "Georgia",
+		"email": "risus.nulla@outlook.net",
+		"last_name": "Campbell",
+		"rit_id": 1530,
+		"graduation_year": 2024,
+		"degree": "a feugiat",
+		"pronouns": "nisl",
+		"avatar_path": "http://google.com/sub/cars"
+	},
+	{
+		"first_name": "Courtney",
+		"email": "maecenas.malesuada.fringilla@icloud.couk",
+		"last_name": "Rodriguez",
+		"rit_id": 1535,
+		"graduation_year": 2025,
+		"degree": "nascetur ridiculus",
+		"pronouns": "id,",
+		"avatar_path": "http://netflix.com/en-ca"
+	},
+	{
+		"first_name": "Bertha",
+		"email": "sem.ut@yahoo.com",
+		"last_name": "Hebert",
+		"rit_id": 1540,
+		"graduation_year": 2024,
+		"degree": "enim consequat",
+		"pronouns": "eu",
+		"avatar_path": "http://instagram.com/user/110"
+	},
+	{
+		"first_name": "Jordan",
+		"email": "pede@yahoo.couk",
+		"last_name": "Nguyen",
+		"rit_id": 1545,
+		"graduation_year": 2025,
+		"degree": "dictum placerat,",
+		"pronouns": "ligula.",
+		"avatar_path": "https://reddit.com/one"
+	},
+	{
+		"first_name": "Ahmed",
+		"email": "lorem@protonmail.couk",
+		"last_name": "Bernard",
+		"rit_id": 1550,
+		"graduation_year": 2024,
+		"degree": "ornare sagittis",
+		"pronouns": "euismod",
+		"avatar_path": "https://zoom.us/site"
+	},
+	{
+		"first_name": "Herman",
+		"email": "cras.eget.nisi@outlook.couk",
+		"last_name": "Lee",
+		"rit_id": 1555,
+		"graduation_year": 2025,
+		"degree": "dui nec",
+		"pronouns": "amet,",
+		"avatar_path": "http://nytimes.com/group/9"
+	},
+	{
+		"first_name": "Guy",
+		"email": "consectetuer.adipiscing@hotmail.com",
+		"last_name": "Barker",
+		"rit_id": 1560,
+		"graduation_year": 2024,
+		"degree": "scelerisque, lorem",
+		"pronouns": "velit.",
+		"avatar_path": "https://cnn.com/en-ca"
+	},
+	{
+		"first_name": "Angelica",
+		"email": "praesent@google.net",
+		"last_name": "Solis",
+		"rit_id": 1565,
+		"graduation_year": 2025,
+		"degree": "commodo hendrerit.",
+		"pronouns": "venenatis",
+		"avatar_path": "https://pinterest.com/settings"
+	},
+	{
+		"first_name": "Lenore",
+		"email": "tellus.eu.augue@outlook.net",
+		"last_name": "Lancaster",
+		"rit_id": 1570,
+		"graduation_year": 2024,
+		"degree": "bibendum sed,",
+		"pronouns": "varius",
+		"avatar_path": "https://ebay.com/group/9"
+	},
+	{
+		"first_name": "Vladimir",
+		"email": "eu.lacus.quisque@outlook.ca",
+		"last_name": "Hawkins",
+		"rit_id": 1575,
+		"graduation_year": 2025,
+		"degree": "erat. Vivamus",
+		"pronouns": "eu",
+		"avatar_path": "http://zoom.us/en-ca"
+	},
+	{
+		"first_name": "Gwendolyn",
+		"email": "suspendisse@outlook.org",
+		"last_name": "Lynch",
+		"rit_id": 1580,
+		"graduation_year": 2024,
+		"degree": "sagittis placerat.",
+		"pronouns": "magna",
+		"avatar_path": "http://baidu.com/user/110"
+	},
+	{
+		"first_name": "Portia",
+		"email": "orci@hotmail.org",
+		"last_name": "Richard",
+		"rit_id": 1585,
+		"graduation_year": 2024,
+		"degree": "eget metus",
+		"pronouns": "a,",
+		"avatar_path": "http://naver.com/user/110"
+	},
+	{
+		"first_name": "Leilani",
+		"email": "vitae.dolor@google.com",
+		"last_name": "Nixon",
+		"rit_id": 1590,
+		"graduation_year": 2025,
+		"degree": "ac facilisis",
+		"pronouns": "euismod",
+		"avatar_path": "https://wikipedia.org/group/9"
+	},
+	{
+		"first_name": "Flynn",
+		"email": "a.facilisis@hotmail.ca",
+		"last_name": "Molina",
+		"rit_id": 1595,
+		"graduation_year": 2024,
+		"degree": "varius orci,",
+		"pronouns": "ante",
+		"avatar_path": "https://yahoo.com/one"
+	},
+	{
+		"first_name": "Geoffrey",
+		"email": "semper@aol.com",
+		"last_name": "Pacheco",
+		"rit_id": 1600,
+		"graduation_year": 2025,
+		"degree": "purus ac",
+		"pronouns": "lorem",
+		"avatar_path": "http://reddit.com/settings"
+	},
+	{
+		"first_name": "Jameson",
+		"email": "arcu.eu@outlook.edu",
+		"last_name": "Wolfe",
+		"rit_id": 1605,
+		"graduation_year": 2024,
+		"degree": "interdum enim",
+		"pronouns": "mi,",
+		"avatar_path": "https://guardian.co.uk/one"
+	},
+	{
+		"first_name": "Amela",
+		"email": "urna.ut@aol.couk",
+		"last_name": "Hunter",
+		"rit_id": 1610,
+		"graduation_year": 2024,
+		"degree": "Nullam nisl.",
+		"pronouns": "posuere,",
+		"avatar_path": "http://zoom.us/fr"
+	},
+	{
+		"first_name": "Zia",
+		"email": "dictum.mi@hotmail.edu",
+		"last_name": "Dale",
+		"rit_id": 1615,
+		"graduation_year": 2024,
+		"degree": "Proin dolor.",
+		"pronouns": "ullamcorper,",
+		"avatar_path": "https://netflix.com/sub"
+	},
+	{
+		"first_name": "Ryan",
+		"email": "sed.turpis@hotmail.org",
+		"last_name": "Houston",
+		"rit_id": 1620,
+		"graduation_year": 2025,
+		"degree": "sem molestie",
+		"pronouns": "imperdiet,",
+		"avatar_path": "https://facebook.com/site"
+	},
+	{
+		"first_name": "Chase",
+		"email": "fermentum.risus.at@aol.com",
+		"last_name": "Sampson",
+		"rit_id": 1625,
+		"graduation_year": 2025,
+		"degree": "Nulla eu",
+		"pronouns": "pede,",
+		"avatar_path": "http://pinterest.com/group/9"
+	},
+	{
+		"first_name": "Ferris",
+		"email": "ultrices.vivamus.rhoncus@google.com",
+		"last_name": "Castillo",
+		"rit_id": 1630,
+		"graduation_year": 2025,
+		"degree": "sapien, cursus",
+		"pronouns": "Maecenas",
+		"avatar_path": "http://facebook.com/fr"
+	},
+	{
+		"first_name": "Adrienne",
+		"email": "velit.justo.nec@protonmail.couk",
+		"last_name": "Talley",
+		"rit_id": 1635,
+		"graduation_year": 2025,
+		"degree": "lobortis augue",
+		"pronouns": "lacus.",
+		"avatar_path": "https://facebook.com/en-us"
+	},
+	{
+		"first_name": "Kennedy",
+		"email": "donec.feugiat.metus@protonmail.couk",
+		"last_name": "Best",
+		"rit_id": 1640,
+		"graduation_year": 2025,
+		"degree": "Donec dignissim",
+		"pronouns": "primis",
+		"avatar_path": "https://nytimes.com/sub"
+	},
+	{
+		"first_name": "Jesse",
+		"email": "tortor.nibh.sit@icloud.com",
+		"last_name": "Rosario",
+		"rit_id": 1645,
+		"graduation_year": 2025,
+		"degree": "tellus eu",
+		"pronouns": "Sed",
+		"avatar_path": "https://twitter.com/sub/cars"
+	},
+	{
+		"first_name": "Imelda",
+		"email": "curabitur.egestas@icloud.org",
+		"last_name": "Raymond",
+		"rit_id": 1650,
+		"graduation_year": 2026,
+		"degree": "non, egestas",
+		"pronouns": "ligula.",
+		"avatar_path": "https://instagram.com/one"
+	},
+	{
+		"first_name": "Branden",
+		"email": "semper.auctor.mauris@aol.org",
+		"last_name": "Johns",
+		"rit_id": 1655,
+		"graduation_year": 2025,
+		"degree": "primis in",
+		"pronouns": "blandit",
+		"avatar_path": "https://baidu.com/sub"
+	},
+	{
+		"first_name": "Dylan",
+		"email": "sed@aol.org",
+		"last_name": "Sandoval",
+		"rit_id": 1660,
+		"graduation_year": 2024,
+		"degree": "quam. Curabitur",
+		"pronouns": "Integer",
+		"avatar_path": "https://google.com/one"
+	},
+	{
+		"first_name": "Gemma",
+		"email": "sed.sem@google.ca",
+		"last_name": "Barnett",
+		"rit_id": 1665,
+		"graduation_year": 2026,
+		"degree": "fringilla mi",
+		"pronouns": "ac,",
+		"avatar_path": "http://ebay.com/fr"
+	},
+	{
+		"first_name": "Tanek",
+		"email": "eros.non@hotmail.com",
+		"last_name": "Cox",
+		"rit_id": 1670,
+		"graduation_year": 2025,
+		"degree": "orci. Donec",
+		"pronouns": "a,",
+		"avatar_path": "https://ebay.com/sub/cars"
+	},
+	{
+		"first_name": "Reese",
+		"email": "curabitur.sed@icloud.org",
+		"last_name": "Bishop",
+		"rit_id": 1675,
+		"graduation_year": 2024,
+		"degree": "tincidunt tempus",
+		"pronouns": "dis",
+		"avatar_path": "https://pinterest.com/fr"
+	},
+	{
+		"first_name": "Dexter",
+		"email": "iaculis.lacus@hotmail.ca",
+		"last_name": "Preston",
+		"rit_id": 1680,
+		"graduation_year": 2025,
+		"degree": "morbi tristique",
+		"pronouns": "egestas,",
+		"avatar_path": "https://youtube.com/one"
+	},
+	{
+		"first_name": "Bethany",
+		"email": "at.augue@yahoo.org",
+		"last_name": "Armstrong",
+		"rit_id": 1685,
+		"graduation_year": 2025,
+		"degree": "lectus sit",
+		"pronouns": "semper",
+		"avatar_path": "https://zoom.us/en-ca"
+	},
+	{
+		"first_name": "Neil",
+		"email": "ultricies@icloud.couk",
+		"last_name": "Mann",
+		"rit_id": 1690,
+		"graduation_year": 2026,
+		"degree": "ultrices sit",
+		"pronouns": "orci",
+		"avatar_path": "http://nytimes.com/settings"
+	},
+	{
+		"first_name": "Seth",
+		"email": "tortor.integer@google.ca",
+		"last_name": "George",
+		"rit_id": 1695,
+		"graduation_year": 2024,
+		"degree": "ut, nulla.",
+		"pronouns": "laoreet",
+		"avatar_path": "http://walmart.com/one"
+	},
+	{
+		"first_name": "Quynn",
+		"email": "interdum.sed.auctor@google.net",
+		"last_name": "Fisher",
+		"rit_id": 1700,
+		"graduation_year": 2025,
+		"degree": "Integer aliquam",
+		"pronouns": "eleifend.",
+		"avatar_path": "https://reddit.com/en-us"
+	},
+	{
+		"first_name": "Talon",
+		"email": "odio.a@hotmail.couk",
+		"last_name": "Avery",
+		"rit_id": 1705,
+		"graduation_year": 2025,
+		"degree": "Aenean massa.",
+		"pronouns": "sit",
+		"avatar_path": "http://youtube.com/en-ca"
+	},
+	{
+		"first_name": "Heidi",
+		"email": "ante@outlook.ca",
+		"last_name": "Forbes",
+		"rit_id": 1710,
+		"graduation_year": 2024,
+		"degree": "non lorem",
+		"pronouns": "dui,",
+		"avatar_path": "https://baidu.com/en-us"
+	},
+	{
+		"first_name": "Summer",
+		"email": "sed.id@hotmail.couk",
+		"last_name": "Mendoza",
+		"rit_id": 1715,
+		"graduation_year": 2026,
+		"degree": "Proin eget",
+		"pronouns": "facilisi.",
+		"avatar_path": "https://pinterest.com/sub/cars"
+	},
+	{
+		"first_name": "Iona",
+		"email": "fusce.feugiat@google.com",
+		"last_name": "Christian",
+		"rit_id": 1720,
+		"graduation_year": 2025,
+		"degree": "luctus felis",
+		"pronouns": "magna.",
+		"avatar_path": "https://naver.com/fr"
+	},
+	{
+		"first_name": "Kiayada",
+		"email": "curabitur@aol.org",
+		"last_name": "Rosario",
+		"rit_id": 1725,
+		"graduation_year": 2024,
+		"degree": "ultricies sem",
+		"pronouns": "magna.",
+		"avatar_path": "http://naver.com/sub/cars"
+	},
+	{
+		"first_name": "Cynthia",
+		"email": "cum.sociis.natoque@aol.com",
+		"last_name": "Hunter",
+		"rit_id": 1730,
+		"graduation_year": 2024,
+		"degree": "placerat, orci",
+		"pronouns": "nisi.",
+		"avatar_path": "https://google.com/site"
+	},
+	{
+		"first_name": "Caesar",
+		"email": "elit.elit@yahoo.ca",
+		"last_name": "Reyes",
+		"rit_id": 1735,
+		"graduation_year": 2025,
+		"degree": "blandit. Nam",
+		"pronouns": "Phasellus",
+		"avatar_path": "http://naver.com/settings"
+	},
+	{
+		"first_name": "Sierra",
+		"email": "velit.pellentesque@outlook.org",
+		"last_name": "Hewitt",
+		"rit_id": 1740,
+		"graduation_year": 2024,
+		"degree": "Sed eu",
+		"pronouns": "felis.",
+		"avatar_path": "https://pinterest.com/sub"
+	},
+	{
+		"first_name": "Christian",
+		"email": "odio.a@hotmail.org",
+		"last_name": "Walton",
+		"rit_id": 1745,
+		"graduation_year": 2024,
+		"degree": "Sed eu",
+		"pronouns": "erat,",
+		"avatar_path": "https://bbc.co.uk/en-ca"
+	},
+	{
+		"first_name": "Kyla",
+		"email": "consectetuer.mauris@google.ca",
+		"last_name": "Weaver",
+		"rit_id": 1750,
+		"graduation_year": 2025,
+		"degree": "sagittis augue,",
+		"pronouns": "consequat",
+		"avatar_path": "https://yahoo.com/site"
+	},
+	{
+		"first_name": "Rajah",
+		"email": "euismod.mauris.eu@google.couk",
+		"last_name": "Madden",
+		"rit_id": 1755,
+		"graduation_year": 2025,
+		"degree": "vestibulum nec,",
+		"pronouns": "odio",
+		"avatar_path": "https://walmart.com/user/110"
+	},
+	{
+		"first_name": "Nolan",
+		"email": "sed@outlook.org",
+		"last_name": "Sosa",
+		"rit_id": 1760,
+		"graduation_year": 2024,
+		"degree": "neque vitae",
+		"pronouns": "risus.",
+		"avatar_path": "https://pinterest.com/settings"
+	},
+	{
+		"first_name": "Eric",
+		"email": "semper.rutrum.fusce@protonmail.couk",
+		"last_name": "Brown",
+		"rit_id": 1765,
+		"graduation_year": 2024,
+		"degree": "et tristique",
+		"pronouns": "consectetuer,",
+		"avatar_path": "https://guardian.co.uk/group/9"
+	},
+	{
+		"first_name": "Sierra",
+		"email": "sapien.cras@yahoo.com",
+		"last_name": "Cote",
+		"rit_id": 1770,
+		"graduation_year": 2025,
+		"degree": "mollis dui,",
+		"pronouns": "quis",
+		"avatar_path": "http://yahoo.com/site"
+	},
+	{
+		"first_name": "Leigh",
+		"email": "nulla.integer.vulputate@protonmail.couk",
+		"last_name": "Abbott",
+		"rit_id": 1775,
+		"graduation_year": 2024,
+		"degree": "risus. Duis",
+		"pronouns": "pede",
+		"avatar_path": "http://twitter.com/sub"
+	},
+	{
+		"first_name": "Kirk",
+		"email": "nulla.interdum.curabitur@google.com",
+		"last_name": "Little",
+		"rit_id": 1780,
+		"graduation_year": 2025,
+		"degree": "lorem, sit",
+		"pronouns": "bibendum",
+		"avatar_path": "http://whatsapp.com/site"
+	},
+	{
+		"first_name": "Hadassah",
+		"email": "lacus.etiam@outlook.couk",
+		"last_name": "Williamson",
+		"rit_id": 1785,
+		"graduation_year": 2024,
+		"degree": "erat. Etiam",
+		"pronouns": "In",
+		"avatar_path": "https://youtube.com/sub"
+	},
+	{
+		"first_name": "Ginger",
+		"email": "auctor.vitae@google.ca",
+		"last_name": "Miles",
+		"rit_id": 1790,
+		"graduation_year": 2025,
+		"degree": "bibendum ullamcorper.",
+		"pronouns": "Fusce",
+		"avatar_path": "https://bbc.co.uk/fr"
+	},
+	{
+		"first_name": "Carolyn",
+		"email": "justo.proin.non@yahoo.couk",
+		"last_name": "Mason",
+		"rit_id": 1795,
+		"graduation_year": 2024,
+		"degree": "sem, vitae",
+		"pronouns": "Vivamus",
+		"avatar_path": "http://guardian.co.uk/user/110"
+	},
+	{
+		"first_name": "Barry",
+		"email": "vel.faucibus@yahoo.couk",
+		"last_name": "Gay",
+		"rit_id": 1800,
+		"graduation_year": 2025,
+		"degree": "Quisque nonummy",
+		"pronouns": "libero.",
+		"avatar_path": "https://bbc.co.uk/en-us"
+	},
+	{
+		"first_name": "Tarik",
+		"email": "magna.malesuada@hotmail.net",
+		"last_name": "Forbes",
+		"rit_id": 1805,
+		"graduation_year": 2025,
+		"degree": "fringilla ornare",
+		"pronouns": "mattis.",
+		"avatar_path": "http://reddit.com/user/110"
+	},
+	{
+		"first_name": "Hadley",
+		"email": "non@yahoo.couk",
+		"last_name": "Morrison",
+		"rit_id": 1810,
+		"graduation_year": 2025,
+		"degree": "sit amet",
+		"pronouns": "laoreet",
+		"avatar_path": "https://reddit.com/sub/cars"
+	},
+	{
+		"first_name": "Calista",
+		"email": "tincidunt.adipiscing@icloud.couk",
+		"last_name": "Parker",
+		"rit_id": 1815,
+		"graduation_year": 2025,
+		"degree": "a purus.",
+		"pronouns": "massa.",
+		"avatar_path": "https://baidu.com/site"
+	},
+	{
+		"first_name": "Quyn",
+		"email": "non.sapien@aol.net",
+		"last_name": "Tanner",
+		"rit_id": 1820,
+		"graduation_year": 2024,
+		"degree": "ipsum dolor",
+		"pronouns": "Nunc",
+		"avatar_path": "http://ebay.com/en-us"
+	},
+	{
+		"first_name": "Beverly",
+		"email": "mollis.non@google.ca",
+		"last_name": "Pollard",
+		"rit_id": 1825,
+		"graduation_year": 2024,
+		"degree": "vitae, posuere",
+		"pronouns": "sed",
+		"avatar_path": "https://walmart.com/one"
+	},
+	{
+		"first_name": "Emmanuel",
+		"email": "augue@icloud.com",
+		"last_name": "Perry",
+		"rit_id": 1830,
+		"graduation_year": 2025,
+		"degree": "diam. Pellentesque",
+		"pronouns": "a",
+		"avatar_path": "https://reddit.com/user/110"
+	},
+	{
+		"first_name": "Jarrod",
+		"email": "risus.at@google.couk",
+		"last_name": "Peterson",
+		"rit_id": 1835,
+		"graduation_year": 2025,
+		"degree": "posuere, enim",
+		"pronouns": "senectus",
+		"avatar_path": "http://nytimes.com/fr"
+	},
+	{
+		"first_name": "Erasmus",
+		"email": "mauris.morbi@aol.com",
+		"last_name": "Bird",
+		"rit_id": 1840,
+		"graduation_year": 2024,
+		"degree": "scelerisque sed,",
+		"pronouns": "convallis",
+		"avatar_path": "http://baidu.com/one"
+	},
+	{
+		"first_name": "Drake",
+		"email": "nullam.ut@icloud.net",
+		"last_name": "Rivas",
+		"rit_id": 1845,
+		"graduation_year": 2025,
+		"degree": "leo. Morbi",
+		"pronouns": "arcu",
+		"avatar_path": "http://cnn.com/one"
+	},
+	{
+		"first_name": "Madeson",
+		"email": "vulputate.ullamcorper.magna@icloud.edu",
+		"last_name": "Knowles",
+		"rit_id": 1850,
+		"graduation_year": 2024,
+		"degree": "enim nisl",
+		"pronouns": "nunc.",
+		"avatar_path": "https://google.com/en-ca"
+	},
+	{
+		"first_name": "Murphy",
+		"email": "curabitur.egestas.nunc@outlook.com",
+		"last_name": "Nieves",
+		"rit_id": 1855,
+		"graduation_year": 2025,
+		"degree": "egestas hendrerit",
+		"pronouns": "ut",
+		"avatar_path": "https://netflix.com/sub/cars"
+	},
+	{
+		"first_name": "James",
+		"email": "risus.morbi@icloud.ca",
+		"last_name": "Vance",
+		"rit_id": 1860,
+		"graduation_year": 2024,
+		"degree": "neque et",
+		"pronouns": "tempus",
+		"avatar_path": "https://zoom.us/settings"
+	},
+	{
+		"first_name": "Ora",
+		"email": "placerat.cras@yahoo.com",
+		"last_name": "Hahn",
+		"rit_id": 1865,
+		"graduation_year": 2025,
+		"degree": "In tincidunt",
+		"pronouns": "metus.",
+		"avatar_path": "http://zoom.us/sub/cars"
+	},
+	{
+		"first_name": "Chantale",
+		"email": "ultricies.sem@hotmail.net",
+		"last_name": "Michael",
+		"rit_id": 1870,
+		"graduation_year": 2025,
+		"degree": "Sed nec",
+		"pronouns": "lobortis",
+		"avatar_path": "http://naver.com/fr"
+	},
+	{
+		"first_name": "Gavin",
+		"email": "eu.metus.in@icloud.com",
+		"last_name": "Solomon",
+		"rit_id": 1875,
+		"graduation_year": 2024,
+		"degree": "senectus et",
+		"pronouns": "volutpat.",
+		"avatar_path": "http://ebay.com/en-ca"
+	},
+	{
+		"first_name": "Jolene",
+		"email": "consectetuer.euismod@hotmail.net",
+		"last_name": "Gilbert",
+		"rit_id": 1880,
+		"graduation_year": 2025,
+		"degree": "amet lorem",
+		"pronouns": "nisl.",
+		"avatar_path": "http://bbc.co.uk/sub"
+	},
+	{
+		"first_name": "Kylynn",
+		"email": "imperdiet.ullamcorper.duis@aol.ca",
+		"last_name": "Payne",
+		"rit_id": 1885,
+		"graduation_year": 2025,
+		"degree": "massa. Suspendisse",
+		"pronouns": "eu,",
+		"avatar_path": "https://pinterest.com/en-ca"
+	},
+	{
+		"first_name": "Jordan",
+		"email": "egestas.a@protonmail.net",
+		"last_name": "Cleveland",
+		"rit_id": 1890,
+		"graduation_year": 2024,
+		"degree": "ipsum primis",
+		"pronouns": "Nunc",
+		"avatar_path": "http://netflix.com/user/110"
+	},
+	{
+		"first_name": "Desirae",
+		"email": "enim.diam@outlook.net",
+		"last_name": "Daniels",
+		"rit_id": 1895,
+		"graduation_year": 2024,
+		"degree": "dui. Cum",
+		"pronouns": "Mauris",
+		"avatar_path": "https://bbc.co.uk/settings"
+	},
+	{
+		"first_name": "Echo",
+		"email": "donec.egestas@yahoo.ca",
+		"last_name": "Marks",
+		"rit_id": 1900,
+		"graduation_year": 2025,
+		"degree": "luctus vulputate,",
+		"pronouns": "Donec",
+		"avatar_path": "http://google.com/sub/cars"
+	},
+	{
+		"first_name": "Hakeem",
+		"email": "sociis@protonmail.ca",
+		"last_name": "Randolph",
+		"rit_id": 1905,
+		"graduation_year": 2025,
+		"degree": "litora torquent",
+		"pronouns": "felis",
+		"avatar_path": "https://google.com/en-us"
+	},
+	{
+		"first_name": "Macon",
+		"email": "diam.pellentesque.habitant@outlook.net",
+		"last_name": "Levine",
+		"rit_id": 1910,
+		"graduation_year": 2025,
+		"degree": "vestibulum nec,",
+		"pronouns": "nibh",
+		"avatar_path": "http://wikipedia.org/user/110"
+	},
+	{
+		"first_name": "Bianca",
+		"email": "metus.aenean@protonmail.edu",
+		"last_name": "Collins",
+		"rit_id": 1915,
+		"graduation_year": 2025,
+		"degree": "ultrices posuere",
+		"pronouns": "eget,",
+		"avatar_path": "http://google.com/sub/cars"
+	},
+	{
+		"first_name": "Luke",
+		"email": "molestie.sed@outlook.edu",
+		"last_name": "Warner",
+		"rit_id": 1920,
+		"graduation_year": 2025,
+		"degree": "eu nibh",
+		"pronouns": "nunc",
+		"avatar_path": "https://cnn.com/group/9"
+	},
+	{
+		"first_name": "Anne",
+		"email": "adipiscing.lacus@google.couk",
+		"last_name": "Montgomery",
+		"rit_id": 1925,
+		"graduation_year": 2025,
+		"degree": "in magna.",
+		"pronouns": "in",
+		"avatar_path": "https://facebook.com/fr"
+	},
+	{
+		"first_name": "Keane",
+		"email": "risus.quisque@icloud.net",
+		"last_name": "Rowland",
+		"rit_id": 1930,
+		"graduation_year": 2025,
+		"degree": "mauris. Morbi",
+		"pronouns": "augue",
+		"avatar_path": "http://cnn.com/group/9"
+	},
+	{
+		"first_name": "Kyla",
+		"email": "diam.eu@aol.edu",
+		"last_name": "Mathis",
+		"rit_id": 1935,
+		"graduation_year": 2024,
+		"degree": "erat. Etiam",
+		"pronouns": "eros.",
+		"avatar_path": "https://pinterest.com/user/110"
+	},
+	{
+		"first_name": "Reece",
+		"email": "id.erat@hotmail.ca",
+		"last_name": "Sellers",
+		"rit_id": 1940,
+		"graduation_year": 2025,
+		"degree": "imperdiet, erat",
+		"pronouns": "nec",
+		"avatar_path": "http://whatsapp.com/group/9"
+	},
+	{
+		"first_name": "Maryam",
+		"email": "pretium.aliquet@google.com",
+		"last_name": "Martinez",
+		"rit_id": 1945,
+		"graduation_year": 2025,
+		"degree": "ultrices. Duis",
+		"pronouns": "eget",
+		"avatar_path": "http://instagram.com/en-us"
+	},
+	{
+		"first_name": "Denise",
+		"email": "gravida.sit@google.net",
+		"last_name": "Pena",
+		"rit_id": 1950,
+		"graduation_year": 2025,
+		"degree": "luctus vulputate,",
+		"pronouns": "parturient",
+		"avatar_path": "http://zoom.us/sub"
+	},
+	{
+		"first_name": "Aurelia",
+		"email": "velit.pellentesque.ultricies@protonmail.edu",
+		"last_name": "Hurley",
+		"rit_id": 1955,
+		"graduation_year": 2025,
+		"degree": "imperdiet dictum",
+		"pronouns": "auctor",
+		"avatar_path": "http://netflix.com/site"
+	},
+	{
+		"first_name": "Elmo",
+		"email": "turpis@outlook.edu",
+		"last_name": "Holt",
+		"rit_id": 1960,
+		"graduation_year": 2025,
+		"degree": "lobortis, nisi",
+		"pronouns": "dictum",
+		"avatar_path": "http://baidu.com/sub"
+	},
+	{
+		"first_name": "Aline",
+		"email": "rutrum.lorem@google.edu",
+		"last_name": "Vance",
+		"rit_id": 1965,
+		"graduation_year": 2025,
+		"degree": "malesuada vel,",
+		"pronouns": "mattis.",
+		"avatar_path": "http://wikipedia.org/one"
+	},
+	{
+		"first_name": "Mufutau",
+		"email": "nam@google.net",
+		"last_name": "Perry",
+		"rit_id": 1970,
+		"graduation_year": 2024,
+		"degree": "eu, ultrices",
+		"pronouns": "tristique",
+		"avatar_path": "http://guardian.co.uk/user/110"
+	},
+	{
+		"first_name": "Timothy",
+		"email": "ipsum@icloud.couk",
+		"last_name": "Kirby",
+		"rit_id": 1975,
+		"graduation_year": 2024,
+		"degree": "fermentum arcu.",
+		"pronouns": "vel",
+		"avatar_path": "https://pinterest.com/one"
+	},
+	{
+		"first_name": "Meredith",
+		"email": "pede@google.ca",
+		"last_name": "Kent",
+		"rit_id": 1980,
+		"graduation_year": 2025,
+		"degree": "gravida mauris",
+		"pronouns": "lacus.",
+		"avatar_path": "http://whatsapp.com/en-us"
+	},
+	{
+		"first_name": "Zahir",
+		"email": "in.faucibus@hotmail.com",
+		"last_name": "Gillespie",
+		"rit_id": 1985,
+		"graduation_year": 2024,
+		"degree": "interdum feugiat.",
+		"pronouns": "semper",
+		"avatar_path": "https://whatsapp.com/user/110"
+	},
+	{
+		"first_name": "Elmo",
+		"email": "a.enim@yahoo.com",
+		"last_name": "Randall",
+		"rit_id": 1990,
+		"graduation_year": 2025,
+		"degree": "vitae risus.",
+		"pronouns": "rutrum",
+		"avatar_path": "https://instagram.com/en-us"
+	},
+	{
+		"first_name": "Nyssa",
+		"email": "in.hendrerit@icloud.net",
+		"last_name": "Shaffer",
+		"rit_id": 1995,
+		"graduation_year": 2025,
+		"degree": "nonummy ut,",
+		"pronouns": "vel,",
+		"avatar_path": "https://reddit.com/sub"
+	},
+	{
+		"first_name": "William",
+		"email": "sed@yahoo.edu",
+		"last_name": "Rose",
+		"rit_id": 2000,
+		"graduation_year": 2024,
+		"degree": "lectus sit",
+		"pronouns": "posuere",
+		"avatar_path": "https://nytimes.com/site"
+	},
+	{
+		"first_name": "Ignatius",
+		"email": "rutrum@hotmail.org",
+		"last_name": "Gibson",
+		"rit_id": 2005,
+		"graduation_year": 2026,
+		"degree": "sociosqu ad",
+		"pronouns": "lobortis",
+		"avatar_path": "https://bbc.co.uk/en-us"
+	},
+	{
+		"first_name": "Xander",
+		"email": "proin.non.massa@protonmail.ca",
+		"last_name": "Roberson",
+		"rit_id": 2010,
+		"graduation_year": 2026,
+		"degree": "sagittis. Duis",
+		"pronouns": "elit",
+		"avatar_path": "http://wikipedia.org/user/110"
+	},
+	{
+		"first_name": "Macaulay",
+		"email": "erat@icloud.ca",
+		"last_name": "Franklin",
+		"rit_id": 2015,
+		"graduation_year": 2025,
+		"degree": "interdum. Sed",
+		"pronouns": "lobortis",
+		"avatar_path": "http://bbc.co.uk/site"
+	},
+	{
+		"first_name": "Haley",
+		"email": "mauris@hotmail.com",
+		"last_name": "Jefferson",
+		"rit_id": 2020,
+		"graduation_year": 2025,
+		"degree": "tincidunt dui",
+		"pronouns": "diam",
+		"avatar_path": "https://facebook.com/sub"
+	},
+	{
+		"first_name": "Rachel",
+		"email": "donec.felis@outlook.ca",
+		"last_name": "Molina",
+		"rit_id": 2025,
+		"graduation_year": 2025,
+		"degree": "mauris. Morbi",
+		"pronouns": "pede.",
+		"avatar_path": "http://reddit.com/en-ca"
+	},
+	{
+		"first_name": "Yolanda",
+		"email": "malesuada@protonmail.net",
+		"last_name": "Ballard",
+		"rit_id": 2030,
+		"graduation_year": 2024,
+		"degree": "non, luctus",
+		"pronouns": "sollicitudin",
+		"avatar_path": "https://youtube.com/settings"
+	},
+	{
+		"first_name": "Candice",
+		"email": "consequat.lectus@hotmail.edu",
+		"last_name": "Mccarthy",
+		"rit_id": 2035,
+		"graduation_year": 2024,
+		"degree": "arcu. Vestibulum",
+		"pronouns": "scelerisque",
+		"avatar_path": "https://twitter.com/site"
+	},
+	{
+		"first_name": "Zephania",
+		"email": "consequat.nec.mollis@icloud.ca",
+		"last_name": "Vazquez",
+		"rit_id": 2040,
+		"graduation_year": 2025,
+		"degree": "netus et",
+		"pronouns": "eros.",
+		"avatar_path": "https://netflix.com/site"
+	},
+	{
+		"first_name": "John",
+		"email": "augue.eu.tellus@protonmail.couk",
+		"last_name": "Conner",
+		"rit_id": 2045,
+		"graduation_year": 2025,
+		"degree": "sed libero.",
+		"pronouns": "Sed",
+		"avatar_path": "https://twitter.com/group/9"
+	},
+	{
+		"first_name": "Ivan",
+		"email": "mattis.velit@protonmail.ca",
+		"last_name": "Berg",
+		"rit_id": 2050,
+		"graduation_year": 2024,
+		"degree": "penatibus et",
+		"pronouns": "dis",
+		"avatar_path": "http://walmart.com/en-ca"
+	},
+	{
+		"first_name": "Tatum",
+		"email": "nisi.mauris@outlook.ca",
+		"last_name": "Lee",
+		"rit_id": 2055,
+		"graduation_year": 2024,
+		"degree": "nonummy ipsum",
+		"pronouns": "a",
+		"avatar_path": "https://facebook.com/site"
+	},
+	{
+		"first_name": "Bradley",
+		"email": "at@hotmail.ca",
+		"last_name": "Randall",
+		"rit_id": 2060,
+		"graduation_year": 2025,
+		"degree": "vulputate, risus",
+		"pronouns": "dictum",
+		"avatar_path": "http://naver.com/sub"
+	},
+	{
+		"first_name": "Ciaran",
+		"email": "parturient.montes@aol.org",
+		"last_name": "Dean",
+		"rit_id": 2065,
+		"graduation_year": 2024,
+		"degree": "ligula. Aliquam",
+		"pronouns": "Nunc",
+		"avatar_path": "https://bbc.co.uk/sub"
+	},
+	{
+		"first_name": "Althea",
+		"email": "ipsum.porta@google.net",
+		"last_name": "Vinson",
+		"rit_id": 2070,
+		"graduation_year": 2024,
+		"degree": "dis parturient",
+		"pronouns": "Mauris",
+		"avatar_path": "https://reddit.com/en-us"
+	},
+	{
+		"first_name": "Kiayada",
+		"email": "sagittis.placerat@hotmail.org",
+		"last_name": "Klein",
+		"rit_id": 2075,
+		"graduation_year": 2024,
+		"degree": "posuere cubilia",
+		"pronouns": "tristique",
+		"avatar_path": "https://reddit.com/group/9"
+	},
+	{
+		"first_name": "Winter",
+		"email": "proin.non@hotmail.couk",
+		"last_name": "Beard",
+		"rit_id": 2080,
+		"graduation_year": 2024,
+		"degree": "massa. Vestibulum",
+		"pronouns": "sit",
+		"avatar_path": "http://whatsapp.com/en-ca"
+	},
+	{
+		"first_name": "Christine",
+		"email": "sit.amet@icloud.org",
+		"last_name": "Booker",
+		"rit_id": 2085,
+		"graduation_year": 2025,
+		"degree": "natoque penatibus",
+		"pronouns": "consectetuer",
+		"avatar_path": "http://cnn.com/sub"
+	},
+	{
+		"first_name": "Jolene",
+		"email": "sociis.natoque.penatibus@protonmail.edu",
+		"last_name": "Richard",
+		"rit_id": 2090,
+		"graduation_year": 2025,
+		"degree": "massa. Quisque",
+		"pronouns": "In",
+		"avatar_path": "https://naver.com/en-ca"
+	},
+	{
+		"first_name": "Libby",
+		"email": "lacus.ut@icloud.couk",
+		"last_name": "Rodriquez",
+		"rit_id": 2095,
+		"graduation_year": 2024,
+		"degree": "odio vel",
+		"pronouns": "purus.",
+		"avatar_path": "https://guardian.co.uk/sub/cars"
+	},
+	{
+		"first_name": "Forrest",
+		"email": "suspendisse.commodo@hotmail.com",
+		"last_name": "Dorsey",
+		"rit_id": 2100,
+		"graduation_year": 2025,
+		"degree": "sollicitudin orci",
+		"pronouns": "convallis",
+		"avatar_path": "https://whatsapp.com/one"
+	},
+	{
+		"first_name": "Liberty",
+		"email": "nec.tempus.scelerisque@protonmail.net",
+		"last_name": "Bright",
+		"rit_id": 2105,
+		"graduation_year": 2026,
+		"degree": "ante dictum",
+		"pronouns": "Sed",
+		"avatar_path": "https://whatsapp.com/sub"
+	},
+	{
+		"first_name": "Mia",
+		"email": "sapien@aol.com",
+		"last_name": "Haynes",
+		"rit_id": 2110,
+		"graduation_year": 2026,
+		"degree": "natoque penatibus",
+		"pronouns": "Nunc",
+		"avatar_path": "http://ebay.com/en-ca"
+	},
+	{
+		"first_name": "Silas",
+		"email": "mattis.cras@aol.ca",
+		"last_name": "Brown",
+		"rit_id": 2115,
+		"graduation_year": 2024,
+		"degree": "erat volutpat.",
+		"pronouns": "nec,",
+		"avatar_path": "http://twitter.com/sub/cars"
+	},
+	{
+		"first_name": "Ray",
+		"email": "non.ante@aol.ca",
+		"last_name": "Carr",
+		"rit_id": 2120,
+		"graduation_year": 2024,
+		"degree": "purus. Nullam",
+		"pronouns": "imperdiet",
+		"avatar_path": "http://guardian.co.uk/one"
+	},
+	{
+		"first_name": "Anthony",
+		"email": "quisque@protonmail.org",
+		"last_name": "Cortez",
+		"rit_id": 2125,
+		"graduation_year": 2024,
+		"degree": "condimentum eget,",
+		"pronouns": "mi",
+		"avatar_path": "https://pinterest.com/one"
+	},
+	{
+		"first_name": "Carla",
+		"email": "vehicula.risus@aol.com",
+		"last_name": "Grimes",
+		"rit_id": 2130,
+		"graduation_year": 2024,
+		"degree": "nibh dolor,",
+		"pronouns": "in",
+		"avatar_path": "http://pinterest.com/group/9"
+	},
+	{
+		"first_name": "Scarlett",
+		"email": "hendrerit.donec.porttitor@yahoo.com",
+		"last_name": "Quinn",
+		"rit_id": 2135,
+		"graduation_year": 2025,
+		"degree": "sapien. Aenean",
+		"pronouns": "ligula",
+		"avatar_path": "http://reddit.com/en-us"
+	},
+	{
+		"first_name": "Ramona",
+		"email": "nonummy.ipsum@yahoo.couk",
+		"last_name": "Sanders",
+		"rit_id": 2140,
+		"graduation_year": 2025,
+		"degree": "tellus justo",
+		"pronouns": "vulputate",
+		"avatar_path": "http://wikipedia.org/sub"
+	},
+	{
+		"first_name": "Rahim",
+		"email": "fermentum@icloud.ca",
+		"last_name": "Herman",
+		"rit_id": 2145,
+		"graduation_year": 2025,
+		"degree": "nec urna",
+		"pronouns": "egestas",
+		"avatar_path": "https://naver.com/site"
+	},
+	{
+		"first_name": "Hollee",
+		"email": "ligula.nullam@aol.org",
+		"last_name": "Forbes",
+		"rit_id": 2150,
+		"graduation_year": 2025,
+		"degree": "magna nec",
+		"pronouns": "Morbi",
+		"avatar_path": "http://bbc.co.uk/user/110"
+	},
+	{
+		"first_name": "Harper",
+		"email": "quisque.nonummy.ipsum@icloud.ca",
+		"last_name": "Rodgers",
+		"rit_id": 2155,
+		"graduation_year": 2024,
+		"degree": "ridiculus mus.",
+		"pronouns": "pede",
+		"avatar_path": "https://instagram.com/en-us"
+	},
+	{
+		"first_name": "Ahmed",
+		"email": "dapibus.gravida@icloud.couk",
+		"last_name": "Erickson",
+		"rit_id": 2160,
+		"graduation_year": 2024,
+		"degree": "auctor vitae,",
+		"pronouns": "Cras",
+		"avatar_path": "http://yahoo.com/user/110"
+	},
+	{
+		"first_name": "Abra",
+		"email": "blandit@yahoo.com",
+		"last_name": "Kirkland",
+		"rit_id": 2165,
+		"graduation_year": 2024,
+		"degree": "aliquam adipiscing",
+		"pronouns": "Aliquam",
+		"avatar_path": "http://netflix.com/fr"
+	},
+	{
+		"first_name": "Rhiannon",
+		"email": "nulla.semper@yahoo.couk",
+		"last_name": "Trujillo",
+		"rit_id": 2170,
+		"graduation_year": 2026,
+		"degree": "risus odio,",
+		"pronouns": "semper,",
+		"avatar_path": "http://facebook.com/settings"
+	},
+	{
+		"first_name": "Gray",
+		"email": "mauris.quis@google.ca",
+		"last_name": "Burgess",
+		"rit_id": 2175,
+		"graduation_year": 2024,
+		"degree": "eu, euismod",
+		"pronouns": "blandit",
+		"avatar_path": "https://ebay.com/user/110"
+	},
+	{
+		"first_name": "Lionel",
+		"email": "at.fringilla.purus@hotmail.org",
+		"last_name": "Ballard",
+		"rit_id": 2180,
+		"graduation_year": 2025,
+		"degree": "accumsan neque",
+		"pronouns": "ipsum",
+		"avatar_path": "http://naver.com/en-ca"
+	},
+	{
+		"first_name": "Darryl",
+		"email": "nullam.ut@outlook.org",
+		"last_name": "Morse",
+		"rit_id": 2185,
+		"graduation_year": 2024,
+		"degree": "Sed congue,",
+		"pronouns": "lorem,",
+		"avatar_path": "https://naver.com/en-ca"
+	},
+	{
+		"first_name": "Colby",
+		"email": "aliquam.vulputate.ullamcorper@icloud.ca",
+		"last_name": "Duran",
+		"rit_id": 2190,
+		"graduation_year": 2025,
+		"degree": "facilisis eget,",
+		"pronouns": "lectus",
+		"avatar_path": "http://walmart.com/sub"
+	},
+	{
+		"first_name": "Leah",
+		"email": "arcu.iaculis@yahoo.net",
+		"last_name": "James",
+		"rit_id": 2195,
+		"graduation_year": 2025,
+		"degree": "Nunc lectus",
+		"pronouns": "eros",
+		"avatar_path": "http://pinterest.com/user/110"
+	},
+	{
+		"first_name": "Allistair",
+		"email": "ornare.egestas@aol.net",
+		"last_name": "William",
+		"rit_id": 2200,
+		"graduation_year": 2024,
+		"degree": "Morbi metus.",
+		"pronouns": "blandit",
+		"avatar_path": "http://instagram.com/en-us"
+	},
+	{
+		"first_name": "Simone",
+		"email": "orci@yahoo.ca",
+		"last_name": "Lyons",
+		"rit_id": 2205,
+		"graduation_year": 2024,
+		"degree": "dolor, nonummy",
+		"pronouns": "Curabitur",
+		"avatar_path": "https://youtube.com/fr"
+	},
+	{
+		"first_name": "Erin",
+		"email": "adipiscing.elit@aol.ca",
+		"last_name": "Pacheco",
+		"rit_id": 2210,
+		"graduation_year": 2025,
+		"degree": "nec tempus",
+		"pronouns": "erat",
+		"avatar_path": "https://walmart.com/sub/cars"
+	},
+	{
+		"first_name": "Rana",
+		"email": "et.netus@hotmail.com",
+		"last_name": "Perkins",
+		"rit_id": 2215,
+		"graduation_year": 2025,
+		"degree": "massa non",
+		"pronouns": "Cras",
+		"avatar_path": "http://naver.com/one"
+	},
+	{
+		"first_name": "Doris",
+		"email": "interdum@outlook.couk",
+		"last_name": "Padilla",
+		"rit_id": 2220,
+		"graduation_year": 2024,
+		"degree": "eget massa.",
+		"pronouns": "arcu",
+		"avatar_path": "https://instagram.com/en-us"
+	},
+	{
+		"first_name": "Carl",
+		"email": "at.libero@protonmail.couk",
+		"last_name": "Galloway",
+		"rit_id": 2225,
+		"graduation_year": 2025,
+		"degree": "ante. Vivamus",
+		"pronouns": "erat",
+		"avatar_path": "https://ebay.com/group/9"
+	},
+	{
+		"first_name": "Fuller",
+		"email": "dis@protonmail.edu",
+		"last_name": "Hebert",
+		"rit_id": 2230,
+		"graduation_year": 2025,
+		"degree": "primis in",
+		"pronouns": "habitant",
+		"avatar_path": "http://pinterest.com/one"
+	},
+	{
+		"first_name": "Molly",
+		"email": "non@aol.edu",
+		"last_name": "Hatfield",
+		"rit_id": 2235,
+		"graduation_year": 2024,
+		"degree": "condimentum. Donec",
+		"pronouns": "vitae",
+		"avatar_path": "http://facebook.com/en-ca"
+	},
+	{
+		"first_name": "Jaden",
+		"email": "nisl.nulla@protonmail.com",
+		"last_name": "Schmidt",
+		"rit_id": 2240,
+		"graduation_year": 2025,
+		"degree": "lorem, sit",
+		"pronouns": "ultrices",
+		"avatar_path": "https://nytimes.com/group/9"
+	},
+	{
+		"first_name": "Tiger",
+		"email": "feugiat.metus.sit@protonmail.edu",
+		"last_name": "Chapman",
+		"rit_id": 2245,
+		"graduation_year": 2024,
+		"degree": "lectus pede",
+		"pronouns": "dui.",
+		"avatar_path": "https://walmart.com/en-ca"
+	},
+	{
+		"first_name": "Adrienne",
+		"email": "nec@outlook.com",
+		"last_name": "Hutchinson",
+		"rit_id": 2250,
+		"graduation_year": 2024,
+		"degree": "scelerisque neque.",
+		"pronouns": "dignissim",
+		"avatar_path": "https://youtube.com/site"
+	},
+	{
+		"first_name": "Charde",
+		"email": "quis.turpis.vitae@icloud.couk",
+		"last_name": "Flores",
+		"rit_id": 2255,
+		"graduation_year": 2024,
+		"degree": "erat. Etiam",
+		"pronouns": "egestas.",
+		"avatar_path": "https://twitter.com/one"
+	},
+	{
+		"first_name": "Matthew",
+		"email": "nec@hotmail.org",
+		"last_name": "Montgomery",
+		"rit_id": 2260,
+		"graduation_year": 2025,
+		"degree": "tristique aliquet.",
+		"pronouns": "sapien.",
+		"avatar_path": "https://nytimes.com/settings"
+	},
+	{
+		"first_name": "Rina",
+		"email": "arcu.morbi@icloud.com",
+		"last_name": "Black",
+		"rit_id": 2265,
+		"graduation_year": 2024,
+		"degree": "adipiscing elit.",
+		"pronouns": "vitae",
+		"avatar_path": "https://reddit.com/en-ca"
+	},
+	{
+		"first_name": "Lacota",
+		"email": "mus.proin@yahoo.net",
+		"last_name": "Tillman",
+		"rit_id": 2270,
+		"graduation_year": 2024,
+		"degree": "risus. Nunc",
+		"pronouns": "tortor",
+		"avatar_path": "http://youtube.com/one"
+	},
+	{
+		"first_name": "Aladdin",
+		"email": "eget.ipsum.suspendisse@protonmail.ca",
+		"last_name": "Mullins",
+		"rit_id": 2275,
+		"graduation_year": 2025,
+		"degree": "mauris blandit",
+		"pronouns": "ac",
+		"avatar_path": "http://baidu.com/en-us"
+	},
+	{
+		"first_name": "Portia",
+		"email": "eget.lacus@protonmail.org",
+		"last_name": "Waters",
+		"rit_id": 2280,
+		"graduation_year": 2025,
+		"degree": "et pede.",
+		"pronouns": "consectetuer,",
+		"avatar_path": "https://whatsapp.com/one"
+	},
+	{
+		"first_name": "Lester",
+		"email": "urna.convallis@outlook.com",
+		"last_name": "Brewer",
+		"rit_id": 2285,
+		"graduation_year": 2025,
+		"degree": "vulputate ullamcorper",
+		"pronouns": "vel",
+		"avatar_path": "https://baidu.com/en-ca"
+	},
+	{
+		"first_name": "Ria",
+		"email": "faucibus.ut.nulla@hotmail.edu",
+		"last_name": "Bullock",
+		"rit_id": 2290,
+		"graduation_year": 2025,
+		"degree": "leo. Vivamus",
+		"pronouns": "Phasellus",
+		"avatar_path": "http://wikipedia.org/en-ca"
+	},
+	{
+		"first_name": "Aurelia",
+		"email": "elit.elit@yahoo.org",
+		"last_name": "Marshall",
+		"rit_id": 2295,
+		"graduation_year": 2024,
+		"degree": "augue, eu",
+		"pronouns": "pede",
+		"avatar_path": "http://yahoo.com/en-us"
+	},
+	{
+		"first_name": "Kane",
+		"email": "sed@hotmail.edu",
+		"last_name": "Valdez",
+		"rit_id": 2300,
+		"graduation_year": 2025,
+		"degree": "ornare, lectus",
+		"pronouns": "interdum",
+		"avatar_path": "http://whatsapp.com/en-ca"
+	},
+	{
+		"first_name": "Joan",
+		"email": "conubia.nostra@hotmail.couk",
+		"last_name": "Noble",
+		"rit_id": 2305,
+		"graduation_year": 2024,
+		"degree": "Phasellus at",
+		"pronouns": "vel",
+		"avatar_path": "http://walmart.com/settings"
+	},
+	{
+		"first_name": "Karen",
+		"email": "non.lacinia@protonmail.com",
+		"last_name": "Santos",
+		"rit_id": 2310,
+		"graduation_year": 2024,
+		"degree": "convallis dolor.",
+		"pronouns": "dictum",
+		"avatar_path": "https://twitter.com/site"
+	},
+	{
+		"first_name": "Alea",
+		"email": "mollis@google.couk",
+		"last_name": "Clayton",
+		"rit_id": 2315,
+		"graduation_year": 2025,
+		"degree": "Cum sociis",
+		"pronouns": "eu",
+		"avatar_path": "https://netflix.com/site"
+	},
+	{
+		"first_name": "Jaden",
+		"email": "tellus.imperdiet@protonmail.net",
+		"last_name": "Vaughn",
+		"rit_id": 2320,
+		"graduation_year": 2025,
+		"degree": "Nullam enim.",
+		"pronouns": "at",
+		"avatar_path": "https://nytimes.com/en-ca"
+	},
+	{
+		"first_name": "Jolie",
+		"email": "mauris@google.net",
+		"last_name": "Bolton",
+		"rit_id": 2325,
+		"graduation_year": 2025,
+		"degree": "quis massa.",
+		"pronouns": "porttitor",
+		"avatar_path": "http://facebook.com/en-ca"
+	},
+	{
+		"first_name": "Cadman",
+		"email": "non.magna@icloud.ca",
+		"last_name": "Avila",
+		"rit_id": 2330,
+		"graduation_year": 2025,
+		"degree": "faucibus lectus,",
+		"pronouns": "laoreet",
+		"avatar_path": "http://instagram.com/sub"
+	},
+	{
+		"first_name": "Kylan",
+		"email": "mauris.quis@protonmail.org",
+		"last_name": "Stanton",
+		"rit_id": 2335,
+		"graduation_year": 2024,
+		"degree": "Integer sem",
+		"pronouns": "pede,",
+		"avatar_path": "https://wikipedia.org/sub/cars"
+	},
+	{
+		"first_name": "Jordan",
+		"email": "rutrum.magna@yahoo.couk",
+		"last_name": "Vinson",
+		"rit_id": 2340,
+		"graduation_year": 2024,
+		"degree": "Cum sociis",
+		"pronouns": "natoque",
+		"avatar_path": "https://naver.com/en-us"
+	},
+	{
+		"first_name": "Iola",
+		"email": "amet@yahoo.ca",
+		"last_name": "Sellers",
+		"rit_id": 2345,
+		"graduation_year": 2025,
+		"degree": "Nulla interdum.",
+		"pronouns": "ligula.",
+		"avatar_path": "https://twitter.com/en-ca"
+	},
+	{
+		"first_name": "Quamar",
+		"email": "imperdiet.non.vestibulum@aol.org",
+		"last_name": "Marquez",
+		"rit_id": 2350,
+		"graduation_year": 2024,
+		"degree": "cursus non,",
+		"pronouns": "mollis.",
+		"avatar_path": "http://reddit.com/group/9"
+	},
+	{
+		"first_name": "James",
+		"email": "tristique.ac.eleifend@aol.net",
+		"last_name": "Yang",
+		"rit_id": 2355,
+		"graduation_year": 2024,
+		"degree": "nonummy ut,",
+		"pronouns": "eget,",
+		"avatar_path": "http://facebook.com/user/110"
+	},
+	{
+		"first_name": "Oleg",
+		"email": "nunc.in@google.ca",
+		"last_name": "Watson",
+		"rit_id": 2360,
+		"graduation_year": 2025,
+		"degree": "aliquet magna",
+		"pronouns": "ullamcorper,",
+		"avatar_path": "https://ebay.com/site"
+	},
+	{
+		"first_name": "Shelby",
+		"email": "nunc.quis.arcu@google.edu",
+		"last_name": "Zamora",
+		"rit_id": 2365,
+		"graduation_year": 2025,
+		"degree": "sagittis. Duis",
+		"pronouns": "diam",
+		"avatar_path": "https://youtube.com/sub"
+	},
+	{
+		"first_name": "Honorato",
+		"email": "egestas@outlook.com",
+		"last_name": "Sharp",
+		"rit_id": 2370,
+		"graduation_year": 2024,
+		"degree": "quis arcu",
+		"pronouns": "pellentesque.",
+		"avatar_path": "https://pinterest.com/sub/cars"
+	},
+	{
+		"first_name": "Vance",
+		"email": "commodo.at@protonmail.couk",
+		"last_name": "Lancaster",
+		"rit_id": 2375,
+		"graduation_year": 2025,
+		"degree": "lorem lorem,",
+		"pronouns": "orci",
+		"avatar_path": "https://ebay.com/en-ca"
+	},
+	{
+		"first_name": "Wesley",
+		"email": "eu.lacus@hotmail.org",
+		"last_name": "Olson",
+		"rit_id": 2380,
+		"graduation_year": 2024,
+		"degree": "interdum. Sed",
+		"pronouns": "justo",
+		"avatar_path": "https://twitter.com/en-us"
+	},
+	{
+		"first_name": "Driscoll",
+		"email": "id.libero@hotmail.net",
+		"last_name": "Mcconnell",
+		"rit_id": 2385,
+		"graduation_year": 2025,
+		"degree": "nunc sit",
+		"pronouns": "auctor",
+		"avatar_path": "http://facebook.com/sub/cars"
+	},
+	{
+		"first_name": "Colby",
+		"email": "non@yahoo.com",
+		"last_name": "Kidd",
+		"rit_id": 2390,
+		"graduation_year": 2025,
+		"degree": "et magnis",
+		"pronouns": "Nunc",
+		"avatar_path": "https://reddit.com/fr"
+	},
+	{
+		"first_name": "Evan",
+		"email": "viverra.donec@google.net",
+		"last_name": "Hubbard",
+		"rit_id": 2395,
+		"graduation_year": 2025,
+		"degree": "natoque penatibus",
+		"pronouns": "Nunc",
+		"avatar_path": "https://nytimes.com/en-us"
+	},
+	{
+		"first_name": "Donovan",
+		"email": "consectetuer.adipiscing@outlook.org",
+		"last_name": "Rogers",
+		"rit_id": 2400,
+		"graduation_year": 2024,
+		"degree": "id, erat.",
+		"pronouns": "amet",
+		"avatar_path": "http://ebay.com/one"
+	},
+	{
+		"first_name": "Genevieve",
+		"email": "mus.proin.vel@protonmail.couk",
+		"last_name": "Mayo",
+		"rit_id": 2405,
+		"graduation_year": 2025,
+		"degree": "pretium et,",
+		"pronouns": "turpis",
+		"avatar_path": "https://netflix.com/en-us"
+	},
+	{
+		"first_name": "Igor",
+		"email": "ullamcorper.viverra.maecenas@outlook.edu",
+		"last_name": "Farrell",
+		"rit_id": 2410,
+		"graduation_year": 2024,
+		"degree": "malesuada id,",
+		"pronouns": "Nunc",
+		"avatar_path": "http://instagram.com/fr"
+	},
+	{
+		"first_name": "Marah",
+		"email": "faucibus.leo.in@protonmail.edu",
+		"last_name": "Silva",
+		"rit_id": 2415,
+		"graduation_year": 2024,
+		"degree": "rhoncus id,",
+		"pronouns": "nulla",
+		"avatar_path": "https://yahoo.com/sub/cars"
+	},
+	{
+		"first_name": "Risa",
+		"email": "augue.porttitor@google.edu",
+		"last_name": "Orr",
+		"rit_id": 2420,
+		"graduation_year": 2024,
+		"degree": "at, velit.",
+		"pronouns": "ornare,",
+		"avatar_path": "https://naver.com/one"
+	},
+	{
+		"first_name": "Avram",
+		"email": "id.risus@protonmail.org",
+		"last_name": "Castro",
+		"rit_id": 2425,
+		"graduation_year": 2025,
+		"degree": "ipsum ac",
+		"pronouns": "dictum.",
+		"avatar_path": "http://naver.com/group/9"
+	},
+	{
+		"first_name": "Madeline",
+		"email": "tellus@yahoo.couk",
+		"last_name": "Prince",
+		"rit_id": 2430,
+		"graduation_year": 2024,
+		"degree": "ac libero",
+		"pronouns": "sit",
+		"avatar_path": "http://baidu.com/sub"
+	},
+	{
+		"first_name": "Ira",
+		"email": "odio.tristique@hotmail.org",
+		"last_name": "Blackburn",
+		"rit_id": 2435,
+		"graduation_year": 2025,
+		"degree": "ac, eleifend",
+		"pronouns": "ipsum.",
+		"avatar_path": "https://youtube.com/user/110"
+	},
+	{
+		"first_name": "Virginia",
+		"email": "eleifend@protonmail.org",
+		"last_name": "Hawkins",
+		"rit_id": 2440,
+		"graduation_year": 2025,
+		"degree": "egestas hendrerit",
+		"pronouns": "est.",
+		"avatar_path": "https://wikipedia.org/sub/cars"
+	},
+	{
+		"first_name": "Addison",
+		"email": "tellus.nunc@outlook.ca",
+		"last_name": "Jacobs",
+		"rit_id": 2445,
+		"graduation_year": 2024,
+		"degree": "euismod mauris",
+		"pronouns": "Suspendisse",
+		"avatar_path": "https://whatsapp.com/user/110"
+	},
+	{
+		"first_name": "Laith",
+		"email": "a@protonmail.ca",
+		"last_name": "Hunter",
+		"rit_id": 2450,
+		"graduation_year": 2025,
+		"degree": "amet ante.",
+		"pronouns": "nunc",
+		"avatar_path": "http://naver.com/settings"
+	},
+	{
+		"first_name": "Nina",
+		"email": "et.risus.quisque@outlook.net",
+		"last_name": "Bean",
+		"rit_id": 2455,
+		"graduation_year": 2024,
+		"degree": "nec, euismod",
+		"pronouns": "litora",
+		"avatar_path": "https://naver.com/user/110"
+	},
+	{
+		"first_name": "Reece",
+		"email": "eros.nec@aol.net",
+		"last_name": "Lamb",
+		"rit_id": 2460,
+		"graduation_year": 2024,
+		"degree": "eget, venenatis",
+		"pronouns": "ante",
+		"avatar_path": "http://cnn.com/user/110"
+	},
+	{
+		"first_name": "Calvin",
+		"email": "in@outlook.edu",
+		"last_name": "Hinton",
+		"rit_id": 2465,
+		"graduation_year": 2025,
+		"degree": "magna sed",
+		"pronouns": "urna.",
+		"avatar_path": "https://instagram.com/user/110"
+	},
+	{
+		"first_name": "Kathleen",
+		"email": "rutrum.magna@aol.edu",
+		"last_name": "Delaney",
+		"rit_id": 2470,
+		"graduation_year": 2025,
+		"degree": "rutrum magna.",
+		"pronouns": "pellentesque.",
+		"avatar_path": "https://pinterest.com/en-ca"
+	},
+	{
+		"first_name": "Octavius",
+		"email": "egestas.duis@yahoo.com",
+		"last_name": "Merrill",
+		"rit_id": 2475,
+		"graduation_year": 2025,
+		"degree": "Cras interdum.",
+		"pronouns": "Morbi",
+		"avatar_path": "https://nytimes.com/one"
+	},
+	{
+		"first_name": "Doris",
+		"email": "neque.vitae.semper@yahoo.org",
+		"last_name": "Reese",
+		"rit_id": 2480,
+		"graduation_year": 2024,
+		"degree": "et magnis",
+		"pronouns": "Curae",
+		"avatar_path": "http://instagram.com/fr"
+	},
+	{
+		"first_name": "Sarah",
+		"email": "congue.turpis.in@protonmail.couk",
+		"last_name": "Alston",
+		"rit_id": 2485,
+		"graduation_year": 2024,
+		"degree": "magna tellus",
+		"pronouns": "semper",
+		"avatar_path": "https://naver.com/sub/cars"
+	},
+	{
+		"first_name": "Hasad",
+		"email": "scelerisque.neque.sed@icloud.org",
+		"last_name": "Franklin",
+		"rit_id": 2490,
+		"graduation_year": 2025,
+		"degree": "risus. Donec",
+		"pronouns": "nunc.",
+		"avatar_path": "https://facebook.com/sub"
+	},
+	{
+		"first_name": "Yoko",
+		"email": "ante.dictum@icloud.net",
+		"last_name": "Farmer",
+		"rit_id": 2495,
+		"graduation_year": 2026,
+		"degree": "suscipit, est",
+		"pronouns": "aliquam",
+		"avatar_path": "https://guardian.co.uk/group/9"
+	}
+]

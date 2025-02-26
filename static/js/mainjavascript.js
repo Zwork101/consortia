@@ -126,3 +126,30 @@ function openCity(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
+// Drag and drop
+const dropArea = document.getElementById('drop-area');
+
+    dropArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropArea.style.backgroundColor = '#e0e0e0';
+    });
+
+    dropArea.addEventListener('dragleave', () => {
+        dropArea.style.backgroundColor = '';
+    });
+
+    dropArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropArea.style.backgroundColor = '';
+
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            const file = files[0];
+            if (file.type === 'text/csv') {
+                alert(`File uploaded: ${file.name}`);
+                // You can add code here to further handle the file upload
+            } else {
+                alert('Only CSV files are allowed.');
+            }
+        }
+    });

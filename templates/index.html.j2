@@ -1,6 +1,6 @@
 {% extends "base.html.j2" %}
 {% block content %}
-{% include "nav.html.j2" %}
+
 <h1 class="titlewics">WiC & COMS</h1>
 
 
@@ -15,7 +15,9 @@
                 <div class="wicsextra-info">
                     <!-- <img src="../images/women-in-computing.jpg" alt="women-in-computing"> -->
                     
-                    <button class="wicscomsbutton">See Profile</button>
+                    <button class="wicscomsbutton" onclick="window.location.href='{{ url_for('testing.return_semester') }}'">See Profile</button>
+
+
                 </div>
             </section>
             <section class="coms ">
@@ -24,7 +26,7 @@
                 <div class="wicsextra-info">
                     <!-- <img src="../images/women-in-computing.jpg" alt="Coms"> -->
                     
-                    <button class="wicscomsbutton">See Profile</button>
+                    <button class="wicscomsbutton" onclick="window.location.href='{{ url_for('testing.return_comms_int') }}'">See Profile</button>
                 </div>
             </section>
             

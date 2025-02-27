@@ -11,6 +11,8 @@ from sqlalchemy import ForeignKey, Integer, String, Text, SmallInteger, Enum, AR
 
 class MeetingType(EnumClass):
     GENERAL = "GENERAL"
+    VOLUNTEER = "VOLUNEER"
+    SOCIAL = "SOCIAL"
 
 
 class RoleType(EnumClass):
@@ -335,6 +337,11 @@ def db_testing_setup():
             organizer=random.choice([WiC, COMS]),
             attendants=random.choices(users, k=random.randint(0, 120))
         ))
+        events[-1].meeting_type = random.choice([
+            MeetingType.GENERAL,
+            MeetingType.VOLUNTEER,
+            MeetingType.SOCIAL
+        ])
         events[-1].start_time = datetime.strptime(events[-1].start_time, "%Y-%m-%d %H:%M:%S")
         events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S")
     

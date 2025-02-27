@@ -1,6 +1,7 @@
 {% extends "base.html.j2" %}
 {% block head %}
 <script src="../static/js/mainjavascript.js"></script>
+<script src="{{ url_for("static", filename="js/admin2.js") }}" defer></script>
 {% endblock %}
 {% block content %}
 
@@ -275,7 +276,7 @@
         <button><img src="../static/images/conficon1.png" width="32" /></button>
     </div>
 
-    <table class="dbTable">
+    <table class="dbTable" id="orgMembers">
         <tr class="dbTableTop">
             <th></th>
             <th>FIRST NAME</th>
@@ -290,7 +291,7 @@
             <th class="dbTablePH"></th>
             <th></th>
         </tr>
-        <tr class="dbTableRow">
+        {# <tr class="dbTableRow">
             <td>
                 <label class="container">
                     <input type="checkbox" >
@@ -308,7 +309,7 @@
             <td>0/1</td>
             <td class="dbTablePH"></td>
             <td><img src="../static/images/options.png" width="16" /></td>
-        </tr>
+        </tr> #}
     </table>
 
 </main>

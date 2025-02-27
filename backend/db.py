@@ -55,7 +55,7 @@ class Profile(db.Model):
     @hybrid_method
     def membership(self, org: int):
         count = 0
-        for event in attendance_table:
+        for event in self.attendance:
             if event.end_time > (datetime.utcnow() - timedelta(weeks=10)) and event.organizer_id == org:
                 count += 1
         return 'active' if count > 5 else ('inactive' if count == 0 else 'incomplete')
@@ -129,7 +129,8 @@ class Profile(db.Model):
                     "event_id": event.event_id,
                     "name": event.name,
                     "description": event.description,
-                    "meeting_type": event.meeting_type.value
+                    "meeting_type": event.meeting_type.value,
+                    "point_value": event.point_value
                     
                 } for event in self.attendance if org_id is None or event.organizer_id == org_id
             ]
@@ -178,6 +179,7 @@ class BonusPoints(db.Model):
     giver_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
     giver: Mapped["Profile"] = relationship("Profile", foreign_keys=[giver_id], back_populates="grants")
     reason: Mapped[str]
+    organization_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
 
 class Award(db.Model):
     __tablename__ = 'Award'

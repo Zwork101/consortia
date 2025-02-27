@@ -965,18 +965,18 @@ svg {
 
 .profile-view-grid {
     display: grid;
-    grid-template-columns: repeat(21, 1fr);
+    grid-template-columns: repeat(31, 1fr);
     height: calc(100vhF - 120px);
     margin-top: 20px;
     width: calc(100vw - 80px);
     margin-left: 40px;
 }
 .membership-sec{
-    grid-column: 1/14;
+    grid-column: 1/20;
     grid-row: 1;
 }
 .calendar-sec {
-    grid-column: 15/20;
+    grid-column: 21/31;
     grid-row: 1;
 }
 #history{

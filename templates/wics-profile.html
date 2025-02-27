@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="../static/css/mobile.css">
     <link rel="stylesheet" type="text/css" href="../static/css/calendar.css">
     <link rel="stylesheet" type="text/css" href="../static/css/normalize/normalize.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../static/css/calendar.css">
     <script src="../static/js/mainjavascript.js"></script>
 </head>
 
@@ -21,7 +23,7 @@
             <li>
                 <div class="navbar-dropdown">
                     <button onclick="dropDown4()" class="dropbtn4">
-                        WILL SMITH
+                        WILL SMITH <!--Replace name with student name-->
                         <span class="dropDownArrow"><img src="../static/images/down-arrow-white.png" width="10" /></span>
                     </button>
                     <div id="DropdownContent4" class="dropdown-content-navbar">
@@ -57,7 +59,7 @@
                     <div class="points-bar">
                         <div class="chart-bar wic-bar" style="width:7.14%">
                             <!--Flexbox-->
-                            <div style="width:100%"></div><!--Social Event-->
+                            <div style="width:100%"></div><!--Social Event--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
@@ -65,7 +67,7 @@
                         <div class="chart-bar wic-bar" style="width:7.14%">
                             <!--Flexbox-->
                             <div style="width:0%"></div><!--Placeholder-->
-                            <div style="width:7%"></div><!--Volunteering-->
+                            <div style="width:7%"></div><!--Volunteering--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
                         </div>
@@ -73,7 +75,7 @@
                             <!--Flexbox-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
-                            <div style="width:66%"></div><!--Committee Meetings-->
+                            <div style="width:66%"></div><!--Committee Meetings--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
                             <div style="width:0%"></div><!--Placeholder-->
                         </div>
                         <div class="chart-bar wic-bar">
@@ -81,7 +83,7 @@
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
-                            <div style="width:79%"></div><!--General Meetings-->
+                            <div style="width:79%"></div><!--General Meetings--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
                         </div>
                     </div>
                     <div class="chart-placeholder"></div>
@@ -89,19 +91,19 @@
                         <!--Flexbox-->
                         <div>
                             <div></div> <!--Circle-->
-                            <p>Social Event (1/1)</p>
+                            <p>Social Event (1/1)</p><!--display numerical points here-->
                         </div>
                         <div>
                             <div></div> <!--Circle-->
-                            <p>Volunteering (0/1)</p>
+                            <p>Volunteering (0/1)</p><!--display numerical points here-->
                         </div>
                         <div>
                             <div></div> <!--Circle-->
-                            <p>Committee Meetings (4/6)</p>
+                            <p>Committee Meetings (4/6)</p><!--display numerical points here-->
                         </div>
                         <div>
                             <div></div> <!--Circle-->
-                            <p>General Meetings (11/14)</p>
+                            <p>General Meetings (11/14)</p><!--display numerical points here-->
                         </div>
                         <p><b></b></p>
                     </div>
@@ -134,7 +136,7 @@
                     <div class="table-container membership-history-container">
                         <div>
                             <div>
-                                <p><b>Membership History by Semester</b></p>
+                                <p><b>Membership History by Semester</b></p> <!--Replace with membership history-->
                             </div>
                             <div>
                                 <p><b>Awards</b></p>
@@ -229,33 +231,96 @@
 
             </div>
             <div class="calendar-sec">
-                <div class="main-container">
-                    <div class="calendar-container">
-                        <div class="calendar-header">
-                            <button id="prev">&lt;</button>
-                            <h2 id="month-title"></h2>
-                            <button id="next">&gt;</button>
+                <script>
+                    $(document).ready(function () {
+                        let currentDate = new Date();
+
+                        function renderCalendar(date) {
+                            let month = date.toLocaleString('default', { month: 'long' });
+                            let year = date.getFullYear();
+                            $('#month-title').text(`${month} ${year}`);
+
+                            let firstDay = new Date(year, date.getMonth(), 1).getDay();
+                            let lastDate = new Date(year, date.getMonth() + 1, 0).getDate();
+
+                            let calendarHTML = "";
+                            let weekdays = ["S", "M", "T", "W", "T", "F", "S"];
+                            weekdays.forEach(day => {
+                                calendarHTML += `<div class="weekday">${day}</div>`;
+                            });
+                            for (let i = 0; i < firstDay; i++) {
+                                calendarHTML += '<div class="day empty"></div>';
+                            }
+                            for (let i = 1; i <= lastDate; i++) {
+                                calendarHTML += `<div class="day" data-date="${year}-${date.getMonth() + 1}-${i}">${i}</div>`;
+                            }
+                            $('.calendar-grid').html(calendarHTML);
+
+                            // Highlight today's date by default
+                            let today = new Date();
+                            if (today.getMonth() === date.getMonth() && today.getFullYear() === date.getFullYear()) {
+                                $('.day').each(function () {
+                                    if ($(this).text() == today.getDate()) {
+                                        $(this).addClass('selected');
+                                    }
+                                });
+                            }
+
+                            // Add click event to select a date
+                            $('.day').click(function () {
+                                $('.day').removeClass('selected');
+                                $(this).addClass('selected');
+                                let selectedDate = $(this).data('date');
+                                console.log(selectedDate); // Log the selected date
+                            });
+                        }
+
+                        renderCalendar(currentDate);
+
+                        $('#prev').click(function () {
+                            currentDate.setMonth(currentDate.getMonth() - 1);
+                            renderCalendar(currentDate);
+                        });
+
+                        $('#next').click(function () {
+                            currentDate.setMonth(currentDate.getMonth() + 1);
+                            renderCalendar(currentDate);
+                        });
+                    });
+                </script>
+
+                </head>
+                <body>
+                    <div class="main-container">
+                        <div class="calendar-container">
+                            <div class="calendar-header">
+                                <button id="prev"><img src="../static/images/prev-arrow.png" style="width:16px;" /></button>
+                                <h2 id="month-title"></h2>
+                                <button id="next"><img src="../static/images/next-arrow.png" style="width:16px;" /></button>
+                            </div>
+                            <div class="calendar-grid"></div>
                         </div>
-                        <div class="calendar-grid"></div>
+                        <div class="events-container">
+                            <div class="event">
+                                <div class="meeting-marker" style="background-color: #009CBD;"></div>
+                                <strong>General Meeting</strong> <!--replace data with 1st upcoming meeting according to calendar-->
+                                <p>WED â€¢ 6:30PM - 7:30PM</p>
+                                <p>GOL - 2400 / Zoom</p>
+                            </div>
+                            <div class="event">
+                                <div class="meeting-marker" style="background-color: #84BC00;"></div>
+                                <strong>Projects Committee</strong> <!--replace data with 2nd upcoming meeting according to calendar-->
+                                <p>THURS â€¢ 6:30PM - 7:30PM</p>
+                                <p>GOL - 2400</p>
+                            </div>
+                            <div class="event">
+                                <div class="meeting-marker" style="background-color: #7D55C7;"></div>
+                                <strong>WiCHacks Committee</strong> <!--replace data with 3rd upcoming meeting according to calendar-->
+                                <p>THURS â€¢ 7:00PM - 8:00PM</p>
+                                <p>GOL - 2350</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="events-container">
-                        <div class="event">
-                            <strong>General Meeting</strong>
-                            <p>WED • 6:30PM - 7:30PM</p>
-                            <p>GOL - 2400 / Zoom</p>
-                        </div>
-                        <div class="event">
-                            <strong>Projects Committee</strong>
-                            <p>THURS • 6:30PM - 7:30PM</p>
-                            <p>GOL - 2400</p>
-                        </div>
-                        <div class="event">
-                            <strong>WiCHacks Committee</strong>
-                            <p>THURS • 7:00PM - 8:00PM</p>
-                            <p>GOL - 2350</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </main>

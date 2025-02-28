@@ -6,7 +6,7 @@ import logging
 from backend.email import send_email
 from backend.db import create_attendance, commit, Event, Profile, create_bonus
 
-from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash
+from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, abort
 from flask_wtf import FlaskForm
 from wtforms import FileField, IntegerField, StringField
 from wtforms.validators import DataRequired, ValidationError, Email
@@ -27,7 +27,7 @@ class CampusGroupsValidator:
 
     def __call__(self, _: FlaskForm, field: FileField):
         reader = csv.DictReader(line.decode() for line in request.files[field.name])
-        if "Email" not in reader.fieldnames:
+        if reader.fieldnames is None or "Email" not in reader.fieldnames:
             raise ValidationError(self.invalid_fields_msg)
         request.files[field.name].seek(0)  # Reset stream to start to re-read later
         
@@ -81,9 +81,9 @@ class serachId(FlaskForm):
 
 
 class BonusForm(FlaskForm):
-    giver_id = IntegerField("Giver ID", validators=[DataRequired("Please provide a profile ID to grant the points.")])
-    point_value = IntegerField("Point Value", validators=[NumberRange(min=1, message="Please provide a point value greater than 0")])
-    reason = StringField("Reason for points", validators=[Length(min=2, max=500, message="Please keep the reason between 2 and 500 characters.")])
+    giver_id = IntegerField("Giver ID", validators=[DataRequired("Please provide a profile ID to grant the points."), DataRequired()])
+    point_value = IntegerField("Point Value", validators=[NumberRange(min=1, message="Please provide a point value greater than 0"), DataRequired()])
+    reason = StringField("Reason for points", validators=[Length(min=2, max=500, message="Please keep the reason between 2 and 500 characters."), DataRequired()])
 
 
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
@@ -120,13 +120,13 @@ def update_attendance_data():
 def get_attendance_data(meeting_id: int):
     event = Event.query.get(meeting_id)
     if event is None:
-        return 404
+        return abort(404)
     
     try:
         skip = request.args.get("skip", 0, type = int)
         count = request.args.get("count", 100, type = int)
     except TypeError:
-        return 400
+        return abort(400)
     
     persons = event.attendants[skip:skip+count]
     
@@ -145,12 +145,12 @@ def get_attendance_data(meeting_id: int):
 def get_profile_data(person_id: int):
     profile = Profile.query.get(person_id)
     if profile is None:
-        return 404
+        return abort(404)
         
     try:
         org = request.args.get("org_id", None, type = int)
     except TypeError:
-        return 400
+        return abort(400)
     
     return jsonify(
         profile.serialize(org)
@@ -174,12 +174,12 @@ def grant_bonus(person_id: int):
 
 
 # search for id in the meetings attendance
-@admin.route("/search", methods=['GET', 'POST'])
-def id_search(rit_id : int):
-   form = serachId()
-   filtered_data = None
-   
-   if form.validate_on_submit():
+@admin.route("/search", methods=['POST'])
+def id_search():
+    form = serachId()
+    filtered_data = None
+    
+    if form.validate_on_submit():
         search_query = request.args.get('search')
         filtered_data = Event.query.filter(
             or_(
@@ -187,7 +187,9 @@ def id_search(rit_id : int):
                 Event.description.ilike(f"%{search_query}%")
             )).all()
         return render_template('/', form = form, data = filtered_data)
-        
+    
+    abort(200)
+
 
 @admin.route("/email")
 def send_update():
@@ -210,7 +212,7 @@ def list_users(organization: int):
         sort = request.args.get("sort", "first_name")
         decending = request.args.get("decending", True, type = bool)
     except TypeError:
-        return 400
+        raise
     
     rows = db.session.query(
         Profile.first_name, 
@@ -218,7 +220,8 @@ def list_users(organization: int):
         Profile.email,
         Profile.profile_id,
         Profile.membership(organization),
-        Profile.points(organization))\
+        Profile.points(organization),
+        Profile.semesters(organization))\
             .join(Event.organizer)\
             .filter(Event.organizer_id == organization).\
             group_by(Profile.profile_id).limit(count).offset(skip).all()
@@ -230,7 +233,8 @@ def list_users(organization: int):
                 "last_name": row[1],
                 "email": row[2],
                 "membership": row[4],
-                "points": row[5]
+                "points": row[5],
+                "semesters": row[6]
             }
         } for row in rows
     ])

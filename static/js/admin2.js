@@ -29,7 +29,7 @@ const addTableRows = (rows) => {
                   <td>${row['profile']['first_name']}</td>
                   <td>${row['profile']['last_name']}</td>
                   <td>${row['profile']['membership']}</td>
-                  <td>Undetermined</td>
+                  <td>${row['profile']['semesters']}</td>
                   <td>${row['profile']['email']}</td>
                   <td>Undetermined</td>
                   <td>Undetermined</td>

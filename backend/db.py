@@ -73,6 +73,8 @@ class Profile(db.Model):
             else_ = "Non-Member"
         )
         
+    
+        
     @hybrid_method
     def bonus_points(self, org: int):
         return sum(b.point_value for b in self.bonuses if b.organization_id == org)

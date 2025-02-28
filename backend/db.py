@@ -11,6 +11,8 @@ from sqlalchemy import ForeignKey, Integer, String, Text, SmallInteger, Enum, AR
 
 class MeetingType(EnumClass):
     GENERAL = "GENERAL"
+    VOLUNTEER = "VOLUNEER"
+    SOCIAL = "SOCIAL"
 
 
 class RoleType(EnumClass):
@@ -49,12 +51,13 @@ class Profile(db.Model):
     attendance: Mapped[list["Event"]] = relationship(secondary=attendance_table, back_populates="attendants")
     awards: Mapped[list["Award"]] = relationship(secondary="ProfileAward", back_populates="recipients")
     administrator: Mapped["Administrator"] = relationship(back_populates="profile")
-    bonuses: Mapped[list["BonusPoints"]] = relationship(back_populates="recipient", foreign_keys="BonusPoints.recipient_id")
+    bonuses: Mapped[list["BonusPoints"]] = relationship("BonusPoints", foreign_keys="[BonusPoints.recipient_id]", back_populates="recipient")
+    grants: Mapped[list["BonusPoints"]] = relationship("BonusPoints", foreign_keys="[BonusPoints.giver_id]", back_populates="giver")
     
     @hybrid_method
     def membership(self, org: int):
         count = 0
-        for event in attendance_table:
+        for event in self.attendance:
             if event.end_time > (datetime.utcnow() - timedelta(weeks=10)) and event.organizer_id == org:
                 count += 1
         return 'active' if count > 5 else ('inactive' if count == 0 else 'incomplete')
@@ -130,7 +133,8 @@ class Profile(db.Model):
                     "event_id": event.event_id,
                     "name": event.name,
                     "description": event.description,
-                    "meeting_type": event.meeting_type.value
+                    "meeting_type": event.meeting_type.value,
+                    "point_value": event.point_value
                     
                 } for event in self.attendance if org_id is None or event.organizer_id == org_id
             ]
@@ -174,13 +178,12 @@ class BonusPoints(db.Model):
     
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
     point_value: Mapped[int]
-    recipient: Mapped["Profile"] = relationship(back_populates="bonuses")
     recipient_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
-    organization_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
-    # giver: Mapped["Profile"] = relationship(back_populates="grants")
-    # giver_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
+    recipient: Mapped["Profile"] = relationship("Profile", foreign_keys=[recipient_id], back_populates="bonuses")
+    giver_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
+    giver: Mapped["Profile"] = relationship("Profile", foreign_keys=[giver_id], back_populates="grants")
     reason: Mapped[str]
-    
+    organization_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
 
 class Award(db.Model):
     __tablename__ = 'Award'
@@ -336,6 +339,11 @@ def db_testing_setup():
             organizer=random.choice([WiC, COMS]),
             attendants=random.choices(users, k=random.randint(0, 120))
         ))
+        events[-1].meeting_type = random.choice([
+            MeetingType.GENERAL,
+            MeetingType.VOLUNTEER,
+            MeetingType.SOCIAL
+        ])
         events[-1].start_time = datetime.strptime(events[-1].start_time, "%Y-%m-%d %H:%M:%S")
         events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S")
     
@@ -376,4 +384,3 @@ def commit(*objects: Base):
     if objects:
         db.session.add_all(objects)
     db.session.commit()
-        

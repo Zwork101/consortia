@@ -16,6 +16,10 @@ def return_comms_int():
 def return_wic_int():
     return render_template("current-semester-wic-history-interior.html.j2")
 
+@test.route("/coms-int")
+def return_coms_hist():
+    return render_template("current-semester-coms-history-interior.html.j2")
+
 @test.route("/semester")
 def return_semester():
     return render_template("current-semester-wics.html.j2")

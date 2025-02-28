@@ -907,3 +907,24 @@ svg {
     border-radius: 5px;
     margin-top: 10px;
 }
+/* Drag abd drop */
+.drag-drop-area {
+    width: 100%;
+    height: 150px;
+    border: 2px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.drag-drop-area p {
+    text-align: center;
+    color: #888;
+}
+
+.drag-drop-area.dragover {
+    background-color: #f0f0f0;
+    border-color: #F76902;
+}

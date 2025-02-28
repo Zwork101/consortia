@@ -165,15 +165,16 @@
 </div>
 
 <div id="import-data-dialog-box" title="Import Data">
-    <form name="import-data" id="import-data">
+    <form name="import-data" id="import-data" enctype="multipart/form-data">
         <fieldset>
             <div>
-                <p>Drag and Drop or <span>Choose file</span> to file.</p>
+                <p>Choose file to upload a CSV file.</p>
                 <p>CSV files only.</p>
             </div>
             <div>
-            <!-- left blank for file upload -->
+                <input type="file" name="csv-file" id="csv-file" accept=".csv">
             </div>
+            <br>
             <div>
                 <select name="data-event-name" id="data-event-name">
                     <option>Tutoring with Katie</option>
@@ -184,9 +185,17 @@
                     <option>Option2</option>
                 </select>
             </div>
+            <br>
+            <div>
+                <button type="button" id="submit-file" onclick="handleFileUpload()">Upload File</button>
+            </div>
+            
         </fieldset>
     </form>
+
+
 </div>
+
 
 <div id="send-email-dialog-box" title="Send Email">
     <form name="send-email" id="send-email">
@@ -204,9 +213,6 @@
         </fieldset>
     </form>
 </div>
-
-
-{% include "nav.html.j2" %}
 
 
 <main>
@@ -275,41 +281,23 @@
         <button><img src="../static/images/conficon1.png" width="32" /></button>
     </div>
 
-    <table class="dbTable">
-        <tr class="dbTableTop">
-            <th></th>
-            <th>FIRST NAME</th>
-            <th>LAST NAME</th>
-            <th>MEMBERSHIP</th>
-            <th>SEMESTER</th>
-            <th>E-MAIL ADRESS</th>
-            <th>GEN. MEETINGS</th>
-            <th>COM. MEETINGS</th>
-            <th>SOCIAL EVENT</th>
-            <th>VOLUNTEERING</th>
-            <th class="dbTablePH"></th>
-            <th></th>
-        </tr>
-        <tr class="dbTableRow">
-            <td>
-                <label class="container">
-                    <input type="checkbox" >
-                    <span class="checkmark"></span>
-                </label>
-            </td>
-            <td>Will</td>
-            <td>Smith</td>
-            <td>non-active</td>
-            <td>9 semesters</td>
-            <td>wms6730@rit.edu</td>
-            <td>13/14</td>
-            <td>4/6</td>
-            <td>0/1</td>
-            <td>0/1</td>
-            <td class="dbTablePH"></td>
-            <td><img src="../static/images/options.png" width="16" /></td>
-        </tr>
-    </table>
+
+<table class="dbTable" id="dbTable">
+    <tr class="dbTableTop">
+        <th></th>
+        <th>FIRST NAME</th>
+        <th>LAST NAME</th>
+        <th>MEMBERSHIP</th>
+        <th>SEMESTER</th>
+        <th>E-MAIL ADDRESS</th>
+        <th>GEN. MEETINGS</th>
+        <th>COM. MEETINGS</th>
+        <th>SOCIAL EVENT</th>
+        <th>VOLUNTEERING</th>
+        <th class="dbTablePH"></th>
+        <th></th>
+    </tr>
+</table>
 
 </main>
 {% endblock %}

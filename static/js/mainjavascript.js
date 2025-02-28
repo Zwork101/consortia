@@ -42,30 +42,48 @@ window.onclick = function (event) {
         }
     }
 }
-// Drag and drop
-const dropArea = document.getElementById('drop-area');
 
-    dropArea.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        dropArea.style.backgroundColor = '#e0e0e0';
-    });
+// Function to handle file upload and display the data
 
-    dropArea.addEventListener('dragleave', () => {
-        dropArea.style.backgroundColor = '';
-    });
+function handleFileUpload() {
+    const fileInput = document.getElementById('csv-file');
+    const file = fileInput.files[0];
+    const table = document.getElementById('dbTable');
 
-    dropArea.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropArea.style.backgroundColor = '';
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const rows = e.target.result.split('\n');
+            rows.forEach((row, index) => {
+                const columns = row.split(',');
+                if (columns.length > 1 && index > 0) { // Skip header row
+                    const newRow = table.insertRow();
+                    newRow.classList.add('dbTableRow');
+                    newRow.innerHTML = `
+                        <td>
+                            <label class="container">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>${columns[0]}</td>
+                        <td>${columns[1]}</td>
+                        <td>${columns[2]}</td>
+                        <td>${columns[3]}</td>
+                        <td>${columns[4]}</td>
+                        <td>${columns[5]}</td>
+                        <td>${columns[6]}</td>
+                        <td>${columns[7]}</td>
+                        <td>${columns[8]}</td>
+                        <td class="dbTablePH"></td>
+                        <td><img src="../static/images/options.png" width="16" /></td>
+                    `;
+                }
+            });
+        };
+        reader.readAsText(file);
+    } else {
+        alert('Please select a CSV file first!');
+    }
+}
 
-        const files = e.dataTransfer.files;
-        if (files.length > 0) {
-            const file = files[0];
-            if (file.type === 'text/csv') {
-                alert(`File uploaded: ${file.name}`);
-                // You can add code here to further handle the file upload
-            } else {
-                alert('Only CSV files are allowed.');
-            }
-        }
-    });

@@ -1,4 +1,10 @@
 {% extends "base.html.j2" %}
+<!-- testing purporses only -->
+{% block head %}
+<script src="../static/js/mainjavascript.js"></script>
+<script src="{{ url_for("static", filename="js/student-comms.js") }}" defer></script>
+{% endblock %}
+<!-- testing purporses only -->
 {% block content %}
     <main>
         <div class="points-bar">

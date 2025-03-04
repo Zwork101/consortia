@@ -166,15 +166,16 @@
 </div>
 
 <div id="import-data-dialog-box" title="Import Data">
-    <form name="import-data" id="import-data">
+    <form name="import-data" id="import-data" enctype="multipart/form-data">
         <fieldset>
             <div>
-                <p>Drag and Drop or <span>Choose file</span> to file.</p>
+                <p>Choose file to upload a CSV file.</p>
                 <p>CSV files only.</p>
             </div>
             <div>
-            <!-- left blank for file upload -->
+                <input type="file" name="csv-file" id="csv-file" accept=".csv">
             </div>
+            <br>
             <div>
                 <select name="data-event-name" id="data-event-name">
                     <option>Tutoring with Katie</option>
@@ -185,9 +186,17 @@
                     <option>Option2</option>
                 </select>
             </div>
+            <br>
+            <div>
+                <button type="button" id="submit-file" onclick="handleFileUpload()">Upload File</button>
+            </div>
+            
         </fieldset>
     </form>
+
+
 </div>
+
 
 <div id="send-email-dialog-box" title="Send Email">
     <form name="send-email" id="send-email">
@@ -205,9 +214,6 @@
         </fieldset>
     </form>
 </div>
-
-
-{% include "nav.html.j2" %}
 
 
 <main>

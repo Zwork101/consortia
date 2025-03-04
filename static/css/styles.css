@@ -6,21 +6,22 @@
 :root {
     --main-font: "Roboto", sans-serif;
     --orange: #F76902;
-    --label-purple: #9747FF;
-    --label-blue: #009CBD;
-    --label-green: #84BC00;
-    --label-yellow: #F6BE00;
+    --label-purple: #C099F7;
+    --label-blue: #66B4C4;
+    --label-green: #B7D478;
+    --label-yellow: #EEDA8F;
     --medium-gray: #E9ECEF;
     --stroke-gray: #DEDEDE;
     --label-opacity: .5;
     --article-child-margin: 1%;
     --article-child-padding: 4%;
     --info-box-padding: 4%;
-    --bar-height:25px;
+    --bar-height: 25px;
 }
 
 html {
     background-color: #FFFFFF;
+    overflow-x:hidden;
 }
 
 p, h1, h2, h3, h4, h5 {
@@ -40,6 +41,11 @@ p {
     font-weight: lighter;
 }
 
+.external-url a{
+    color: #F76902;
+    text-decoration: none;
+}
+
 /*
 Items in nav bar on top
 */
@@ -57,6 +63,7 @@ nav {
     float: right;
     padding: 0px 36px;
     height: 40px;
+    transform: translateX(-70px);
 }
 
 .nav-options-box:first-child {
@@ -84,6 +91,78 @@ nav {
 
 .nav-options-box img {
     transform: translateY(-2px);
+}
+
+.backarrow{
+    position: absolute;
+    transform: translate(10px, 10px);
+}
+
+/*
+
+    Classes related to navbar dropdown
+
+*/
+
+.navbar-dropdown {
+    position: absolute;
+    display: block;
+    width: 136px;
+    z-index: 2;
+    cursor: pointer;
+}
+
+
+.navbar-dropdown button {
+    width: 136px;
+    height: 40px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    font-family: var(--main-font);
+    background-color: #F76902;
+    color: #fff;
+    text-align: left;
+    padding-left: 12px;
+    border: none;
+    transform: translate(-16px, -23.5px);
+}
+
+.navbar-dropdown .dropDownArrow img {
+    transform: translate(-20px, -2px);
+}
+
+.navbar-dropdown:focus-within .dropDownArrow img {
+    transform: rotate(-180deg) translate(20px, 2px);
+}
+
+.dropdown-content-navbar {
+    width: 136px;
+    display: none;
+    position: absolute;
+    overflow: auto;
+    z-index: 1;
+    border: 1.5px solid #DEDEDE;
+    border-top: none;
+    border-radius: 0 0 2px 2px;
+    transform: translate(-17px, -23.5px);
+}
+
+.dropdown-content-navbar a {
+    font-size: 0.8rem;
+    font-family: var(--main-font);
+    padding: 12px 12px;
+    display: block;
+    background-color: #fff;
+}
+
+.dropdown-content-navbar a:hover {
+    background-color: #E9ECEF;
+}
+
+.navbar-dropdown:focus-within {
+    border-color: #DEDEDE;
+    border-bottom: none;
+    border-radius: 0 0 2px 2px;
 }
 
 /*
@@ -135,10 +214,6 @@ Classes related to "chart-bar" and related subitems
     height: var(--bar-height);
 }
 
-.chart-bar div {
-    opacity: var(--label-opacity);
-}
-
 .chart-bar div:nth-child(1) {
     background-color: var(--label-purple);
 }
@@ -155,15 +230,58 @@ Classes related to "chart-bar" and related subitems
     background-color: var(--label-yellow);
 }
 
+.wic-bar{
+    margin-bottom: 32px;
+}
+
+/*
+    Styling the backdrop of the WiC chart
+*/
+.chart-background {
+    width: 58.6%;
+    height: 260px;
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    z-index:-1;
+}
+.chart-background div{
+    height: 240px;
+    border-right: solid 2px #DFDFDF;
+}
+.chart-bckg1 {
+    grid-row: 1;
+    height: 240px;
+    border-right: solid 2px #DFDFDF;
+}
+.chart-bckg2 {
+    grid-row: 1/2;
+    height: 240px;
+    border-right: solid 2px #DFDFDF;
+}
+.chart-background p{
+    float: right;
+    transform: translate(10px, 240px);
+}
+.chart-first-zero{
+    position: absolute;
+    transform: translateY(240px);
+}
+
+.one-dig-num p{
+    transform: translate(6px, 240px);
+}
 /*
 
 Classes related to "chart-labels" and related subitems
 
 */
-
 .chart-labels {
-    display:flex;
+    display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 16px;
+    transform: translateY(-16px)
 }
 
 .chart-labels div {
@@ -175,7 +293,6 @@ Classes related to "chart-labels" and related subitems
     width: 1rem;
     height: 1rem;
     border-radius: 50%;
-    opacity: var(--label-opacity);
     margin-top: 1rem;
     margin-right: 0.25rem;
 }
@@ -254,23 +371,34 @@ Classes relating to "info-box-gray"
 .learn-more{
     font-family: var(--main-font);
     font-size: 1.166875rem;
+    font-weight: 600;
     color: #F76902;
     background-color: transparent;
     border: solid 3px var(--orange);
-    margin-left: 27.5%;
-    margin-right: 27.5%;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
+    padding: 10px 20px;
+    width: 160px;
     margin-top: 5%;
     margin-bottom: 5%;
+    cursor: pointer;
 }
 
+.learn-more:hover{
+    background-color: #000;
+    border-color: #000;
+    color: #fff;
+
+}
+
+.learn-more-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* 
 
 Items specifc to COMMS below
 
 */
-
 .points-bar {
     padding: 2em 0;
 }
@@ -279,6 +407,11 @@ Items specifc to COMMS below
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
+}
+
+.points-info-container2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .mentorship-points-box {
@@ -303,6 +436,16 @@ Items specifc to COMMS below
 .miscellaneous-points-box {
     grid-row: 2;
     grid-column: 3;
+}
+
+.social-events {
+    grid-column: 1/3;
+    margin: 5px;
+}
+
+.volunteering {
+    grid-column: 3/5;
+    margin: 5px;
 }
 
 /* 
@@ -350,6 +493,7 @@ Items specific to membership-history-container
     border: 1.5px #727578 solid;
     border-radius: 2px;
     z-index: 3;
+    cursor: pointer;
 }
 
 .database-dropdown-large2 {
@@ -405,7 +549,7 @@ Items specific to membership-history-container
         }
 
 
-.show1, .show2, .show3 {
+.show1, .show2, .show3, .show4 {
     display: block;
 }
 
@@ -416,7 +560,7 @@ Items specific to membership-history-container
 }
 
 /*
-    Items in large database dropdowns
+    Items in medium database dropdowns
 */
 
 .database-dropdown-medium {
@@ -429,6 +573,7 @@ Items specific to membership-history-container
     border: 1.5px #727578 solid;
     border-radius: 2px;
     z-index: 2;
+    cursor: pointer;
 }
 
 
@@ -672,17 +817,18 @@ input[type="text"] {
   
   .wics-coms-container h2{
     font-family: var(--main-font);
+    font-size: 1.8rem; 
     text-align: left;
     margin-bottom: 20px; /* Adjust spacing below the heading */
     margin: 2%;
     padding: 2%;
+    transform: translate(-20px);
    
   }
-  .wics, .coms {
+.wics, .coms {
     flex: 1;
     text-align: center;
-    padding: 40px 20px; /* More padding for better content visibility */
-    border-radius: 8px;
+    padding: 20px 40px; /* More padding for better content visibility */
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
     color: white; /* Ensures text remains readable */
     font-weight: bold;
@@ -691,19 +837,21 @@ input[type="text"] {
     background-repeat: no-repeat;
     min-height: 400px;
     position: relative;
-  }
+    background-position: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
-  .wics {
-    background-image: url("../images/women-in-computing.jpg");
-
-  }
+.wics {
+    background-image: url("../images/WICimg.png");
+    
+}
   
   .coms {
-    background-image: url("../images/coms.jpg"); 
+    background-image: url("../images/COMSimg.png"); 
     
   }
-  
- 
 
   .wicsextra-info {
     position: absolute;
@@ -713,37 +861,40 @@ input[type="text"] {
 
 .wicscomsbutton {
     font-family: var(--main-font);
-    width: 200px; 
+    font-size: 1.5em;
+    width: 200px;
     height: 60px;
     padding: 8px 12px;
-    border: 2px solid white;
+    border: 2px solid #F76902;
     background-color: #F76902;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     color: white;
     cursor: pointer;
     text-align: center;
     font-weight: bold;
-  }
-
+}
 
 .wicscomsbutton:hover {
-    /* background-color: rgba(0, 86, 179, 0.9); */
-    border-color: #9747FF;;
+    border-color: #000;
+    background-color: #000;
   }
+
+wicscomsbutton:active {
+    border-color: #000;
+    background-color: #fff;
+    color: #000;
+}
 
   /* Wics Current Semester */
   
   .tablinks {
     background-color: transparent;
     border: none;
-    padding: 10px 20px;
     cursor: pointer;
     font-size: 1em;
     border-radius: 5px;
     text-decoration: none; /* Ensures no underline by default */
 }
-
-
 
 .titletabssection{    
     font-family: var(--main-font);
@@ -755,9 +906,7 @@ input[type="text"] {
     font-family: var(--main-font);
     font-size: smaller;
     font-weight: normal;
-
-   
-  }
+}
 
 .tablinks:hover {
     
@@ -770,22 +919,11 @@ input[type="text"] {
     gap: 10px;
 }
 
-
 .chart-title {
     font-family: var(--main-font);
     font-size: 1.5em;
     padding-top: 1%;
-    /* font-weight: bold; */
 }
-
-/* .legend {
-    position: relative;
-    top: 10px;
-    right: 10px;
-    font-size: 10px;
-    padding: 10px;
-    /* color: black;   
-} */
 
 .legend {
     display: flex;
@@ -819,91 +957,48 @@ svg {
     
     
 }
-/* .tabcontent{
-    background-color: var(--medium-gray);
-    width: 100%;
-    max-width: 1000px;
-    
-} */
 
-.tabcontent {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--medium-gray);
-    position: relative;
-    padding: 2% var(--article-child-padding);
-    margin: calc(var(--article-child-margin)/2) ;
-}
 
-.wicinfo-box-gray{
-    display: flex;
-    flex-direction: column;
-    background-color: var(--medium-gray);
-    position: relative;
-    padding: 2% var(--article-child-padding) ;
-    margin: var(--article-child-margin);
+/*
+    All classes containing layout for student views
+*/
 
-}
-
-.wicinfo-container{
-    max-width: 100%;
+.profile-view-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
+    grid-template-columns: repeat(31, 1fr);
+    height: calc(100vhF - 120px);
+    margin-top: 20px;
+    width: calc(100vw - 80px);
+    margin-left: 40px;
+}
+.membership-sec{
+    grid-column: 1/20;
+    grid-row: 1;
+}
+.calendar-sec {
+    grid-column: 21/31;
+    grid-row: 1;
+}
+#history{
+    display:none;
 }
 
-.wiclearn-more {
+/*
+    All classes containing styling for membership profile elementes
+*/
+.profile-view-grid h3{
+    font-weight: 400;
+    margin-top: 40px;
+}
+.prof-view-btn {
+    background-color: #fff;
+    border: none;
+    transform: translateX(-4px);
+    margin-bottom: 40px;
+    opacity: 50%;
     font-family: var(--main-font);
-    font-size: 1.166875rem;
-    color: #F76902;
-    background-color: transparent;
-    border: solid 3px var(--orange);
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    display: block;
-    width: fit-content;
-    margin-left: auto;
 }
-.wiclearn-more:hover {
-    border-color: #9747FF;;
-}
-
-/* Email Template */
-.emailcontainer {
-    max-width: 600px;
-    margin: 20px auto;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-.emailheader {
-    background: #F76902;
-    color: #ffffff;
-    padding: 10px;
-    text-align: center;
-    border-radius: 8px 8px 0 0;
-}
-.emailcontent {
-    padding: 20px;
-    font-size: 16px;
-    color: #333;
-}
-.emailevent {
-    background: #f9f9f9;
-    padding: 10px;
-    margin: 10px 0;
-    border-left: 4px solid #F76902;
-}
-
-.emailbutton {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #F76902;
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 10px;
+.membership-sec button.active {
+    opacity: 100%;
+    text-decoration: underline #F76902;
 }

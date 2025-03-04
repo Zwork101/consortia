@@ -1,9 +1,12 @@
-let points = 0
-let maxPoints = 20
-let mentorshipMeetingCount = 0
-let voluenteeringCount = 0
-let attendenceCount = 0
-let miscCount = 0
+let points = 0;
+let maxPoints = 20;
+let earnedPoints = 0;
+let totalPoints = 0;
+
+let mentorshipPoints = 0;
+let voluenteeringPoints = 0;
+let attendencePoints = 0;
+let miscPoints = 0;
 
 const getProfile = async () => {
 	const endpoint = "http://localhost:8080/profile/1?org_id=1";
@@ -14,7 +17,7 @@ const getProfile = async () => {
 	    }
 
 	    const json = await response.json();
-	    console.log(json);
+	    // console.log(json);
       return json
 	 } catch (error) {
 	    console.error(error.message);
@@ -24,26 +27,33 @@ const getProfile = async () => {
 const getStudentPoints = (studentData) => {
 	//table = document.getElementById("orgMembers");
 
-  console.log(studentData)
-  console.log(studentData.profile.attendance)
+  // console.log(studentData)
+  // console.log(studentData.profile.attendance)
 
   if (studentData.profile.membership == "active"){
-    points += 3
-    console.log(points)
+    mentorshipPoints += 3
+    // console.log(points)
   } 
 
   let attendance = studentData.profile.attendance
   attendance.forEach(attendanceDay =>{
     //console.log(attendanceDay)
-    console.log(attendanceDay.meeting_type)
+    //console.log(attendanceDay.meeting_type)
     if (attendanceDay.meeting_type == "GENERAL"){
-      points += 1
-      console.log(points)
+      mentorshipPoints += 1;
+      // console.log(mentorshipPoints);
     }
-    document.getElementById("mentor-bar").style.width = `${(points/maxPoints)*100}%`
   })
-
+    document.getElementById("mentor-bar").style.width = `${(mentorshipPoints/maxPoints)*100}%`;
     
+    document.getElementById("mentor-points").innerHTML= mentorshipPoints;
+    document.getElementById("voluenteering-points").innerHTML= voluenteeringPoints;
+    document.getElementById("attendence-points").innerHTML= attendencePoints;
+    document.getElementById("misc-points").innerHTML= miscPoints;
+    
+    earnedPoints = mentorshipPoints + voluenteeringPoints + attendencePoints + miscPoints;
+    document.getElementById("earned-points").innerHTML= earnedPoints;
+    document.getElementById("max-points").innerHTML= maxPoints;
 }
 
 

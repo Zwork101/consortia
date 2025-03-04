@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from enum import Enum as EnumClass
 from typing import Any, Optional
 import logging
@@ -6,13 +6,14 @@ import logging
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import ForeignKey, Integer, String, Text, SmallInteger, Enum, ARRAY, Table, Column, func, PrimaryKeyConstraint, case, literal
+from sqlalchemy import ForeignKey, Integer, Table, Column, func, case, cast
 
 
 class MeetingType(EnumClass):
     GENERAL = "GENERAL"
     VOLUNTEER = "VOLUNEER"
     SOCIAL = "SOCIAL"
+    COMMITTEE = "COMMITTEE"
 
 
 class RoleType(EnumClass):
@@ -58,12 +59,12 @@ class Profile(db.Model):
     def membership(self, org: int):
         count = 0
         for event in self.attendance:
-            if event.end_time > (datetime.utcnow() - timedelta(weeks=10)) and event.organizer_id == org:
+            if event.end_time.replace(tzinfo=timezone.utc) > (datetime.now(timezone.utc) - timedelta(weeks=10)) and event.organizer_id == org:
                 count += 1
         return 'active' if count > 5 else ('inactive' if count == 0 else 'incomplete')
     
     @membership.expression
-    def membership(cls, org: int):
+    def membership_sql(cls, org: int):
         query = db.session.query(func.count(attendance_table.c.event_id))\
             .join(Event, Event.event_id == attendance_table.c.event_id)\
             .where(attendance_table.c.profile_id == cls.profile_id)\
@@ -76,6 +77,7 @@ class Profile(db.Model):
             else_ = "Non-Member"
         )
         
+        
     @hybrid_method
     def bonus_points(self, org: int):
         return sum(b.point_value for b in self.bonuses if b.organization_id == org)
@@ -83,7 +85,7 @@ class Profile(db.Model):
         
     @bonus_points.expression
     @classmethod
-    def bonus_points(cls, org: int):
+    def bonus_points_sql(cls, org: int):
         return db.session.query(func.coalesce(func.sum(BonusPoints.point_value), 0))\
             .where(BonusPoints.recipient_id == cls.profile_id)\
             .where(BonusPoints.organization_id == org)\
@@ -95,7 +97,7 @@ class Profile(db.Model):
     
     @event_points.expression
     @classmethod
-    def event_points(cls, org: int):
+    def event_points_sql(cls, org: int):
         return db.session.query(func.coalesce(func.sum(Event.point_value), 0))\
             .select_from(Event)\
             .join(attendance_table, attendance_table.c.profile_id == cls.profile_id)\
@@ -106,6 +108,26 @@ class Profile(db.Model):
     @hybrid_method
     def points(self, org: int):
         return self.event_points(org) + self.bonus_points(org)
+    
+    
+    @hybrid_method
+    def semesters(self, org: int):
+        return len(set(
+            (event.start_time.month // 7, event.start_time.year) for event in self.attendance if event.organizer_id == org
+        ))
+        
+    @semesters.expression
+    @classmethod
+    def semesters_sql(cls, org: int):
+        return db.session.query(func.count()).select_from(
+            db.session.query(cast(func.strftime('%m', Event.start_time) / 7, Integer), func.strftime('%Y', Event.start_time))\
+                .correlate(cls)\
+                .select_from(Event)\
+                .join(attendance_table, attendance_table.c.event_id == Event.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.organizer_id == org)\
+                .distinct().subquery()
+        ).scalar_subquery()
 
     # profile_id = db.Column(Integer, primary_key=True, autoincrement=True, unique=True, nullable=False)
     # rit_id = db.Column(Text, nullable=False)
@@ -132,7 +154,8 @@ class Profile(db.Model):
                     "name": event.name,
                     "description": event.description,
                     "meeting_type": event.meeting_type.value,
-                    "point_value": event.point_value
+                    "point_value": event.point_value,
+                    "start_time": event.start_time.isoformat()
                     
                 } for event in self.attendance if org_id is None or event.organizer_id == org_id
             ]
@@ -140,6 +163,7 @@ class Profile(db.Model):
         
         if org_id is not None:
             base_profile_json['membership'] = self.membership(org_id)
+            base_profile_json['semesters'] = self.semesters(org_id)
 
         if self.rit_id is None:
             return {
@@ -269,8 +293,8 @@ class Event(db.Model):
     event_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
     meeting_type: Mapped[MeetingType]
     name: Mapped[str]
-    start_time: Mapped[Optional[datetime]]
-    end_time: Mapped[Optional[datetime]]
+    start_time: Mapped[datetime]
+    end_time: Mapped[datetime]
     description: Mapped[Optional[str]]
     point_value: Mapped[int] = mapped_column(default=0)
     organizer: Mapped["Organizer"] = relationship(back_populates="events")

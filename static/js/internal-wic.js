@@ -1,5 +1,5 @@
 const listProfiles = async () => {
-	const endpoint = "http://localhost:8080/admin/profiles/1";
+	const endpoint = "http://localhost:8080/student/meetings/1";
 	try {
     	const response = await fetch(endpoint);
 	    if (!response.ok) {
@@ -29,7 +29,7 @@ const addTableRows = (rows) => {
                   <td>${row['profile']['first_name']}</td>
                   <td>${row['profile']['last_name']}</td>
                   <td>${row['profile']['membership']}</td>
-                  <td>${row['profile']['semesters']}</td>
+                  <td>Undetermined</td>
                   <td>${row['profile']['email']}</td>
                   <td>Undetermined</td>
                   <td>Undetermined</td>

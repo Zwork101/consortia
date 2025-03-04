@@ -663,6 +663,10 @@ input[type="text"] {
     border-radius: 2px;
 }
 
+.optbutton button:hover {
+    background-color: #000;
+}
+
     .optbutton button, .confbutton button {
         background-color: transparent;
         border: none;

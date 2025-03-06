@@ -3,7 +3,8 @@
     src: url(fonts/Roboto-VariableFont_opsz\,wght.ttf);
 }
 
-:root {
+:root {wicsButton.style.border = "2px solid black";
+    wicsButton.style.outline = "none"
     --main-font: "Roboto", sans-serif;
     --orange: #F76902;
     --label-purple: #9747FF;

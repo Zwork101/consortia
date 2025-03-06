@@ -47,10 +47,10 @@ def upcoming_meetings():
 @student.route("/attendance")
 def member_attendance():
     profile_id = 5 # request.get_json()
-    # if not profile_id or "rit_id" not in profile_id:
-    #     return jsonify({"error": "Missing rit_id in request"})
+    # if not profile_id not in profile_id:
+    #     return jsonify({"error": "Missing profile_id in request"})
 
-    # id = profile_id.get("rit_id")  # ????
+    # id = profile_id.get("profile_id")  # ????
     attendance = Profile.query.filter(Profile.profile_id == profile_id).all()
     user_attendance = [
         {

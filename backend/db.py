@@ -11,7 +11,7 @@ from sqlalchemy import ForeignKey, Integer, Table, Column, func, case, cast
 
 class MeetingType(EnumClass):
     GENERAL = "GENERAL"
-    VOLUNTEER = "VOLUNEER"
+    VOLUNTEER = "VOLUNTEER"
     SOCIAL = "SOCIAL"
     COMMITTEE = "COMMITTEE"
 

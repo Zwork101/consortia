@@ -1,4 +1,10 @@
 {% extends "base.html.j2" %}
+<!-- testing purporses only -->
+{% block head %}
+<script src="../static/js/mainjavascript.js"></script>
+<script src="{{ url_for("static", filename="js/student-wics.js") }}" defer></script>
+{% endblock %}
+<!-- testing purporses only -->
 {% block content %}
 
 <main>
@@ -16,33 +22,33 @@
 
                     </div>
                     <div class="points-bar">
-                        <div class="chart-bar wic-bar" style="width:7.14%">
+                        <div class="chart-bar wic-bar" id="social-total-points-bar" style="width:7.14%">
                             <!--Flexbox-->
-                            <div style="width:100%"></div><!--Social Event--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
+                            <div id="social-earned-points-bar" style="width:100%"></div><!--Social Event--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
                         </div>
-                        <div class="chart-bar wic-bar" style="width:7.14%">
+                        <div class="chart-bar wic-bar" id="volunteering-total-points-bar" style="width:7.14%">
                             <!--Flexbox-->
                             <div style="width:0%"></div><!--Placeholder-->
-                            <div style="width:7%"></div><!--Volunteering--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
+                            <div id="volunteering-earned-points-bar" style="width:100%"></div><!--Volunteering--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
                         </div>
-                        <div class="chart-bar wic-bar" style="width:42.86%">
+                        <div class="chart-bar wic-bar" id="committee-total-points-bar" style="width:42.86%">
                             <!--Flexbox-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
-                            <div style="width:66%"></div><!--Committee Meetings--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
+                            <div id="committee-earned-points-bar" style="width:100%"></div><!--Committee Meetings--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
                             <div style="width:0%"></div><!--Placeholder-->
                         </div>
-                        <div class="chart-bar wic-bar">
+                        <div class="chart-bar wic-bar" id="general-total-points-bar">
                             <!--Flexbox-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
-                            <div style="width:79%"></div><!--General Meetings--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
+                            <div id="general-earned-points-bar" style="width:100%"></div><!--General Meetings--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
                         </div>
                     </div>
                     <div class="chart-placeholder"></div>
@@ -50,19 +56,19 @@
                         <!--Flexbox-->
                         <div>
                             <div></div> <!--Circle-->
-                            <p>Social Event (1/1)</p><!--display numerical points here-->
+                            <p>Social Event (<span id="social-events"></span>/1)</p><!--display numerical points here-->
                         </div>
                         <div>
                             <div></div> <!--Circle-->
-                            <p>Volunteering (0/1)</p><!--display numerical points here-->
+                            <p>Volunteering (<span id="volunteering-events"></span>/1)</p><!--display numerical points here-->
                         </div>
                         <div>
                             <div></div> <!--Circle-->
-                            <p>Committee Meetings (4/6)</p><!--display numerical points here-->
+                            <p>Committee Meetings (<span id="committee-events"></span>/6)</p><!--display numerical points here-->
                         </div>
                         <div>
                             <div></div> <!--Circle-->
-                            <p>General Meetings (11/14)</p><!--display numerical points here-->
+                            <p>General Meetings (<span id="general-events"></span>/14)</p><!--display numerical points here-->
                         </div>
                         <p><b></b></p>
                     </div>

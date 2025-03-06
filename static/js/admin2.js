@@ -33,8 +33,8 @@ const addTableRows = (rows) => {
                   <td>${row['profile']['email']}</td>
                   <td>Undetermined</td>
                   <td>Undetermined</td>
-                  <td>Undetermined</td>
-                  <td>Undetermined</td>
+                  <td>${row['profile']['attendance']}</td>
+                  <td>${row['profile']['bonuses']}</td>
                   <td>${row['profile']['points']}</td>
                   <td class="dbTablePH"></td>
                   <td><img src="../static/images/options.png" width="16" /></td>

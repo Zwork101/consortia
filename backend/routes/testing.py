@@ -101,3 +101,7 @@ def return_award_email():
 @test.route("/calendar")
 def return_calendar():
     return render_template("calendar.html.j2")
+
+@test.route('/meetings/upload', methods=['GET', 'POST'])
+def upload_meeting_data():
+    return render_template('database-view-wic.html.j2')

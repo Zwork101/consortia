@@ -104,7 +104,7 @@ $( function() {
         modal: true,
         buttons: [
             {
-                text: "Upload",
+                text: "Submit",
                 // click: submit_filter_settings(filter_dialog),
                 click: function() {
                     $("#create-meeting").submit;

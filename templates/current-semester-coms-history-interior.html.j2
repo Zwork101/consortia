@@ -1,13 +1,7 @@
 {% extends "base.html.j2" %}
-<!-- testing purporses only -->
-{% block head %}
-<script src="../static/js/mainjavascript.js"></script>
-<script src="{{ url_for("static", filename="js/student-wic.js") }}" defer></script>
-{% endblock %}
-<!-- testing purporses only -->
 {% block content %}
 
- {% include "wictabs.html.j2" %}
+ {% include "comstabs.html.j2" %}
 
         
     </div>
@@ -45,7 +39,7 @@
             </p>
         </div>
         <div>
-            <img src="../static/images/awards.webp" alt="Award" >
+            <img src="../images/awards.webp" alt="Award" >
         </div>
     </div>
     <div>
@@ -87,7 +81,7 @@
             </p>
         </div>
         <div>
-            <img src="../static/images/awards.webp" alt="Award" >
+            <img src="../images/awards.webp" alt="Award" >
         </div>
     </div>
     <div>

@@ -7,9 +7,6 @@ test = Blueprint("testing", __name__, static_folder="static/", template_folder="
 def return_index():
     return render_template("index.html.j2")
 
-@test.route("/profile")
-def return_profile():
-    return render_template("profile.html")
 
 @test.route("/comms-int")
 def return_comms_int():
@@ -18,6 +15,10 @@ def return_comms_int():
 @test.route("/wic-int")
 def return_wic_int():
     return render_template("current-semester-wic-history-interior.html.j2")
+
+@test.route("/coms-int")
+def return_coms_hist():
+    return render_template("current-semester-coms-history-interior.html.j2")
 
 @test.route("/semester")
 def return_semester():
@@ -30,3 +31,77 @@ def return_db_coms():
 @test.route("/db-wic")
 def return_db_wic():
     return render_template("database-view-wic.html.j2")
+
+@test.route("/com-email")
+def return_com_email():
+    return render_template("comsemail.html.j2", member_name="John Doe", points="5", events=[{
+        "title": "Meeting 1",
+        "date": "2021-03-01",
+        "event": "Meeting",
+        "location": "Zoom",
+        "time": "5:00 PM",
+        "link": "https://www.google.com",
+        "points": 1,
+        "description": "Meeting to discuss upcoming events"
+    }, {
+        "title": "Meeting 2",
+        "date": "2021-03-01",
+        "event": "Meeting",
+        "location": "GOL 123",
+        "time": "5:00 PM",
+        "link": "https://www.google.com",
+        "points": 4,
+        "description": "Meeting to discuss upcoming events"
+    }, {
+        "title": "Meeting 3",
+        "date": "2021-03-01",
+        "event": "Meeting",
+        "location": "Zoom",
+        "time": "5:00 PM",
+        "link": "https://www.google.com",
+        "points": 3,
+        "description": "Meeting to discuss upcoming events"
+    }])
+
+@test.route("/wic-email")
+def return_wic_email():
+    return render_template("wicemail.html.j2", member_name="John Doe", points="1", events=[{
+        "title": "Meeting",
+        "date": "2021-03-01",
+        "event": "Meeting",
+        "location": "Zoom",
+        "time": "5:00 PM",
+        "link": "https://www.google.com",
+        "points": 1,
+        "description": "Meeting to discuss upcoming events"
+    }, {
+        "title": "Meeting",
+        "date": "2021-03-01",
+        "event": "Meeting",
+        "location": "Zoom",
+        "time": "5:00 PM",
+        "link": "https://www.google.com",
+        "points": 1,
+        "description": "Meeting to discuss upcoming events"
+    }, {
+        "title": "Meeting",
+        "date": "2021-03-01",
+        "event": "Meeting",
+        "location": "Zoom",
+        "time": "5:00 PM",
+        "link": "https://www.google.com",
+        "points": 1,
+        "description": "Meeting to discuss upcoming events"
+    }])
+
+@test.route("/award-email")
+def return_award_email():
+    return render_template("awardemail.html.j2", member_name="John Doe", points="1", award=" A Sweat Shirt", semesters = 2, signature="Wic Admin")
+
+@test.route("/calendar")
+def return_calendar():
+    return render_template("calendar.html.j2")
+
+@test.route('/meetings/upload', methods=['GET', 'POST'])
+def upload_meeting_data():
+    return render_template('database-view-wic.html.j2')

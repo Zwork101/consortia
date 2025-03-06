@@ -1,31 +1,38 @@
 {% extends "base.html.j2" %}
+<!-- testing purporses only -->
+{% block head %}
+<script src="../static/js/mainjavascript.js"></script>
+<script src="{{ url_for("static", filename="js/student-comms.js") }}" defer></script>
+{% endblock %}
+<!-- testing purporses only -->
 {% block content %}
+{% include "comstabs.html.j2" %}
     <main>
         <div class="points-bar">
             <div class="chart-bar"> <!--Flexbox-->
-                <div style="width:38%"></div><!--Mentorship Program-->
-                <div style="width:17%"></div><!--Volunteering-->
-                <div style="width:11%"></div><!--Attendence-->
-                <div style="width:6%"></div><!--Miscellaneous-->
+                <div id="mentor-bar"></div><!--Mentorship Program-->
+                <div id="voluenteer-bar"></div><!--Volunteering-->
+                <div id="attendence-bar"></div><!--Attendence-->
+                <div id="misc-bar"></div><!--Miscellaneous-->
             </div>
             <div class="chart-labels"> <!--Flexbox-->
                 <div>
                     <div></div> <!--Circle-->
-                    <p>Mentorship Program (7)</p>
+                    <p>Mentorship Program (<span id="mentor-points"></span>)</p>
                 </div>
                 <div>
                     <div></div> <!--Circle-->
-                    <p>Voluenteering (3)</p>
+                    <p>Voluenteering (<span id="voluenteering-points"></span>)</p>
                 </div>
                 <div>
                     <div></div> <!--Circle-->
-                    <p>Attendence (2)</p>
+                    <p>Attendence (<span id="attendence-points"></span>)</p>
                 </div>
                 <div>
                     <div></div> <!--Circle-->
-                    <p>Miscellaneous (1)</p>
+                    <p>Miscellaneous (<span id="misc-points"></span>)</p>
                 </div>
-                <p><b>13/18 Points</b></p>
+                <p><b><span id="earned-points"></span>/<span id="max-points"></span> Points</b></p>
             </div>
         </div>
         <div class="points-info-container">

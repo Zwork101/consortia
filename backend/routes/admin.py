@@ -15,6 +15,7 @@ from backend.db import Event, commit, create_attendance, Profile, db
 from backend.email import send_email
 
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 from wtforms import FileField, IntegerField, StringField, SubmitField
 from wtforms.validators import DataRequired, ValidationError, NumberRange, Length
 
@@ -221,7 +222,8 @@ def list_users(organization: int):
         Profile.profile_id,
         Profile.membership(organization),
         Profile.points(organization),
-        Profile.semesters(organization))\
+        Profile.semesters(organization)
+        )\
             .join(Event.organizer)\
             .filter(Event.organizer_id == organization).\
             group_by(Profile.profile_id).limit(count).offset(skip).all()

@@ -22,11 +22,8 @@
 
 html {
     background-color: #FFFFFF;
-<<<<<<< HEAD
     overflow-x:hidden;
-=======
     overflow-x: hidden;
->>>>>>> 0cd2549253d8009f4acc7443a4eb65ee9d2e0442
 }
 
 p, h1, h2, h3, h4, h5 {
@@ -46,17 +43,10 @@ p {
     font-weight: lighter;
 }
 
-<<<<<<< HEAD
 .external-url a{
     color: #F76902;
     text-decoration: none;
 }
-=======
-    .external-url a {
-        color: #F76902;
-        text-decoration: none;
-    }
->>>>>>> 0cd2549253d8009f4acc7443a4eb65ee9d2e0442
 
 /*
 Items in nav bar on top
@@ -298,25 +288,21 @@ Classes related to "chart-bar" and related subitems
     height: var(--bar-height);
 }
 
-<<<<<<< HEAD
 .chart-bar div:nth-child(1) {
     background-color: var(--label-purple);
-=======
-    .chart-bar div:nth-child(1) {
-        background-color: var(--label-purple);
-    }
+}
 
-    .chart-bar div:nth-child(2) {
-        background-color: var(--label-blue);
-    }
+.chart-bar div:nth-child(2) {
+    background-color: var(--label-blue);
+}
 
-    .chart-bar div:nth-child(3) {
-        background-color: var(--label-green);
-    }
+.chart-bar div:nth-child(3) {
+    background-color: var(--label-green);
+}
 
-    .chart-bar div:nth-child(4) {
-        background-color: var(--label-yellow);
-    }
+.chart-bar div:nth-child(4) {
+    background-color: var(--label-yellow);
+}
 
 .wic-bar {
     margin-bottom: 32px;
@@ -332,7 +318,6 @@ Classes related to "chart-bar" and related subitems
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     z-index: -1;
->>>>>>> 0cd2549253d8009f4acc7443a4eb65ee9d2e0442
 }
 
     .chart-background div {
@@ -357,7 +342,6 @@ Classes related to "chart-bar" and related subitems
     transform: translate(10px, 240px);
 }
 
-<<<<<<< HEAD
 .wic-bar{
     margin-bottom: 32px;
 }
@@ -392,18 +376,12 @@ Classes related to "chart-bar" and related subitems
     transform: translate(10px, 240px);
 }
 .chart-first-zero{
-=======
-.chart-first-zero {
->>>>>>> 0cd2549253d8009f4acc7443a4eb65ee9d2e0442
     position: absolute;
     transform: translateY(240px);
 }
 
-<<<<<<< HEAD
-.one-dig-num p{
-=======
+
 .one-dig-num p {
->>>>>>> 0cd2549253d8009f4acc7443a4eb65ee9d2e0442
     transform: translate(6px, 240px);
 }
 /*
@@ -412,7 +390,6 @@ Classes related to "chart-labels" and related subitems
 
 */
 .chart-labels {
-<<<<<<< HEAD
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -421,8 +398,7 @@ Classes related to "chart-labels" and related subitems
 }
 
 .chart-labels div {
-=======
->>>>>>> 0cd2549253d8009f4acc7443a4eb65ee9d2e0442
+
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -430,7 +406,6 @@ Classes related to "chart-labels" and related subitems
     transform: translateY(-16px)
 }
 
-<<<<<<< HEAD
 .chart-labels div div{
     width: 1rem;
     height: 1rem;
@@ -438,44 +413,31 @@ Classes related to "chart-labels" and related subitems
     margin-top: 1rem;
     margin-right: 0.25rem;
 }
-=======
-    .chart-labels div {
-        display: flex;
-        flex-direction: row;
-    }
->>>>>>> 0cd2549253d8009f4acc7443a4eb65ee9d2e0442
 
-        .chart-labels div div {
-            width: 1rem;
-            height: 1rem;
-            border-radius: 50%;
-            margin-top: 1rem;
-            margin-right: 0.25rem;
-        }
 
-        .chart-labels div:not(div:first-of-type) div {
-            margin-left: 1.5rem;
-        }
+.chart-labels div:not(div:first-of-type) div {
+    margin-left: 1.5rem;
+}
 
-        .chart-labels div:nth-child(1) div {
-            background-color: var(--label-purple);
-        }
+.chart-labels div:nth-child(1) div {
+    background-color: var(--label-purple);
+}
 
-        .chart-labels div:nth-child(2) div {
-            background-color: var(--label-blue);
-        }
+.chart-labels div:nth-child(2) div {
+    background-color: var(--label-blue);
+}
 
-        .chart-labels div:nth-child(3) div {
-            background-color: var(--label-green);
-        }
+.chart-labels div:nth-child(3) div {
+    background-color: var(--label-green);
+}
 
-        .chart-labels div:nth-child(4) div {
-            background-color: var(--label-yellow);
-        }
+.chart-labels div:nth-child(4) div {
+    background-color: var(--label-yellow);
+}
 
-    .chart-labels :last-child {
-        margin-left: auto;
-    }
+.chart-labels :last-child {
+    margin-left: auto;
+}
 
 /* 
 
@@ -537,20 +499,12 @@ Classes relating to "info-box-gray"
     cursor: pointer;
 }
 
-<<<<<<< HEAD
 .learn-more:hover{
     background-color: #000;
     border-color: #000;
     color: #fff;
-
 }
-=======
-    .learn-more:hover {
-        background-color: #000;
-        border-color: #000;
-        color: #fff;
-    }
->>>>>>> 0cd2549253d8009f4acc7443a4eb65ee9d2e0442
+
 
 .learn-more-cont {
     display: flex;
@@ -980,7 +934,6 @@ input[type="text"] {
     display: flex;
     justify-content: space-between;
     gap: 20px; /* Space between columns */
-<<<<<<< HEAD
   }
   
   .wics-coms-container h2{
@@ -993,20 +946,7 @@ input[type="text"] {
     transform: translate(-20px);
    
   }
-=======
-}
 
-    .wics-coms-container h2 {
-        font-family: var(--main-font);
-        font-size: 1.8rem;
-        text-align: left;
-        margin-bottom: 20px; /* Adjust spacing below the heading */
-        margin: 2%;
-        padding: 2%;
-        transform: translate(-20px);
-    }
-
->>>>>>> 0cd2549253d8009f4acc7443a4eb65ee9d2e0442
 .wics, .coms {
     flex: 1;
     text-align: center;
@@ -1027,21 +967,13 @@ input[type="text"] {
 
 .wics {
     background-image: url("../images/WICimg.png");
-<<<<<<< HEAD
     
 }
   
-  .coms {
-    background-image: url("../images/COMSimg.png"); 
-    
-  }
-=======
-}
-
 .coms {
-    background-image: url("../images/COMSimg.png");
+background-image: url("../images/COMSimg.png"); 
+
 }
->>>>>>> 0cd2549253d8009f4acc7443a4eb65ee9d2e0442
 
 .wicsextra-info {
     position: absolute;
@@ -1079,23 +1011,6 @@ wicscomsbutton:active {
   /* Wics Current Semester */
   
   .tablinks {
-=======
-
-    .wicscomsbutton:hover {
-        border-color: #000;
-        background-color: #000;
-    }
-
-wicscomsbutton:active {
-    border-color: #000;
-    background-color: #fff;
-    color: #000;
-}
-
-/* Wics Current Semester */
-
-.tablinks {
->>>>>>> 0cd2549253d8009f4acc7443a4eb65ee9d2e0442
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -1104,29 +1019,18 @@ wicscomsbutton:active {
     text-decoration: none; /* Ensures no underline by default */
 }
 
-<<<<<<< HEAD
-.titletabssection{    
-=======
+
 .titletabssection {
->>>>>>> 0cd2549253d8009f4acc7443a4eb65ee9d2e0442
     font-family: var(--main-font);
     padding: 2%;
     margin: 2%;
 }
-<<<<<<< HEAD
+
 .titletabssection h3{
     font-family: var(--main-font);
     font-size: smaller;
     font-weight: normal;
 }
-=======
-
-    .titletabssection h3 {
-        font-family: var(--main-font);
-        font-size: smaller;
-        font-weight: normal;
-    }
->>>>>>> 0cd2549253d8009f4acc7443a4eb65ee9d2e0442
 
 .tablinks:hover {
     text-decoration: underline #F76902; /* Underlines the text on hover */
@@ -1173,7 +1077,6 @@ svg {
     font-family: var(--main-font);
     display: block;
     margin-bottom: 20px;
-<<<<<<< HEAD
     
     
 }
@@ -1183,15 +1086,6 @@ svg {
     All classes containing layout for student views
 */
 
-=======
-}
-
-
-/*
-    All classes containing layout for student views
-*/
-
->>>>>>> 0cd2549253d8009f4acc7443a4eb65ee9d2e0442
 .profile-view-grid {
     display: grid;
     grid-template-columns: repeat(31, 1fr);
@@ -1220,32 +1114,7 @@ svg {
     font-weight: 400;
     margin-top: 40px;
 }
-=======
-}
 
-.membership-sec {
-    grid-column: 1/20;
-    grid-row: 1;
-}
-
-.calendar-sec {
-    grid-column: 21/31;
-    grid-row: 1;
-}
-
-#history {
-    display: none;
-}
-
-/*
-    All classes containing styling for membership profile elementes
-*/
-.profile-view-grid h3 {
-    font-weight: 400;
-    margin-top: 40px;
-}
-
->>>>>>> 0cd2549253d8009f4acc7443a4eb65ee9d2e0442
 .prof-view-btn {
     background-color: #fff;
     border: none;
@@ -1254,15 +1123,8 @@ svg {
     opacity: 50%;
     font-family: var(--main-font);
 }
-<<<<<<< HEAD
-.membership-sec button.active {
-    opacity: 100%;
-    text-decoration: underline #F76902;
-}
-=======
 
 .membership-sec button.active {
     opacity: 100%;
     text-decoration: underline #F76902;
 }
->>>>>>> 0cd2549253d8009f4acc7443a4eb65ee9d2e0442

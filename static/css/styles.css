@@ -22,7 +22,6 @@
 
 html {
     background-color: #FFFFFF;
-    overflow-x:hidden;
     overflow-x: hidden;
 }
 
@@ -43,10 +42,10 @@ p {
     font-weight: lighter;
 }
 
-.external-url a{
-    color: #F76902;
-    text-decoration: none;
-}
+    .external-url a {
+        color: #F76902;
+        text-decoration: none;
+    }
 
 /*
 Items in nav bar on top
@@ -167,78 +166,6 @@ nav {
     border-radius: 0 0 2px 2px;
 }
 
-.backarrow{
-    position: absolute;
-    transform: translate(10px, 10px);
-}
-
-/*
-
-    Classes related to navbar dropdown
-
-*/
-
-.navbar-dropdown {
-    position: absolute;
-    display: block;
-    width: 136px;
-    z-index: 2;
-    cursor: pointer;
-}
-
-
-.navbar-dropdown button {
-    width: 136px;
-    height: 40px;
-    font-size: 0.8rem;
-    font-weight: 800;
-    font-family: var(--main-font);
-    background-color: #F76902;
-    color: #fff;
-    text-align: left;
-    padding-left: 12px;
-    border: none;
-    transform: translate(-16px, -23.5px);
-}
-
-.navbar-dropdown .dropDownArrow img {
-    transform: translate(-20px, -2px);
-}
-
-.navbar-dropdown:focus-within .dropDownArrow img {
-    transform: rotate(-180deg) translate(20px, 2px);
-}
-
-.dropdown-content-navbar {
-    width: 136px;
-    display: none;
-    position: absolute;
-    overflow: auto;
-    z-index: 1;
-    border: 1.5px solid #DEDEDE;
-    border-top: none;
-    border-radius: 0 0 2px 2px;
-    transform: translate(-17px, -23.5px);
-}
-
-.dropdown-content-navbar a {
-    font-size: 0.8rem;
-    font-family: var(--main-font);
-    padding: 12px 12px;
-    display: block;
-    background-color: #fff;
-}
-
-.dropdown-content-navbar a:hover {
-    background-color: #E9ECEF;
-}
-
-.navbar-dropdown:focus-within {
-    border-color: #DEDEDE;
-    border-bottom: none;
-    border-radius: 0 0 2px 2px;
-}
-
 /*
 
 Classes related to table-container
@@ -288,21 +215,21 @@ Classes related to "chart-bar" and related subitems
     height: var(--bar-height);
 }
 
-.chart-bar div:nth-child(1) {
-    background-color: var(--label-purple);
-}
+    .chart-bar div:nth-child(1) {
+        background-color: var(--label-purple);
+    }
 
-.chart-bar div:nth-child(2) {
-    background-color: var(--label-blue);
-}
+    .chart-bar div:nth-child(2) {
+        background-color: var(--label-blue);
+    }
 
-.chart-bar div:nth-child(3) {
-    background-color: var(--label-green);
-}
+    .chart-bar div:nth-child(3) {
+        background-color: var(--label-green);
+    }
 
-.chart-bar div:nth-child(4) {
-    background-color: var(--label-yellow);
-}
+    .chart-bar div:nth-child(4) {
+        background-color: var(--label-yellow);
+    }
 
 .wic-bar {
     margin-bottom: 32px;
@@ -342,44 +269,10 @@ Classes related to "chart-bar" and related subitems
     transform: translate(10px, 240px);
 }
 
-.wic-bar{
-    margin-bottom: 32px;
-}
-
-/*
-    Styling the backdrop of the WiC chart
-*/
-.chart-background {
-    width: 58.6%;
-    height: 260px;
-    position: absolute;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    z-index:-1;
-}
-.chart-background div{
-    height: 240px;
-    border-right: solid 2px #DFDFDF;
-}
-.chart-bckg1 {
-    grid-row: 1;
-    height: 240px;
-    border-right: solid 2px #DFDFDF;
-}
-.chart-bckg2 {
-    grid-row: 1/2;
-    height: 240px;
-    border-right: solid 2px #DFDFDF;
-}
-.chart-background p{
-    float: right;
-    transform: translate(10px, 240px);
-}
-.chart-first-zero{
+.chart-first-zero {
     position: absolute;
     transform: translateY(240px);
 }
-
 
 .one-dig-num p {
     transform: translate(6px, 240px);
@@ -397,47 +290,42 @@ Classes related to "chart-labels" and related subitems
     transform: translateY(-16px)
 }
 
-.chart-labels div {
+    .chart-labels div {
+        display: flex;
+        flex-direction: row;
+    }
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-bottom: 16px;
-    transform: translateY(-16px)
-}
+        .chart-labels div div {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            margin-top: 1rem;
+            margin-right: 0.25rem;
+        }
 
-.chart-labels div div{
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    margin-top: 1rem;
-    margin-right: 0.25rem;
-}
+        .chart-labels div:not(div:first-of-type) div {
+            margin-left: 1.5rem;
+        }
 
+        .chart-labels div:nth-child(1) div {
+            background-color: var(--label-purple);
+        }
 
-.chart-labels div:not(div:first-of-type) div {
-    margin-left: 1.5rem;
-}
+        .chart-labels div:nth-child(2) div {
+            background-color: var(--label-blue);
+        }
 
-.chart-labels div:nth-child(1) div {
-    background-color: var(--label-purple);
-}
+        .chart-labels div:nth-child(3) div {
+            background-color: var(--label-green);
+        }
 
-.chart-labels div:nth-child(2) div {
-    background-color: var(--label-blue);
-}
+        .chart-labels div:nth-child(4) div {
+            background-color: var(--label-yellow);
+        }
 
-.chart-labels div:nth-child(3) div {
-    background-color: var(--label-green);
-}
-
-.chart-labels div:nth-child(4) div {
-    background-color: var(--label-yellow);
-}
-
-.chart-labels :last-child {
-    margin-left: auto;
-}
+    .chart-labels :last-child {
+        margin-left: auto;
+    }
 
 /* 
 
@@ -499,12 +387,11 @@ Classes relating to "info-box-gray"
     cursor: pointer;
 }
 
-.learn-more:hover{
-    background-color: #000;
-    border-color: #000;
-    color: #fff;
-}
-
+    .learn-more:hover {
+        background-color: #000;
+        border-color: #000;
+        color: #fff;
+    }
 
 .learn-more-cont {
     display: flex;
@@ -934,18 +821,17 @@ input[type="text"] {
     display: flex;
     justify-content: space-between;
     gap: 20px; /* Space between columns */
-  }
-  
-  .wics-coms-container h2{
-    font-family: var(--main-font);
-    font-size: 1.8rem; 
-    text-align: left;
-    margin-bottom: 20px; /* Adjust spacing below the heading */
-    margin: 2%;
-    padding: 2%;
-    transform: translate(-20px);
-   
-  }
+}
+
+    .wics-coms-container h2 {
+        font-family: var(--main-font);
+        font-size: 1.8rem;
+        text-align: left;
+        margin-bottom: 20px; /* Adjust spacing below the heading */
+        margin: 2%;
+        padding: 2%;
+        transform: translate(-20px);
+    }
 
 .wics, .coms {
     flex: 1;
@@ -967,12 +853,10 @@ input[type="text"] {
 
 .wics {
     background-image: url("../images/WICimg.png");
-    
 }
-  
-.coms {
-background-image: url("../images/COMSimg.png"); 
 
+.coms {
+    background-image: url("../images/COMSimg.png");
 }
 
 .wicsextra-info {
@@ -995,12 +879,11 @@ background-image: url("../images/COMSimg.png");
     text-align: center;
     font-weight: bold;
 }
-<<<<<<< HEAD
 
-.wicscomsbutton:hover {
-    border-color: #000;
-    background-color: #000;
-  }
+    .wicscomsbutton:hover {
+        border-color: #000;
+        background-color: #000;
+    }
 
 wicscomsbutton:active {
     border-color: #000;
@@ -1008,9 +891,9 @@ wicscomsbutton:active {
     color: #000;
 }
 
-  /* Wics Current Semester */
-  
-  .tablinks {
+/* Wics Current Semester */
+
+.tablinks {
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -1019,18 +902,17 @@ wicscomsbutton:active {
     text-decoration: none; /* Ensures no underline by default */
 }
 
-
 .titletabssection {
     font-family: var(--main-font);
     padding: 2%;
     margin: 2%;
 }
 
-.titletabssection h3{
-    font-family: var(--main-font);
-    font-size: smaller;
-    font-weight: normal;
-}
+    .titletabssection h3 {
+        font-family: var(--main-font);
+        font-size: smaller;
+        font-weight: normal;
+    }
 
 .tablinks:hover {
     text-decoration: underline #F76902; /* Underlines the text on hover */
@@ -1077,8 +959,6 @@ svg {
     font-family: var(--main-font);
     display: block;
     margin-bottom: 20px;
-    
-    
 }
 
 
@@ -1093,24 +973,26 @@ svg {
     margin-top: 20px;
     width: calc(100vw - 80px);
     margin-left: 40px;
-<<<<<<< HEAD
 }
-.membership-sec{
+
+.membership-sec {
     grid-column: 1/20;
     grid-row: 1;
 }
+
 .calendar-sec {
     grid-column: 21/31;
     grid-row: 1;
 }
-#history{
-    display:none;
+
+#history {
+    display: none;
 }
 
 /*
     All classes containing styling for membership profile elementes
 */
-.profile-view-grid h3{
+.profile-view-grid h3 {
     font-weight: 400;
     margin-top: 40px;
 }

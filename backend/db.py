@@ -1,24 +1,31 @@
 from datetime import datetime, timedelta, timezone
 from enum import Enum as EnumClass
+from types import MethodType
 from typing import Any, Optional
 import logging
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import ForeignKey, Integer, Table, Column, func, case, cast
+from sqlalchemy import ForeignKey, Integer, Table, Column, func, case, cast, and_
 
 
 class MeetingType(EnumClass):
     GENERAL = "GENERAL"
-    VOLUNTEER = "VOLUNEER"
+    VOLUNTEER = "VOLUNTEER"
     SOCIAL = "SOCIAL"
     COMMITTEE = "COMMITTEE"
+    MENTORSHIP = "MENTORSHIP"
 
 
 class RoleType(EnumClass):
     ADMIN = "ADMIN"
     PLANNER = "PLANNER"
+
+
+class Organizations:
+    WIC = 1
+    COMS = 2
     
     
 class Base(DeclarativeBase):
@@ -55,27 +62,95 @@ class Profile(db.Model):
     bonuses: Mapped[list["BonusPoints"]] = relationship("BonusPoints", foreign_keys="[BonusPoints.recipient_id]", back_populates="recipient")
     grants: Mapped[list["BonusPoints"]] = relationship("BonusPoints", foreign_keys="[BonusPoints.giver_id]", back_populates="giver")
     
+    # @hybrid_method
+    # def membership(self, org: int):
+    #     count = 0
+    #     for event in self.attendance:
+    #         if event.end_time.replace(tzinfo=timezone.utc) > (datetime.now(timezone.utc) - timedelta(weeks=10)) and event.organizer_id == org:
+    #             count += 1
+    #     return 'active' if count > 5 else ('inactive' if count == 0 else 'incomplete')
+    
+    # @membership.expression
+    # def membership_sql(cls, org: int):
+    #     query = db.session.query(func.count(attendance_table.c.event_id))\
+    #         .join(Event, Event.event_id == attendance_table.c.event_id)\
+    #         .where(attendance_table.c.profile_id == cls.profile_id)\
+    #         .where(Event.organizer_id == org)\
+    #         .where(Event.end_time > (datetime.utcnow() - timedelta(weeks=10)))\
+    #         .scalar_subquery()
+            
+    #     return case(
+    #         (query > 5, "Member"),
+    #         else_ = "Non-Member"
+    #     )
+
     @hybrid_method
     def membership(self, org: int):
-        count = 0
-        for event in self.attendance:
-            if event.end_time.replace(tzinfo=timezone.utc) > (datetime.now(timezone.utc) - timedelta(weeks=10)) and event.organizer_id == org:
-                count += 1
-        return 'active' if count > 5 else ('inactive' if count == 0 else 'incomplete')
-    
+        if org == Organizations.WIC:
+            general_meetings = 0
+            committee = 0
+            social_event = 0
+            volunteer = 0
+
+            current_semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
+
+            for event in [e for e in self.attendance if e.semester == current_semester]:
+                if event.meeting_type == MeetingType.GENERAL:
+                    general_meetings += 1
+                elif event.meeting_type == MeetingType.COMMITTEE:
+                    committee += 1
+                elif event.meeting_type == MeetingType.SOCIAL:
+                    social_event += 1
+                elif event.meeting_type == MeetingType.VOLUNTEER:
+                    volunteer += 1
+
+            return (general_meetings >= 14) and (committee >= 6) and (volunteer >= 1) and (social_event >= 1)
+        elif org == Organizations.COMS:
+            pass
+        else:
+            raise ValueError(f"Unknown Organization: {org}")
+
     @membership.expression
+    @classmethod
     def membership_sql(cls, org: int):
-        query = db.session.query(func.count(attendance_table.c.event_id))\
-            .join(Event, Event.event_id == attendance_table.c.event_id)\
+        current_semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
+        general_meeting_query = db.session.query(func.count(Event.event_id))\
+            .select_from(Event)\
+            .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
             .where(attendance_table.c.profile_id == cls.profile_id)\
-            .where(Event.organizer_id == org)\
-            .where(Event.end_time > (datetime.utcnow() - timedelta(weeks=10)))\
+            .where(Event.semester == current_semester)\
+            .where(Event.meeting_type == MeetingType.GENERAL)\
             .scalar_subquery()
-            
+
+        committee_meeting_query = db.session.query(func.count())\
+            .select_from(Event)\
+            .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
+            .where(attendance_table.c.profile_id == cls.profile_id)\
+            .where(Event.semester == current_semester)\
+            .where(Event.meeting_type == MeetingType.COMMITTEE)\
+            .scalar_subquery()
+
+        social_meeting_query = db.session.query(func.count())\
+            .select_from(Event)\
+            .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
+            .where(attendance_table.c.profile_id == cls.profile_id)\
+            .where(Event.semester == current_semester)\
+            .where(Event.meeting_type == MeetingType.SOCIAL)\
+            .scalar_subquery()
+
+        volunteer_meeting_query = db.session.query(func.count())\
+            .select_from(Event)\
+            .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
+            .where(attendance_table.c.profile_id == cls.profile_id)\
+            .where(Event.semester == current_semester)\
+            .where(Event.meeting_type == MeetingType.VOLUNTEER)\
+            .scalar_subquery()
+
         return case(
-            (query > 5, "Member"),
-            else_ = "Non-Member"
+            ((general_meeting_query >= 14) & (committee_meeting_query >= 6) & (social_meeting_query >= 1) & (volunteer_meeting_query >= 1), "active"),
+            else_="inactive"
         )
+
         
         
     @hybrid_method
@@ -312,6 +387,14 @@ class Event(db.Model):
     # organizer = relationship('Organizer', back_populates='events')
     # attendance = relationship('Attendance', back_populates='event')
 
+    @hybrid_property
+    def semester(self):
+        return (self.start_time.year * 10) + ((self.start_time.month // 7) * 5)
+
+    @semester.inplace.expression
+    def semester_sql(cls):
+        return (func.strftime('%Y', Event.start_time) * 10) + (cast(func.strftime('%m', Event.start_time) / 7, Integer) * 5)
+
 # class Attendance(db.Model):
 #     __tablename__ = 'Attendance'
 
@@ -351,7 +434,30 @@ def db_testing_setup():
         users.append(
             Profile(**user)
         )
-        
+
+    for i in range(20):
+        for meeting_type in (
+                MeetingType.GENERAL,
+                MeetingType.COMMITTEE,
+                MeetingType.MENTORSHIP,
+                MeetingType.SOCIAL,
+                MeetingType.VOLUNTEER
+            ):
+            event = Event(
+                meeting_type = meeting_type,
+                name = f"Active User Event {i}",
+                start_time = datetime.now(timezone.utc),
+                end_time = datetime.now(timezone.utc),
+                organizer_id = Organizations.WIC
+            )
+
+            for user in users[:50]:
+                user.attendance.append(event)
+
+        events.append(event)
+
+    active_users = users[:50]
+
     with open("testing_data/events.json") as f:
         event_data = json.load(f)
         
@@ -364,7 +470,9 @@ def db_testing_setup():
         events[-1].meeting_type = random.choice([
             MeetingType.GENERAL,
             MeetingType.VOLUNTEER,
-            MeetingType.SOCIAL
+            MeetingType.SOCIAL,
+            MeetingType.MENTORSHIP,
+            MeetingType.COMMITTEE
         ])
         events[-1].start_time = datetime.strptime(events[-1].start_time, "%Y-%m-%d %H:%M:%S")
         events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S")
@@ -373,6 +481,9 @@ def db_testing_setup():
         *users, *events, WiC, COMS
     ])
     db.session.commit()
+
+    for user in active_users:
+        print(user.profile_id, user.first_name, user.last_name)
 
 
 def create_attendance(email: str, event_id: int, first_name: str = None, last_name: str = None):

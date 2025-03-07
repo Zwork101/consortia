@@ -8,25 +8,40 @@
 {% block content %}
 
 <main>
+                <div class="tabcontent" id="membership">
+                    <!--Chart Background-->
+                    <p class="chart-first-zero">0</p>
+                    <div class="chart-background">
+                        <div class="chart-bckg1 one-dig-num"><p>2</p></div>
+                        <div class="chart-bckg2 one-dig-num"><p>4</p></div>
+                        <div class="chart-bckg3 one-dig-num"><p>6</p></div>
+                        <div class="chart-bckg4 one-dig-num"><p>8</p></div>
+                        <div class="chart-bckg5"><p>10</p></div>
+                        <div class="chart-bckg6"><p>12</p></div>
+                        <div class="chart-bckg7"><p>14</p></div>
 
-   {% include "wictabs.html.j2" %}
-
-    <div class="wicsdemo-container"> 
-        <div class="wicspoints-info-container">
-            <div class="tabcontent">
-                <!-- Legend -->
-                <div class="legend">
-                    <h2 class="chart-title">Requirements Breakdown</h2>
-                    <div>
-                        <div class="legend-row">
-                            <div class="legend-item">
-                                <div class="legend-color" style="background-color: #F5D76E;"></div>
-                                <p>General Meetings</p>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-color" style="background-color: #A3C85A;"></div>
-                                <p>Committee Meetings</p>
-                            </div>
+                    </div>
+                    <div class="points-bar">
+                        <div class="chart-bar wic-bar" id="social-total-points-bar" style="width:7.14%">
+                            <!--Flexbox-->
+                            <div id="social-earned-points-bar" style="width:100%"></div><!--Social Event--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
+                            <div style="width:0%"></div><!--Placeholder-->
+                            <div style="width:0%"></div><!--Placeholder-->
+                            <div style="width:0%"></div><!--Placeholder-->
+                        </div>
+                        <div class="chart-bar wic-bar" id="volunteering-total-points-bar" style="width:7.14%">
+                            <!--Flexbox-->
+                            <div style="width:0%"></div><!--Placeholder-->
+                            <div id="volunteering-earned-points-bar" style="width:100%"></div><!--Volunteering--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
+                            <div style="width:0%"></div><!--Placeholder-->
+                            <div style="width:0%"></div><!--Placeholder-->
+                        </div>
+                        <div class="chart-bar wic-bar" id="committee-total-points-bar" style="width:42.86%">
+                            <!--Flexbox-->
+                            <div style="width:0%"></div><!--Placeholder-->
+                            <div style="width:0%"></div><!--Placeholder-->
+                            <div id="committee-earned-points-bar" style="width:100%"></div><!--Committee Meetings--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
+                            <div style="width:0%"></div><!--Placeholder-->
                         </div>
                         <div class="chart-bar wic-bar" id="general-total-points-bar">
                             <!--Flexbox-->

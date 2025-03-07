@@ -883,15 +883,22 @@ input[type="text"] {
     background-color: #000;
   }
 
-wicscomsbutton:active {
+.wicscomsbutton:active {
     border-color: #000;
     background-color: #fff;
     color: #000;
 }
 
-  /* Wics Current Semester */
-  
-  .tablinks {
+.indexdbbutton {
+    position: absolute;
+    font-family: var(--main-font);
+    font-size: 1.5em;
+    cursor: pointer;
+    color: --orange;
+}
+
+/* Wics Current Semester */
+.tablinks {
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -1005,4 +1012,11 @@ svg {
 .membership-sec button.active {
     opacity: 100%;
     text-decoration: underline #F76902;
+}
+.indexdbbutton {
+    transform: translate(-120px, 16px);
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    color: #F76902
 }

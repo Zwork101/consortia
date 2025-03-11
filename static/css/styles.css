@@ -1024,3 +1024,18 @@ svg {
     text-decoration: underline;
     color: #F76902
 }
+
+/*
+    All classes containing stylung for admin notifications page
+*/
+.semester-report-btn {
+    padding: 6px 12px;
+    margin-left: 8px;
+    color: #fff;
+    border: none;
+    background-color: var(--orange);
+}
+
+.semester-report-btn:hover{
+    background-color: #000;
+}

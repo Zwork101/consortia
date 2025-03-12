@@ -1026,7 +1026,7 @@ svg {
 }
 
 /*
-    All classes containing stylung for admin notifications page
+    All classes containing styling for admin notifications page
 */
 .semester-report-btn {
     padding: 6px 12px;
@@ -1034,8 +1034,56 @@ svg {
     color: #fff;
     border: none;
     background-color: var(--orange);
+    font-family: var( --main-font);
 }
 
 .semester-report-btn:hover{
     background-color: #000;
+}
+
+/*
+    All classes containing styling for student profile page
+*/
+.profile-container {
+    border: 1px solid #727578;
+    border-radius: 8px;
+    width: 40vw;
+    display: inline-block;
+    margin-left: 80px;
+}
+
+.profile-sec h3 {
+    font-size: 1.1rem;
+    margin-left: 20px;
+}
+
+.profile-subsec{
+    display: inline-block;
+}
+
+.profile-subsec input{
+    height: 20px;
+    padding: 7px 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 160px;
+}
+
+.profile-subsec h4 {
+    font-size: 0.8rem;
+    color: #727578;
+    margin-bottom: 0px;
+    margin-left: 20px;
+}
+
+.profile-subsec p {
+    margin-top: 4px;
+    margin-bottom: 40px;
+    margin-left: 20px;
+}
+
+.savebtn{
+    position: absolute;
+    transform: translateY(-60px);
+    margin-left: 120px;
 }

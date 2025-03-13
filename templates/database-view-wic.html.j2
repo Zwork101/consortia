@@ -166,20 +166,14 @@
 </div>
 
 <div id="import-data-dialog-box" title="Import Data">
-    <form name="import-data" id="import-data" enctype="multipart/form-data" method="post" action="/meetings/upload">
+    <form name="import-data" id="import-data" enctype="multipart/form-data">
         <fieldset>
             <div>
                 <p>Choose file to upload a CSV file.</p>
                 <p>CSV files only.</p>
             </div>
-             <div>
-                {{ render_field(form.csv_data) }}
-            </div>
-             <div>
-                {{ form.meeting_id() }}
-            </div>
             <div>
-                {{ form.csrf_token }}
+                <input type="file" name="csv-file" id="csv-file" accept=".csv">
             </div>
             <br>
             <div>
@@ -199,8 +193,6 @@
             
         </fieldset>
     </form>
-
-
 </div>
 
 
@@ -295,7 +287,7 @@
             <th>LAST NAME</th>
             <th>MEMBERSHIP</th>
             <th>SEMESTER</th>
-            <th>E-MAIL ADRESS</th>
+            <th>E-MAIL ADDRESS</th>
             <th>GEN. MEETINGS</th>
             <th>COM. MEETINGS</th>
             <th>SOCIAL EVENT</th>

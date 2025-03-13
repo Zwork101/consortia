@@ -105,3 +105,8 @@ def return_calendar():
 @test.route('/meetings/upload', methods=['GET', 'POST'])
 def upload_meeting_data():
     return render_template('database-view-wic.html.j2')
+
+@test.route('/meetings/attendance', methods=['GET', 'POST'])
+def attendance_data():
+    return render_template('database-view-attendance.html.j2')
+

@@ -2,6 +2,7 @@
 {% block head %}
 <script src="../static/js/mainjavascript.js"></script>
 <script src="{{ url_for("static", filename="js/admin2.js") }}" defer></script>
+<script src="{{ url_for("static", filename="js/dialogs.js") }}" defer></script>
 {% endblock %}
 {% block content %}
 {% include "nav.html.j2" %}
@@ -143,4 +144,37 @@
         </div>
     </div>
 </main>
+
+<!-- Add filter dialog box markup to COMS page -->
+<div id="filter-dialog-box" title="Filters">
+    <form name="filter-settings" id="filter-settings" method="get">
+        <fieldset>
+            <div>
+                <select name="filter-sort-by" id="filter-sort-by">
+                    <option>Sort by: First Name</option>
+                    <option>Sort by: Last Name</option>
+                </select>
+                <select name="filter-sort-order" id="filter-sort-order">
+                    <option>Ascending</option>
+                    <option>Decending</option>
+                </select>
+            </div>
+            <div> 
+                <label for="filter-membership">Membership</label>
+                <select name="filter-membership" id="filter-membership">
+                    <option>All</option>
+                    <option>None</option>
+                </select>    
+            </div>
+            <div>
+                <label for="filter-semesters">Semesters</label>
+                <select name="filter-semesters" id="filter-semesters">
+                    <option>All</option>
+                    <option>None</option>
+                </select>
+            </div>
+            <!-- Additional fields specific to COMS could go here -->
+        </fieldset>
+    </form>
+</div>
 {% endblock %}

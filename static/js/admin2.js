@@ -98,10 +98,64 @@ const addTableRows = (rows) => {
     });
 };
 
+const applyFilters = () => {
+    const sortBy = document.getElementById("filter-sort-by").value;
+    const sortOrder = document.getElementById("filter-sort-order").value;
+    const membership = document.getElementById("filter-membership").value;
+    const semesters = document.getElementById("filter-semesters").value;
+    const search = document.getElementById("search").value;
+    
+    console.log("Applying filters:", { sortBy, sortOrder, membership, semesters, search });
+    
+    const queryParams = new URLSearchParams();
+    queryParams.append("filter-sort-by", sortBy);
+    queryParams.append("filter-sort-order", sortOrder);
+    queryParams.append("filter-membership", membership);
+    queryParams.append("filter-semesters", semesters);
+    if (search) {
+        queryParams.append("search", search);
+    }
+    
+    const endpoint = `http://localhost:8080/admin/profiles/1?${queryParams.toString()}`;
+    
+    fetch(endpoint)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            const table = document.getElementById("orgMembers");
+            // Remove existing rows (assuming rows have the class "dbTableRow")
+            table.querySelectorAll(".dbTableRow").forEach(row => row.remove());
+            addTableRows(data);
+        })
+        .catch(err => {
+            console.error("Filter error:", err);
+            alert("There was an error applying the filters. Please try again.");
+        });
+};
+
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Page loaded, fetching profiles...');
     listProfiles().then(data => {
         addTableRows(data);
+    });
+
+    // Monitor filter form submission
+    document.getElementById("filter-settings").addEventListener("submit", (e) => {
+        e.preventDefault();
+        applyFilters();
+    });
+    
+    // Monitor search field input for real-time filtering
+    document.getElementById("search").addEventListener("input", (e) => {
+        // Debounce to avoid too many requests - wait 500ms after typing stops
+        if (window.searchTimeout) clearTimeout(window.searchTimeout);
+        window.searchTimeout = setTimeout(() => {
+            applyFilters();
+        }, 500);
     });
 });

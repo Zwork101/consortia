@@ -210,35 +210,17 @@ def list_users(organization: int):
     try:
         skip = request.args.get("skip", 0, type = int)
         count = request.args.get("count", 100, type = int)
-        sort = request.args.get("sort", "first_name")
-        decending = request.args.get("decending", True, type = bool)
     except TypeError:
         raise
     
-    rows = db.session.query(
-        Profile.first_name, 
-        Profile.last_name, 
-        Profile.email,
-        Profile.profile_id,
-        Profile.membership(organization),
-        Profile.points(organization),
-        Profile.semesters(organization)
-        )\
-            .join(Event.organizer)\
-            .filter(Event.organizer_id == organization).\
-            group_by(Profile.profile_id).limit(count).offset(skip).all()
-                    
+    # Query profiles that have at least one attendance from the given organization.
+    users = Profile.query.filter(
+        Profile.attendance.any(Event.organizer_id == organization)
+    ).limit(count).offset(skip).all()
+
     return jsonify([
-        {
-            "profile": {
-                "first_name": row[0],
-                "last_name": row[1],
-                "email": row[2],
-                "membership": row[4],
-                "points": row[5],
-                "semesters": row[6]
-            }
-        } for row in rows
+        {"profile": user.serialize(organization)["profile"]}
+        for user in users
     ])
 
 

@@ -206,39 +206,61 @@ def send_update():
 
 @admin.route("/admin/profiles/<int:organization>", methods=["GET"])
 def list_users(organization: int):
-
     try:
-        skip = request.args.get("skip", 0, type = int)
-        count = request.args.get("count", 100, type = int)
-        sort = request.args.get("sort", "first_name")
-        decending = request.args.get("decending", True, type = bool)
+        skip = request.args.get("skip", 0, type=int)
+        count = request.args.get("count", 100, type=int)
+        sort_by = request.args.get("filter-sort-by", "First Name")
+        sort_order = request.args.get("filter-sort-order", "Ascending")
+        membership_filter = request.args.get("filter-membership", "All")
+        semesters_filter = request.args.get("filter-semesters", "All")
+        search_query = request.args.get("search", None)
     except TypeError:
         raise
     
-    rows = db.session.query(
-        Profile.first_name, 
-        Profile.last_name, 
-        Profile.email,
-        Profile.profile_id,
-        Profile.membership(organization),
-        Profile.points(organization),
-        Profile.semesters(organization)
-        )\
-            .join(Event.organizer)\
-            .filter(Event.organizer_id == organization).\
-            group_by(Profile.profile_id).limit(count).offset(skip).all()
-                    
+    # Base query: only profiles with attendance in given org
+    query = Profile.query.filter(Profile.attendance.any(Event.organizer_id == organization))
+    
+    # Apply membership filter if requested.
+    if membership_filter != "All":
+        if membership_filter == "None":
+            query = query.filter(Profile.membership_sql(organization) == "inactive")
+        else:
+            query = query.filter(Profile.membership_sql(organization) == "active")
+    
+    # Filter on semesters if selected.
+    if semesters_filter != "All":
+        if semesters_filter == "None":
+            query = query.filter(Profile.semesters_sql(organization) == 0)
+        else:
+            query = query.filter(Profile.semesters_sql(organization) > 0)
+    
+    # Apply text search filter on first name, last name, and email.
+    if search_query:
+        query = query.filter(
+            or_(
+                Profile.first_name.ilike(f"%{search_query}%"),
+                Profile.last_name.ilike(f"%{search_query}%"),
+                Profile.email.ilike(f"%{search_query}%")
+            )
+        )
+    
+    # Determine sort column.
+    if sort_by.lower() == "first name":
+        sort_column = Profile.first_name
+    elif sort_by.lower() == "last name":
+        sort_column = Profile.last_name
+    else:
+        sort_column = Profile.first_name
+    
+    if sort_order.lower().startswith("desc"):
+        sort_column = sort_column.desc()
+    else:
+        sort_column = sort_column.asc()
+    
+    users = query.order_by(sort_column).limit(count).offset(skip).all()
     return jsonify([
-        {
-            "profile": {
-                "first_name": row[0],
-                "last_name": row[1],
-                "email": row[2],
-                "membership": row[4],
-                "points": row[5],
-                "semesters": row[6]
-            }
-        } for row in rows
+        {"profile": user.serialize(organization)["profile"]}
+        for user in users
     ])
 
 

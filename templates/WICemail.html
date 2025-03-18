@@ -7,6 +7,10 @@
     <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
    
 </head>
+<script>
+    const container = document.getElementById('my-container');
+    let html = 'nuts';
+</script>
 <body>
     <div class="emailcontainer">
         <div class="emailheader">
@@ -24,9 +28,24 @@
             
             <h3>Upcoming Events</h3>
             <!-- for loop upcoming events -->
+             <!-- <script> for ( let i = 0 ; i < 2; i++ ) {
+                document.createElement('p');
+                html += `<div class="emailevent">
+                <h4>{{ meeting.name }}</h4>
+                <p><strong>Date:</strong> {{ meeting.date }}</p> 
+                <p><strong>Location:</strong> {{ meeting.location }}</p>
+                <p>{{ meeting.description}}</p>
+                <p>Meeting type: {{ meeting.meeting_type}} </p>
+                <a href="[Event Link]" class="emailbutton">Register Now</a>
+                </div>`;
+
+                container.innerHTML = html;
+               
+             } -->
+            </script>
             <div class="emailevent">
                 <h4>{{ meeting.name }}</h4>
-                <p><strong>Date:</strong> {{ meeting.date }}</p> <!-- info here-->
+                <p><strong>Date:</strong> {{ meeting.date }}</p> 
                 <p><strong>Location:</strong> {{ meeting.location }}</p>
                 <p>{{ meeting.description}}</p>
                 <p>Meeting type: {{ meeting.meeting_type}} </p>

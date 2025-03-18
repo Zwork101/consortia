@@ -30,3 +30,5 @@ class LocalConfig(Config):
 
 class ProductionConfig(Config):
     USE_X_SENDFILE = True
+    SERVER_NAME = "consortia.gccis.rit.edu"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///dev.db"

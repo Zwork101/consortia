@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/normalize/normalize.css">
+    <script src="../static/js/mainjavascript.js"></script>
+</head>
+
+<!-- Everything below this section will be part of the final code-->
+
+<body>
+    <nav>
+        <a href="index.html"><img class="backarrow" src="../static/images/back-arrow.png" width="16" /></a>
+        <ul class="nav-options-box">
+            <li style="padding:0px;"><a href=""><p>NOTIFICATIONS</p></a></li>
+            <li><a href=""><p>SETTINGS</p></a></li>
+            <li>
+                <div class="navbar-dropdown">
+                    <button onclick="dropDown4()" class="dropbtn4">
+                        WILL SMITH
+                        <span class="dropDownArrow"><img src="../static/images/down-arrow-white.png" width="10" /></span>
+                    </button>
+                    <div id="DropdownContent4" class="dropdown-content-navbar">
+                        <a>Profile</a>
+                        <a>Logout</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <h2 style="margin-left: 80px; margin-top: 80px;">Firstname Lastname</h2>
+        <div class="profile-container">
+            <div class="profile-sec">
+                <h3>MEMBERSHIP INFORMATION</h3>
+                <div class="profile-subsec">
+                    <h4>Membership:</h4>
+                    <p>Membership Status</p>
+
+                    <h4>Semester:</h4>
+                    <p>Semesters with group</p>
+
+                    <h4>Awards:</h4>
+                    <p>Awards Received</p>
+
+                    <h4 style="opacity:0%;">placeholder</h4>
+                    <p style="opacity:0%;">placeholder</p>
+                </div>
+                <div class="profile-subsec" style="margin-left: 100px;">
+                    <h4>General Meetings:</h4>
+                    <p>x/14</p>
+
+                    <h4>Committee Meetings:</h4>
+                    <p>x/6</p>
+
+                    <h4>Social Events:</h4>
+                    <p>x/1</p>
+
+                    <h4>Volunteering:</h4>
+                    <p>x/1</p>
+                </div>
+            </div>
+        </div>
+        <div class="profile-container">
+            <div class="profile-sec">
+                <form>
+                    <h3>PERSONAL INFORMATION</h3>
+                    <div class="profile-subsec">
+                        <h4>Graduation Year:</h4>
+                        <input type="text" id="graduation-year" name="graduation-year" value="DataHere">
+
+                        <h4>Degree:</h4>
+                        <input type="text" id="degree" name="degree" value="DataHere">
+
+                        <h4 style="opacity:0%;">placeholder</h4>
+                        <p style="opacity:0%;">placeholder</p>
+
+                        <h4 style="opacity:0%;">placeholder</h4>
+                        <p style="opacity:0%;">placeholder</p>
+                    </div>
+                    <div class="profile-subsec" style="margin-left: 100px;">
+                        <h4>Pronouns:</h4>
+                        <input type="text" id="pronouns" name="pronouns" value="DataHere">
+
+                        <h4>T-shirt size:</h4>
+                        <input type="text" id="size" name="size" value="DataHere">
+
+                        <h4 style="opacity:0%;">placeholder</h4>
+                        <p style="opacity:0%;">placeholder</p>
+
+                        <h4 style="opacity:0%;">placeholder</h4>
+                        <p style="opacity:0%;">placeholder</p>
+
+                        <button class="semester-report-btn savebtn">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

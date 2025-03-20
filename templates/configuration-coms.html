@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/normalize/normalize.css">
+    <script src="../static/js/mainjavascript.js"></script>
+</head>
+
+<!-- Everything below this section will be part of the final code-->
+
+<body>
+    <nav>
+        <a href="index.html"><img class="backarrow" src="../static/images/back-arrow.png" width="16" /></a>
+        <ul class="nav-options-box">
+            <li style="padding:0px;"><a href=""><p>NOTIFICATIONS</p></a></li>
+            <li><a href=""><p>SETTINGS</p></a></li>
+            <li>
+                <div class="navbar-dropdown">
+                    <button onclick="dropDown4()" class="dropbtn4">
+                        WILL SMITH
+                        <span class="dropDownArrow"><img src="../static/images/down-arrow-white.png" width="10" /></span>
+                    </button>
+                    <div id="DropdownContent4" class="dropdown-content-navbar">
+                        <a>Profile</a>
+                        <a>Logout</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <h2 style="margin-left: 80px; margin-top: 80px;">Configuration</h2>
+        <div class="profile-container">
+            <div class="profile-sec">
+                <h3>MEMBERSHIP REQURIMENTS</h3>
+                <div class="profile-subsec">
+                    <h4>Total Points:</h4>
+                    <input type="text" id="PointsReq" name="PointsReq" value="DataHere">
+
+                    <h4>Mentorship Max Points:</h4>
+                    <input type="text" id="MentMax" name="MentMax" value="DataHere">
+
+                    <h4>Volunteering Max Points:</h4>
+                    <input type="text" id="VolunMax" name="VolunMax" value="DataHere">
+
+                    <h4>Meetings Max Points:</h4>
+                    <input type="text" id="VolunMax" name="MeetMax" value="MeetMax">
+                </div>
+                <div class="profile-subsec" style="margin-left: 100px;">
+                    <h4 style="opacity:0%;">placeholder</h4>
+                    <p style="opacity:0%;">placeholder</p>
+
+                    <h4 style="opacity:0%;">placeholder</h4>
+                    <p style="opacity:0%;">placeholder</p>
+
+                    <h4 style="opacity:0%;">placeholder</h4>
+                    <p style="opacity:0%;">placeholder</p>
+
+                    <h4 style="opacity:0%;">placeholder</h4>
+                    <p style="opacity:0%;">placeholder</p>
+                </div>
+            </div>
+        </div>
+        <div class="profile-container">
+            <div class="profile-sec">
+                <form>
+                    <h3>AWARDS</h3>
+                    <div class="profile-subsec">
+                        <h4>1st Semester:</h4>
+                        <input type="text" id="1sem-award" name="1sem-award" value="DataHere">
+
+                        <h4>2nd Semester:</h4>
+                        <input type="text" id="2sem-award" name="2sem-award" value="DataHere">
+
+                        <h4>4th Semester:</h4>
+                        <input type="text" id="4sem-award" name="4sem-award" value="DataHere">
+
+                        <h4>6th Semester:</h4>
+                        <input type="text" id="6sem-award" name="6sem-award" value="DataHere">
+                    </div>
+                    <div class="profile-subsec" style="margin-left: 100px;">
+                        <h4 style="transform: translateY(-16px)">8th Semester:</h4>
+                        <input style="transform: translateY(-16px)" type="text" id="8sem-award" name="8sem-award" value="DataHere">
+
+                        <h4 style="opacity:0%;">placeholder</h4>
+                        <p style="opacity:0%;">placeholder</p>
+
+                        <h4 style="opacity:0%;">placeholder</h4>
+                        <p style="opacity:0%;">placeholder</p>
+
+                        <h4 style="opacity:0%;">placeholder</h4>
+                        <p style="opacity:0%;">placeholder</p>
+
+                        <button class="semester-report-btn savebtn">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

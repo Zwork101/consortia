@@ -239,6 +239,7 @@ class Profile(db.Model):
         if org_id is not None:
             base_profile_json['membership'] = self.membership(org_id)
             base_profile_json['semesters'] = self.semesters(org_id)
+            base_profile_json["bonus_points"] = self.bonus_points(1)
 
         if self.rit_id is None:
             return {

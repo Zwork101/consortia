@@ -2,6 +2,7 @@
 {% block head %}
 <script src="../static/js/mainjavascript.js"></script>
 <script src="{{ url_for("static", filename="js/admin2.js") }}" defer></script>
+<script src="{{ url_for("static", filename="js/dialogs.js") }}" defer></script>
 {% endblock %}
 {% block content %}
 {% include "nav.html.j2" %}
@@ -89,5 +90,91 @@
         </tr>
         
     </table>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('editProfileModal').classList.remove('show-modal')">&times;</span>
+            <h2>Edit Profile</h2>
+            <form id="editProfileForm" class="edit-profile-form" method="post" action="{{ url_for('admin.confirm_edit_user') }}">
+                <input type="hidden" id="edit-user-id" name="user_id">
+                
+                <div class="form-group">
+                    <label for="edit-email">Email:</label>
+                    <input type="text" id="edit-email" name="email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-first_name">First Name:</label>
+                    <input type="text" id="edit-first_name" name="first_name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-last_name">Last Name:</label>
+                    <input type="text" id="edit-last_name" name="last_name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-rit_id">RIT ID:</label>
+                    <input type="text" id="edit-rit_id" name="rit_id">
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-graduation_year">Graduation Year:</label>
+                    <input type="text" id="edit-graduation_year" name="graduation_year">
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-degree">Degree:</label>
+                    <input type="text" id="edit-degree" name="degree">
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-pronouns">Pronouns:</label>
+                    <input type="text" id="edit-pronouns" name="pronouns">
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-avatar_path">Avatar Path:</label>
+                    <input type="text" id="edit-avatar_path" name="avatar_path">
+                </div>
+                
+                <button type="submit" class="form-submit-button">Save Changes</button>
+            </form>
+        </div>
+    </div>
 </main>
+
+<!-- Add filter dialog box markup to COMS page -->
+<div id="filter-dialog-box" title="Filters">
+    <form name="filter-settings" id="filter-settings" method="get">
+        <fieldset>
+            <div>
+                <select name="filter-sort-by" id="filter-sort-by">
+                    <option>Sort by: First Name</option>
+                    <option>Sort by: Last Name</option>
+                </select>
+                <select name="filter-sort-order" id="filter-sort-order">
+                    <option>Ascending</option>
+                    <option>Decending</option>
+                </select>
+            </div>
+            <div> 
+                <label for="filter-membership">Membership</label>
+                <select name="filter-membership" id="filter-membership">
+                    <option>All</option>
+                    <option>None</option>
+                </select>    
+            </div>
+            <div>
+                <label for="filter-semesters">Semesters</label>
+                <select name="filter-semesters" id="filter-semesters">
+                    <option>All</option>
+                    <option>None</option>
+                </select>
+            </div>
+            <!-- Additional fields specific to COMS could go here -->
+        </fieldset>
+    </form>
+</div>
 {% endblock %}

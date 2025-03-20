@@ -4,6 +4,7 @@ let socialEvents = 0;
 let voluenteeringEvents = 0;
 let committeeEvents = 0;
 let generalEvents = 0;
+let otherEvents = 0;
 
 const getProfile = async () => {
 	const endpoint = "http://localhost:8080/profile/1?org_id=1";
@@ -24,7 +25,7 @@ const getProfile = async () => {
 const getStudentPoints = (studentData) => {
 	//table = document.getElementById("orgMembers");
 
-  // console.log(studentData)
+  console.log(studentData)
   // console.log(studentData.profile.attendance)
 
   let attendance = studentData.profile.attendance;
@@ -57,7 +58,8 @@ const getStudentPoints = (studentData) => {
         console.log("GE "+generalEvents);
         break;
       default:
-        console.log("b")
+        otherEvents +=1
+        console.log("Other Events "+otherEvents);
     }
   });
   

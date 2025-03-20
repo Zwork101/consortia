@@ -17,46 +17,32 @@ $( function() {
         buttons: [
             {
                 text: "Apply All",
-                // click: submit_filter_settings(filter_dialog),
                 click: function() {
-                    $("#filter-settings").submit;
+                    // Properly submit the form
+                    $("#filter-settings").trigger("submit");
+                    
+                    // Close the dialog after the form is processed
                     filter_dialog.dialog('close');
                     console.log("filter box closed");
                 }
             },
-        ],
-        // close:function() {
-        //     filter_dialog.dialog('close');
-            // filter_form[0].reset();
-            // allFields.removeClass("ui-state-error")
-        // }
+        ]
     });
-    // filter_form = filter_dialog.find("form").on("submit", function(event){
-    //     event.preventDefault();
-    //     submit_filter_settings();
-    //     /*insert event here*/
-    // });
+
     $("#filter-button").button().on("click", function() {
         filter_dialog.dialog('open');
         console.log("filter button pressed");
     });
 
-    $( "#filter-sort-by" )
-    .selectmenu()
-    $( "#filter-sort-order" )
-    .selectmenu()
-    $( "#filter-membership" )
-    .selectmenu()
-    $( "#filter-semesters" )
-    .selectmenu()
-    $( "#filter-gen-meetings" )
-    .selectmenu()
-    $( "#filter-con-meetings" )
-    .selectmenu()
-    $( "#filter-social-event" )
-    .selectmenu()
-    $( "#filter-volunteering" )
-    .selectmenu()
+    // Initialize the jQuery UI selectmenu widgets
+    $("#filter-sort-by").selectmenu();
+    $("#filter-sort-order").selectmenu();
+    $("#filter-membership").selectmenu();
+    $("#filter-semesters").selectmenu();
+    $("#filter-gen-meetings").selectmenu();
+    $("#filter-con-meetings").selectmenu();
+    $("#filter-social-event").selectmenu();
+    $("#filter-volunteering").selectmenu();
 
 
     /*

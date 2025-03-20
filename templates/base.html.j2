@@ -1,13 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../static/css/mobile.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/calendar.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="../static/css/calendar.css">
-    <script src="../static/js/mainjavascript.js"></script>
+    <meta charset="utf-8">
     <title>{{ title }}</title>
     <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
     <link rel="stylesheet" type="text/css" href="../static/css/normalize/normalize.css">
@@ -17,17 +11,42 @@
     <script src=" https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js "></script>
     <script src="../static/js/jquery-ui.min.js"></script>
     <script src="../static/js/dialogs.js"></script>
+	<script src="../static/js/mainjavascript.js"></script>
     {% block head %}
     {% endblock %}
 </head>
 <body>
-<nav>
-    <ul class="nav-options-box">
-        <li><a href=""><p>NOTIFICATIONS</p></a></li>
-        <li><a href=""><p>SETTINGS</p></a></li>
-        <li><section><p>WILL SMITH <img src="../static/images/down-arrow-white.png" width="10em" /> </p></section></li>
-    </ul>
-</nav>
+	<nav>
+		<a href="index.html">
+			<img class="backarrow" src="../static/images/back-arrow.png" width="16" />
+		</a>
+		<ul class="nav-options-box">
+			<li style="padding:0px;" >
+				<a href="">
+					<p>NOTIFICATIONS</p>
+				</a>
+			</li>
+			<li>
+				<a href="">
+					<p>SETTINGS</p>
+				</a>
+			</li>
+			<li>
+				<div class="navbar-dropdown">
+					<button onclick="dropDown4()" class="dropbtn4">
+						WILL SMITH <!--Replace name with student name-->
+						<span class="dropDownArrow">
+							<img src="../static/images/down-arrow-white.png" width="10" />
+						</span>
+					</button>
+					<div id="DropdownContent4" class="dropdown-content-navbar">
+						<a>Profile</a>
+						<a>Logout</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</nav>
 {% block content %}
 {% endblock %}
 </body>

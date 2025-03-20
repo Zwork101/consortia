@@ -2,10 +2,11 @@ import importlib
 import os
 import logging
 
+from backend.auth import shib
 from backend.db import db, db_testing_setup, Event
 from configs import *
 
-from flask import Flask, Blueprint
+from flask import Flask, Blueprint, request
 
 def create_app(config_file: Config = DevelopmentConfig) -> Flask:
 
@@ -17,6 +18,7 @@ def create_app(config_file: Config = DevelopmentConfig) -> Flask:
     app.config.from_object(config_file)
 
     db.init_app(app)
+    shib.init_app(app)
 
     blueprint_paths = os.listdir("backend/routes")
     blueprints = []
@@ -48,5 +50,14 @@ def database_setup(app):
 
 if __name__ == "__main__":
     app = create_app(DevelopmentConfig)
+
+    ### REMOVE FROM PRODUCTION ###
+    @app.before_request
+    def before_request():
+        request.environ["uid"] = "wls1234"
+        request.environ["givenName"] = "Will"
+        request.environ["sn"] = "Smith"
+        request.environ["email"] = "wls1234@rit.edu"
+
     database_setup(app)
     app.run()

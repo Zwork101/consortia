@@ -42,7 +42,7 @@ def upcoming_meetings():
         }
         for meeting in upcoming_meetings
     ]
-    return jsonify({"Total": total_meetings, "Meetings": meetings})
+    return jsonify({"Meetings": meetings})
 
 @student.route("/attendance")
 def member_attendance():

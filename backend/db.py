@@ -1,10 +1,11 @@
 from datetime import datetime, timedelta, timezone
 from enum import Enum as EnumClass
 from types import MethodType
-from typing import Any, Optional
+from typing import Any, Optional, override
 import logging
 
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import ForeignKey, Integer, Table, Column, func, case, cast, and_
@@ -43,11 +44,11 @@ attendance_table = Table(
 )
 
 
-class Profile(db.Model):
+class Profile(db.Model, UserMixin):
     __tablename__ = 'Profile'
 
     profile_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
-    rit_id: Mapped[Optional[int]]
+    rit_id: Mapped[Optional[str]]
     last_name: Mapped[str]
     first_name: Mapped[str]
     email: Mapped[str] = mapped_column(unique=True)
@@ -83,6 +84,26 @@ class Profile(db.Model):
     #         (query > 5, "Member"),
     #         else_ = "Non-Member"
     #     )
+
+    @property
+    @override
+    def is_authenticated(self):
+        return True
+
+    @property
+    @override
+    def is_active(self):
+        return True
+
+    @property
+    @override
+    def is_anonymous(self):
+        return False
+
+    @override
+    def get_id(self):
+        return str(self.profile_id)
+    
 
     @hybrid_method
     def membership(self, org: int):

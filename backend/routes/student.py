@@ -9,7 +9,7 @@ def upcoming_meetings():
     """Return upcoming meetings based on pagination parameters."""
     try:
         skip = request.args.get("skip", 0, type=int)
-        count = request.args.get("count", 20, type=int)
+        count = request.args.get("count", 9999, type=int)
 
         if skip < 0 or count <= 0:
             return jsonify({"Error": "Invalid pagination parameters"})
@@ -20,7 +20,6 @@ def upcoming_meetings():
     meeting_results = (
         Event.query.filter(Event.start_time >= date.today())
         .order_by(Event.start_time)
-        .limit(count)
         .offset(skip)
         .all()
     )

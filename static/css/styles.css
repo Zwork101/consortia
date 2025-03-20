@@ -1182,7 +1182,7 @@ svg {
     margin-left: 120px;
 }
 
-=======
+
 /* Modal styling - update with !important to ensure these take precedence */
 .modal {
     display: none !important; /* hidden by default */
@@ -1256,12 +1256,11 @@ svg {
         font-size: 0.9rem !important;
     }
 
-.form-submit-button {
+.semester-report-btn {
     font-family: var(--main-font);
     font-size: 1rem;
     width: auto;
     align-self: flex-start;
-    margin-top: 15px;
     padding: 8px 20px;
     border: 2px solid var(--orange);
     background-color: var(--orange);
@@ -1271,9 +1270,7 @@ svg {
     border-radius: 2px;
 }
 
-    .form-submit-button:hover {
+    .semester-report-btn:hover {
         border-color: #000;
         background-color: #000;
     }
-
-> > > > > > > 248492311c0b57c01a4b37ef5ac02da13d66dda9

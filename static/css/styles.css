@@ -1117,3 +1117,163 @@ svg {
     border-color: #000;
     background-color: #000;
 }
+
+<<<<<<< HEAD
+/*
+    All classes containing styling for admin notifications page
+*/
+.semester-report-btn {
+    padding: 8px 12px;
+    margin-left: 8px;
+    color: #fff;
+    border: none;
+    background-color: var(--orange);
+    font-family: var( --main-font);
+}
+
+.semester-report-btn:hover {
+    background-color: #000;
+}
+
+/*
+    All classes containing styling for student profile page
+*/
+.profile-container {
+    border: 1px solid #727578;
+    border-radius: 8px;
+    width: 40vw;
+    display: inline-block;
+    margin-left: 80px;
+}
+
+.profile-sec h3 {
+    font-size: 1.1rem;
+    margin-left: 20px;
+}
+
+.profile-subsec {
+    display: inline-block;
+}
+
+    .profile-subsec input {
+        height: 20px;
+        padding: 7px 10px;
+        margin-top: 10px;
+        margin-left: 20px;
+        width: 160px;
+    }
+
+    .profile-subsec h4 {
+        font-size: 0.8rem;
+        color: #727578;
+        margin-bottom: 0px;
+        margin-left: 20px;
+    }
+
+    .profile-subsec p {
+        margin-top: 4px;
+        margin-bottom: 40px;
+        margin-left: 20px;
+    }
+
+.savebtn {
+    position: absolute;
+    transform: translateY(-60px);
+    margin-left: 120px;
+}
+
+=======
+/* Modal styling - update with !important to ensure these take precedence */
+.modal {
+    display: none !important; /* hidden by default */
+    position: fixed !important;
+    z-index: 9999 !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: auto !important;
+    background-color: rgba(0,0,0,0.4) !important; /* Black with opacity */
+}
+
+.modal.show-modal {
+    display: block !important;
+}
+
+.modal-content {
+    background-color: #fff !important;
+    margin: 10% auto !important;
+    padding: 20px !important;
+    border: 1px solid #888 !important;
+    width: 80% !important;
+    max-width: 600px !important;
+    font-family: var(--main-font) !important;
+}
+
+    .modal-content h2 {
+        color: #000;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        border-bottom: 1px solid var(--stroke-gray);
+        padding-bottom: 10px;
+    }
+
+    .modal-content .close {
+        color: #888;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+        .modal-content .close:hover {
+            color: #000;
+        }
+
+.edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+    .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+        font-weight: 500;
+    }
+
+    .form-group input {
+        padding: 8px;
+        border: 1px solid var(--stroke-gray);
+        border-radius: 2px;
+        font-family: var(--main-font);
+        font-size: 0.9rem !important;
+    }
+
+.form-submit-button {
+    font-family: var(--main-font);
+    font-size: 1rem;
+    width: auto;
+    align-self: flex-start;
+    margin-top: 15px;
+    padding: 8px 20px;
+    border: 2px solid var(--orange);
+    background-color: var(--orange);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 2px;
+}
+
+    .form-submit-button:hover {
+        border-color: #000;
+        background-color: #000;
+    }
+
+> > > > > > > 248492311c0b57c01a4b37ef5ac02da13d66dda9

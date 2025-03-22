@@ -43,7 +43,7 @@
                 <button class="tablinks prof-view-btn active" onclick="openCity(event, 'membership')">Current Semester</button>
                 <button class="tablinks prof-view-btn" onclick="openCity(event, 'history')">History</button>
 
-                <div class="tabcontent" id="membership">
+                <div class="tabcontent" id="membership"> <!--COPY MEMBERSHIP DATA WITHING THIS DIV-->
                     <div class="points-bar">
                         <div class="chart-bar">
                             <!--Flexbox-->
@@ -147,7 +147,7 @@
                     </div>
                 </div>
 
-                <div id="history" class="tabcontent">
+                <div id="history" class="tabcontent"> <!--COPY HISTORY DATA WITHING THIS DIV-->
                     <div class="table-container membership-history-container">
                         <div>
                             <div>
@@ -224,10 +224,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
 
             </div>
-            <div class="calendar-sec">
+            <div class="calendar-sec"> <!--COPY CALENDAR DATA WITHING THIS DIV-->
                 <script>
                     $(document).ready(function () {
                         let currentDate = new Date();
@@ -291,27 +291,30 @@
                     <div class="main-container">
                         <div class="calendar-container">
                             <div class="calendar-header">
-                                <button id="prev"><img src="../static/images/prev-arrow.png" style="width:16px;"/></button>
+                                <button id="prev"><img src="../static/images/prev-arrow.png" style="width:16px;" /></button>
                                 <h2 id="month-title"></h2>
-                                <button id="next"><img src="../static/images/next-arrow.png" style="width:16px;"/></button>
+                                <button id="next"><img src="../static/images/next-arrow.png" style="width:16px;" /></button>
                             </div>
                             <div class="calendar-grid"></div>
                         </div>
                         <div class="events-container">
                             <div class="event">
                                 <div class="meeting-marker" style="background-color: #009CBD;"></div>
+                                <p class="calendar-status">Status: Attended</p>
                                 <strong>General Meeting</strong> <!--replace data with 1st upcoming meeting according to calendar-->
                                 <p>WED • 6:30PM - 7:30PM</p>
                                 <p>GOL - 2400 / Zoom</p>
                             </div>
                             <div class="event">
                                 <div class="meeting-marker" style="background-color: #84BC00;"></div>
+                                <p class="calendar-status">Status: Unattended</p>
                                 <strong>Projects Committee</strong> <!--replace data with 2nd upcoming meeting according to calendar-->
                                 <p>THURS • 6:30PM - 7:30PM</p>
                                 <p>GOL - 2400</p>
                             </div>
                             <div class="event">
                                 <div class="meeting-marker" style="background-color: #7D55C7;"></div>
+                                <p class="calendar-status">Status: Unattended</p>
                                 <strong>WiCHacks Committee</strong> <!--replace data with 3rd upcoming meeting according to calendar-->
                                 <p>THURS • 7:00PM - 8:00PM</p>
                                 <p>GOL - 2350</p>

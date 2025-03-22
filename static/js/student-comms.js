@@ -24,6 +24,7 @@ const getProfile = async () => {
   }
 }
 
+
 const getStudentPoints = (studentData) => {
 	//table = document.getElementById("orgMembers");
 
@@ -37,13 +38,19 @@ const getStudentPoints = (studentData) => {
 
   let attendance = studentData.profile.attendance
   attendance.forEach(attendanceDay =>{
-    //console.log(attendanceDay)
+    console.log(attendanceDay)
     //console.log(attendanceDay.meeting_type)
     if (attendanceDay.meeting_type == "GENERAL"){
       mentorshipPoints += 1;
       // console.log(mentorshipPoints);
+    } else if (attendanceDay.meeting_type == "VOLUNTEER"){
+      voluenteeringPoints += attendanceDay.point_value; 
+      console.log("Vol Points: " + voluenteeringPoints)
     }
   })
+
+
+  // Point rewarding
     document.getElementById("mentor-bar").style.width = `${(mentorshipPoints/maxPoints)*100}%`;
     
     document.getElementById("mentor-points").innerHTML= mentorshipPoints;

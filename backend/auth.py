@@ -15,7 +15,7 @@ def request_loader(request: Request):
 			rit_id = request.environ["uid"],
 			first_name = request.environ["givenName"],
 			last_name = request.environ["sn"],
-			email = request.environ.get("email", request.environ['mail'])
+			email = request.environ.get("email", request.environ.get('mail'))
 		)
 
 	return user

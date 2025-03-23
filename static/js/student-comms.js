@@ -3,6 +3,7 @@ let maxPoints = 60;
 let earnedPoints = 0;
 let totalPoints = 0;
 
+// For attendence
 let attendedMeetings = 0;
 let totalMeetings = 0; 
 
@@ -80,14 +81,11 @@ const getStudentPoints = (endpointData) => {
     }
   })
 
+  console.log(attendedMeetings);
+
   miscPoints = studentData.profile.bonus_points;
-  console.log("yay")
-  console.log(allMeetingData.Meetings)
-  console.log(getMeetingsFromThisSemester(allMeetingData.Meetings))
   let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
   listOfAllMeetings.forEach(meeting => {
-    console.log("aaa")
-    console.log(meeting)
     if (meeting.meeting_type == "GENERAL"){
       totalMeetings += 1;
     }
@@ -97,6 +95,16 @@ const getStudentPoints = (endpointData) => {
 
   let meetingAttendedPercentage = attendedMeetings/totalMeetings;
 
+  console.log(meetingAttendedPercentage)
+
+  if (meetingAttendedPercentage == 1){
+    attendencePoints = 3;
+  } else if (meetingAttendedPercentage >= .75){
+    attendencePoints = 2;
+  } else if (meetingAttendedPercentage >= .5){
+    attendencePoints = 1;
+  }
+
   
 
 
@@ -105,6 +113,7 @@ const getStudentPoints = (endpointData) => {
   // Point rewarding
   document.getElementById("mentor-bar").style.width = `${(mentorshipPoints/maxPoints)*100}%`;
   document.getElementById("voluenteer-bar").style.width = `${(voluenteeringPoints/maxPoints)*100}%`;
+  document.getElementById("attendence-bar").style.width = `${(attendencePoints/maxPoints)*100}%`;
   document.getElementById("misc-bar").style.width = `${(miscPoints/maxPoints)*100}%`;
     
   document.getElementById("mentor-points").innerHTML= mentorshipPoints;

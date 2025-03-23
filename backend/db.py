@@ -558,6 +558,40 @@ def db_testing_setup():
         events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S")
         events[-1].end_time += timedelta(hours=random.randint(1, 8))
 
+    developer_profiles_data = [
+        {
+          "rit_id": "bp3940",
+          "first_name": "Blanka",
+          "last_name": "Peller",
+          "email": "bp3940@rit.edu"
+        },
+        {
+          "rit_id": "njz8626",
+          "first_name": "Nathan",
+          "last_name": "Zilora",
+          "email": "njz8626@rit.edu"
+        },
+        {
+            "rit_id": "whb3080",
+            "first_name": "Wyatt",
+            "last_name": "IDK",
+            "email": "whb3080@rit.edu"
+        },
+        {
+          "rit_id": "rwc5591",
+          "first_name": "Reg",
+          "last_name": "Chuhi",
+          "email": "rwc5591@rit.edu"   
+        },
+        {
+          "rit_id": "dks7712",
+          "first_name": "Dylan",
+          "last_name": "Sandberg",
+          "email": "dks7712@rit.edu"
+        }
+    ]
+
+    developer_profiles = [Profile(**data) for data in developer_profiles_data]
 
     will_smith = Profile(
         rit_id = "wls1234",
@@ -570,15 +604,21 @@ def db_testing_setup():
     )
 
     db.session.add_all([
-        *users, *events, WiC, COMS, will_smith
+        *users, *events, WiC, COMS, will_smith, *developer_profiles
     ])
     db.session.commit()
 
     for event in db.session.query(Event).all():
         will_smith.attendance.append(event)
+        for user in developer_profiles:
+            user.attendance.append(event)
 
     make_admin(will_smith.profile_id, Organizations.WIC, RoleType.ADMIN)
     make_admin(will_smith.profile_id, Organizations.COMS, RoleType.ADMIN)
+
+    for user in developer_profiles:
+        make_admin(user.profile_id, Organizations.WIC, RoleType.ADMIN)
+        make_admin(user.profile_id, Organizations.COMS, RoleType.ADMIN)
 
     db.session.commit()
 

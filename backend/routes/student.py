@@ -18,7 +18,7 @@ def upcoming_meetings():
     except ValueError:
         return jsonify({"Error": "Invalid input type"})
 
-    total_meetings = Event.query.filter(Event.start_time >= date.today()).count()
+    total_meetings = Event.query.filter(Event.start_time >= date.today())
     meeting_results = (
         Event.query.filter(Event.start_time >= date.today())
         .order_by(Event.start_time)

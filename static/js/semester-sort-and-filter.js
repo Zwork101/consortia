@@ -26,8 +26,8 @@ function getMeetingsFromThisSemester(arrayOfMeetings){
     // print the date right now
     let now = (new Date()).toJSON();
     let todaysDateAsArray = returnDateAsArray(now);
-    let thisYear = todaysDateAsArray[0];
-    let thisMonth = todaysDateAsArray[1];
+    let thisYear = todaysDateAsArray[ISODate.YEAR];
+    let thisMonth = todaysDateAsArray[ISODate.MONTH];
 
     var arrayOfMeetingsFromThisSemester = [];
 

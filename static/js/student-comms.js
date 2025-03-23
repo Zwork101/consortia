@@ -1,16 +1,28 @@
-let points = 0;
-let maxPoints = 60;
+let maxPoints = 0;
 let earnedPoints = 0;
-let totalPoints = 0;
 
 // For attendence
 let attendedMeetings = 0;
 let totalMeetings = 0; 
 
+// Calculate points for the user
 let mentorshipPoints = 0;
 let voluenteeringPoints = 0;
 let attendancePoints = 0;
 let miscPoints = 0;
+
+// Calculate total points that can be picked in total:
+let totalAttendancePoints = 0;
+let total
+
+//Enum for attendance
+const AttendancePercentage = Object.freeze({
+  Percent100: 3,
+  Percent75: 2,
+  Percent50: 1,
+})
+
+const hasMentorshipPoints = 3;
 
 const getProfile = async () => {
 	const endpoint = "http://localhost:8080/profile/1?org_id=1";
@@ -46,10 +58,12 @@ const getStudentPoints = (endpointData) => {
   studentData = endpointData[0];
   allMeetingData = endpointData[1];
 
-  if (studentData.profile.membership == true){
-    mentorshipPoints += 3;
-  } 
+  console.log(studentData);
 
+  // Calculate points fo the user
+  if (studentData.profile.membership == true){
+    mentorshipPoints += hasMentorshipPoints;
+  } 
   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
   attendance.forEach(attendanceDay =>{
     if (attendanceDay.meeting_type == "GENERAL"){
@@ -61,36 +75,36 @@ const getStudentPoints = (endpointData) => {
     }
   })
 
-  console.log(attendedMeetings);
 
   miscPoints = studentData.profile.bonus_points;
   let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
   listOfAllMeetings.forEach(meeting => {
     if (meeting.meeting_type == "GENERAL"){
       totalMeetings += 1;
+    } else if (meeting.meeting_type == "VOLUNTEER") {
+      totalAttendancePoints += meeting.point_value
+    } else if (meeting.meeting_type == "MENTORSHIP"){
+      // TODO
     }
   })
 
-  console.log(totalMeetings);
-
   let meetingAttendedPercentage = attendedMeetings/totalMeetings;
 
-  console.log(meetingAttendedPercentage)
-
   if (meetingAttendedPercentage == 1){
-    attendancePoints = 3;
+    attendancePoints = AttendancePercentage.Percent100;
   } else if (meetingAttendedPercentage >= .75){
-    attendancePoints = 2;
+    attendancePoints = AttendancePercentage.Percent75;
   } else if (meetingAttendedPercentage >= .5){
-    attendancePoints = 1;
+    attendancePoints = AttendancePercentage.Percent50;
   }
 
-  
 
-
-
-
+ 
   // Point rewarding
+
+  maxPoints = hasMentorshipPoints + AttendancePercentage.Percent100 + miscPoints;
+  earnedPoints = mentorshipPoints + voluenteeringPoints + attendancePoints + miscPoints;
+
   document.getElementById("mentor-bar").style.width = `${(mentorshipPoints/maxPoints)*100}%`;
   document.getElementById("voluenteer-bar").style.width = `${(voluenteeringPoints/maxPoints)*100}%`;
   document.getElementById("attendance-bar").style.width = `${(attendancePoints/maxPoints)*100}%`;
@@ -101,7 +115,6 @@ const getStudentPoints = (endpointData) => {
   document.getElementById("attendance-points").innerHTML= attendancePoints;
   document.getElementById("misc-points").innerHTML= miscPoints;
     
-  earnedPoints = mentorshipPoints + voluenteeringPoints + attendancePoints + miscPoints;
   document.getElementById("earned-points").innerHTML= earnedPoints;
   document.getElementById("max-points").innerHTML= maxPoints;
 }

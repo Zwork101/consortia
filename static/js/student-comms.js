@@ -67,7 +67,20 @@ const getStudentPoints = (studentData) => {
     document.getElementById("max-points").innerHTML= maxPoints;
 }
 
-
 getProfile().then(
   getStudentPoints
 )
+
+
+const loadSemesters = () => {
+  const container = document.getElementById("semesters");
+
+  semesters.forEach(sem => {
+      const semElement = document.createElement("div");
+      semElement.innerHTML = 
+      '<h3>${sem.semester_coms} ${sem.year_coms}</h3>' +
+      '<p>{sem.organizer_coms}, ${sem.meeting_type_coms}: ${sem.description_coms}, ${sem.point_value_coms}</p>';
+      container.appendChild(semElement);
+    }
+  );
+};

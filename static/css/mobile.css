@@ -1,4 +1,4 @@
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
     .points-bar, .chart-background {
         transform: rotate(-90deg);
         width: 93vw;

@@ -41,7 +41,16 @@ attendance_table = Table(
     Base.metadata,
     Column("profile_id", ForeignKey("Profile.profile_id"), nullable=False),
     Column("event_id", ForeignKey("Event.event_id"), nullable=False),
+    Column("hours", type_=Integer, default=0)
 )
+
+# class Attendance(db.Model):
+#     __tablename__ = "attendance"
+#     __table_args__ = {'extend_existing': True}
+
+#     profile_id: Mapped[int] = relationship("Profile", foreign_keys="[Profile.profile_id]")
+#     event_id: Mapped[int] = relationship("Event", foreign_keys="[Event.profile_id]")
+#     hours: Mapped[int] = mapped_column(default=0)
 
 
 class Profile(db.Model, UserMixin):
@@ -324,7 +333,8 @@ class Profile(db.Model, UserMixin):
                     "description": event.description,
                     "meeting_type": event.meeting_type.value,
                     "point_value": event.point_value,
-                    "start_time": event.start_time.isoformat()
+                    "start_time": event.start_time.isoformat(),
+                    "hours": db.session.query(attendance_table.c.hours).where(attendance_table.c.profile_id == self.profile_id).where(attendance_table.c.event_id == event.event_id).first()[0]
                     
                 } for event in self.attendance if org_id is None or event.organizer_id == org_id
             ]
@@ -560,8 +570,7 @@ def db_testing_setup():
     for event in event_data:
         events.append(Event(
             **event,
-            organizer=random.choice([WiC, COMS]),
-            attendants=random.choices(users, k=random.randint(0, 120))
+            organizer=random.choice([WiC, COMS])
         ))
         events[-1].meeting_type = random.choice([
             MeetingType.GENERAL,
@@ -580,19 +589,25 @@ def db_testing_setup():
     ])
     db.session.commit()
 
+    for event in events:
+        for user in random.choices(users, k=random.randint(0, 120)):
+            create_attendance(user.email, event.event_id, user.first_name, user.last_name, random.randint(1,8))
+
+    db.session.commit()
+
     for user in active_users:
         print(user.profile_id, user.first_name, user.last_name)
 
 
-def create_attendance(email: str, event_id: int, first_name: str = None, last_name: str = None):
+def create_attendance(email: str, event_id: int, first_name: str = None, last_name: str = None, hours = 0):
     """
     Creates an attendance object that has NOT been committed yet.
     """
     user = Profile.query.where(Profile.email == email).first()
     event = Event.query.get(event_id)
-    
+
     if event is None:
-        raise ValueError(f"Event with id {event_id} not found.")
+        raise ValueError("Unable to find event")
     
     if user is None:
         user = Profile(email=email, first_name=first_name, last_name=last_name)
@@ -600,7 +615,16 @@ def create_attendance(email: str, event_id: int, first_name: str = None, last_na
         db.session.commit()
     
     if event not in user.attendance:
-        user.attendance.append(event)
+        with db.engine.connect() as conn:
+            conn.execute(
+                attendance_table.insert().values(
+                    event_id = event_id,
+                    profile_id = user.profile_id,
+                    hours = hours
+                ).compile()
+            )
+            conn.commit()
+        
     
     return user
 

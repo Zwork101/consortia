@@ -21,3 +21,52 @@ INFO:root:Added 'admin' blueprint.
 INFO:root:Added 'testing' blueprint.
 WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 851-401-905
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'testing' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 851-401-905
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:33] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:33] "GET /static/css/styles.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:33] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:33] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:33] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:33] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:33] "GET /static/css/dialogue.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:33] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:33] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:33] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:33] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:33] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:33] "[36mGET /static/images/WICimg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:33] "GET /static/images/COMSimg.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:33] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:33] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:35] "GET /wic HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:35] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:35] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:35] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:35] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:35] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:35] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:35] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:35] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:35] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:35] "[36mGET /static/images/next-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:35] "GET /static/images/prev-arrow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:35] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:35] "[36mGET /static/images/awards.webp HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:35] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:35] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:36] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:36] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2025 19:39:36] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -

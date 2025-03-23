@@ -1,5 +1,5 @@
 const listProfiles = async () => {
-    const endpoint = "http://localhost:8080/admin/profiles/1";
+    const endpoint = "admin/profiles/1";
     try {
         const response = await fetch(endpoint);
         if (!response.ok) {
@@ -26,7 +26,7 @@ const openEditProfileModal = async (userId) => {
             return;
         }
         
-        const response = await fetch(`http://localhost:8080/profile/${userId}?org_id=1`);
+        const response = await fetch(`profile/${userId}?org_id=1`);
         if (!response.ok) throw new Error('Profile fetch error');
         const data = await response.json();
         console.log("Profile data received:", data);
@@ -115,7 +115,7 @@ const applyFilters = () => {
         queryParams.append("search", search);
     }
     
-    const endpoint = `http://localhost:8080/admin/profiles/1?${queryParams.toString()}`;
+    const endpoint = `admin/profiles/1?${queryParams.toString()}`;
     
     fetch(endpoint)
         .then(response => {

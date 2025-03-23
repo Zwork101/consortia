@@ -2,9 +2,11 @@
 	<div class="black-bar"></div>
 	<!-- Black section on the left -->
 	<nav>
-		<a href="index.html">
-			<img class="backarrow" src="../static/images/back-arrow.png" width="16" />
-		</a>
+		{% if request.url_rule.endpoint != 'home.homepage' %}
+			<a href="{{ url_for('home.homepage') }}">
+				<img class="backarrow" src="../static/images/back-arrow.png" width="16" />
+			</a>
+	    {% endif %}
 		<ul class="nav-options-box">
 			<li style="padding:0px;" >
 				<a href="">
@@ -19,9 +21,9 @@
 			<li>
 				<div class="navbar-dropdown">
 					<button onclick="dropDown4()" class="dropbtn4">
-						WILL SMITH <!--Replace name with student name-->
+						{{ current_user.full_name | upper }} <!--Replace name with student name-->
 						<span class="dropDownArrow">
-							<img src="../static/images/down-arrow-white.png" width="10" />
+							<img src="{{url_for('static', filename="images/down-arrow-white.png")}}" width="10" />
 						</span>
 					</button>
 					<div id="DropdownContent4" class="dropdown-content-navbar">

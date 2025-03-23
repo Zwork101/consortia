@@ -93,10 +93,14 @@ admin = Blueprint("admin", __name__, static_folder="static/", template_folder="t
 def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        org = kwargs['org']
+        org = kwargs.get('org')
 
-        if org not in [a.organization_id for a in current_user.positions]:
-            abort(403)
+        if org:
+            if org not in [a.organization_id for a in current_user.positions]:
+                abort(403)
+        else:
+            if not current_user.positions:
+                abort(403)
 
         return f(*args, **kwargs)
     return decorated_function
@@ -288,6 +292,7 @@ def list_users(organization: int):
 
 
 @admin.route("/admin/add_user", methods=["GET", "POST"])
+@admin_required
 def add_user():
     form = AddUserForm()
     if form.validate_on_submit():
@@ -308,6 +313,7 @@ def add_user():
 
 
 @admin.route("/admin/select_user", methods=["GET", "POST"])
+@admin_required
 def select_user():
     form = SelectUserForm()
     if form.validate_on_submit():
@@ -319,6 +325,7 @@ def select_user():
     return render_template("select-user.html", form=form)
 
 @admin.route("/admin/edit_user", methods=["GET", "POST"])
+@admin_required
 def edit_user():
     user_id = request.args.get("user_id", type=int)
     if not user_id:
@@ -350,6 +357,7 @@ def edit_user():
     return render_template("edit-user.html", form=form, user=user)
 
 @admin.route("/admin/edit_user/confirm", methods=["POST"])
+@admin_required
 def confirm_edit_user():
     user_id = request.form.get("user_id", type=int)
     if not user_id:
@@ -374,6 +382,7 @@ def confirm_edit_user():
     return redirect(url_for("admin.admin_interface"))
 
 @admin.route("/admin/delete_user", methods=["GET", "POST"])
+@admin_required
 def delete_user():
     if request.method == "GET":
         user_id = request.args.get("user_id", type=int)

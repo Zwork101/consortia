@@ -86,6 +86,10 @@ class Profile(db.Model, UserMixin):
     #     )
 
     @property
+    def full_name(self):
+        return self.first_name + " " + self.last_name
+    
+    @property
     def is_authenticated(self):
         return True
 
@@ -307,7 +311,7 @@ class Profile(db.Model, UserMixin):
         if org_id is not None:
             base_profile_json['membership'] = self.membership(org_id)
             base_profile_json['semesters'] = self.semesters(org_id)
-            base_profile_json["bonus_points"] = self.bonus_points(1)
+            base_profile_json["bonus_points"] = self.bonus_points(org_id)
 
         if self.rit_id is None:
             return {
@@ -332,7 +336,10 @@ class Profile(db.Model, UserMixin):
                     } for award in self.awards if org_id is None or award.organization_id == org_id
                 ],
                 
-                "administrator": None if not self.administrator else self.administrator.role.value
+                "positions": [{
+                    "organization_id": position.organization_id,
+                    "role": position.role.value
+                } for position in self.positions]
             })
             return {
                 "incomplete": False,
@@ -550,15 +557,43 @@ def db_testing_setup():
         events[-1].start_time += timedelta(days=random.randint(-200, 200))
         events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S")
         events[-1].end_time += timedelta(hours=random.randint(1, 8))
-    
+
+
+    will_smith = Profile(
+        rit_id = "wls1234",
+        first_name = "Will",
+        last_name = "Smith",
+        email = "wls1234@rit.edu",
+        graduation_year = 2025,
+        degree = "Acting",
+        pronouns = "He/Him"
+    )
+
     db.session.add_all([
-        *users, *events, WiC, COMS
+        *users, *events, WiC, COMS, will_smith
     ])
+    db.session.commit()
+
+    for event in db.session.query(Event).all():
+        will_smith.attendance.append(event)
+
+    make_admin(will_smith.profile_id, Organizations.WIC, RoleType.ADMIN)
+    make_admin(will_smith.profile_id, Organizations.COMS, RoleType.ADMIN)
+
     db.session.commit()
 
     for user in active_users:
         print(user.profile_id, user.first_name, user.last_name)
 
+def make_admin(user: int, org: int, role: RoleType):
+    admin = Administrator(
+        profile_id = user,
+        organization_id = org,
+        role = role
+    )
+
+    db.session.add(admin)
+    return admin
 
 def create_attendance(email: str, event_id: int, first_name: str = None, last_name: str = None):
     """
@@ -577,12 +612,13 @@ def create_attendance(email: str, event_id: int, first_name: str = None, last_na
     
     return user
 
-def create_bonus(point_value: int, recipient_id: int, giver_id: int, reason: str):
+def create_bonus(point_value: int, recipient_id: int, giver_id: int, reason: str, org: int):
     grant = BonusPoints(
         point_value = point_value,
         recipient_id = recipient_id,
         giver_id = giver_id,
-        reason = reason
+        reason = reason,
+        organization_id = org
     )
     db.session.add(grant)
     return grant

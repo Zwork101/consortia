@@ -75,11 +75,10 @@ const addTableRows = (rows) => {
           <td>${row['profile']['membership']}</td>
           <td>${row['profile']['semesters']}</td>
           <td>${row['profile']['email']}</td>
-          <td>Undetermined</td>
-          <td>Undetermined</td>
-          <td>${row['profile']['attendance'] ? row['profile']['attendance'].length : 0}</td>
-          <td>${row['profile']['bonuses'] ? row['profile']['bonuses'] : ''}</td>
-          <td>${row['profile']['points']}</td>
+          <td>${row['profile']['attendance'].filter(e => e['meeting_type'] == "GENERAL").length }</td>
+          <td>${row['profile']['attendance'].filter(e => e['meeting_type'] == "COMMITTEE").length }</td>
+          <td>${row['profile']['attendance'].filter(e => e['meeting_type'] == "SOCIAL").length }</td>
+          <td>${row['profile']['attendance'].filter(e => e['meeting_type'] == "VOLUNTEER").length }</td>
           <td class="dbTablePH"></td>
           <td>
               <img src="../static/images/options.png" width="16" class="edit-profile-btn" data-user-id="${row['profile']['profile_id']}" />

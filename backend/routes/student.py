@@ -2,16 +2,16 @@ from backend.db import Event, Profile
 from flask import Blueprint, jsonify, request, render_template
 from datetime import date
 
-student = Blueprint("/student", __name__, static_folder="static/", template_folder="templates/")
+student = Blueprint("student", __name__, static_folder="static/", template_folder="templates/")
 
 
 @student.route("/wic")
 def wic_homepage():
-    return render_template("wics-profile.html")
+    return render_template("wics-profile.html.j2", title="WIC")
 
 @student.route("/coms")
 def coms_homepage():
-    return render_template("coms-profile.html")
+    return render_template("coms-profile.html.j2", title="COMS")
 
 @student.route("/meetings")
 def upcoming_meetings():

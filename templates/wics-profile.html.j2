@@ -10,7 +10,7 @@
         <div class="profile-view-grid">
             <div class="membership-sec">
                 <h2>Women in Computing</h2>
-                <h3>Status: Non-Active Member</h3>
+                <h3>Status: {% if not current_user.membership(1) %}Non-{% endif %}Active Member</h3>
                 <button class="tablinks prof-view-btn active" onclick="openCity(event, 'membership')">Current Semester</button>
                 <button class="tablinks prof-view-btn" onclick="openCity(event, 'history')">History</button>
 

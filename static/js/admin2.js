@@ -1,5 +1,5 @@
 const listProfiles = async () => {
-    const endpoint = "admin/profiles/1";
+    const endpoint = "/admin/profiles/1";
     try {
         const response = await fetch(endpoint);
         if (!response.ok) {
@@ -115,7 +115,7 @@ const applyFilters = () => {
         queryParams.append("search", search);
     }
     
-    const endpoint = `admin/profiles/1?${queryParams.toString()}`;
+    const endpoint = `/admin/profiles/1?${queryParams.toString()}`;
     
     fetch(endpoint)
         .then(response => {

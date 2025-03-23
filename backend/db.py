@@ -547,7 +547,9 @@ def db_testing_setup():
             MeetingType.COMMITTEE
         ])
         events[-1].start_time = datetime.strptime(events[-1].start_time, "%Y-%m-%d %H:%M:%S")
+        events[-1].start_time += timedelta(days=random.randint(-200, 200))
         events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S")
+        events[-1].end_time += timedelta(hours=random.randint(1, 8))
     
     db.session.add_all([
         *users, *events, WiC, COMS

@@ -1267,3 +1267,14 @@ svg {
         border-color: #000;
         background-color: #000;
     }
+/* Student view */
+.studentattendance {
+    display: flex;
+    gap: 20px; 
+}
+.titletabssectionattendance{
+    font-family: var(--main-font);
+    padding: 2%;
+    margin: 2%;
+}
+

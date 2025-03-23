@@ -84,3 +84,18 @@ const getStudentPoints = (studentData) => {
 getProfile().then(
   getStudentPoints
 )
+
+
+const loadSemesters = () => {
+  const container = document.getElementById("semestersContainer");
+  container.innerHTML = "";
+
+  semesters_wics.forEach(sem => {
+      const semElement = document.createElement("div");
+      semElement.innerHTML = 
+      '<h3>${sem.semester_wics} ${sem.year_wics}</h3>' +
+      '<p>${sem.organizer_wics}, ${sem.meeting_type_wics}: ${sem.description_wics}, ${sem.point_value_wics}</p>';
+      container.appendChild(semElement);
+    }
+  );
+};

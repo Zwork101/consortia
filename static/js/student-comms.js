@@ -1,5 +1,5 @@
 let points = 0;
-let maxPoints = 20;
+let maxPoints = 60;
 let earnedPoints = 0;
 let totalPoints = 0;
 
@@ -17,7 +17,7 @@ const getProfile = async () => {
 	    }
 
 	    const json = await response.json();
-	    // console.log(json);
+	    console.log(json);
       return json
 	 } catch (error) {
 	    console.error(error.message);
@@ -38,20 +38,24 @@ const getStudentPoints = (studentData) => {
 
   let attendance = studentData.profile.attendance
   attendance.forEach(attendanceDay =>{
-    console.log(attendanceDay)
+    //console.log(attendanceDay)
     //console.log(attendanceDay.meeting_type)
     if (attendanceDay.meeting_type == "GENERAL"){
       mentorshipPoints += 1;
       // console.log(mentorshipPoints);
     } else if (attendanceDay.meeting_type == "VOLUNTEER"){
       voluenteeringPoints += attendanceDay.point_value; 
-      console.log("Vol Points: " + voluenteeringPoints)
+      // console.log("Vol Points: " + voluenteeringPoints);
     }
+
+    miscPoints = studentData.profile.bonus_points;
   })
 
 
   // Point rewarding
     document.getElementById("mentor-bar").style.width = `${(mentorshipPoints/maxPoints)*100}%`;
+    document.getElementById("voluenteer-bar").style.width = `${(voluenteeringPoints/maxPoints)*100}%`;
+    document.getElementById("misc-bar").style.width = `${(miscPoints/maxPoints)*100}%`;
     
     document.getElementById("mentor-points").innerHTML= mentorshipPoints;
     document.getElementById("voluenteering-points").innerHTML= voluenteeringPoints;

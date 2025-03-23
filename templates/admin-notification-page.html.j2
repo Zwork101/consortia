@@ -1,34 +1,10 @@
-<!doctype html>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/normalize/normalize.css">
-    <script src="../static/js/mainjavascript.js"></script>
-</head>
-
-<!-- Everything below this section will be part of the final code-->
-
+{% extends "base.html.j2" %}
+{% block head %}
+<script src="../static/js/mainjavascript.js"></script>
+{% endblock %}
+{% block content %}
 <body>
-    <nav>
-        <a href="index.html"><img class="backarrow" src="../static/images/back-arrow.png" width="16" /></a>
-        <ul class="nav-options-box">
-            <li style="padding:0px;"><a href=""><p>NOTIFICATIONS</p></a></li>
-            <li><a href=""><p>SETTINGS</p></a></li>
-            <li>
-                <div class="navbar-dropdown">
-                    <button onclick="dropDown4()" class="dropbtn4">
-                        WILL SMITH
-                        <span class="dropDownArrow"><img src="../static/images/down-arrow-white.png" width="10" /></span>
-                    </button>
-                    <div id="DropdownContent4" class="dropdown-content-navbar">
-                        <a>Profile</a>
-                        <a>Logout</a>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </nav>
-
+{% include "nav.html.j2" %} 
     <main>
 
         <h2 style="margin-left: 80px; margin-top: 80px;">Notifications</h2>
@@ -61,4 +37,4 @@
     </main>
 
 </body>
-</html>
+{% endblock %}

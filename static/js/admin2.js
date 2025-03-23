@@ -53,7 +53,7 @@ const openEditProfileModal = async (userId) => {
 };
 
 const addTableRows = (rows) => {
-    const table = document.getElementById("orgMembers");
+    const table = document.getElementById("dbTable");
     if (!table) {
         console.error("Table element not found!");
         return;

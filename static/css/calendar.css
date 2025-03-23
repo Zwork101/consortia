@@ -9,8 +9,8 @@
     background-color: transparent;
     font-size: 30px;   
     border: none;
-   
 }
+
 .main-container {
     background-color: rgb(0, 0, 0);
     flex-direction: column;
@@ -90,6 +90,11 @@
     margin-right: auto;
     cursor: pointer;
     font-family: Roboto;
+    border-radius: 100px;
+}
+
+.day:hover{
+    background-color: #E9ECEF;
 }
 
 /* Apply styles to the selected date */
@@ -127,6 +132,11 @@
     width: 4px;
     height: 115.85px;
     transform: translate(-4px, -20px);
+}
+
+.calendar-status{
+    position: absolute;
+    transform: translate(17vw, -12px);
 }
  
 

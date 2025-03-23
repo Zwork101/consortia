@@ -110,9 +110,9 @@ def admin_required(f):
 @admin_required
 def dashboard(org: int):
     if org == Organizations.WIC:
-        return render_template("database-view-wic.html.j2", title="WIC Dashboard")
+        return render_template("database-view-wic.html.j2", title="WIC Dashboard", upload_form=AttendanceForm())
     elif org == Organizations.COMS:
-        return render_template("database-view-coms.html.j2", title="COMS Dashboard")
+        return render_template("database-view-coms.html.j2", title="COMS Dashboard", upload_form=AttendanceForm())
 
 
 @admin.route("/meetings/<int:org>/upload", methods=["POST", "GET"])

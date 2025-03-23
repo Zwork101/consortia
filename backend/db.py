@@ -41,6 +41,7 @@ attendance_table = Table(
     Base.metadata,
     Column("profile_id", ForeignKey("Profile.profile_id"), nullable=False),
     Column("event_id", ForeignKey("Event.event_id"), nullable=False),
+    Column("hours", type_=Integer, default=0)
 )
 
 

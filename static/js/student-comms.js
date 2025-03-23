@@ -25,14 +25,18 @@ const getProfile = async () => {
 }
 
 
+
 const getStudentPoints = (studentData) => {
+
+  console.log(getMeetingsFromThisSemester(studentData.profile.attendance));
+
 	//table = document.getElementById("orgMembers");
 
   // console.log(studentData)
   // console.log(studentData.profile.attendance)
 
   if (studentData.profile.membership == "active"){
-    mentorshipPoints += 3
+    mentorshipPoints += 3;
     // console.log(points)
   } 
 

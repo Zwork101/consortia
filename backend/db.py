@@ -1,10 +1,11 @@
 from datetime import datetime, timedelta, timezone
 from enum import Enum as EnumClass
 from types import MethodType
-from typing import Any, Optional
+from typing import Any, Optional, override
 import logging
 
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import ForeignKey, Integer, Table, Column, func, case, cast, and_
@@ -43,11 +44,11 @@ attendance_table = Table(
 )
 
 
-class Profile(db.Model):
+class Profile(db.Model, UserMixin):
     __tablename__ = 'Profile'
 
     profile_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
-    rit_id: Mapped[Optional[int]]
+    rit_id: Mapped[Optional[str]]
     last_name: Mapped[str]
     first_name: Mapped[str]
     email: Mapped[str] = mapped_column(unique=True)
@@ -84,16 +85,37 @@ class Profile(db.Model):
     #         else_ = "Non-Member"
     #     )
 
+    @property
+    @override
+    def is_authenticated(self):
+        return True
+
+    @property
+    @override
+    def is_active(self):
+        return True
+
+    @property
+    @override
+    def is_anonymous(self):
+        return False
+
+    @override
+    def get_id(self):
+        return str(self.profile_id)
+    
+
     @hybrid_method
     def membership(self, org: int):
+        current_semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
+        
         if org == Organizations.WIC:
             general_meetings = 0
             committee = 0
             social_event = 0
             volunteer = 0
 
-            current_semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
-
+            # Get current semester events for WIC
             for event in [e for e in self.attendance if e.semester == current_semester]:
                 if event.meeting_type == MeetingType.GENERAL:
                     general_meetings += 1
@@ -105,8 +127,59 @@ class Profile(db.Model):
                     volunteer += 1
 
             return (general_meetings >= 14) and (committee >= 6) and (volunteer >= 1) and (social_event >= 1)
+        
         elif org == Organizations.COMS:
-            pass
+            # Get current semester events for COMS
+            org_events = [e for e in self.attendance if e.organizer_id == org and e.semester == current_semester]
+
+            total_points = 0
+            
+            # General meeting attendance points
+            total_general_meetings = Event.query.filter_by(
+                organizer_id=org, 
+                meeting_type=MeetingType.GENERAL,
+                semester=current_semester
+            ).count()
+            
+            if total_general_meetings > 0:
+                attended_meetings = len([e for e in org_events if e.meeting_type == MeetingType.GENERAL])
+                attendance_percent = attended_meetings / total_general_meetings * 100
+                
+                if attendance_percent >= 100:
+                    total_points += 3
+                elif attendance_percent >= 75:
+                    total_points += 2
+                elif attendance_percent >= 50:
+                    total_points += 1
+            
+            # Volunteer work points
+            volunteer_hours = sum(
+                (e.end_time - e.start_time).total_seconds() / 3600 
+                for e in org_events if e.meeting_type == MeetingType.VOLUNTEER
+            )
+            
+            if volunteer_hours >= 9:
+                total_points += 4
+            elif volunteer_hours >= 6:
+                total_points += 3
+            elif volunteer_hours >= 3:
+                total_points += 2
+            elif volunteer_hours >= 1:
+                total_points += 1
+            
+            # Mentorship program points
+            mentorship_meetings = [e for e in org_events if e.meeting_type == MeetingType.MENTORSHIP]
+            if mentorship_meetings:
+                # Base 3 points for being in the program
+                mentorship_points = 3 + len(mentorship_meetings)
+                # Cap at 9 points
+                total_points += min(mentorship_points, 9)
+            
+            # Add bonus points from miscellaneous contributions
+            total_points += self.bonus_points(org)
+            
+            # Return True if they have 18 or more points
+            return total_points >= 18
         else:
             raise ValueError(f"Unknown Organization: {org}")
 
@@ -239,6 +312,7 @@ class Profile(db.Model):
         if org_id is not None:
             base_profile_json['membership'] = self.membership(org_id)
             base_profile_json['semesters'] = self.semesters(org_id)
+            base_profile_json["bonus_points"] = self.bonus_points(1)
 
         if self.rit_id is None:
             return {

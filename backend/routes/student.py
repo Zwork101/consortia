@@ -18,7 +18,7 @@ def upcoming_meetings():
     except ValueError:
         return jsonify({"Error": "Invalid input type"})
 
-    total_meetings = Event.query.filter(Event.start_time >= date.today())
+    total_meetings = Event.query.filter(Event.start_time >= date.today()).count()
     meeting_results = (
         Event.query.filter(Event.start_time >= date.today())
         .order_by(Event.start_time)
@@ -29,17 +29,30 @@ def upcoming_meetings():
     meetings = [
         {
             "event_id": meeting.event_id,
-            "meeting_type": meeting.meeting_type,
+            "meeting_type": meeting.meeting_type.value,
             "name": meeting.name,
             "start_time": meeting.start_time.isoformat(),
             "end_time": meeting.end_time.isoformat(),
             "description": meeting.description,
             "point_value": meeting.point_value,
             "organizer_id": meeting.organizer_id,
-            "organizer": meeting.organizer,
-            "attendants": meeting.attendants
+            "organizer": {
+                 "profile_id": meeting.organizer.organization_id,  # updated field name
+                 "name": meeting.organizer.name,
+                 "email": meeting.organizer.email
+             } if meeting.organizer else None,
+             "attendants": [
+                 {
+                     "profile_id": attendee.profile_id,
+                     "rit_id": attendee.rit_id,
+                     "last_name": attendee.last_name,
+                     "first_name": attendee.first_name,
+                     "email": attendee.email
+                 }
+                 for attendee in meeting.attendants
+             ]
         }
-        for meeting in upcoming_meetings
+        for meeting in meeting_results
     ]
     return jsonify({"Total": total_meetings, "Meetings": meetings})
 

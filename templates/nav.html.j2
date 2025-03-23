@@ -2,22 +2,33 @@
 	<div class="black-bar"></div>
 	<!-- Black section on the left -->
 	<nav>
-		<ul>
-			<li>
-				<a href="#notifications">NOTIFICATIONS</a>
+		<a href="index.html">
+			<img class="backarrow" src="../static/images/back-arrow.png" width="16" />
+		</a>
+		<ul class="nav-options-box">
+			<li style="padding:0px;" >
+				<a href="">
+					<p>NOTIFICATIONS</p>
+				</a>
 			</li>
 			<li>
-				<a href="#settings">SETTINGS</a>
+				<a href="">
+					<p>SETTINGS</p>
+				</a>
 			</li>
 			<li>
-				<a href="#profile">PROFILE</a>
-			</li>
-			<li>
-				<label for="student" style="color: white;">Student:</label>
-				<select name="student" id="student">
-					<option value="profile">Profile</option>
-					<option value="settings">Settings</option>
-				</select>
+				<div class="navbar-dropdown">
+					<button onclick="dropDown4()" class="dropbtn4">
+						WILL SMITH <!--Replace name with student name-->
+						<span class="dropDownArrow">
+							<img src="../static/images/down-arrow-white.png" width="10" />
+						</span>
+					</button>
+					<div id="DropdownContent4" class="dropdown-content-navbar">
+						<a>Profile</a>
+						<a>Logout</a>
+					</div>
+				</div>
 			</li>
 		</ul>
 	</nav>

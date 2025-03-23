@@ -68,25 +68,31 @@
     <div class="main-container">
         <div class="calendar-container">
             <div class="calendar-header">
-                <button id="prev">&lt;</button>
+                <button id="prev"><img src="../static/images/prev-arrow.png" style="width:16px;" /></button>
                 <h2 id="month-title"></h2>
-                <button id="next">&gt;</button>
+                <button id="next"><img src="../static/images/next-arrow.png" style="width:16px;" /></button>
             </div>
             <div class="calendar-grid"></div>
         </div>
         <div class="events-container">
             <div class="event">
-                <strong>General Meeting</strong>
-                <p>WED • 6:30PM - 7:30PM</p>
-                <p>GOL - 2400 / Zoom</p>
+               <div class="meeting-marker" style="background-color: #009CBD;"></div>
+               <p class="calendar-status">Status: Attended</p>
+               <strong>General Meeting</strong> <!--replace data with 1st upcoming meeting according to calendar-->
+               <p>WED • 6:30PM - 7:30PM</p>
+               <p>GOL - 2400 / Zoom</p>
             </div>
             <div class="event">
-                <strong>Projects Committee</strong>
+                <div class="meeting-marker" style="background-color: #84BC00;"></div>
+                <p class="calendar-status">Status: Unattended</p>
+                <strong>Projects Committee</strong> <!--replace data with 2nd upcoming meeting according to calendar-->
                 <p>THURS • 6:30PM - 7:30PM</p>
                 <p>GOL - 2400</p>
             </div>
             <div class="event">
-                <strong>WiCHacks Committee</strong>
+                <div class="meeting-marker" style="background-color: #7D55C7;"></div>
+                <p class="calendar-status">Status: Unattended</p>
+                <strong>WiCHacks Committee</strong> <!--replace data with 3rd upcoming meeting according to calendar-->
                 <p>THURS • 7:00PM - 8:00PM</p>
                 <p>GOL - 2350</p>
             </div>

@@ -984,6 +984,10 @@ svg {
     display: none;
 }
 
+.tabcontent {
+    width:99%;
+}
+
 /*
     All classes containing styling for membership profile elementes
 */

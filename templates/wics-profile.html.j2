@@ -1,12 +1,19 @@
 {% extends "base.html.j2" %}
-<!-- testing purporses only -->
 {% block head %}
 <script src="../static/js/mainjavascript.js"></script>
-<script src="{{ url_for("static", filename="js/student-wics.js") }}" defer></script>
 {% endblock %}
-<!-- testing purporses only -->
 {% block content %}
-<main>
+
+<body>
+ {% include "nav.html.j2" %} 
+    <main>
+        <div class="profile-view-grid">
+            <div class="membership-sec">
+                <h2>Women in Computing</h2>
+                <h3>Status: Non-Active Member</h3>
+                <button class="tablinks prof-view-btn active" onclick="openCity(event, 'membership')">Current Semester</button>
+                <button class="tablinks prof-view-btn" onclick="openCity(event, 'history')">History</button>
+
                 <div class="tabcontent" id="membership">
                     <!--Chart Background-->
                     <p class="chart-first-zero">0</p>
@@ -95,8 +102,110 @@
                         </section>
                     </div>
                 </div>
-   
-</main>
 
+                <div id="history" class="tabcontent">
+                    <div class="table-container membership-history-container">
+                        <div>
+                            <div>
+                                <p><b>Membership History by Semester</b></p>
+                            </div>
+                            <div>
+                                <p><b>Awards</b></p>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p><b>Fall 2024:</b> Non-Active Member</p>
+                                <p>
+                                    <span>11/14 General Meetings</span>
+                                    <span>5/6 Committee Meetings</span>
+                                    <span>0/1 Social Event</span>
+                                    <span>1/1 Volunteering</span>
+                                </p>
+                            </div>
+                            <div>
+            
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p><b>Spring 2024:</b> Active Member</p>
+                                <p>
+                                    <span>14/14 General Meetings</span>
+                                    <span>6/6 Committee Meetings</span>
+                                    <span>1/1 Social Event</span>
+                                    <span>1/1 Volunteering</span>
+                                </p>
+                            </div>
+                            <div>
+                                <img src="../static/images/awards.webp" alt="Award" >
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p><b>Fall 2023:</b> Active Member</p>
+                                <p>
+                                    <span>14/14 General Meetings</span>
+                                    <span>6/6 Committee Meetings</span>
+                                    <span>1/1 Social Event</span>
+                                    <span>1/1 Volunteering</span>
+                                </p>
+                            </div>
+                            <div>
+            
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p><b>Spring 2023:</b> Active Member</p>
+                                <p>
+                                    <span>14/14 General Meetings</span>
+                                    <span>6/6 Committee Meetings</span>
+                                    <span>1/1 Social Event</span>
+                                    <span>1/1 Volunteering</span>
+                                </p>
+                            </div>
+                            <div>
+            
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p><b>Fall 2022:</b> Non-Active Member</p>
+                                <p>
+                                    <span>13/14 General Meetings</span>
+                                    <span>4/6 Committee Meetings</span>
+                                    <span>1/1 Social Event</span>
+                                    <span>1/1 Volunteering</span>
+                                </p>
+                            </div>
+                            <div>
+                                <img src="../static/images/awards.webp" alt="Award" >
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p><b>Spring 2022:</b> Active Member</p>
+                                <p>
+                                    <span>11/14 General Meetings</span>
+                                    <span>6/6 Committee Meetings</span>
+                                    <span>1/1 Social Event</span>
+                                    <span>1/1 Volunteering</span>
+                                </p>
+                            </div>
+                            <div>
+            
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="calendar-sec">
+                {% include "calendar.html.j2" %}
+            </div>
+        </div>
+    </main>
 
-{% endblock content %}
+</body>
+
+{% endblock %}

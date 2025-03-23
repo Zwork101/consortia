@@ -34,7 +34,7 @@ def return_db_wic():
 
 @test.route("/testt")
 def return_testt():
-    return render_template("comsemail.html.j2")
+    return render_template("wics-profile.html.j2")
 
 @test.route("/com-email")
 def return_com_email():

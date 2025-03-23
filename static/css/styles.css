@@ -683,17 +683,6 @@ input[type="text"] {
         padding: 0;
     }
 
-.confbutton {
-    position: relative;
-    display: inline-block;
-    float: right;
-    height: 60px;
-    width: 60px;
-    background-color: #000;
-    transform: translate(-64px, -60px);
-    border-radius: 2px;
-}
-
 /*
     Everything in admin tables
 */
@@ -993,6 +982,10 @@ svg {
 
 #history {
     display: none;
+}
+
+.tabcontent {
+    width:99%;
 }
 
 /*

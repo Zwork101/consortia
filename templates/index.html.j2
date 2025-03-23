@@ -17,7 +17,14 @@
                 <div class="wicsextra-info">
                     <!-- <img src="../images/women-in-computing.jpg" alt="women-in-computing"> -->
                     
-                    <button class="wicscomsbutton" onclick="window.location.href='{{ url_for('testing.return_semester') }}'">See Profile</button>
+                    <button class="wicscomsbutton" onclick="window.location.href='{{ url_for('student.wic_homepage') }}'">See Profile</button>
+
+                    {% for admin_profile in current_user.positions %}
+                        {% if admin_profile.organization_id == 1  %}
+                            <button class="wicscomsbutton" onclick="window.location.href='{{ url_for('student.wic_homepage') }}'">Admin View</button>
+                            {% break %}
+                        {% endif %}
+                    {% endfor %}
 
 
                 </div>
@@ -29,6 +36,13 @@
                     <!-- <img src="../images/women-in-computing.jpg" alt="Coms"> -->
                     
                     <button class="wicscomsbutton" onclick="window.location.href='{{ url_for('testing.return_comms_int') }}'">See Profile</button>
+
+                    {% for admin_profile in current_user.positions %}
+                        {% if admin_profile.organization_id == 2  %}
+                            <button class="wicscomsbutton" onclick="window.location.href='{{ url_for('testing.return_semester') }}'">See Profile</button>
+                            {% break %}
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </section>
             

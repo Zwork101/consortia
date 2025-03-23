@@ -37,6 +37,8 @@ def create_app(config_file: Config = DevelopmentConfig) -> Flask:
         app.register_blueprint(blueprint)
         logging.info(f"Added '{blueprint.name}' blueprint.")
 
+    app.jinja_env.add_extension("jinja2.ext.loopcontrols")
+
     return app
 
 def database_setup(app):

@@ -4,4 +4,4 @@ home = Blueprint("/", __name__, static_folder="static/", template_folder="templa
 
 @home.route("/")
 def homepage():
-    return render_template("database-view-wic.html.j2")
+    return render_template("index.html.j2", title="Homepage")

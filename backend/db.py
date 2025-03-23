@@ -1,13 +1,13 @@
 from datetime import datetime, timedelta, timezone
 from enum import Enum as EnumClass
 from types import MethodType
-from typing import Any, Optional, override
+from typing import Any, Optional
 import logging
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
-from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import foreign, mapper, relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import ForeignKey, Integer, Table, Column, func, case, cast, and_
 
 
@@ -59,7 +59,7 @@ class Profile(db.Model, UserMixin):
 
     attendance: Mapped[list["Event"]] = relationship(secondary=attendance_table, back_populates="attendants")
     awards: Mapped[list["Award"]] = relationship(secondary="ProfileAward", back_populates="recipients")
-    administrator: Mapped["Administrator"] = relationship(back_populates="profile")
+    positions: Mapped[list["Administrator"]] = relationship("Administrator", foreign_keys="[Administrator.profile_id]", back_populates="profile")
     bonuses: Mapped[list["BonusPoints"]] = relationship("BonusPoints", foreign_keys="[BonusPoints.recipient_id]", back_populates="recipient")
     grants: Mapped[list["BonusPoints"]] = relationship("BonusPoints", foreign_keys="[BonusPoints.giver_id]", back_populates="giver")
     
@@ -86,25 +86,20 @@ class Profile(db.Model, UserMixin):
     #     )
 
     @property
-    @override
     def is_authenticated(self):
         return True
 
     @property
-    @override
     def is_active(self):
         return True
 
     @property
-    @override
     def is_anonymous(self):
         return False
 
-    @override
     def get_id(self):
         return str(self.profile_id)
     
-
     @hybrid_method
     def membership(self, org: int):
         if org == Organizations.WIC:
@@ -289,7 +284,7 @@ class Profile(db.Model, UserMixin):
             })
             return {
                 "incomplete": False,
-                "profile": base_profile_json
+               "profile": base_profile_json
             }
 
 class BonusPoints(db.Model):
@@ -364,8 +359,10 @@ class Administrator(db.Model):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
     role: Mapped[RoleType]
-    profile: Mapped["Profile"] = relationship("Profile", back_populates="administrator")
+    profile: Mapped["Profile"] = relationship("Profile", back_populates="positions")
     profile_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
+    organization: Mapped["Organizer"] = relationship("Organizer", back_populates="administrators")
+    organization_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
     # id = db.Column(Integer, primary_key=True, autoincrement=True)
     # profile_id = db.Column(Integer, ForeignKey('Profile.profile_id'), nullable=False)
     # role = db.Column(Enum('roleType'), nullable=False)
@@ -378,6 +375,7 @@ class Organizer(db.Model):
     name: Mapped[str]
     email: Mapped[str]
     events: Mapped[list["Event"]] = relationship(back_populates="organizer")
+    administrators: Mapped[list["Administrator"]] = relationship("Administrator", foreign_keys="[Administrator.organization_id]", back_populates="organization")
    
     # organization_id = db.Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     # name = db.Column(String(50), nullable=False)

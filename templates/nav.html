@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    
+    <script src="../static/js/mainjavascript.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="../static/js/jquery-ui.min.js"></script>
+    <script src="../static/js/dialogs.js"></script>
+    <script src="../static/js/calendar.js"></script>
+    
+    <style>
+        nav {
+            width: 100%;
+            height: 40px;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            position: relative;
+        }
+
+        .backarrow {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+
+        .nav-options-box {
+            background-color: #F76902;
+            padding: 0px 36px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            transform: translateX(-70px);
+        }
+
+        .nav-options-box li {
+            display: inline-block;
+            padding-left: 32px;
+        }
+
+        .nav-options-box p {
+            margin: 12px 0px;
+            color: #FFF;
+            font-size: 0.8rem;
+        }
+
+        .nav-options-box a {
+            text-decoration: none;
+        }
+
+        .navbar-dropdown {
+            position: relative;
+            display: block;
+            width: 136px;
+            cursor: pointer;
+        }
+
+        .navbar-dropdown button {
+            width: 136px;
+            height: 40px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            background-color: #F76902;
+            color: #fff;
+            text-align: left;
+            padding-left: 12px;
+            border: none;
+        }
+
+        .dropdown-content-navbar {
+            width: 136px;
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            overflow: auto;
+            z-index: 1;
+            border: 1.5px solid #DEDEDE;
+            border-top: none;
+            border-radius: 0 0 2px 2px;
+        }
+
+        .dropdown-content-navbar a {
+            font-size: 0.8rem;
+            padding: 12px 12px;
+            display: block;
+            background-color: #fff;
+        }
+
+        .dropdown-content-navbar a:hover {
+            background-color: #E9ECEF;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 8px;
+        }
+
+        @media (max-width: 600px) {
+            .nav-options-box {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 50px;
+                right: 10px;
+                background-color: #21201f;
+                width: 150px;
+                border-radius: 5px;
+                padding: 10px 0;
+            }
+
+            .nav-options-box.show {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="black-bar"></div>
+        <nav>
+            <a href="index.html">
+                <img class="backarrow" src="../static/images/back-arrow.png" width="16" />
+            </a>
+            
+            <div class="menu-toggle" onclick="toggleMenu()">
+                &#9776;
+            </div>
+
+            <ul class="nav-options-box">
+                <li><a href=""><p>NOTIFICATIONS</p></a></li>
+                <li><a href=""><p>SETTINGS</p></a></li>
+                <li>
+                    <div class="navbar-dropdown">
+                        <button onclick="dropDown4()" class="dropbtn4">
+                            WILL SMITH
+                            <span class="dropDownArrow">
+                                <img src="../static/images/down-arrow-white.png" width="10" />
+                            </span>
+                        </button>
+                        <div id="DropdownContent4" class="dropdown-content-navbar">
+                            <a>Profile</a>
+                            <a>Logout</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector(".nav-options-box").classList.toggle("show");
+        }
+    </script>
+</body>
+</html>

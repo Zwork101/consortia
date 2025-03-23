@@ -1,13 +1,14 @@
 import csv
-from sqlalchemy import or_
 import os
 import logging
+from functools import wraps
 
 from backend.email import send_email
-from backend.db import create_attendance, commit, Event, Profile, create_bonus
+from backend.db import Organizations, create_attendance, commit, Event, Profile, create_bonus
 
 from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, abort
 from flask_wtf import FlaskForm
+from flask_login import current_user
 from wtforms import FileField, IntegerField, StringField
 from wtforms.validators import DataRequired, ValidationError, Email
 
@@ -15,7 +16,7 @@ from backend.db import Event, commit, create_attendance, Profile, db
 from backend.email import send_email
 
 from sqlalchemy.orm import Session
-from sqlalchemy import func
+from sqlalchemy import func, or_
 from wtforms import FileField, IntegerField, StringField, SubmitField
 from wtforms.validators import DataRequired, ValidationError, NumberRange, Length
 
@@ -89,17 +90,37 @@ class BonusForm(FlaskForm):
 
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
 
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        org = kwargs['org']
 
-@admin.route("/admin")
-def admin_interface():
-    return render_template("database-view-coms.html.j2")
+        if org not in [a.organization_id for a in current_user.positions]:
+            abort(403)
 
-@admin.route("/meetings/upload", methods=["POST", "GET"])
-def update_attendance_data():
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+@admin.route("/admin/<int:org>")
+@admin_required
+def dashboard(org: int):
+    if org == Organizations.WIC:
+        return render_template("database-view-wic.html.j2", title="WIC Dashboard")
+    elif org == Organizations.COMS:
+        return render_template("database-view-coms.html.j2", title="COMS Dashboard")
+
+
+@admin.route("/meetings/<int:org>/upload", methods=["POST", "GET"])
+@admin_required
+def update_attendance_data(org: int):
     form = AttendanceForm()
-    form.meeting_id.data = 8080
 
     if form.validate_on_submit():
+        valid_meeting = db.session.query(Event.event_id).select_from(Event).where(Event.organizer_id == org).where(Event.event_id == form.meeting_id.data)
+        if valid_meeting.first() is None:
+            return abort(404)
+
         reader = csv.DictReader(line.decode() for line in request.files[form.csv_data.name])
         updated_users = []
         
@@ -117,11 +138,16 @@ def update_attendance_data():
         return render_template("upload-test.html", form=form)
     
 
-@admin.route("/meetings/<int:meeting_id>/attendance")
-def get_attendance_data(meeting_id: int):
+@admin.route("/meetings/<int:org>/<int:meeting_id>/attendance")
+@admin_required
+def get_attendance_data(org:int, meeting_id: int):
     event = Event.query.get(meeting_id)
+
     if event is None:
         return abort(404)
+
+    if event.organizer_id != org:
+        abort(403)
     
     try:
         skip = request.args.get("skip", 0, type = int)
@@ -142,24 +168,21 @@ def get_attendance_data(meeting_id: int):
         ]
     )
     
-@admin.route("/profile/<int:person_id>")
-def get_profile_data(person_id: int):
+@admin.route("/profile/<int:org>/<int:person_id>")
+@admin_required
+def get_profile_data(org:int, person_id: int):
     profile = Profile.query.get(person_id)
     if profile is None:
         return abort(404)
-        
-    try:
-        org = request.args.get("org_id", None, type = int)
-    except TypeError:
-        return abort(400)
     
     return jsonify(
         profile.serialize(org)
     )
         
 
-@admin.route("/profile/<int:person_id>/bonuses", methods=["POST"])
-def grant_bonus(person_id: int):
+@admin.route("/profile/<int:org>/<int:person_id>/bonuses", methods=["POST"])
+@admin_required
+def grant_bonus(org: int, person_id: int):
     form = BonusForm()
     
     if form.validate_on_submit():

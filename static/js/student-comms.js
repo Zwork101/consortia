@@ -118,7 +118,7 @@ const getStudentPoints = (endpointData) => {
     
   document.getElementById("mentor-points").innerHTML= mentorshipPoints;
   document.getElementById("voluenteering-points").innerHTML= voluenteeringPoints;
-  document.getElementById("attandence-points").innerHTML= attendancePoints;
+  document.getElementById("attendance-points").innerHTML= attendancePoints;
   document.getElementById("misc-points").innerHTML= miscPoints;
     
   earnedPoints = mentorshipPoints + voluenteeringPoints + attendancePoints + miscPoints;

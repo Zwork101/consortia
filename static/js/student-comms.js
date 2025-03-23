@@ -3,6 +3,9 @@ let maxPoints = 60;
 let earnedPoints = 0;
 let totalPoints = 0;
 
+let attendedMeetings = 0;
+let totalMeetings = 0; 
+
 let mentorshipPoints = 0;
 let voluenteeringPoints = 0;
 let attendencePoints = 0;
@@ -10,15 +13,28 @@ let miscPoints = 0;
 
 const getProfile = async () => {
 	const endpoint = "http://localhost:8080/profile/1?org_id=1";
+  const endpoint2 = "http://localhost:8080/meetings";
 	try {
+      var endpointList = []
     	const response = await fetch(endpoint);
 	    if (!response.ok) {
 	      throw new Error(`Response status: ${response.status}`);
 	    }
 
 	    const json = await response.json();
-	    console.log(json);
-      return json
+      //console.log(json);
+      endpointList.push(json);
+
+	    const response2 = await fetch(endpoint2);
+	    if (!response2.ok) {
+	      throw new Error(`Response status: ${response2.status}`);
+	    }
+
+	    const json2 = await response2.json();
+      //console.log(json2);
+      endpointList.push(json2);
+      
+      return endpointList;
 	 } catch (error) {
 	    console.error(error.message);
   }
@@ -26,34 +42,65 @@ const getProfile = async () => {
 
 
 
-const getStudentPoints = (studentData) => {
+const getStudentPoints = (endpointData) => {
 
-  console.log(getMeetingsFromThisSemester(studentData.profile.attendance));
+  studentData = endpointData[0];
+  allMeetingData = endpointData[1];
+  // console.log("studentData");
+  console.log(studentData);
+  console.log(allMeetingData);
 
+  //let userMeetingsFromThisSemester = ;
+  
+
+  console.log("this")
+  //console.log(userMeetingsFromThisSemester)
 	//table = document.getElementById("orgMembers");
 
   // console.log(studentData)
   // console.log(studentData.profile.attendance)
 
-  if (studentData.profile.membership == "active"){
+  if (studentData.profile.membership == true){
     mentorshipPoints += 3;
     // console.log(points)
   } 
 
-  let attendance = studentData.profile.attendance
+  let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
   attendance.forEach(attendanceDay =>{
     //console.log(attendanceDay)
     //console.log(attendanceDay.meeting_type)
     if (attendanceDay.meeting_type == "GENERAL"){
-      mentorshipPoints += 1;
+      attendedMeetings += 1;
       // console.log(mentorshipPoints);
     } else if (attendanceDay.meeting_type == "VOLUNTEER"){
       voluenteeringPoints += attendanceDay.point_value; 
       // console.log("Vol Points: " + voluenteeringPoints);
+    } else if (attendanceDay.meeting_type == "MENTORSHIP"){
+      // TODO
     }
   })
 
   miscPoints = studentData.profile.bonus_points;
+  console.log("yay")
+  console.log(allMeetingData.Meetings)
+  console.log(getMeetingsFromThisSemester(allMeetingData.Meetings))
+  let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
+  listOfAllMeetings.forEach(meeting => {
+    console.log("aaa")
+    console.log(meeting)
+    if (meeting.meeting_type == "GENERAL"){
+      totalMeetings += 1;
+    }
+  })
+
+  console.log(totalMeetings);
+
+  let meetingAttendedPercentage = attendedMeetings/totalMeetings;
+
+  
+
+
+
 
   // Point rewarding
   document.getElementById("mentor-bar").style.width = `${(mentorshipPoints/maxPoints)*100}%`;

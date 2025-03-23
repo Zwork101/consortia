@@ -1,3 +1,5 @@
+from sqlalchemy import case, desc
+from backend import db
 from backend.db import Event, Profile
 from flask import Blueprint, jsonify, request
 from datetime import date
@@ -27,32 +29,19 @@ def upcoming_meetings():
     meetings = [
         {
             "event_id": meeting.event_id,
-            "meeting_type": meeting.meeting_type.value,  # Convert MeetingType to string
+            "meeting_type": meeting.meeting_type,
             "name": meeting.name,
             "start_time": meeting.start_time.isoformat(),
             "end_time": meeting.end_time.isoformat(),
             "description": meeting.description,
             "point_value": meeting.point_value,
             "organizer_id": meeting.organizer_id,
-            "organizer": {
-                "profile_id": meeting.organizer.organization_id,  # updated field name
-                "name": meeting.organizer.name,
-                "email": meeting.organizer.email
-            } if meeting.organizer else None,
-            "attendants": [
-                {
-                    "profile_id": attendee.profile_id,
-                    "rit_id": attendee.rit_id,
-                    "last_name": attendee.last_name,
-                    "first_name": attendee.first_name,
-                    "email": attendee.email
-                }
-                for attendee in meeting.attendants
-            ]
+            "organizer": meeting.organizer,
+            "attendants": meeting.attendants
         }
-        for meeting in meeting_results
+        for meeting in upcoming_meetings
     ]
-    return jsonify({"Meetings": meetings})
+    return jsonify({"Total": total_meetings, "Meetings": meetings})
 
 @student.route("/attendance")
 def member_attendance():
@@ -73,3 +62,33 @@ def member_attendance():
         for attendee in attendance
     ]
     return jsonify(user_attendance)
+
+@student.route('/?sort=semester')
+def sort_semester():
+    semesters = Event.query.order_by(Event.semester).all()
+
+    semester_wics = [
+        {
+            "semester_wics": "Spring" if sem.semester % 10 == 0 else "Fall",
+            "year_wics": str(sem.semester // 10),
+            "organizer_wics": sem.organizer == "wics",
+            "meeting_type_wics": sem.meeting_type,
+            "description_wics": sem.description,
+            "point_value_wics": sem.point_value
+        }
+        for sem in semesters
+    ]
+
+    semester_coms = [
+        {
+            "semester_coms": "Spring" if sem.semester % 10 == 0 else "Fall",
+            "year_coms": str(sem.semester // 10),
+            "organizer_coms": sem.organizer == "coms",
+            "meeting_type_coms": sem.meeting_type,
+            "description_coms": sem.description,
+            "point_value_coms": sem.point_value
+        }
+        for sem in semesters
+    ]
+
+    return jsonify(semester_wics, semester_coms)

@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, timezone
 from enum import Enum as EnumClass
 from types import MethodType
-from typing import Any, Optional, override
+from typing import Any, Optional
 import logging
 
 from flask_sqlalchemy import SQLAlchemy
@@ -86,21 +86,21 @@ class Profile(db.Model, UserMixin):
     #     )
 
     @property
-    @override
+  
     def is_authenticated(self):
         return True
 
     @property
-    @override
+ 
     def is_active(self):
         return True
 
     @property
-    @override
+   
     def is_anonymous(self):
         return False
 
-    @override
+    
     def get_id(self):
         return str(self.profile_id)
     

@@ -110,3 +110,6 @@ def upload_meeting_data():
 def attendance_data():
     return render_template('database-view-attendance.html.j2')
 
+@test.route('/meetings/student', methods=['GET', 'POST'])
+def student_view_data():
+    return render_template('database-view-student.html.j2')

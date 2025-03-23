@@ -29,8 +29,8 @@ def upcoming_meetings():
             "event_id": meeting.event_id,
             "meeting_type": meeting.meeting_type.value,  # Convert MeetingType to string
             "name": meeting.name,
-            "start_time": meeting.start_time,
-            "end_time": meeting.end_time,
+            "start_time": meeting.start_time.isoformat(),
+            "end_time": meeting.end_time.isoformat(),
             "description": meeting.description,
             "point_value": meeting.point_value,
             "organizer_id": meeting.organizer_id,

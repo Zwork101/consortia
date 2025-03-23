@@ -1,4 +1,4 @@
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
     .points-bar, .chart-background {
         transform: rotate(-90deg);
         width: 93vw;
@@ -31,10 +31,9 @@
         grid-template-columns: 1fr;
     }
 
-    .social-events,
-    .volunteering {
-        grid-column: 1 / -1; 
-        margin: 5px 0;
+    .wics-coms-container section {
+        position: absolute;
+        width: 80vw;
     }
     /* nav */
     nav {

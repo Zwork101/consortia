@@ -25,14 +25,18 @@ const getProfile = async () => {
 }
 
 
+
 const getStudentPoints = (studentData) => {
+
+  console.log(getMeetingsFromThisSemester(studentData.profile.attendance));
+
 	//table = document.getElementById("orgMembers");
 
   // console.log(studentData)
   // console.log(studentData.profile.attendance)
 
   if (studentData.profile.membership == "active"){
-    mentorshipPoints += 3
+    mentorshipPoints += 3;
     // console.log(points)
   } 
 
@@ -47,27 +51,39 @@ const getStudentPoints = (studentData) => {
       voluenteeringPoints += attendanceDay.point_value; 
       // console.log("Vol Points: " + voluenteeringPoints);
     }
-
-    miscPoints = studentData.profile.bonus_points;
   })
 
+  miscPoints = studentData.profile.bonus_points;
 
   // Point rewarding
-    document.getElementById("mentor-bar").style.width = `${(mentorshipPoints/maxPoints)*100}%`;
-    document.getElementById("voluenteer-bar").style.width = `${(voluenteeringPoints/maxPoints)*100}%`;
-    document.getElementById("misc-bar").style.width = `${(miscPoints/maxPoints)*100}%`;
+  document.getElementById("mentor-bar").style.width = `${(mentorshipPoints/maxPoints)*100}%`;
+  document.getElementById("voluenteer-bar").style.width = `${(voluenteeringPoints/maxPoints)*100}%`;
+  document.getElementById("misc-bar").style.width = `${(miscPoints/maxPoints)*100}%`;
     
-    document.getElementById("mentor-points").innerHTML= mentorshipPoints;
-    document.getElementById("voluenteering-points").innerHTML= voluenteeringPoints;
-    document.getElementById("attendence-points").innerHTML= attendencePoints;
-    document.getElementById("misc-points").innerHTML= miscPoints;
+  document.getElementById("mentor-points").innerHTML= mentorshipPoints;
+  document.getElementById("voluenteering-points").innerHTML= voluenteeringPoints;
+  document.getElementById("attendence-points").innerHTML= attendencePoints;
+  document.getElementById("misc-points").innerHTML= miscPoints;
     
-    earnedPoints = mentorshipPoints + voluenteeringPoints + attendencePoints + miscPoints;
-    document.getElementById("earned-points").innerHTML= earnedPoints;
-    document.getElementById("max-points").innerHTML= maxPoints;
+  earnedPoints = mentorshipPoints + voluenteeringPoints + attendencePoints + miscPoints;
+  document.getElementById("earned-points").innerHTML= earnedPoints;
+  document.getElementById("max-points").innerHTML= maxPoints;
 }
-
 
 getProfile().then(
   getStudentPoints
 )
+
+
+const loadSemesters = () => {
+  const container = document.getElementById("semesters");
+
+  semesters.forEach(sem => {
+      const semElement = document.createElement("div");
+      semElement.innerHTML = 
+      '<h3>${sem.semester_coms} ${sem.year_coms}</h3>' +
+      '<p>{sem.organizer_coms}, ${sem.meeting_type_coms}: ${sem.description_coms}, ${sem.point_value_coms}</p>';
+      container.appendChild(semElement);
+    }
+  );
+};

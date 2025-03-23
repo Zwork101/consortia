@@ -227,17 +227,38 @@ class Profile(db.Model, UserMixin):
         
         
     @hybrid_method
-    def bonus_points(self, org: int):
-        return sum(b.point_value for b in self.bonuses if b.organization_id == org)
-        
-        
+    def bonus_points(self, org: int, semester_only: bool = True):
+        if semester_only:
+            current_semester = (datetime.now(timezone.utc).year * 10) + (0 if datetime.now(timezone.utc).month <= 7 else 5)
+            return sum(
+                b.point_value for b in self.bonuses 
+                if b.organization_id == org and 
+                   ((b.created_at.year * 10) + (0 if b.created_at.month <= 7 else 5)) == current_semester
+            )
+        else:
+            return sum(b.point_value for b in self.bonuses if b.organization_id == org)
+    
+    
     @bonus_points.expression
     @classmethod
-    def bonus_points_sql(cls, org: int):
-        return db.session.query(func.coalesce(func.sum(BonusPoints.point_value), 0))\
-            .where(BonusPoints.recipient_id == cls.profile_id)\
-            .where(BonusPoints.organization_id == org)\
-            .scalar_subquery()
+    def bonus_points_sql(cls, org: int, semester_only: bool = True):
+        if semester_only:
+            current_semester = (datetime.now(timezone.utc).year * 10) + (0 if datetime.now(timezone.utc).month <= 7 else 5)
+            bonus_semester_expr = (func.strftime('%Y', BonusPoints.created_at) * 10) + \
+                                  func.case(
+                                      [(cast(func.strftime('%m', BonusPoints.created_at), Integer) <= 7, 0)],
+                                      else_=5
+                                  )
+            return db.session.query(func.coalesce(func.sum(BonusPoints.point_value), 0))\
+                .where(BonusPoints.recipient_id == cls.profile_id)\
+                .where(BonusPoints.organization_id == org)\
+                .where(bonus_semester_expr == current_semester)\
+                .scalar_subquery()
+        else:
+            return db.session.query(func.coalesce(func.sum(BonusPoints.point_value), 0))\
+                .where(BonusPoints.recipient_id == cls.profile_id)\
+                .where(BonusPoints.organization_id == org)\
+                .scalar_subquery()
     
     @hybrid_method
     def event_points(self, org: int):
@@ -312,7 +333,7 @@ class Profile(db.Model, UserMixin):
         if org_id is not None:
             base_profile_json['membership'] = self.membership(org_id)
             base_profile_json['semesters'] = self.semesters(org_id)
-            base_profile_json["bonus_points"] = self.bonus_points(1)
+            base_profile_json["bonus_points"] = self.bonus_points(org_id)
 
         if self.rit_id is None:
             return {
@@ -355,6 +376,7 @@ class BonusPoints(db.Model):
     giver: Mapped["Profile"] = relationship("Profile", foreign_keys=[giver_id], back_populates="grants")
     reason: Mapped[str]
     organization_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
+    created_at: Mapped[datetime] = mapped_column(default=datetime.now(timezone.utc))
 
 class Award(db.Model):
     __tablename__ = 'Award'
@@ -549,7 +571,9 @@ def db_testing_setup():
             MeetingType.COMMITTEE
         ])
         events[-1].start_time = datetime.strptime(events[-1].start_time, "%Y-%m-%d %H:%M:%S")
+        events[-1].start_time += timedelta(days=random.randint(-200, 200))
         events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S")
+        events[-1].end_time += timedelta(hours=random.randint(1, 8))
     
     db.session.add_all([
         *users, *events, WiC, COMS
@@ -562,13 +586,16 @@ def db_testing_setup():
 
 def create_attendance(email: str, event_id: int, first_name: str = None, last_name: str = None):
     """
-    Creates an attendance object that has NOT been committed yet
+    Creates an attendance object that has NOT been committed yet.
     """
     user = Profile.query.where(Profile.email == email).first()
     event = Event.query.get(event_id)
     
+    if event is None:
+        raise ValueError(f"Event with id {event_id} not found.")
+    
     if user is None:
-        user = Profile(email = email, first_name = first_name, last_name = last_name)
+        user = Profile(email=email, first_name=first_name, last_name=last_name)
         db.session.add(user)
         db.session.commit()
     

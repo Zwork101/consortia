@@ -14,7 +14,7 @@
                 <button class="tablinks prof-view-btn active" onclick="openCity(event, 'membership')">Current Semester</button>
                 <button class="tablinks prof-view-btn" onclick="openCity(event, 'history')">History</button>
 
-                <div class="tabcontent" id="membership">
+                <div class="tabcontent" id="membership"> <!--MEMBERSHIP SECTION-->
                     <!--Chart Background-->
                     <p class="chart-first-zero">0</p>
                     <div class="chart-background">
@@ -101,9 +101,9 @@
                             </span>
                         </section>
                     </div>
-                </div>
+                </div> <!--MEMBERSHIP SECTION-->
 
-                <div id="history" class="tabcontent">
+                <div id="history" class="tabcontent"> <!--HISTORY SECTION-->
                     <div class="table-container membership-history-container">
                         <div>
                             <div>
@@ -199,8 +199,9 @@
                         </div>
                     </div>
                 </div> 
-            </div>
-            <div class="calendar-sec">
+            </div> <!--HISTORY SECTION-->
+
+            <div class="calendar-sec"> <!--CALENDAR SECTION-->
                 {% include "calendar.html.j2" %}
             </div>
         </div>

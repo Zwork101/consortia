@@ -51,24 +51,23 @@ const getStudentPoints = (studentData) => {
       voluenteeringPoints += attendanceDay.point_value; 
       // console.log("Vol Points: " + voluenteeringPoints);
     }
-
-    miscPoints = studentData.profile.bonus_points;
   })
 
+  miscPoints = studentData.profile.bonus_points;
 
   // Point rewarding
-    document.getElementById("mentor-bar").style.width = `${(mentorshipPoints/maxPoints)*100}%`;
-    document.getElementById("voluenteer-bar").style.width = `${(voluenteeringPoints/maxPoints)*100}%`;
-    document.getElementById("misc-bar").style.width = `${(miscPoints/maxPoints)*100}%`;
+  document.getElementById("mentor-bar").style.width = `${(mentorshipPoints/maxPoints)*100}%`;
+  document.getElementById("voluenteer-bar").style.width = `${(voluenteeringPoints/maxPoints)*100}%`;
+  document.getElementById("misc-bar").style.width = `${(miscPoints/maxPoints)*100}%`;
     
-    document.getElementById("mentor-points").innerHTML= mentorshipPoints;
-    document.getElementById("voluenteering-points").innerHTML= voluenteeringPoints;
-    document.getElementById("attendence-points").innerHTML= attendencePoints;
-    document.getElementById("misc-points").innerHTML= miscPoints;
+  document.getElementById("mentor-points").innerHTML= mentorshipPoints;
+  document.getElementById("voluenteering-points").innerHTML= voluenteeringPoints;
+  document.getElementById("attendence-points").innerHTML= attendencePoints;
+  document.getElementById("misc-points").innerHTML= miscPoints;
     
-    earnedPoints = mentorshipPoints + voluenteeringPoints + attendencePoints + miscPoints;
-    document.getElementById("earned-points").innerHTML= earnedPoints;
-    document.getElementById("max-points").innerHTML= maxPoints;
+  earnedPoints = mentorshipPoints + voluenteeringPoints + attendencePoints + miscPoints;
+  document.getElementById("earned-points").innerHTML= earnedPoints;
+  document.getElementById("max-points").innerHTML= maxPoints;
 }
 
 getProfile().then(

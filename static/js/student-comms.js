@@ -23,7 +23,6 @@ const getProfile = async () => {
 	    }
 
 	    const json = await response.json();
-      //console.log(json);
       endpointList.push(json);
 
 	    const response2 = await fetch(endpoint2);
@@ -32,7 +31,6 @@ const getProfile = async () => {
 	    }
 
 	    const json2 = await response2.json();
-      //console.log(json2);
       endpointList.push(json2);
       
       return endpointList;
@@ -47,35 +45,17 @@ const getStudentPoints = (endpointData) => {
 
   studentData = endpointData[0];
   allMeetingData = endpointData[1];
-  // console.log("studentData");
-  console.log(studentData);
-  console.log(allMeetingData);
-
-  //let userMeetingsFromThisSemester = ;
-  
-
-  console.log("this")
-  //console.log(userMeetingsFromThisSemester)
-	//table = document.getElementById("orgMembers");
-
-  // console.log(studentData)
-  // console.log(studentData.profile.attendance)
 
   if (studentData.profile.membership == true){
     mentorshipPoints += 3;
-    // console.log(points)
   } 
 
   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
   attendance.forEach(attendanceDay =>{
-    //console.log(attendanceDay)
-    //console.log(attendanceDay.meeting_type)
     if (attendanceDay.meeting_type == "GENERAL"){
       attendedMeetings += 1;
-      // console.log(mentorshipPoints);
     } else if (attendanceDay.meeting_type == "VOLUNTEER"){
       voluenteeringPoints += attendanceDay.point_value; 
-      // console.log("Vol Points: " + voluenteeringPoints);
     } else if (attendanceDay.meeting_type == "MENTORSHIP"){
       // TODO
     }

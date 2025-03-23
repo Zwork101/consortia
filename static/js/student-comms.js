@@ -9,7 +9,7 @@ let totalMeetings = 0;
 
 let mentorshipPoints = 0;
 let voluenteeringPoints = 0;
-let attendencePoints = 0;
+let attendancePoints = 0;
 let miscPoints = 0;
 
 const getProfile = async () => {
@@ -98,11 +98,11 @@ const getStudentPoints = (endpointData) => {
   console.log(meetingAttendedPercentage)
 
   if (meetingAttendedPercentage == 1){
-    attendencePoints = 3;
+    attendancePoints = 3;
   } else if (meetingAttendedPercentage >= .75){
-    attendencePoints = 2;
+    attendancePoints = 2;
   } else if (meetingAttendedPercentage >= .5){
-    attendencePoints = 1;
+    attendancePoints = 1;
   }
 
   
@@ -113,15 +113,15 @@ const getStudentPoints = (endpointData) => {
   // Point rewarding
   document.getElementById("mentor-bar").style.width = `${(mentorshipPoints/maxPoints)*100}%`;
   document.getElementById("voluenteer-bar").style.width = `${(voluenteeringPoints/maxPoints)*100}%`;
-  document.getElementById("attendence-bar").style.width = `${(attendencePoints/maxPoints)*100}%`;
+  document.getElementById("attendance-bar").style.width = `${(attendancePoints/maxPoints)*100}%`;
   document.getElementById("misc-bar").style.width = `${(miscPoints/maxPoints)*100}%`;
     
   document.getElementById("mentor-points").innerHTML= mentorshipPoints;
   document.getElementById("voluenteering-points").innerHTML= voluenteeringPoints;
-  document.getElementById("attendence-points").innerHTML= attendencePoints;
+  document.getElementById("attandence-points").innerHTML= attendancePoints;
   document.getElementById("misc-points").innerHTML= miscPoints;
     
-  earnedPoints = mentorshipPoints + voluenteeringPoints + attendencePoints + miscPoints;
+  earnedPoints = mentorshipPoints + voluenteeringPoints + attendancePoints + miscPoints;
   document.getElementById("earned-points").innerHTML= earnedPoints;
   document.getElementById("max-points").innerHTML= maxPoints;
 }

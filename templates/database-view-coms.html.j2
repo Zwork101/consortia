@@ -1,6 +1,6 @@
 {% extends "base.html.j2" %}
 {% block head %}
-<script src="../static/js/mainjavascript.js"></script>
+<script src="../static/js/admin2.js"></script>
 {% endblock %}
 {% block content %}
 {% include "nav.html.j2" %} 
@@ -403,6 +403,59 @@
         <th></th>
     </tr>
 </table>
+
+<!-- Edit Profile Modal -->
+<div id="editProfileModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('editProfileModal').classList.remove('show-modal')">&times;</span>
+        <h2>Edit Profile</h2>
+        <form id="editProfileForm" class="edit-profile-form" method="post" action="{{ url_for('admin.confirm_edit_user') }}">
+            <input type="hidden" id="edit-user-id" name="user_id">
+            
+            <div class="form-group">
+                <label for="edit-email">Email:</label>
+                <input type="text" id="edit-email" name="email">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-first_name">First Name:</label>
+                <input type="text" id="edit-first_name" name="first_name">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-last_name">Last Name:</label>
+                <input type="text" id="edit-last_name" name="last_name">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-rit_id">RIT ID:</label>
+                <input type="text" id="edit-rit_id" name="rit_id">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-graduation_year">Graduation Year:</label>
+                <input type="text" id="edit-graduation_year" name="graduation_year">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-degree">Degree:</label>
+                <input type="text" id="edit-degree" name="degree">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-pronouns">Pronouns:</label>
+                <input type="text" id="edit-pronouns" name="pronouns">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-avatar_path">Avatar Path:</label>
+                <input type="text" id="edit-avatar_path" name="avatar_path">
+            </div>
+            
+            <button type="submit" class="form-submit-button">Save Changes</button>
+        </form>
+    </div>
+</div>
 
 </main>
 {% endblock %}

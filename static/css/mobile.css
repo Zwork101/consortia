@@ -36,8 +36,6 @@
         width: 80vw;
     }
     /* nav mobile */
-
-
     .nav-options-box {
         display: none;
         flex-direction: column;
@@ -49,8 +47,7 @@
         border-radius: 5px;
         padding: 4px 0; 
         z-index: 1;
-       
-        
+    
     }
 
     .nav-options-box li {
@@ -70,8 +67,6 @@
         cursor: pointer;
         color: #fff;
         font-size: 30px;
-        padding: 10px;
-        background-color: #F76902;
 
     }
 

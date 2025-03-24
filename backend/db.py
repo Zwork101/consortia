@@ -187,6 +187,7 @@ class Profile(db.Model, UserMixin):
             total_points += self.bonus_points(org)
             
             # Return True if they have 18 or more points
+            print(total_points)
             return total_points >= 18
         else:
             raise ValueError(f"Unknown Organization: {org}")
@@ -354,6 +355,7 @@ class Profile(db.Model, UserMixin):
                     "point_value": event.point_value,
                     "start_time": event.start_time.isoformat(),
                     "organizer_id": event.organizer_id,
+                    "semester": event.semester,
                     "hours": db.session.query(attendance_table.c.hours).where(attendance_table.c.profile_id == self.profile_id).where(attendance_table.c.event_id == event.event_id).first()[0]
                     
                 } for event in self.attendance

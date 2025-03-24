@@ -54,6 +54,7 @@ def upcoming_meetings(org: int):
             "description": meeting.description,
             "point_value": meeting.point_value,
             "organizer_id": meeting.organizer_id,
+            "semester": meeting.semester,
             "organizer": {
                  "profile_id": meeting.organizer.organization_id,  # updated field name
                  "name": meeting.organizer.name,

@@ -4,13 +4,13 @@
             {{ upload_form.csrf_token }}
             <div>
 				<label for="images" class="drop-container" id="dropcontainer">
-					<span class="drop-title">Drag files here</span>
+ 					<span class="drop-title">Drag files here</span>
 					or
 					{{ upload_form.csv_data(class_="csv-file", id="csv-file", accept=".csv") | safe }}
 					<div>
-						<p class="upload-warning">CSV file only</p>
-					</div>
-                 </label>
+ 						<p class="upload-warning">CSV file only</p>
+ 					</div>
+                </label>
             </div>
             <br>
             <div>
@@ -26,7 +26,7 @@
 </div>
 <script>
 	const dropContainer = document.getElementById("dropcontainer")
-	const fileInput = document.getElementById("images")
+	const fileInput = document.getElementById("csv-file")
 
 	dropContainer.addEventListener("dragover", (e) => {
 	e.preventDefault()

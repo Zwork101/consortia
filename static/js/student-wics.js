@@ -40,71 +40,48 @@ const getProfile = async () => {
 }
 
 const getStudentPoints = (endpointData) => {
-	//table = document.getElementById("orgMembers");
 
   let studentData = endpointData[0];
   let allMeetingData = endpointData[1];
-  console.log(studentData)
-  // console.log(studentData.profile.attendance)
 
   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
   let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
-  // attendance.forEach(attendanceDay =>{
-  //   //console.log(attendanceDay)
-  //   //console.log(attendanceDay.meeting_type)
-  //   if (attendanceDay.meeting_type == "GENERAL"){
-  //     generalEventsEvents += 1;
-  //     // console.log(mentorshipPoints);
-  //   }
-  // })
 
   attendance.forEach(attendanceDay =>{
-    console.log("Type: "+attendanceDay.meeting_type)
     switch (attendanceDay.meeting_type){
       case "SOCIAL":
         socialEvents += 1;
-        // console.log("SE "+socialEvents);
         break;
       case "VOLUNTEER":
         voluenteeringEvents +=1
-        //console.log("VE "+voluenteeringEvents);
         break;
       case "COMMITTEE":
         committeeEvents +=1
-        //console.log("CE "+committeeEvents);
         break;
       case "GENERAL":
         generalEvents +=1
-        //console.log("GE "+generalEvents);
         break;
       default:
         otherEvents +=1
-        //console.log("Other Events "+otherEvents);
     }
   });
 
   listOfAllMeetings.forEach(meeting =>{
-    console.log("Type: "+meeting.meeting_type)
     switch (meeting.meeting_type){
       case "SOCIAL":
         allSocialEvents += 1;
-        // console.log("SE "+socialEvents);
         break;
       case "VOLUNTEER":
         allVoluenteeringEvents +=1
-        //console.log("VE "+voluenteeringEvents);
         break;
       case "COMMITTEE":
         allCommitteeEvents +=1
-        //console.log("CE "+committeeEvents);
         break;
       case "GENERAL":
         allGeneralEvents +=1
-        //console.log("GE "+generalEvents);
         break;
       default:
         allOtherEvents +=1
-        //console.log("Other Events "+otherEvents);
     }
   });
   
@@ -113,12 +90,6 @@ const getStudentPoints = (endpointData) => {
   document.getElementById("committee-total-points-bar").style.width = `${(committeeEvents/maxEvents)*100}%`;
   document.getElementById("general-total-points-bar").style.width = `${(generalEvents/maxEvents)*100}%`;
     
-    // document.getElementById("mentor-points").innerHTML= mentorshipPoints;
-    // document.getElementById("voluenteering-points").innerHTML= voluenteeringid="general-total-points-bar"Points;
-    // document.getElementById("attendence-points").innerHTML= attendencePoints;
-    // document.getElementById("misc-points").innerHTML= miscPoints;
-    
-    // earnedPoints = mentorshipPoints + voluenteeringPoints + attendencePoints + miscPoints;
     document.getElementById("social-events").innerHTML = socialEvents;
     document.getElementById("volunteering-events").innerHTML = voluenteeringEvents;
     document.getElementById("committee-events").innerHTML = committeeEvents;

@@ -1,11 +1,13 @@
 let maxEvents = 14;
 
+// user variables
 let socialEvents = 0;
 let voluenteeringEvents = 0;
 let committeeEvents = 0;
 let generalEvents = 0;
 let otherEvents = 0;
 
+// all variables 
 let allSocialEvents = 0;
 let allVoluenteeringEvents = 0;
 let allCommitteeEvents = 0;
@@ -44,61 +46,65 @@ const getStudentPoints = (endpointData) => {
   let studentData = endpointData[0];
   let allMeetingData = endpointData[1];
 
+  // Trim down list to current semester only
   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
   let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
 
+  // Calculate total meetings of user
   attendance.forEach(attendanceDay =>{
     switch (attendanceDay.meeting_type){
       case "SOCIAL":
         socialEvents += 1;
         break;
       case "VOLUNTEER":
-        voluenteeringEvents +=1
+        voluenteeringEvents +=1;
         break;
       case "COMMITTEE":
-        committeeEvents +=1
+        committeeEvents +=1;
         break;
       case "GENERAL":
-        generalEvents +=1
+        generalEvents +=1;
         break;
       default:
-        otherEvents +=1
+        otherEvents +=1;
     }
   });
 
+  // Calculate total meetings per category
   listOfAllMeetings.forEach(meeting =>{
     switch (meeting.meeting_type){
       case "SOCIAL":
         allSocialEvents += 1;
         break;
       case "VOLUNTEER":
-        allVoluenteeringEvents +=1
+        allVoluenteeringEvents +=1;
         break;
       case "COMMITTEE":
-        allCommitteeEvents +=1
+        allCommitteeEvents +=1;
         break;
       case "GENERAL":
-        allGeneralEvents +=1
+        allGeneralEvents +=1;
         break;
       default:
-        allOtherEvents +=1
+        allOtherEvents +=1;
     }
   });
-  
+
+  // Draw bars and display numbers.
   document.getElementById("social-total-points-bar").style.width = `${(socialEvents/maxEvents)*100}%`;
   document.getElementById("volunteering-total-points-bar").style.width = `${(voluenteeringEvents/maxEvents)*100}%`;
   document.getElementById("committee-total-points-bar").style.width = `${(committeeEvents/maxEvents)*100}%`;
   document.getElementById("general-total-points-bar").style.width = `${(generalEvents/maxEvents)*100}%`;
     
-    document.getElementById("social-events").innerHTML = socialEvents;
-    document.getElementById("volunteering-events").innerHTML = voluenteeringEvents;
-    document.getElementById("committee-events").innerHTML = committeeEvents;
-    document.getElementById("general-events").innerHTML = generalEvents;
+  document.getElementById("social-events").innerHTML = socialEvents;
+  document.getElementById("volunteering-events").innerHTML = voluenteeringEvents;
+  document.getElementById("committee-events").innerHTML = committeeEvents;
+  document.getElementById("general-events").innerHTML = generalEvents;
 
-    document.getElementById("total-social-events").innerHTML = allSocialEvents;
-    document.getElementById("total-volunteering-events").innerHTML = allVoluenteeringEvents;
-    document.getElementById("total-committee-events").innerHTML = allCommitteeEvents;
-    document.getElementById("total-general-events").innerHTML = allGeneralEvents;
+  document.getElementById("total-social-events").innerHTML = allSocialEvents;
+  document.getElementById("total-volunteering-events").innerHTML = allVoluenteeringEvents;
+  document.getElementById("total-committee-events").innerHTML = allCommitteeEvents;
+  document.getElementById("total-general-events").innerHTML = allGeneralEvents;
 }
 
 

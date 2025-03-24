@@ -324,8 +324,28 @@ class Profile(db.Model, UserMixin):
             "profile_id": self.profile_id,
             "first_name": self.first_name,
             "last_name": self.last_name,
-            "email": self.email,
-            "attendance": [
+            "email": self.email
+        }
+        
+        if org_id is not None:
+            base_profile_json['membership'] = self.membership(org_id)
+            base_profile_json['semesters'] = self.semesters(org_id)
+            base_profile_json["bonus_points"] = self.bonus_points(org_id)
+            base_profile_json["attendance"] = [
+                {
+                    "event_id": event.event_id,
+                    "name": event.name,
+                    "description": event.description,
+                    "meeting_type": event.meeting_type.value,
+                    "point_value": event.point_value,
+                    "organizer_id": event.organizer_id,
+                    "start_time": event.start_time.isoformat(),
+                    "hours": db.session.query(attendance_table.c.hours).where(attendance_table.c.profile_id == self.profile_id).where(attendance_table.c.event_id == event.event_id).first()[0]
+                    
+                } for event in self.attendance if event.organizer_id == org_id
+            ]
+        else:
+            base_profile_json["attendance"] = [
                 {
                     "event_id": event.event_id,
                     "name": event.name,
@@ -333,16 +353,11 @@ class Profile(db.Model, UserMixin):
                     "meeting_type": event.meeting_type.value,
                     "point_value": event.point_value,
                     "start_time": event.start_time.isoformat(),
+                    "organizer_id": event.organizer_id,
                     "hours": db.session.query(attendance_table.c.hours).where(attendance_table.c.profile_id == self.profile_id).where(attendance_table.c.event_id == event.event_id).first()[0]
                     
-                } for event in self.attendance if org_id is None or event.organizer_id == org_id
+                } for event in self.attendance
             ]
-        }
-        
-        if org_id is not None:
-            base_profile_json['membership'] = self.membership(org_id)
-            base_profile_json['semesters'] = self.semesters(org_id)
-            base_profile_json["bonus_points"] = self.bonus_points(org_id)
 
         if self.rit_id is None:
             return {

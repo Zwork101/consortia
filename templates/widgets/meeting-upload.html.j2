@@ -1,0 +1,23 @@
+<div id="import-data-dialog-box" title="Import Data">
+    <form action="{{ url_for("admin.update_attendance_data", org=org) }}" name="import-data" id="import-data" method="post" enctype="multipart/form-data">
+        <fieldset>
+            {{ upload_form.csrf_token }}
+            <div>
+                <p>Choose file to upload a CSV file.</p>
+                <p>CSV files only.</p>
+            </div>
+            <div>
+                {{ upload_form.csv_data(class_="csv-file", id="csv-file", accept=".csv") | safe }}
+            </div>
+            <br>
+            <div>
+                {{ upload_form.meeting_id(id="meeting-select", onmousedown="refreshMeetingSelection({})".format(org)) }}
+            </div>
+            <br>
+            <div>
+                <button type="button" id="submit-file" onclick="handleFileUpload({{ org }})">Upload File</button>
+            </div>
+            
+        </fieldset>
+    </form>
+</div>

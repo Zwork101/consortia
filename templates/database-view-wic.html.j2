@@ -1,6 +1,6 @@
 {% extends "base.html.j2" %}
 {% block head %}
-<script src="../static/js/admin2.js"></script>
+<script defer src="../static/js/admin2.js"></script>
 {% endblock %}
 {% block content %}
 {% include "nav.html.j2" %} 
@@ -276,38 +276,9 @@
     </form>
 </div>
 
-<div id="import-data-dialog-box" title="Import Data">
-    <form action="{{ url_for("admin.update_attendance_data") }}" name="import-data" id="import-data" method="post" enctype="multipart/form-data">
-        <fieldset>
-            <div>
-                <p>Choose file to upload a CSV file.</p>
-                <p>CSV files only.</p>
-            </div>
-            <div>
-                {{ form.csv_data(class_="csv-file", id="csv-file" accept=".csv") | safe }}
-            </div>
-            <br>
-            <div>
-                <select name="data-event-name" id="data-event-name">
-                    <option>Tutoring with Katie</option>
-                    <option>Option2</option>
-                </select>
-                <select name="data-event-date" id="data-event-date">
-                    <option>11/22/24</option>
-                    <option>Option2</option>
-                </select>
-            </div>
-            <br>
-            <div>
-                <button type="button" id="submit-file" onclick="handleFileUpload()">Upload File</button>
-            </div>
-            
-        </fieldset>
-    </form>
-
-
-</div>
-
+{% with org=1 %}
+    {% include "widgets/meeting-upload.html.j2" %}
+{% endwith %}
 
 <div id="send-email-dialog-box" title="Send Email">
     <form name="send-email" id="send-email">

@@ -15,6 +15,25 @@ const listProfiles = async () => {
     }
 }
 
+const refreshMeetingSelection = async (org) => {
+    console.log("Refreshing meetings...")
+    const meetingDropdown = document.getElementById("meeting-select");
+
+    const meetings = await fetch(`/meetings/${org}`);
+    if (!meetings.ok) {
+        throw new Error(`Response status: ${meetings.status}`);
+    }
+    meetingDropdown.innerHTML = "";
+    const data = await meetings.json();
+    console.log(data);
+    data["Meetings"].forEach(event => {
+        const newEvent = `<option value="${event.event_id}">${event.name}</option>`
+        meetingDropdown.insertAdjacentHTML('beforeend', newEvent);
+    });
+    meetingDropdown.removeAttribute("onmousedown");
+
+}
+
 const openEditProfileModal = async (userId) => {
     try {
         console.log("Opening modal for user ID:", userId);

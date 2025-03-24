@@ -9,7 +9,7 @@ from backend.db import Organizations, create_attendance, commit, Event, Profile,
 from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, abort
 from flask_wtf import FlaskForm
 from flask_login import current_user
-from wtforms import FileField, IntegerField, StringField
+from wtforms import FileField, IntegerField, StringField, SelectField
 from wtforms.validators import DataRequired, ValidationError, Email
 
 from backend.db import Event, commit, create_attendance, Profile, db
@@ -19,6 +19,15 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func, or_
 from wtforms import FileField, IntegerField, StringField, SubmitField
 from wtforms.validators import DataRequired, ValidationError, NumberRange, Length
+
+
+class NonValidatingSelectField(SelectField):
+    """
+    Attempt to make an open ended select multiple field that can accept dynamic
+    choices added by the browser.
+    """
+    def pre_validate(self, form):
+        pass
 
 
 class CampusGroupsValidator:
@@ -35,7 +44,7 @@ class CampusGroupsValidator:
         
 
 class AttendanceForm(FlaskForm):
-    meeting_id = IntegerField("Meeting ID", validators=[DataRequired("Please provide a meeting ID")], render_kw = {'hidden': 'true'})
+    meeting_id = NonValidatingSelectField("Meeting", validators=[DataRequired("Please provide a meeting ID")], choices=[("", "Select an Event")])
     csv_data = FileField("Data Upload", validators=[DataRequired("Please upload a CSV file with attendance data"), CampusGroupsValidator(
         "Unable to parse attendance file, ensure correct file was uploaded.",
         "Invalid fields in CSV file, missing 'Email' column. Ensure correct file was uploaded.",

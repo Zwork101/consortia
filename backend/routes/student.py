@@ -15,8 +15,8 @@ def wic_homepage():
 def coms_homepage():
     return render_template("coms-profile.html.j2", title="COMS")
 
-@student.route("/meetings")
-def upcoming_meetings():
+@student.route("/meetings/<int:org>")
+def upcoming_meetings(org: int):
     """Return upcoming meetings based on pagination parameters."""
     try:
         skip = request.args.get("skip", 0, type=int)
@@ -27,9 +27,9 @@ def upcoming_meetings():
     except ValueError:
         return jsonify({"Error": "Invalid input type"})
 
-    total_meetings = Event.query.filter(Event.start_time >= date.today()).count()
     meeting_results = (
         Event.query.filter(Event.start_time >= date.today())
+        .filter(Event.organizer_id == org)
         .order_by(Event.start_time)
         .offset(skip)
         .all()

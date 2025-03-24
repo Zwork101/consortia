@@ -73,46 +73,17 @@ function openCity(evt, cityName) {
 
 // Function to handle file upload and display the data
 
-function handleFileUpload() {
-    const fileInput = document.getElementById('csv-file');
-    const file = fileInput.files[0];
-    const table = document.getElementById('dbTable');
+async function handleFileUpload(org) {
+    const form = document.getElementById('import-data');
+    const formData = new FormData(form);
 
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const rows = e.target.result.split('\n');
-            rows.forEach((row, index) => {
-                const columns = row.split(',');
-                if (columns.length > 1 && index > 0) { // Skip header row
-                    const newRow = table.insertRow();
-                    newRow.classList.add('dbTableRow');
-                    newRow.innerHTML = `
-                        <td>
-                            <label class="container">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                        </td>
-                        <td>${columns[0]}</td>
-                        <td>${columns[1]}</td>
-                        <td>${columns[2]}</td>
-                        <td>${columns[3]}</td>
-                        <td>${columns[4]}</td>
-                        <td>${columns[5]}</td>
-                        <td>${columns[6]}</td>
-                        <td>${columns[7]}</td>
-                        <td>${columns[8]}</td>
-                        <td class="dbTablePH"></td>
-                        <td><img src="../static/images/options.png" width="16" /></td>
-                    `;
-                }
-            });
-        };
-        reader.readAsText(file);
-    } else {
-        alert('Please select a CSV file first!');
-    }
+    const resp = await fetch(`/meetings/${org}/upload`, {
+        method: 'POST',
+        body: formData
+    })
+
+    console.log(await resp.json());
+
 }
 
 

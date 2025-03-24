@@ -1,6 +1,6 @@
 {% extends "base.html.j2" %}
 {% block head %}
-<script src="../static/js/admin2.js"></script>
+<script defer src={{ url_for("static", filename="js/admin2.js") }}></script>
 {% endblock %}
 {% block content %}
 {% include "nav.html.j2" %} 
@@ -276,6 +276,11 @@
     </form>
 </div>
 
+<<<<<<< HEAD
+{% with org=2 %}
+    {% include "widgets/meeting-upload.html.j2" %}
+{% endwith %}
+=======
 <div id="import-data-dialog-box" title="Import Data">
     <form name="import-data" id="import-data" enctype="multipart/form-data">
         <fieldset>
@@ -303,6 +308,7 @@
 
 
 </div>
+>>>>>>> 317965df6d41ace00512257709fa0d9c7ead707d
 
 
 <div id="send-email-dialog-box" title="Send Email">

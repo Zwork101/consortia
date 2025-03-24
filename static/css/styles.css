@@ -154,20 +154,20 @@ nav {
     border: 1.5px solid #DEDEDE;
     border-top: none;
     border-radius: 0 0 2px 2px;
-    transform: translate(-17px, -23.5px);
+    transform: translateY(-23.5px);
 }
 
-    .dropdown-content-navbar a {
-        font-size: 0.8rem;
-        font-family: var(--main-font);
-        padding: 12px 12px;
-        display: block;
-        background-color: #fff;
-    }
+.dropdown-content-navbar a {
+    font-size: 0.8rem;
+    font-family: var(--main-font);
+    padding: 12px 12px;
+    display: block;
+    background-color: #fff;
+}
 
-        .dropdown-content-navbar a:hover {
-            background-color: #E9ECEF;
-        }
+.dropdown-content-navbar a:hover {
+    background-color: #E9ECEF;
+ }
 
 .navbar-dropdown:focus-within {
     border-color: #DEDEDE;
@@ -898,14 +898,6 @@ input[type="text"] {
         color: #000;
     }
 
-.indexdbbutton {
-    position: absolute;
-    font-family: var(--main-font);
-    font-size: 1.5em;
-    cursor: pointer;
-    color: --orange;
-}
-
 /* Wics Current Semester */
 .tablinks {
     background-color: transparent;
@@ -1036,6 +1028,11 @@ svg {
     text-decoration: underline;
     color: #F76902;
     width: 200px;
+    position: absolute;
+    font-family: var(--main-font);
+    font-size: 1.5em;
+    cursor: pointer;
+    color: --orange;
 }
 
 .indexdbbutton:hover{

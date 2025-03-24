@@ -1299,10 +1299,6 @@ svg {
     margin: 2%;
 }
 
-.csv-file{
-    width: 1000%;
-}
-
 /*
     All classes for drag and drop file upload
 */
@@ -1338,7 +1334,7 @@ svg {
     font-weight: bold;
     text-align: center;
     transition: color .2s ease-in-out;
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
 input[type=file]::file-selector-button {
@@ -1378,6 +1374,5 @@ input[type=file]::file-selector-button:hover, .upload-submit:hover {
     font-size: 0.7rem;
     color: #999999;
     text-align: center;
-    transform: translateY(-40px);
     font-weight: 200;
 }

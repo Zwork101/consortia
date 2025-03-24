@@ -3,10 +3,15 @@
         <fieldset>
             {{ upload_form.csrf_token }}
             <div>
-                <p>Choose CSV file to upload.</p>
-            </div>
-            <div>
-                {{ upload_form.csv_data(class_="csv-file", id="csv-file", accept=".csv") | safe }}
+				<label for="images" class="drop-container" id="dropcontainer">
+					<span class="drop-title">Drag files here</span>
+					or
+					<input type="file" id="images" accept="image/*" required="">
+					{{ upload_form.csv_data(class_="csv-file", id="csv-file", accept=".csv") | safe }}
+					<div>
+						<p class="upload-warning">CSV file only</p>
+					</div>
+                 </label>
             </div>
             <br>
             <div>
@@ -14,9 +19,31 @@
             </div>
             <br>
             <div>
-                <button type="button" id="submit-file" onclick="handleFileUpload({{ org }})">Upload File</button>
+                <button type="button" id="submit-file" class="upload-submit" onclick="handleFileUpload({{ org }})">Upload File</button>
             </div>
             
         </fieldset>
     </form>
 </div>
+<script>
+	const dropContainer = document.getElementById("dropcontainer")
+	const fileInput = document.getElementById("images")
+
+	dropContainer.addEventListener("dragover", (e) => {
+	e.preventDefault()
+	}, false)
+
+	dropContainer.addEventListener("dragenter", () => {
+	dropContainer.classList.add("drag-active")
+	})
+
+	dropContainer.addEventListener("dragleave", () => {
+	dropContainer.classList.remove("drag-active")
+	})
+
+	dropContainer.addEventListener("drop", (e) => {
+	e.preventDefault()
+	dropContainer.classList.remove("drag-active")
+	fileInput.files = e.dataTransfer.files
+	})
+</script>

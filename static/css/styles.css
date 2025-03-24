@@ -1309,7 +1309,7 @@ svg {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 200px;
+    height: 280px;
     width: 480px;
     padding: 20px;
     border-radius: 10px;
@@ -1368,6 +1368,7 @@ input[type=file]::file-selector-button:hover, .upload-submit:hover {
     font-weight: bold;
     transform: translate(410px, -60px);
     height: 40px;
+    position: absolute;
 }
 
 .upload-warning{

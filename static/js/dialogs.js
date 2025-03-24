@@ -88,17 +88,6 @@ $( function() {
         height: 500,
         width: 600,
         modal: true,
-        buttons: [
-            {
-                text: "Submit",
-                // click: submit_filter_settings(filter_dialog),
-                click: function() {
-                    $("#create-meeting").submit;
-                    import_data_dialog.dialog('close');
-                    console.log("import meeting box closed");
-                }
-            },
-        ],
         // close:function() {
         //     filter_dialog.dialog('close');
             // filter_form[0].reset();

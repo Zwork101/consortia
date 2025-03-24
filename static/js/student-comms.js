@@ -24,8 +24,8 @@ const AttendancePercentage = Object.freeze({
 const hasMentorshipPoints = 3;
 
 const getProfile = async () => {
-	const profileEndpoint = "http://localhost:8080/profile/1?org_id=1";
-  const meetingsEndpoint = "http://localhost:8080/meetings";
+	const profileEndpoint = "/profile?org=1";
+  const meetingsEndpoint = "/meetings/1";
 	try {
       var endpointList = []
     	const response = await fetch(profileEndpoint);
@@ -125,8 +125,8 @@ const loadSemesters = () => {
   semesters.forEach(sem => {
       const semElement = document.createElement("div");
       semElement.innerHTML = 
-      '<h3>${sem.semester_coms} ${sem.year_coms}</h3>' +
-      '<p>{sem.organizer_coms}, ${sem.meeting_type_coms}: ${sem.description_coms}, ${sem.point_value_coms}</p>';
+      `<h3>${sem.semester_coms} ${sem.year_coms}</h3>` +
+      `<p>${sem.organizer_coms}, ${sem.meeting_type_coms}: ${sem.description_coms}, ${sem.point_value_coms}</p>`;
       container.appendChild(semElement);
     }
   );

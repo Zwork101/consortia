@@ -10,7 +10,7 @@
             </div>
             <br>
             <div>
-                {{ upload_form.meeting_id(id="meeting-select", onmousedown="refreshMeetingSelection({})".format(org)) }}
+                {{ upload_form.meeting_id(id="meeting-select", onmousedown="refreshMeetingSelection({})".format(org)) | safe }}
             </div>
             <br>
             <div>

@@ -10,7 +10,7 @@ from flask import Flask, Blueprint, request
 
 def create_app(config_file: Config = DevelopmentConfig) -> Flask:
 
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.INFO, filename="development.log", filemode="a")
     # logging.getLogger("sqlalchemy.engine").setLevel(logging.DEBUG)
     
     app = Flask(__name__, static_folder="static/", template_folder="templates/")
@@ -36,6 +36,8 @@ def create_app(config_file: Config = DevelopmentConfig) -> Flask:
     for blueprint in blueprints:
         app.register_blueprint(blueprint)
         logging.info(f"Added '{blueprint.name}' blueprint.")
+
+    app.jinja_env.add_extension("jinja2.ext.loopcontrols")
 
     return app
 

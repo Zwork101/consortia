@@ -2,13 +2,14 @@
 	<div class="black-bar"></div>
 	<!-- Black section on the left -->
 	<nav>
-		 <a href="{{ url_for('testing.return_index') }}">
-                <img class="backarrow" src="../static/images/back-arrow.png" width="16" />
-            </a>
-            
-            <div class="menu-toggle" onclick="toggleMenu()">
-                &#9776;
-            </div>
+		 {% if request.url_rule.endpoint != 'home.homepage' %}
+			<a href="{{ url_for('home.homepage') }}">
+				<img class="backarrow" src="../static/images/back-arrow.png" width="16" />
+			</a>
+	    {% endif %}
+      <div class="menu-toggle" onclick="toggleMenu()">
+         &#9776;
+      </div>
 
 			<ul class="nav-options-box">
                 <li><a href=""><p>NOTIFICATIONS</p></a></li>
@@ -16,9 +17,9 @@
                 <li>
                     <div class="navbar-dropdown">
                         <button onclick="dropDown4()" class="dropbtn4">
-                            WILL SMITH
+                            {{ current_user.full_name | upper }}
                             <span class="dropDownArrow">
-                                <img src="../static/images/down-arrow-white.png" width="10" />
+                                <img src="{{url_for('static', filename="images/down-arrow-white.png")}}" width="10" />
                             </span>
                         </button>
                         <div id="DropdownContent4" class="dropdown-content-navbar">
@@ -32,8 +33,8 @@
 		
 		
 </header>
- <script>
-        function toggleMenu() {
-            document.querySelector(".nav-options-box").classList.toggle("show");
-        }
-    </script>
+<script>
+      function toggleMenu() {
+          document.querySelector(".nav-options-box").classList.toggle("show");
+      }
+</script>

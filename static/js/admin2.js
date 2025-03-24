@@ -1,5 +1,5 @@
 const listProfiles = async (sortColumn = null, sortDirection = null) => {
-    const endpoint = "http://localhost:8080/admin/profiles/1";
+    const endpoint = "/admin/profiles/1";
     const queryParams = new URLSearchParams();
     
     // Add sorting parameters if provided
@@ -104,7 +104,7 @@ const openEditProfileModal = async (userId) => {
             return;
         }
         
-        const response = await fetch(`http://localhost:8080/profile/${userId}?org_id=1`);
+        const response = await fetch(`profile/${userId}?org_id=1`);
         if (!response.ok) throw new Error('Profile fetch error');
         const data = await response.json();
         console.log("Profile data received:", data);
@@ -153,11 +153,10 @@ const addTableRows = (rows) => {
           <td>${row['profile']['membership']}</td>
           <td>${row['profile']['semesters']}</td>
           <td>${row['profile']['email']}</td>
-          <td>Undetermined</td>
-          <td>Undetermined</td>
-          <td>${row['profile']['attendance'] ? row['profile']['attendance'].length : 0}</td>
-          <td>${row['profile']['bonuses'] ? row['profile']['bonuses'] : ''}</td>
-          <td>${row['profile']['points']}</td>
+          <td>${row['profile']['attendance'].filter(e => e['meeting_type'] == "GENERAL").length }</td>
+          <td>${row['profile']['attendance'].filter(e => e['meeting_type'] == "COMMITTEE").length }</td>
+          <td>${row['profile']['attendance'].filter(e => e['meeting_type'] == "SOCIAL").length }</td>
+          <td>${row['profile']['attendance'].filter(e => e['meeting_type'] == "VOLUNTEER").length }</td>
           <td class="dbTablePH"></td>
           <td>
               <img src="../static/images/options.png" width="16" class="edit-profile-btn" data-user-id="${row['profile']['profile_id']}" />
@@ -194,7 +193,7 @@ const applyFilters = () => {
         queryParams.append("search", search);
     }
     
-    const endpoint = `http://localhost:8080/admin/profiles/1?${queryParams.toString()}`;
+    const endpoint = `/admin/profiles/1?${queryParams.toString()}`;
     
     fetch(endpoint)
         .then(response => {

@@ -7,7 +7,7 @@ import logging
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
-from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import foreign, mapper, relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import ForeignKey, Integer, Table, Column, func, case, cast, and_
 
 
@@ -68,7 +68,7 @@ class Profile(db.Model, UserMixin):
 
     attendance: Mapped[list["Event"]] = relationship(secondary=attendance_table, back_populates="attendants")
     awards: Mapped[list["Award"]] = relationship(secondary="ProfileAward", back_populates="recipients")
-    administrator: Mapped["Administrator"] = relationship(back_populates="profile")
+    positions: Mapped[list["Administrator"]] = relationship("Administrator", foreign_keys="[Administrator.profile_id]", back_populates="profile")
     bonuses: Mapped[list["BonusPoints"]] = relationship("BonusPoints", foreign_keys="[BonusPoints.recipient_id]", back_populates="recipient")
     grants: Mapped[list["BonusPoints"]] = relationship("BonusPoints", foreign_keys="[BonusPoints.giver_id]", back_populates="giver")
     
@@ -95,25 +95,24 @@ class Profile(db.Model, UserMixin):
     #     )
 
     @property
-  
+    def full_name(self):
+        return self.first_name + " " + self.last_name
+    
+    @property
     def is_authenticated(self):
         return True
 
     @property
- 
     def is_active(self):
         return True
 
     @property
-   
     def is_anonymous(self):
         return False
 
-    
     def get_id(self):
         return str(self.profile_id)
     
-
     @hybrid_method
     def membership(self, org: int):
         current_semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
@@ -368,11 +367,14 @@ class Profile(db.Model, UserMixin):
                     } for award in self.awards if org_id is None or award.organization_id == org_id
                 ],
                 
-                "administrator": None if not self.administrator else self.administrator.role.value
+                "positions": [{
+                    "organization_id": position.organization_id,
+                    "role": position.role.value
+                } for position in self.positions]
             })
             return {
                 "incomplete": False,
-                "profile": base_profile_json
+               "profile": base_profile_json
             }
 
 class BonusPoints(db.Model):
@@ -448,8 +450,10 @@ class Administrator(db.Model):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
     role: Mapped[RoleType]
-    profile: Mapped["Profile"] = relationship("Profile", back_populates="administrator")
+    profile: Mapped["Profile"] = relationship("Profile", back_populates="positions")
     profile_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
+    organization: Mapped["Organizer"] = relationship("Organizer", back_populates="administrators")
+    organization_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
     # id = db.Column(Integer, primary_key=True, autoincrement=True)
     # profile_id = db.Column(Integer, ForeignKey('Profile.profile_id'), nullable=False)
     # role = db.Column(Enum('roleType'), nullable=False)
@@ -462,6 +466,7 @@ class Organizer(db.Model):
     name: Mapped[str]
     email: Mapped[str]
     events: Mapped[list["Event"]] = relationship(back_populates="organizer")
+    administrators: Mapped[list["Administrator"]] = relationship("Administrator", foreign_keys="[Administrator.organization_id]", back_populates="organization")
    
     # organization_id = db.Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     # name = db.Column(String(50), nullable=False)
@@ -583,9 +588,54 @@ def db_testing_setup():
         events[-1].start_time += timedelta(days=random.randint(-200, 200))
         events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S")
         events[-1].end_time += timedelta(hours=random.randint(1, 8))
-    
+
+    developer_profiles_data = [
+        {
+          "rit_id": "bp3940",
+          "first_name": "Blanka",
+          "last_name": "Peller",
+          "email": "bp3940@rit.edu"
+        },
+        {
+          "rit_id": "njz8626",
+          "first_name": "Nathan",
+          "last_name": "Zilora",
+          "email": "njz8626@rit.edu"
+        },
+        {
+            "rit_id": "whb3080",
+            "first_name": "Wyatt",
+            "last_name": "IDK",
+            "email": "whb3080@rit.edu"
+        },
+        {
+          "rit_id": "rwc5591",
+          "first_name": "Reg",
+          "last_name": "Chuhi",
+          "email": "rwc5591@rit.edu"   
+        },
+        {
+          "rit_id": "dks7712",
+          "first_name": "Dylan",
+          "last_name": "Sandberg",
+          "email": "dks7712@rit.edu"
+        }
+    ]
+
+    developer_profiles = [Profile(**data) for data in developer_profiles_data]
+
+    will_smith = Profile(
+        rit_id = "wls1234",
+        first_name = "Will",
+        last_name = "Smith",
+        email = "wls1234@rit.edu",
+        graduation_year = 2025,
+        degree = "Acting",
+        pronouns = "He/Him"
+    )
+
     db.session.add_all([
-        *users, *events, WiC, COMS
+        *users, *events, WiC, COMS, will_smith, *developer_profiles
     ])
     db.session.commit()
 
@@ -593,11 +643,32 @@ def db_testing_setup():
         for user in random.choices(users, k=random.randint(0, 120)):
             create_attendance(user.email, event.event_id, user.first_name, user.last_name, random.randint(1,8))
 
+    for event in db.session.query(Event).all():
+        will_smith.attendance.append(event)
+        for user in developer_profiles:
+            user.attendance.append(event)
+
+    make_admin(will_smith.profile_id, Organizations.WIC, RoleType.ADMIN)
+    make_admin(will_smith.profile_id, Organizations.COMS, RoleType.ADMIN)
+
+    for user in developer_profiles:
+        make_admin(user.profile_id, Organizations.WIC, RoleType.ADMIN)
+        make_admin(user.profile_id, Organizations.COMS, RoleType.ADMIN)
+
     db.session.commit()
 
     for user in active_users:
         print(user.profile_id, user.first_name, user.last_name)
 
+def make_admin(user: int, org: int, role: RoleType):
+    admin = Administrator(
+        profile_id = user,
+        organization_id = org,
+        role = role
+    )
+
+    db.session.add(admin)
+    return admin
 
 def create_attendance(email: str, event_id: int, first_name: str = None, last_name: str = None, hours = 0):
     """
@@ -628,12 +699,13 @@ def create_attendance(email: str, event_id: int, first_name: str = None, last_na
     
     return user
 
-def create_bonus(point_value: int, recipient_id: int, giver_id: int, reason: str):
+def create_bonus(point_value: int, recipient_id: int, giver_id: int, reason: str, org: int):
     grant = BonusPoints(
         point_value = point_value,
         recipient_id = recipient_id,
         giver_id = giver_id,
-        reason = reason
+        reason = reason,
+        organization_id = org
     )
     db.session.add(grant)
     return grant

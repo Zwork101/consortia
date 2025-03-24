@@ -17,7 +17,7 @@
                 <li>
                     <div class="navbar-dropdown">
                         <button onclick="dropDown4()" class="dropbtn4">
-                            {{ current_user.full_name | upper }}
+							<p>{{ current_user.full_name | upper }}</p>
                             <span class="dropDownArrow">
                                 <img src="{{url_for('static', filename="images/down-arrow-white.png")}}" width="10" />
                             </span>

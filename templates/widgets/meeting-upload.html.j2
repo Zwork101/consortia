@@ -3,8 +3,7 @@
         <fieldset>
             {{ upload_form.csrf_token }}
             <div>
-                <p>Choose file to upload a CSV file.</p>
-                <p>CSV files only.</p>
+                <p>Choose CSV file to upload.</p>
             </div>
             <div>
                 {{ upload_form.csv_data(class_="csv-file", id="csv-file", accept=".csv") | safe }}

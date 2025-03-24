@@ -64,10 +64,8 @@ nav {
     float: right;
     padding: 0px 36px;
     height: 40px;
-    transform: translateX(-70px);
-
-
-    
+    transform: translateX(-100px);
+    padding-left: 0;
 }
 
     .nav-options-box:first-child {
@@ -119,7 +117,8 @@ nav {
 
 
     .navbar-dropdown button {
-        width: 136px;
+        width: 158px;
+        padding-right: 40px;
         height: 40px;
         font-size: 0.8rem;
         font-weight: 800;
@@ -129,15 +128,21 @@ nav {
         text-align: left;
         padding-left: 12px;
         border: none;
-        transform: translate(-16px, -23.5px);
+        transform: translate(-20px, -23.5px);
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .navbar-dropdown button p{
+        transform: translateY(-1px);
     }
 
     .navbar-dropdown .dropDownArrow img {
-        transform: translate(-20px, -2px);
+        transform: translate(24px, 10px);
     }
 
     .navbar-dropdown:focus-within .dropDownArrow img {
-        transform: rotate(-180deg) translate(20px, 2px);
+        transform: rotate(-180deg) translate(-24px, -8px);
     }
 
 .dropdown-content-navbar {
@@ -1025,11 +1030,16 @@ svg {
 }
 
 .indexdbbutton {
-    transform: translate(-120px, 16px);
+    transform: translate(-380px, 14px);
     background-color: transparent;
     border: none;
     text-decoration: underline;
-    color: #F76902
+    color: #F76902;
+    width: 200px;
+}
+
+.indexdbbutton:hover{
+    color: #000;
 }
 
 /* Modal styling - update with !important to ensure these take precedence */

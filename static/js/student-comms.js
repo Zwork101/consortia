@@ -12,8 +12,7 @@ let attendancePoints = 0;
 let miscPoints = 0;
 
 // Calculate total points that can be picked in total:
-let totalAttendancePoints = 0;
-let total
+let totalVolunteerPoints = 0;
 
 //Enum for attendance
 const AttendancePercentage = Object.freeze({
@@ -25,11 +24,11 @@ const AttendancePercentage = Object.freeze({
 const hasMentorshipPoints = 3;
 
 const getProfile = async () => {
-	const endpoint = "http://localhost:8080/profile/1?org_id=1";
-  const endpoint2 = "http://localhost:8080/meetings";
+	const profileEndpoint = "http://localhost:8080/profile/1?org_id=1";
+  const meetingsEndpoint = "http://localhost:8080/meetings";
 	try {
       var endpointList = []
-    	const response = await fetch(endpoint);
+    	const response = await fetch(profileEndpoint);
 	    if (!response.ok) {
 	      throw new Error(`Response status: ${response.status}`);
 	    }
@@ -37,7 +36,7 @@ const getProfile = async () => {
 	    const json = await response.json();
       endpointList.push(json);
 
-	    const response2 = await fetch(endpoint2);
+	    const response2 = await fetch(meetingsEndpoint);
 	    if (!response2.ok) {
 	      throw new Error(`Response status: ${response2.status}`);
 	    }
@@ -58,8 +57,6 @@ const getStudentPoints = (endpointData) => {
   studentData = endpointData[0];
   allMeetingData = endpointData[1];
 
-  console.log(studentData);
-
   // Calculate points fo the user
   if (studentData.profile.membership == true){
     mentorshipPoints += hasMentorshipPoints;
@@ -75,14 +72,15 @@ const getStudentPoints = (endpointData) => {
     }
   })
 
-
   miscPoints = studentData.profile.bonus_points;
+
+  //Calculate max number of points
   let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
   listOfAllMeetings.forEach(meeting => {
     if (meeting.meeting_type == "GENERAL"){
       totalMeetings += 1;
     } else if (meeting.meeting_type == "VOLUNTEER") {
-      totalAttendancePoints += meeting.point_value
+      totalVolunteerPoints += meeting.point_value
     } else if (meeting.meeting_type == "MENTORSHIP"){
       // TODO
     }
@@ -98,12 +96,10 @@ const getStudentPoints = (endpointData) => {
     attendancePoints = AttendancePercentage.Percent50;
   }
 
-
- 
   // Point rewarding
 
-  maxPoints = hasMentorshipPoints + AttendancePercentage.Percent100 + miscPoints;
   earnedPoints = mentorshipPoints + voluenteeringPoints + attendancePoints + miscPoints;
+  maxPoints = hasMentorshipPoints + totalVolunteerPoints + AttendancePercentage.Percent100 + miscPoints;
 
   document.getElementById("mentor-bar").style.width = `${(mentorshipPoints/maxPoints)*100}%`;
   document.getElementById("voluenteer-bar").style.width = `${(voluenteeringPoints/maxPoints)*100}%`;
@@ -122,7 +118,6 @@ const getStudentPoints = (endpointData) => {
 getProfile().then(
   getStudentPoints
 )
-
 
 const loadSemesters = () => {
   const container = document.getElementById("semesters");

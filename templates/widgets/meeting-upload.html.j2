@@ -3,7 +3,7 @@
         <fieldset>
             {{ upload_form.csrf_token }}
             <div>
-				<label for="images" class="drop-container" id="dropcontainer">
+				<label for="csv-file" class="drop-container" id="dropcontainer">
  					<span class="drop-title">Drag files here</span>
 					or
 					{{ upload_form.csv_data(class_="csv-file", id="csv-file", accept=".csv") | safe }}

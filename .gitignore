@@ -15,3 +15,5 @@ instance/*
 .DS_Store
 
 pyrightconfig.json
+
+development.log

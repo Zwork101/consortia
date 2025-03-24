@@ -861,3 +861,157 @@ INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:40:39] "GET /meetings/2 HTTP/1.1" 20
 INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:40:51] "POST /meetings/2/upload HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:42:12] "GET /static/css/jquery/images/ui-icons_555555_256x240.png HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:42:15] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'testing' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 851-401-905
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:21] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:21] "GET /static/css/calendar.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:21] "GET /static/css/normalize/normalize.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:21] "GET /static/css/styles.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:21] "GET /static/css/jquery/jquery-ui.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:21] "GET /static/js/mainjavascript.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:21] "GET /static/css/dialogue.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:21] "GET /static/js/jquery-ui.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:21] "GET /static/js/dialogs.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:21] "GET /static/js/calendar.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:26] "GET /static/images/down-arrow-white.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:26] "GET /static/images/COMSimg.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:26] "GET /static/images/WICimg.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:26] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:27] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:37] "GET /wic HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:37] "GET /static/css/styles.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:37] "GET /static/css/calendar.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:37] "GET /static/css/normalize/normalize.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:37] "GET /static/js/mainjavascript.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:37] "GET /static/css/jquery/jquery-ui.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:37] "GET /static/js/jquery-ui.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:37] "GET /static/js/dialogs.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:37] "GET /static/css/dialogue.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:37] "GET /static/js/calendar.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:37] "GET /static/images/prev-arrow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:37] "GET /static/images/next-arrow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:37] "GET /static/images/back-arrow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:37] "GET /static/images/down-arrow-white.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:37] "GET /static/images/awards.webp HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:38] "GET /static/js/mainjavascript.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:38] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:38] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:38] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:47] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:47] "GET /static/css/styles.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:47] "GET /static/css/calendar.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:47] "GET /static/css/normalize/normalize.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:47] "GET /static/css/jquery/jquery-ui.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:47] "GET /static/css/dialogue.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:47] "GET /static/js/mainjavascript.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:47] "GET /static/js/jquery-ui.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:47] "GET /static/js/dialogs.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:47] "GET /static/js/calendar.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:47] "GET /static/images/down-arrow-white.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:48] "GET /static/images/WICimg.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:48] "GET /static/images/COMSimg.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:48] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:48] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:48] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:50] "GET /coms HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:50] "GET /static/css/styles.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:50] "GET /static/css/calendar.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:50] "GET /static/css/jquery/jquery-ui.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:50] "GET /static/css/normalize/normalize.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:50] "GET /static/css/dialogue.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:50] "GET /static/js/mainjavascript.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:50] "GET /static/js/jquery-ui.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:50] "GET /static/js/dialogs.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:50] "GET /static/js/calendar.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:50] "GET /static/images/awards.webp HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:50] "GET /static/images/back-arrow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:50] "GET /static/images/down-arrow-white.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:50] "GET /static/images/next-arrow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:50] "GET /static/images/prev-arrow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:51] "GET /static/js/mainjavascript.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:51] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:51] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:51] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "GET /coms HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "GET /static/css/styles.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "GET /static/css/calendar.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "GET /static/css/jquery/jquery-ui.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "GET /static/css/normalize/normalize.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "GET /static/css/dialogue.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "GET /static/js/mainjavascript.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "GET /static/js/dialogs.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "GET /static/js/calendar.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "GET /static/js/jquery-ui.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "GET /static/images/awards.webp HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "GET /static/images/down-arrow-white.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "GET /static/images/back-arrow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "GET /static/images/prev-arrow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "GET /static/images/next-arrow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "GET /static/js/mainjavascript.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:44:59] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:10] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:10] "GET /static/css/styles.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:10] "GET /static/css/normalize/normalize.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:10] "GET /static/css/jquery/jquery-ui.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:10] "GET /static/css/calendar.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:10] "GET /static/css/dialogue.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:10] "GET /static/js/mainjavascript.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:10] "GET /static/js/jquery-ui.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:10] "GET /static/js/dialogs.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:10] "GET /static/js/calendar.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:10] "GET /static/images/down-arrow-white.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:10] "GET /static/images/WICimg.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:10] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:10] "GET /static/images/COMSimg.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:10] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:10] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "GET /wic HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "GET /static/css/styles.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "GET /static/css/calendar.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "GET /static/css/jquery/jquery-ui.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "GET /static/css/normalize/normalize.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "GET /static/js/jquery-ui.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "GET /static/js/mainjavascript.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "GET /static/css/dialogue.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "GET /static/js/dialogs.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "GET /static/js/calendar.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "GET /static/images/down-arrow-white.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "GET /static/images/awards.webp HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "GET /static/images/back-arrow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "GET /static/images/prev-arrow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "GET /static/images/next-arrow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "GET /static/js/mainjavascript.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:15] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:16] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:45:16] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:46:17] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:46:18] "GET /static/css/styles.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:46:18] "GET /static/css/calendar.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:46:18] "GET /static/css/normalize/normalize.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:46:18] "GET /static/css/jquery/jquery-ui.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:46:18] "GET /static/js/mainjavascript.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:46:18] "GET /static/js/dialogs.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:46:18] "GET /static/css/dialogue.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:46:18] "GET /static/js/jquery-ui.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:46:18] "GET /static/js/calendar.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:46:18] "GET /static/images/down-arrow-white.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:46:18] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:46:18] "GET /static/images/WICimg.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:46:18] "GET /static/images/COMSimg.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:46:18] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2025 12:46:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -

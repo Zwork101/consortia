@@ -1,7 +1,34 @@
-const listProfiles = async () => {
+const listProfiles = async (sortColumn = null, sortDirection = null) => {
     const endpoint = "/admin/profiles/1";
+    const queryParams = new URLSearchParams();
+    
+    // Add sorting parameters if provided
+    if (sortColumn) {
+        queryParams.append("filter-sort-by", sortColumn);
+        queryParams.append("filter-sort-order", sortDirection);
+    }
+    
+    // Add existing filter values if available
+    const searchInput = document.getElementById("search");
+    if (searchInput && searchInput.value) {
+        queryParams.append("search", searchInput.value);
+    }
+    
+    // Add other filters if they exist and are set
+    const membershipFilter = document.getElementById("filter-membership");
+    if (membershipFilter && membershipFilter.value !== "All") {
+        queryParams.append("filter-membership", membershipFilter.value);
+    }
+    
+    const semestersFilter = document.getElementById("filter-semesters");
+    if (semestersFilter && semestersFilter.value !== "All") {
+        queryParams.append("filter-semesters", semestersFilter.value);
+    }
+    
+    const finalEndpoint = `${endpoint}?${queryParams.toString()}`;
+    
     try {
-        const response = await fetch(endpoint);
+        const response = await fetch(finalEndpoint);
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
@@ -14,6 +41,57 @@ const listProfiles = async () => {
         return [];
     }
 }
+
+// Function to handle table header click for sorting
+const handleTableHeaderClick = async (event) => {
+    const headerCell = event.target.closest('th');
+    if (!headerCell || !headerCell.dataset.column) return;
+    
+    // Get the column name from data attribute
+    const column = headerCell.dataset.column;
+    
+    // Toggle or set sort direction
+    const currentDirection = headerCell.dataset.direction || 'asc';
+    const newDirection = currentDirection === 'asc' ? 'Descending' : 'Ascending';
+    
+    // Remove sort indicators from all headers
+    document.querySelectorAll('th[data-column]').forEach(th => {
+        th.dataset.direction = '';
+        th.querySelector('.sort-indicator')?.remove();
+    });
+    
+    // Set new sort direction and add indicator to clicked header
+    headerCell.dataset.direction = newDirection.toLowerCase() === 'ascending' ? 'asc' : 'desc';
+    
+    // Add visual indicator
+    const indicator = document.createElement('span');
+    indicator.className = 'sort-indicator';
+    indicator.innerHTML = newDirection.toLowerCase() === 'ascending' ? ' ▲' : ' ▼';
+    headerCell.appendChild(indicator);
+    
+    // Clear existing table rows
+    const table = document.getElementById("dbTable");
+    const headerRow = table.querySelector('.dbTableTop');
+    while (table.rows.length > 1) {
+        table.deleteRow(1);
+    }
+    
+    // Show loading indicator
+    const loadingRow = table.insertRow();
+    const loadingCell = loadingRow.insertCell();
+    loadingCell.colSpan = headerRow.cells.length;
+    loadingCell.textContent = "Loading...";
+    loadingCell.style.textAlign = "center";
+    
+    // Fetch and display sorted data
+    const profiles = await listProfiles(column, newDirection);
+    
+    // Remove loading indicator
+    table.deleteRow(1);
+    
+    // Add new sorted rows
+    addTableRows(profiles);
+};
 
 const openEditProfileModal = async (userId) => {
     try {
@@ -157,4 +235,36 @@ document.addEventListener('DOMContentLoaded', () => {
             applyFilters();
         }, 500);
     });
+    
+    // Add click event listeners to table headers for sorting
+    document.querySelectorAll('#dbTable th[data-column]').forEach(th => {
+        th.addEventListener('click', handleTableHeaderClick);
+        th.style.cursor = 'pointer';
+    });
+    
+    // If no data-column attributes exist yet, add them after DOM is loaded
+    if (!document.querySelector('#dbTable th[data-column]')) {
+        const headerCells = document.querySelectorAll('#dbTable .dbTableTop th');
+        const columnMappings = {
+            1: "First Name",
+            2: "Last Name", 
+            3: "Membership",
+            4: "Semesters", 
+            5: "Email",
+            6: "General Meetings",
+            7: "Committee Meetings",
+            8: "Social Events",
+            9: "Volunteering",
+            10: "Points"
+        };
+        
+        // Skip first and last columns (checkbox and options)
+        for (let i = 1; i < headerCells.length - 2; i++) {
+            if (columnMappings[i]) {
+                headerCells[i].dataset.column = columnMappings[i];
+                headerCells[i].style.cursor = 'pointer';
+                headerCells[i].addEventListener('click', handleTableHeaderClick);
+            }
+        }
+    }
 });

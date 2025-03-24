@@ -44,6 +44,14 @@ attendance_table = Table(
     Column("hours", type_=Integer, default=0)
 )
 
+# class Attendance(db.Model):
+#     __tablename__ = "attendance"
+#     __table_args__ = {'extend_existing': True}
+
+#     profile_id: Mapped[int] = relationship("Profile", foreign_keys="[Profile.profile_id]")
+#     event_id: Mapped[int] = relationship("Event", foreign_keys="[Event.profile_id]")
+#     hours: Mapped[int] = mapped_column(default=0)
+
 
 class Profile(db.Model, UserMixin):
     __tablename__ = 'Profile'
@@ -227,17 +235,38 @@ class Profile(db.Model, UserMixin):
         
         
     @hybrid_method
-    def bonus_points(self, org: int):
-        return sum(b.point_value for b in self.bonuses if b.organization_id == org)
-        
-        
+    def bonus_points(self, org: int, semester_only: bool = True):
+        if semester_only:
+            current_semester = (datetime.now(timezone.utc).year * 10) + (0 if datetime.now(timezone.utc).month <= 7 else 5)
+            return sum(
+                b.point_value for b in self.bonuses 
+                if b.organization_id == org and 
+                   ((b.created_at.year * 10) + (0 if b.created_at.month <= 7 else 5)) == current_semester
+            )
+        else:
+            return sum(b.point_value for b in self.bonuses if b.organization_id == org)
+    
+    
     @bonus_points.expression
     @classmethod
-    def bonus_points_sql(cls, org: int):
-        return db.session.query(func.coalesce(func.sum(BonusPoints.point_value), 0))\
-            .where(BonusPoints.recipient_id == cls.profile_id)\
-            .where(BonusPoints.organization_id == org)\
-            .scalar_subquery()
+    def bonus_points_sql(cls, org: int, semester_only: bool = True):
+        if semester_only:
+            current_semester = (datetime.now(timezone.utc).year * 10) + (0 if datetime.now(timezone.utc).month <= 7 else 5)
+            bonus_semester_expr = (func.strftime('%Y', BonusPoints.created_at) * 10) + \
+                                  func.case(
+                                      [(cast(func.strftime('%m', BonusPoints.created_at), Integer) <= 7, 0)],
+                                      else_=5
+                                  )
+            return db.session.query(func.coalesce(func.sum(BonusPoints.point_value), 0))\
+                .where(BonusPoints.recipient_id == cls.profile_id)\
+                .where(BonusPoints.organization_id == org)\
+                .where(bonus_semester_expr == current_semester)\
+                .scalar_subquery()
+        else:
+            return db.session.query(func.coalesce(func.sum(BonusPoints.point_value), 0))\
+                .where(BonusPoints.recipient_id == cls.profile_id)\
+                .where(BonusPoints.organization_id == org)\
+                .scalar_subquery()
     
     @hybrid_method
     def event_points(self, org: int):
@@ -303,7 +332,8 @@ class Profile(db.Model, UserMixin):
                     "description": event.description,
                     "meeting_type": event.meeting_type.value,
                     "point_value": event.point_value,
-                    "start_time": event.start_time.isoformat()
+                    "start_time": event.start_time.isoformat(),
+                    "hours": db.session.query(attendance_table.c.hours).where(attendance_table.c.profile_id == self.profile_id).where(attendance_table.c.event_id == event.event_id).first()[0]
                     
                 } for event in self.attendance if org_id is None or event.organizer_id == org_id
             ]
@@ -358,6 +388,7 @@ class BonusPoints(db.Model):
     giver: Mapped["Profile"] = relationship("Profile", foreign_keys=[giver_id], back_populates="grants")
     reason: Mapped[str]
     organization_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
+    created_at: Mapped[datetime] = mapped_column(default=datetime.now(timezone.utc))
 
 class Award(db.Model):
     __tablename__ = 'Award'
@@ -544,8 +575,7 @@ def db_testing_setup():
     for event in event_data:
         events.append(Event(
             **event,
-            organizer=random.choice([WiC, COMS]),
-            attendants=random.choices(users, k=random.randint(0, 120))
+            organizer=random.choice([WiC, COMS])
         ))
         events[-1].meeting_type = random.choice([
             MeetingType.GENERAL,
@@ -609,6 +639,10 @@ def db_testing_setup():
     ])
     db.session.commit()
 
+    for event in events:
+        for user in random.choices(users, k=random.randint(0, 120)):
+            create_attendance(user.email, event.event_id, user.first_name, user.last_name, random.randint(1,8))
+
     for event in db.session.query(Event).all():
         will_smith.attendance.append(event)
         for user in developer_profiles:
@@ -636,20 +670,32 @@ def make_admin(user: int, org: int, role: RoleType):
     db.session.add(admin)
     return admin
 
-def create_attendance(email: str, event_id: int, first_name: str = None, last_name: str = None):
+def create_attendance(email: str, event_id: int, first_name: str = None, last_name: str = None, hours = 0):
     """
-    Creates an attendance object that has NOT been committed yet
+    Creates an attendance object that has NOT been committed yet.
     """
     user = Profile.query.where(Profile.email == email).first()
     event = Event.query.get(event_id)
+
+    if event is None:
+        raise ValueError("Unable to find event")
     
     if user is None:
-        user = Profile(email = email, first_name = first_name, last_name = last_name)
+        user = Profile(email=email, first_name=first_name, last_name=last_name)
         db.session.add(user)
         db.session.commit()
     
     if event not in user.attendance:
-        user.attendance.append(event)
+        with db.engine.connect() as conn:
+            conn.execute(
+                attendance_table.insert().values(
+                    event_id = event_id,
+                    profile_id = user.profile_id,
+                    hours = hours
+                ).compile()
+            )
+            conn.commit()
+        
     
     return user
 

@@ -7,22 +7,6 @@
 <div id="filter-dialog-box" title="Filters">
     <form name="filter-settings" id="filter-settings" method="post">
         <fieldset>
-            <div>
-                <select name="filter-sort-by" id="filter-sort-by">
-                    <option>Sort by: First Name</option>
-                    <option>Sort by: Last Name</option>
-                    <option>Sort by: Email</option>
-                    <option>Sort by: Semesters</option>
-                    <option>Sort by: General Meetings</option>
-                    <option>Sort by: Commmittee Meetings</option>
-                    <option>Sort by: Volunteering</option>
-                    <option>Sort by: Social Events</option>
-                </select>
-                <select name="filter-sort-order" id="filter-sort-order">
-                    <option>Ascending</option>
-                    <option>Decending</option>
-                </select>
-            </div>
             <div> 
                 <label for="filter-membership">Membership</label>
                 <select name="filter-membership" id="filter-membership">
@@ -279,21 +263,17 @@
 <div id="import-data-dialog-box" title="Import Data">
     <form action="{{ url_for("admin.update_attendance_data") }}" name="import-data" id="import-data" method="post" enctype="multipart/form-data">
         <fieldset>
-            <div>
-                <p>Choose file to upload a CSV file.</p>
-                <p>CSV files only.</p>
-            </div>
+            
             <div>
                 {{ form.csv_data(class_="csv-file", id="csv-file" accept=".csv") | safe }}
             </div>
             <br>
             <div>
+                <input type="date" name="meeting-date" id="meeing-date" style="padding: 8px 0px; transform: translate(320px, -10px); position:absolute;">
+            </div>
+            <div>
                 <select name="data-event-name" id="data-event-name">
                     <option>Tutoring with Katie</option>
-                    <option>Option2</option>
-                </select>
-                <select name="data-event-date" id="data-event-date">
-                    <option>11/22/24</option>
                     <option>Option2</option>
                 </select>
             </div>
@@ -389,19 +369,85 @@
 <table class="dbTable" id="dbTable">
     <tr class="dbTableTop">
         <th></th>
-        <th>FIRST NAME</th>
-        <th>LAST NAME</th>
-        <th>MEMBERSHIP</th>
-        <th>SEMESTER</th>
-        <th>E-MAIL ADDRESS</th>
-        <th>GEN. MEETINGS</th>
-        <th>COM. MEETINGS</th>
-        <th>SOCIAL EVENT</th>
-        <th>VOLUNTEERING</th>
-        <th class="dbTablePH"></th>
+        <th data-column="First Name">FIRST NAME</th>
+        <th data-column="Last Name">LAST NAME</th>
+        <th data-column="Membership">MEMBERSHIP</th>
+        <th data-column="Semesters">SEMESTER</th>
+        <th data-column="Email">E-MAIL ADDRESS</th>
+        <th data-column="General Meetings">GEN. MEETINGS</th>
+        <th data-column="Committee Meetings">COM. MEETINGS</th>
+        <th data-column="Social Events">SOCIAL EVENT</th>
+        <th data-column="Volunteering">VOLUNTEERING</th>
+        <th data-column="Points" class="dbTablePH">POINTS</th>
         <th></th>
     </tr>
 </table>
+
+<style>
+.sort-indicator {
+    display: inline-block;
+    margin-left: 5px;
+}
+#dbTable th[data-column] {
+    cursor: pointer;
+    position: relative;
+}
+#dbTable th[data-column]:hover {
+    background-color: #f5f5f5;
+}
+</style>
+
+<div id="editProfileModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('editProfileModal').classList.remove('show-modal')">&times;</span>
+        <h2>Edit Profile</h2>
+        <form id="editProfileForm" class="edit-profile-form" method="post" action="{{ url_for('admin.confirm_edit_user') }}">
+            <input type="hidden" id="edit-user-id" name="user_id">
+            
+            <div class="form-group">
+                <label for="edit-email">Email:</label>
+                <input type="text" id="edit-email" name="email">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-first_name">First Name:</label>
+                <input type="text" id="edit-first_name" name="first_name">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-last_name">Last Name:</label>
+                <input type="text" id="edit-last_name" name="last_name">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-rit_id">RIT ID:</label>
+                <input type="text" id="edit-rit_id" name="rit_id">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-graduation_year">Graduation Year:</label>
+                <input type="text" id="edit-graduation_year" name="graduation_year">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-degree">Degree:</label>
+                <input type="text" id="edit-degree" name="degree">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-pronouns">Pronouns:</label>
+                <input type="text" id="edit-pronouns" name="pronouns">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-avatar_path">Avatar Path:</label>
+                <input type="text" id="edit-avatar_path" name="avatar_path">
+            </div>
+            
+            <button type="submit" class="form-submit-button">Save Changes</button>
+        </form>
+    </div>
+</div>
 
 </main>
 {% endblock %}

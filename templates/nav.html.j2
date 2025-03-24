@@ -2,36 +2,39 @@
 	<div class="black-bar"></div>
 	<!-- Black section on the left -->
 	<nav>
-		{% if request.url_rule.endpoint != 'home.homepage' %}
+		 {% if request.url_rule.endpoint != 'home.homepage' %}
 			<a href="{{ url_for('home.homepage') }}">
 				<img class="backarrow" src="../static/images/back-arrow.png" width="16" />
 			</a>
 	    {% endif %}
-		<ul class="nav-options-box">
-			<li style="padding:0px;" >
-				<a href="">
-					<p>NOTIFICATIONS</p>
-				</a>
-			</li>
-			<li>
-				<a href="">
-					<p>SETTINGS</p>
-				</a>
-			</li>
-			<li>
-				<div class="navbar-dropdown">
-					<button onclick="dropDown4()" class="dropbtn4">
-						{{ current_user.full_name | upper }} <!--Replace name with student name-->
-						<span class="dropDownArrow">
-							<img src="{{url_for('static', filename="images/down-arrow-white.png")}}" width="10" />
-						</span>
-					</button>
-					<div id="DropdownContent4" class="dropdown-content-navbar">
-						<a>Profile</a>
-						<a>Logout</a>
-					</div>
-				</div>
-			</li>
-		</ul>
-	</nav>
+      <div class="menu-toggle" onclick="toggleMenu()">
+         &#9776;
+      </div>
+
+			<ul class="nav-options-box">
+                <li><a href=""><p>NOTIFICATIONS</p></a></li>
+                <li><a href=""><p>SETTINGS</p></a></li>
+                <li>
+                    <div class="navbar-dropdown">
+                        <button onclick="dropDown4()" class="dropbtn4">
+                            {{ current_user.full_name | upper }}
+                            <span class="dropDownArrow">
+                                <img src="{{url_for('static', filename="images/down-arrow-white.png")}}" width="10" />
+                            </span>
+                        </button>
+                        <div id="DropdownContent4" class="dropdown-content-navbar">
+                            <a>Profile</a>
+                            <a>Logout</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+		
+		
 </header>
+<script>
+      function toggleMenu() {
+          document.querySelector(".nav-options-box").classList.toggle("show");
+      }
+</script>

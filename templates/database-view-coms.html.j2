@@ -1,6 +1,6 @@
 {% extends "base.html.j2" %}
 {% block head %}
-<script src="../static/js/mainjavascript.js"></script>
+<script src="../static/js/admin2.js"></script>
 {% endblock %}
 {% block content %}
 {% include "nav.html.j2" %} 
@@ -279,21 +279,17 @@
 <div id="import-data-dialog-box" title="Import Data">
     <form name="import-data" id="import-data" enctype="multipart/form-data">
         <fieldset>
-            <div>
-                <p>Choose file to upload a CSV file.</p>
-                <p>CSV files only.</p>
-            </div>
+            
             <div>
                 <input type="file" name="csv-file" id="csv-file" accept=".csv">
             </div>
             <br>
             <div>
+                <input type="date" name="meeting-date" id="meeing-date" style="padding: 8px 0px; transform: translate(320px, -10px); position:absolute;">
+            </div>
+            <div>
                 <select name="data-event-name" id="data-event-name">
                     <option>Tutoring with Katie</option>
-                    <option>Option2</option>
-                </select>
-                <select name="data-event-date" id="data-event-date">
-                    <option>11/22/24</option>
                     <option>Option2</option>
                 </select>
             </div>
@@ -394,14 +390,68 @@
         <th>MEMBERSHIP</th>
         <th>SEMESTER</th>
         <th>E-MAIL ADDRESS</th>
-        <th>GEN. MEETINGS</th>
-        <th>COM. MEETINGS</th>
-        <th>SOCIAL EVENT</th>
+        <th>MENTORSHIP</th>
         <th>VOLUNTEERING</th>
+        <th>ATTENDANCE</th>
+        <th>MISC</th>
+        <th>TOTAL POINTS</th>
         <th class="dbTablePH"></th>
         <th></th>
     </tr>
 </table>
+
+<!-- Edit Profile Modal -->
+<div id="editProfileModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('editProfileModal').classList.remove('show-modal')">&times;</span>
+        <h2>Edit Profile</h2>
+        <form id="editProfileForm" class="edit-profile-form" method="post" action="{{ url_for('admin.confirm_edit_user') }}">
+            <input type="hidden" id="edit-user-id" name="user_id">
+            
+            <div class="form-group">
+                <label for="edit-email">Email:</label>
+                <input type="text" id="edit-email" name="email">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-first_name">First Name:</label>
+                <input type="text" id="edit-first_name" name="first_name">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-last_name">Last Name:</label>
+                <input type="text" id="edit-last_name" name="last_name">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-rit_id">RIT ID:</label>
+                <input type="text" id="edit-rit_id" name="rit_id">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-graduation_year">Graduation Year:</label>
+                <input type="text" id="edit-graduation_year" name="graduation_year">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-degree">Degree:</label>
+                <input type="text" id="edit-degree" name="degree">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-pronouns">Pronouns:</label>
+                <input type="text" id="edit-pronouns" name="pronouns">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-avatar_path">Avatar Path:</label>
+                <input type="text" id="edit-avatar_path" name="avatar_path">
+            </div>
+            
+            <button type="submit" class="form-submit-button">Save Changes</button>
+        </form>
+    </div>
+</div>
 
 </main>
 {% endblock %}

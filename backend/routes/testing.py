@@ -32,9 +32,13 @@ def return_db_coms():
 def return_db_wic():
     return render_template("database-view-wic.html.j2")
 
-@test.route("/testt")
-def return_testt():
+@test.route("/wic")
+def return_wic():
     return render_template("wics-profile.html.j2")
+
+@test.route("/coms")
+def return_coms():
+    return render_template("coms-profile.html.j2")
 
 @test.route("/com-email")
 def return_com_email():

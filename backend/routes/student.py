@@ -91,7 +91,7 @@ def member_attendance():
 @login_required
 def get_attendance(meeting_id: int):
 
-    meeting = Event.query.get(meeting_id)
+    meeting = Event.query.get(Event.event_id)
 
     if meeting is None:
         return abort(404)

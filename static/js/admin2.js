@@ -221,8 +221,9 @@ const applyFilters = () => {
             return response.json();
         })
         .then(data => {
-            const table = document.getElementById("orgMembers");
-            // Remove existing rows (assuming rows have the class "dbTableRow")
+            const table = document.getElementById("dbTable");
+            
+            // Remove existing rows
             table.querySelectorAll(".dbTableRow").forEach(row => row.remove());
             addTableRows(data);
         })

@@ -6,9 +6,19 @@
 {% endblock %}
 <!-- testing purporses only -->
 {% block content %}
-{% include "comstabs.html.j2" %}
+
+<body data-profile-id="{{ current_user.profile_id }}">
+ {% include "nav.html.j2" %} 
     <main>
-        <div class="points-bar">
+        <div class="profile-view-grid">
+            <div class="membership-sec">
+                <h2>Computing Organization for Multicultural Students</h2>
+                <h3>Status: {% if not current_user.membership(2) %}Non-{% endif %}Active Member</h3>
+                <button class="tablinks prof-view-btn active" onclick="openCity(event, 'membership')">Current Semester</button>
+                <button class="tablinks prof-view-btn" onclick="openCity(event, 'history')">History</button>
+
+                <div class="tabcontent" id="membership"> <!--MEMBERSHIP SECTION-->
+                    <div class="points-bar">
             <div class="chart-bar"> <!--Flexbox-->
                 <div id="mentor-bar"></div><!--Mentorship Program-->
                 <div id="voluenteer-bar"></div><!--Volunteering-->
@@ -99,5 +109,94 @@
                         class="external-url">email address</span> to find out more.</p>
             </section>
         </div>
+                </div> <!--MEMBERSHIP SECTION-->
+
+                <div id="history" class="tabcontent"> <!--HISTORY SECTION-->
+                    <div class="table-container membership-history-container">
+                        <div>
+                            <div>
+                                <p><b>Membership History by Semester</b></p>
+                            </div>
+                            <div>
+                                <p><b>Awards</b></p>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p><b>Fall 2024:</b> Non-Active Member</p>
+                                <p>
+                                    <span>14 Total Points</span>
+                                </p>
+                            </div>
+                            <div>
+            
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p><b>Spring 2024:</b> Active Member</p>
+                                <p>
+                                    <span>18 Total Points</span>
+                                </p>
+                            </div>
+                            <div>
+                                <img src="../static/images/awards.webp" alt="Award" >
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p><b>Fall 2023:</b> Active Member</p>
+                                <p>
+                                    <span>18 Total Points</span>
+                                </p>
+                            </div>
+                            <div>
+            
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p><b>Spring 2023:</b> Active Member</p>
+                                <p>
+                                    <span>18 Total Points</span>
+                                </p>
+                            </div>
+                            <div>
+            
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p><b>Fall 2022:</b> Non-Active Member</p>
+                                <p>
+                                    <span>14 Total Points</span>
+                                </p>
+                            </div>
+                            <div>
+                                <img src="../static/images/awards.webp" alt="Award" >
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p><b>Spring 2022:</b> Active Member</p>
+                                <p>
+                                    <span>18 Total Points</span>
+                                </p>
+                            </div>
+                            <div>
+            
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div> <!--HISTORY SECTION-->
+
+            <div class="calendar-sec"> <!--CALENDAR SECTION-->
+                {% include "calendar.html.j2" %}
+            </div>
+        </div>
     </main>
+
+</body>
+
 {% endblock %}

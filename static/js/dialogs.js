@@ -35,6 +35,7 @@ $( function() {
     });
 
     // Initialize the jQuery UI selectmenu widgets
+    $("#filter-semester").selectmenu();
     $("#filter-sort-by").selectmenu();
     $("#filter-sort-order").selectmenu();
     $("#filter-membership").selectmenu();

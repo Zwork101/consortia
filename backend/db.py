@@ -636,6 +636,12 @@ def db_testing_setup():
           "first_name": "Dylan",
           "last_name": "Sandberg",
           "email": "dks7712@rit.edu"
+        },
+        {
+        "rit_id": "vah7365",
+        "first_name": "Vivian",
+        "last_name": "Hernandez",
+        "email": "vah7365@rit.edu"
         }
     ]
 
@@ -661,9 +667,10 @@ def db_testing_setup():
             create_attendance(user.email, event.event_id, user.first_name, user.last_name, random.randint(1,8))
 
     for event in db.session.query(Event).all():
-        will_smith.attendance.append(event)
-        for user in developer_profiles:
-            user.attendance.append(event)
+        if random.randint(0, 2) == 2:
+            will_smith.attendance.append(event)
+            for user in developer_profiles:
+                    user.attendance.append(event)
 
     make_admin(will_smith.profile_id, Organizations.WIC, RoleType.ADMIN)
     make_admin(will_smith.profile_id, Organizations.COMS, RoleType.ADMIN)

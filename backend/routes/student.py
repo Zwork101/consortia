@@ -2,7 +2,7 @@ from sqlalchemy import case, desc
 from backend import db
 from backend.db import Event, Profile
 from flask import Blueprint, abort, jsonify, request, render_template
-from flask_login import login_required, current_user
+from flask_login import current_user
 from datetime import date
 
 student = Blueprint("student", __name__, static_folder="static/", template_folder="templates/")
@@ -88,7 +88,6 @@ def member_attendance():
 
 
 @student.route("/profile/attendance/<int:meeting_id>")
-@login_required
 def get_attendance(meeting_id: int):
 
     meeting = Event.query.get(Event.event_id)
@@ -96,7 +95,7 @@ def get_attendance(meeting_id: int):
     if meeting is None:
         return abort(404)
     
-    record = Profile.query.filter(meeting=meeting_id, profile_id=current_user.rit_id).all()
+    record = Profile.query.filter(meeting==meeting_id, Profile.profile_id==current_user.rit_id).all()
     
     if record is None:
         return abort(404)

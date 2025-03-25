@@ -96,7 +96,7 @@ def get_attendance(meeting_id: int):
     if meeting is None:
         return abort(404)
     
-    record = Profile.query.filter_by(meeting=meeting_id, profile_id=current_user.id).first()
+    record = Profile.query.filter(meeting=meeting_id, profile_id=current_user.rit_id).all()
     
     if record is None:
         return abort(404)

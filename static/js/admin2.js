@@ -122,7 +122,9 @@ const openEditProfileModal = async (userId) => {
             return;
         }
         
-        const response = await fetch(`profile/${userId}?org_id=1`);
+        const org = document.body.dataset.organizationId || 1; // Default to 1 if not found
+        
+        const response = await fetch(`/profile/${org}/${userId}`);
         if (!response.ok) throw new Error('Profile fetch error');
         const data = await response.json();
         console.log("Profile data received:", data);

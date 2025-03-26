@@ -15,27 +15,27 @@
                     <p>{{ user.membership }}</p>
 
                     <h4>Semester:</h4>
-                    <p>Semesters with group</p>
+                    <p>{{ user.semesters }}</p>
 
                     <h4>Awards:</h4>
                     <!-- Loop Awards Recieved --!>
-                    <p>Awards Received</p>
+                    <p>{{ user.award.name }}</p>
 
                     <h4 style="opacity:0%;">placeholder</h4>
                     <p style="opacity:0%;">placeholder</p>
                 </div>
                 <div class="profile-subsec" style="margin-left: 100px;">
                     <h4>General Meetings:</h4>
-                    <p>x/14</p>
+                    <p>{{ user.general_meetings }}/14</p>
 
                     <h4>Committee Meetings:</h4>
-                    <p>x/6</p>
+                    <p>{{ user.committee }}/6</p>
 
                     <h4>Social Events:</h4>
-                    <p>x/1</p>
+                    <p>{{ user.social_event }}/1</p>
 
                     <h4>Volunteering:</h4>
-                    <p>x/1</p>
+                    <p>{{ user.volunteer }}/1</p>
                 </div>
             </div>
         </div>

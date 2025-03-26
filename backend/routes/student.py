@@ -2,7 +2,8 @@ from flask_login import current_user
 from sqlalchemy import case, desc
 from backend import db
 from backend.db import Event, Profile
-from flask import Blueprint, jsonify, request, render_template, abort
+from flask import Blueprint, abort, jsonify, request, render_template
+from flask_login import current_user
 from datetime import date
 
 student = Blueprint("student", __name__, static_folder="static/", template_folder="templates/")
@@ -94,6 +95,25 @@ def member_attendance():
         for attendee in attendance
     ]
     return jsonify(user_attendance)
+
+
+@student.route("/profile/attendance/<int:meeting_id>")
+def get_attendance(meeting_id: int):
+
+    meeting = Event.query.get(Event.event_id)
+
+    if meeting is None:
+        return abort(404)
+    
+    record = Profile.query.filter(meeting==meeting_id, Profile.profile_id==current_user.rit_id).all()
+    
+    if record is None:
+        return abort(404)
+    
+    return jsonify(
+        record.serialize(meeting_id)
+    ) 
+
 
 @student.route('/?sort=semester')
 def sort_semester():

@@ -29,8 +29,8 @@ const AttendancePercentage = Object.freeze({
 const hasMentorshipPoints = 3;
 
 const getProfile = async () => {
-	const profileEndpoint = "/profile?org=1";
-  const meetingsEndpoint = "/meetings/1";
+	const profileEndpoint = "/profile?org=2";
+  const meetingsEndpoint = "/meetings/2";
 	try {
       var endpointList = []
     	const response = await fetch(profileEndpoint);

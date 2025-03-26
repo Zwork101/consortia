@@ -15,8 +15,9 @@ let allGeneralEvents = 0;
 let allOtherEvents = 0;
 
 const getProfile = async () => {
-	const profileEndpoint = "http://localhost:8080/profile/1?org_id=1";
-  const meetingsEndpoint = "http://localhost:8080/meetings";
+  const userId = document.getElementsByTagName("body")[0].dataset.profileId;
+	const profileEndpoint = `/profile?org=1`;
+  const meetingsEndpoint = "/meetings/1";
 	try {
       var endpointList = []
     	const response = await fetch(profileEndpoint);
@@ -47,6 +48,7 @@ const getStudentPoints = (endpointData) => {
   let allMeetingData = endpointData[1];
 
   // Trim down list to current semester only
+  console.log(endpointData)
   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
   let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
 
@@ -110,8 +112,8 @@ const getStudentPoints = (endpointData) => {
 
 getProfile().then(
   getStudentPoints
-)
-
+);
+console.log("Loaded profile");
 
 const loadSemesters = () => {
   const container = document.getElementById("semestersContainer");
@@ -120,8 +122,8 @@ const loadSemesters = () => {
   semesters_wics.forEach(sem => {
       const semElement = document.createElement("div");
       semElement.innerHTML = 
-      '<h3>${sem.semester_wics} ${sem.year_wics}</h3>' +
-      '<p>${sem.organizer_wics}, ${sem.meeting_type_wics}: ${sem.description_wics}, ${sem.point_value_wics}</p>';
+      `<h3>${sem.semester_wics} ${sem.year_wics}</h3>` +
+      `<p>${sem.organizer_wics}, ${sem.meeting_type_wics}: ${sem.description_wics}, ${sem.point_value_wics}</p>`;
       container.appendChild(semElement);
     }
   );

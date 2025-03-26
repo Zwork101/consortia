@@ -1,10 +1,11 @@
 {% extends "base.html.j2" %}
 {% block head %}
-<script src="../static/js/mainjavascript.js"></script>
+<script src="{{ url_for("static", filename="js/semester-sort-and-filter.js") }}" defer></script>
+<script src="{{ url_for("static", filename="js/student-wics.js") }}" defer></script>
 {% endblock %}
 {% block content %}
 
-<body>
+<body data-profile-id="{{ current_user.profile_id }}">
  {% include "nav.html.j2" %} 
     <main>
         <div class="profile-view-grid">
@@ -62,19 +63,19 @@
                         <!--Flexbox-->
                         <div>
                             <div></div> <!--Circle-->
-                            <p>Social Event (<span id="social-events"></span>/1)</p><!--display numerical points here-->
+                            <p>Social Event (<span id="social-events"></span>/<span id="total-social-events"></span>)</p><!--display numerical points here-->
                         </div>
                         <div>
                             <div></div> <!--Circle-->
-                            <p>Volunteering (<span id="volunteering-events"></span>/1)</p><!--display numerical points here-->
+                            <p>Volunteering (<span id="volunteering-events"></span>/<span id="total-volunteering-events"></span>)</p><!--display numerical points here-->
                         </div>
                         <div>
                             <div></div> <!--Circle-->
-                            <p>Committee Meetings (<span id="committee-events"></span>/6)</p><!--display numerical points here-->
+                            <p>Committee Meetings (<span id="committee-events"></span>/<span id="total-committee-events"></span>)</p><!--display numerical points here-->
                         </div>
                         <div>
                             <div></div> <!--Circle-->
-                            <p>General Meetings (<span id="general-events"></span>/14)</p><!--display numerical points here-->
+                            <p>General Meetings (<span id="general-events"></span>/<span id="total-general-events"></span>)</p><!--display numerical points here-->
                         </div>
                         <p><b></b></p>
                     </div>

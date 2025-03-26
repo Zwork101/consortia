@@ -1,0 +1,53 @@
+{% extends "base.html.j2" %}
+{% block head %}
+<script src="../static/js/mainjavascript.js"></script>
+<script src="{{ url_for("static", filename="js/admin2.js") }}" defer></script>
+{% endblock %}
+{% block content %}
+
+
+<main>
+    <div class="titletabssection">
+        <h2>Tutoring with {{ tutor_name }}! {{ tutoring_date }} Attendance.</h2>
+    </div>
+
+    <table class="dbTable" id="orgMembers">
+        <tr class="dbTableTop">
+            <th>FIRST NAME</th>
+            <th>LAST NAME</th>
+            <th>E-MAIL ADDRESS</th>
+            <th>ACCOUNT TYPE</th>
+            <th>RSVP'ED</th>
+            <th></th>
+        </tr>
+        {% for member in attendees %}
+        <tr class="dbTableRow">
+            <td>{{ member.first_name }}</td>
+            <td>{{ member.last_name }}</td>
+            <td>{{ member.email }}</td>
+            <td>{{ member.account_type }}</td>
+            <td>{{ member.rsvped }}</td>
+            <td><img src="../static/images/options.png" width="16" alt="Options" /></td>
+        </tr>
+        {% endfor %}
+        <tr class="dbTableRow">
+            <td>Aisha</td>
+            <td>Ahmed</td>
+            <td>aja4671@rit.edu</td>
+            <td>Student</td>
+            <td>Yes</td>
+            <td><img src="../static/images/options.png" width="16" /></td>
+        </tr>
+         <tr class="dbTableRow">
+            <td>Alejandro</td>
+            <td>Gomez</td>
+            <td>amg7924@rit.edu</td>
+            <td>Student</td>
+            <td>Yes</td>
+            <td><img src="../static/images/options.png" width="16" /></td>
+        </tr>
+    </table>
+</main>
+{% endblock %}
+
+

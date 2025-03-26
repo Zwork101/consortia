@@ -9,7 +9,7 @@ from backend.db import Organizations, create_attendance, commit, Event, Profile,
 from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, abort
 from flask_wtf import FlaskForm
 from flask_login import current_user
-from wtforms import FileField, IntegerField, StringField
+from wtforms import FileField, IntegerField, StringField, SelectField
 from wtforms.validators import DataRequired, ValidationError, Email
 
 from backend.db import Event, commit, create_attendance, Profile, db
@@ -19,6 +19,15 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func, or_
 from wtforms import FileField, IntegerField, StringField, SubmitField
 from wtforms.validators import DataRequired, ValidationError, NumberRange, Length
+
+
+class NonValidatingSelectField(SelectField):
+    """
+    Attempt to make an open ended select multiple field that can accept dynamic
+    choices added by the browser.
+    """
+    def pre_validate(self, form):
+        pass
 
 
 class CampusGroupsValidator:
@@ -35,7 +44,7 @@ class CampusGroupsValidator:
         
 
 class AttendanceForm(FlaskForm):
-    meeting_id = IntegerField("Meeting ID", validators=[DataRequired("Please provide a meeting ID")], render_kw = {'hidden': 'true'})
+    meeting_id = NonValidatingSelectField("Meeting", validators=[DataRequired("Please provide a meeting ID")], choices=[("", "Select an Event")])
     csv_data = FileField("Data Upload", validators=[DataRequired("Please upload a CSV file with attendance data"), CampusGroupsValidator(
         "Unable to parse attendance file, ensure correct file was uploaded.",
         "Invalid fields in CSV file, missing 'Email' column. Ensure correct file was uploaded.",
@@ -80,7 +89,6 @@ class SelectUserForm(FlaskForm):
 class serachId(FlaskForm):
     rit_id = StringField("RIT ID", validators=[DataRequired("Please provide a RIT ID")], render_kw = {'hidden': 'true'})
     submit = SubmitField("Check RIT ID")
-
 
 class BonusForm(FlaskForm):
     giver_id = IntegerField("Giver ID", validators=[DataRequired("Please provide a profile ID to grant the points."), DataRequired()])
@@ -200,7 +208,6 @@ def grant_bonus(org: int, person_id: int):
         return 201
     return 400, "Unable to validate request"
 
-
 # search for id in the meetings attendance
 @admin.route("/search", methods=['POST'])
 def id_search():
@@ -217,7 +224,6 @@ def id_search():
         return render_template('/', form = form, data = filtered_data)
     
     abort(200)
-
 
 @admin.route("/email")
 def send_update():
@@ -249,9 +255,9 @@ def list_users(organization: int):
     
     # Apply membership filter if requested.
     if membership_filter != "All":
-        if membership_filter == "None":
+        if membership_filter == "Non-Active Member":
             query = query.filter(Profile.membership_sql(organization) == "inactive")
-        else:
+        elif membership_filter == "Active Member":
             query = query.filter(Profile.membership_sql(organization) == "active")
     
     # Filter on semesters if selected.
@@ -377,9 +383,11 @@ def confirm_edit_user():
     user.pronouns = request.form.get("pronouns")
     user.avatar_path = request.form.get("avatar_path")
 
+    org_id = request.form.get("organization_id", type=int) or Organizations.COMS
+    
     db.session.commit()
     flash("User updated successfully.")
-    return redirect(url_for("admin.admin_interface"))
+    return redirect(url_for("admin.dashboard", org=org_id))
 
 @admin.route("/admin/delete_user", methods=["GET", "POST"])
 @admin_required

@@ -40,9 +40,7 @@ def return_wic():
 def return_coms():
     return render_template("coms-profile.html.j2")
 
-@test.route("/test")
-def return_test():
-    return render_template("comsemail.html.j2")
+
 
 @test.route("/com-email")
 def return_com_email():

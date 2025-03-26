@@ -195,66 +195,96 @@ const addTableRows = (rows) => {
     });
 };
 
-const applyFilters = () => {
-    const sortBy = document.getElementById("filter-sort-by").value;
-    const sortOrder = document.getElementById("filter-sort-order").value;
-    const membership = document.getElementById("filter-membership").value;
-    const semesters = document.getElementById("filter-semesters").value;
-    const search = document.getElementById("search").value;
+const applyFilters = async () => {
+    console.log("applyFilters called"); // Debugging
+    const searchQuery = document.getElementById("search").value;
+    console.log("Search query:", searchQuery); // Debugging
     
-    console.log("Applying filters:", { sortBy, sortOrder, membership, semesters, search });
-    
-    const queryParams = new URLSearchParams();
-    queryParams.append("filter-sort-by", sortBy);
-    queryParams.append("filter-sort-order", sortOrder);
-    queryParams.append("filter-membership", membership);
-    queryParams.append("filter-semesters", semesters);
-    if (search) {
-        queryParams.append("search", search);
+    // Build filter parameters
+    const filterParams = new URLSearchParams();
+    if (searchQuery) {
+        filterParams.append("search", searchQuery);
     }
     
-    const endpoint = `/admin/profiles/1?${queryParams.toString()}`;
-    
-    fetch(endpoint)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+    // Add other filter parameters from the form
+    const filterForm = document.getElementById("filter-settings");
+    if (filterForm) {
+        const formData = new FormData(filterForm);
+        for (let [key, value] of formData.entries()) {
+            if (value !== "All") {
+                filterParams.append(key, value);
             }
-            return response.json();
-        })
-        .then(data => {
-            const table = document.getElementById("dbTable");
-            
-            // Remove existing rows
-            table.querySelectorAll(".dbTableRow").forEach(row => row.remove());
-            addTableRows(data);
-        })
-        .catch(err => {
-            console.error("Filter error:", err);
-            alert("There was an error applying the filters. Please try again.");
-        });
+        }
+    }
+    
+    // Make the API request with filters
+    try {
+        const endpoint = `/admin/profiles/${getCurrentOrgId()}?${filterParams.toString()}`;
+        console.log("Filter endpoint:", endpoint); // Debugging
+        
+        const response = await fetch(endpoint);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log("Filter results:", data.length); // Debugging
+        
+        const table = document.getElementById("dbTable");
+        
+        // Remove existing rows
+        table.querySelectorAll(".dbTableRow").forEach(row => row.remove());
+        addTableRows(data);
+    }
+    catch (err) {
+        console.error("Filter error:", err);
+        alert("There was an error applying the filters. Please try again.");
+    }
 };
+
+// Helper function to get organization ID
+function getCurrentOrgId() {
+    // Check for organization ID in the page
+    // Default to 1 for WiC or 2 for COMS
+    if (document.querySelector("input[name='organization_id'][value='2']")) {
+        return 2; // COMS
+    }
+    return 1; // Default to WiC
+}
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Page loaded, fetching profiles...');
+    
+    // Initialize search functionality
+    const searchInput = document.getElementById("search");
+    if (searchInput) {
+        console.log("Search input found, adding event listener");
+        searchInput.addEventListener("input", (e) => {
+            console.log("Search input event fired", e.target.value);
+            // Debounce to avoid too many requests
+            if (window.searchTimeout) clearTimeout(window.searchTimeout);
+            window.searchTimeout = setTimeout(() => {
+                applyFilters();
+            }, 500);
+        });
+    } else {
+        console.error("Search input element not found");
+    }
+    
+    // Initialize filter form
+    const filterForm = document.getElementById("filter-settings");
+    if (filterForm) {
+        filterForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            console.log("Filter form submitted");
+            applyFilters();
+        });
+    }
+    
+    // Initial data load
     listProfiles().then(data => {
         addTableRows(data);
-    });
-
-    // Monitor filter form submission
-    document.getElementById("filter-settings").addEventListener("submit", (e) => {
-        e.preventDefault();
-        applyFilters();
-    });
-    
-    // Monitor search field input for real-time filtering
-    document.getElementById("search").addEventListener("input", (e) => {
-        // Debounce to avoid too many requests - wait 500ms after typing stops
-        if (window.searchTimeout) clearTimeout(window.searchTimeout);
-        window.searchTimeout = setTimeout(() => {
-            applyFilters();
-        }, 500);
     });
     
     // Add click event listeners to table headers for sorting

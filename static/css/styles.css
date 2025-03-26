@@ -713,7 +713,7 @@ input[type="text"] {
     text-align: left;
     border-collapse: collapse;
     table-layout: auto;
-    transform: translateY(-32px);
+    margin-top: 20px;
 }
 
 .dbTableTop {
@@ -1132,7 +1132,6 @@ svg {
     background-color: #000;
 }
 
-<<<<<<< HEAD
 /*
     All classes containing styling for admin notifications page
 */
@@ -1377,7 +1376,53 @@ input[type=file]::file-selector-button:hover, .upload-submit:hover {
     text-align: center;
     font-weight: 200;
 }
+/* ...existing code... */
 
+.search-tools-container {
+    display: flex;
+    align-items: center;
+    margin-top: 64px;
+    margin-left: 64px;
+    margin-bottom: 20px;
+}
+
+/* Adjust database dropdown to align with other elements */
+.search-tools-container .database-dropdown-large1 {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 32px;
+}
+
+/* Adjust search container to align with other elements */
+.search-tools-container .search-container {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 32px;
+}
+
+/* Adjust optbuttons to align with other elements */
+.search-tools-container .optbutton {
+    transform: none !important;
+    margin-top: 0;
+    margin-left: 8px;
+}
+
+/* ...existing code... */
+
+/* Update the table position since we changed the structure above it */
+.dbTable {
+    width: calc(100vw - 128px) !important;
+    font-family: var(--main-font);
+    font-size: 0.75rem;
+    margin-left: 64px;
+    text-align: left;
+    border-collapse: collapse;
+    table-layout: auto;
+    /* Remove negative transform since we're not overlapping anymore */
+    margin-top: 20px;
+}
+
+/* ...existing code... */
 /*New navbar*/
 
 .navbar {
@@ -1449,3 +1494,4 @@ input[type=file]::file-selector-button:hover, .upload-submit:hover {
 .dropdown:focus-within .dropdown-content {
     display: block;
 }
+

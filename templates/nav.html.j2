@@ -2,34 +2,37 @@
 	<div class="black-bar"></div>
 	<!-- Black section on the left -->
 	<nav>
-		<a href="index.html">
-			<img class="backarrow" src="../static/images/back-arrow.png" width="16" />
-		</a>
-		<ul class="nav-options-box">
-			<li style="padding:0px;" >
-				<a href="">
-					<p>NOTIFICATIONS</p>
-				</a>
-			</li>
-			<li>
-				<a href="">
-					<p>SETTINGS</p>
-				</a>
-			</li>
-			<li>
-				<div class="navbar-dropdown">
-					<button onclick="dropDown4()" class="dropbtn4">
-						WILL SMITH <!--Replace name with student name-->
-						<span class="dropDownArrow">
-							<img src="../static/images/down-arrow-white.png" width="10" />
-						</span>
-					</button>
-					<div id="DropdownContent4" class="dropdown-content-navbar">
-						<a>Profile</a>
-						<a>Logout</a>
-					</div>
+		 {% if request.url_rule.endpoint != 'home.homepage' %}
+			<a href="{{ url_for('home.homepage') }}">
+				<img class="backarrow" src="../static/images/back-arrow.png" width="16" />
+			</a>
+	    {% endif %}
+      <div class="menu-toggle" onclick="toggleMenu()">
+         &#9776;
+      </div>
+
+		<div class="navbar">
+			<div class="dropdown" style="float:right">
+				<button class="dropbtn">
+					<b>{{ current_user.full_name | upper }}</b>
+					<span class="dropDownArrow-nav">
+						<img src="/static/images/down-arrow-white.png" width="10">
+					</span>
+				</button>
+				<div class="dropdown-content">
+					<a href="#">Profile</a>
+					<a href="#">Logout</a>
 				</div>
-			</li>
-		</ul>
-	</nav>
+			</div>
+			<a style="float:right;">SETTINGS</a>
+			<a style="float:right; padding-left: 40px;">NOTIFICATIONS</a>
+		</div>
+        </nav>
+		
+		
 </header>
+<script>
+      function toggleMenu() {
+          document.querySelector(".nav-options-box").classList.toggle("show");
+      }
+</script>

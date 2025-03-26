@@ -33,18 +33,13 @@ function getMeetingsFromThisSemester(arrayOfMeetings){
 
     arrayOfMeetings.forEach( meeting => {
         
-        // Same Year
+        // Same Year and Month
         if (
             (returnDateAsArray(meeting.start_time)[ISODate.YEAR] == thisYear) &&
             (
                 ((thisMonth <= 6) && (returnDateAsArray(meeting.start_time)[ISODate.MONTH] <= 6)) ||
                 ((thisMonth > 6) && (returnDateAsArray(meeting.start_time)[ISODate.MONTH] > 6))
             )) {
-            // // Same Month
-            // if (
-            //     ((thisMonth <= 6) && (returnDateAsArray(meeting.start_time)[ISODate.MONTH] <= 6)) ||
-            //     ((thisMonth > 6) && (returnDateAsArray(meeting.start_time)[ISODate.MONTH] > 6))
-            // ){
                 arrayOfMeetingsFromThisSemester.push(meeting);
             } else {
                 //console.log(meeting)

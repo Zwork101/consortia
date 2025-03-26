@@ -1,7 +1,34 @@
-const listProfiles = async () => {
-    const endpoint = "http://localhost:8080/admin/profiles/1";
+const listProfiles = async (sortColumn = null, sortDirection = null) => {
+    const endpoint = "/admin/profiles/1";
+    const queryParams = new URLSearchParams();
+    
+    // Add sorting parameters if provided
+    if (sortColumn) {
+        queryParams.append("filter-sort-by", sortColumn);
+        queryParams.append("filter-sort-order", sortDirection);
+    }
+    
+    // Add existing filter values if available
+    const searchInput = document.getElementById("search");
+    if (searchInput && searchInput.value) {
+        queryParams.append("search", searchInput.value);
+    }
+    
+    // Add other filters if they exist and are set
+    const membershipFilter = document.getElementById("filter-membership");
+    if (membershipFilter && membershipFilter.value !== "All") {
+        queryParams.append("filter-membership", membershipFilter.value);
+    }
+    
+    const semestersFilter = document.getElementById("filter-semesters");
+    if (semestersFilter && semestersFilter.value !== "All") {
+        queryParams.append("filter-semesters", semestersFilter.value);
+    }
+    
+    const finalEndpoint = `${endpoint}?${queryParams.toString()}`;
+    
     try {
-        const response = await fetch(endpoint);
+        const response = await fetch(finalEndpoint);
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
@@ -15,6 +42,75 @@ const listProfiles = async () => {
     }
 }
 
+const refreshMeetingSelection = async (org) => {
+    console.log("Refreshing meetings...")
+    const meetingDropdown = document.getElementById("meeting-select");
+
+    const meetings = await fetch(`/meetings/${org}`);
+    if (!meetings.ok) {
+        throw new Error(`Response status: ${meetings.status}`);
+    }
+    meetingDropdown.innerHTML = "";
+    const data = await meetings.json();
+    console.log(data);
+    data["Meetings"].forEach(event => {
+        const newEvent = `<option value="${event.event_id}">${event.name}</option>`
+        meetingDropdown.insertAdjacentHTML('beforeend', newEvent);
+    });
+    meetingDropdown.removeAttribute("onmousedown");
+
+}
+// Function to handle table header click for sorting
+const handleTableHeaderClick = async (event) => {
+    const headerCell = event.target.closest('th');
+    if (!headerCell || !headerCell.dataset.column) return;
+    
+    // Get the column name from data attribute
+    const column = headerCell.dataset.column;
+    
+    // Toggle or set sort direction
+    const currentDirection = headerCell.dataset.direction || 'asc';
+    const newDirection = currentDirection === 'asc' ? 'Descending' : 'Ascending';
+    
+    // Remove sort indicators from all headers
+    document.querySelectorAll('th[data-column]').forEach(th => {
+        th.dataset.direction = '';
+        th.querySelector('.sort-indicator')?.remove();
+    });
+    
+    // Set new sort direction and add indicator to clicked header
+    headerCell.dataset.direction = newDirection.toLowerCase() === 'ascending' ? 'asc' : 'desc';
+    
+    // Add visual indicator
+    const indicator = document.createElement('span');
+    indicator.className = 'sort-indicator';
+    indicator.innerHTML = newDirection.toLowerCase() === 'ascending' ? ' ▲' : ' ▼';
+    headerCell.appendChild(indicator);
+    
+    // Clear existing table rows
+    const table = document.getElementById("dbTable");
+    const headerRow = table.querySelector('.dbTableTop');
+    while (table.rows.length > 1) {
+        table.deleteRow(1);
+    }
+    
+    // Show loading indicator
+    const loadingRow = table.insertRow();
+    const loadingCell = loadingRow.insertCell();
+    loadingCell.colSpan = headerRow.cells.length;
+    loadingCell.textContent = "Loading...";
+    loadingCell.style.textAlign = "center";
+    
+    // Fetch and display sorted data
+    const profiles = await listProfiles(column, newDirection);
+    
+    // Remove loading indicator
+    table.deleteRow(1);
+    
+    // Add new sorted rows
+    addTableRows(profiles);
+};
+
 const openEditProfileModal = async (userId) => {
     try {
         console.log("Opening modal for user ID:", userId);
@@ -26,7 +122,9 @@ const openEditProfileModal = async (userId) => {
             return;
         }
         
-        const response = await fetch(`http://localhost:8080/profile/${userId}?org_id=1`);
+        const org = document.body.dataset.organizationId || 1; // Default to 1 if not found
+        
+        const response = await fetch(`/profile/${org}/${userId}`);
         if (!response.ok) throw new Error('Profile fetch error');
         const data = await response.json();
         console.log("Profile data received:", data);
@@ -75,11 +173,10 @@ const addTableRows = (rows) => {
           <td>${row['profile']['membership']}</td>
           <td>${row['profile']['semesters']}</td>
           <td>${row['profile']['email']}</td>
-          <td>Undetermined</td>
-          <td>Undetermined</td>
-          <td>${row['profile']['attendance'] ? row['profile']['attendance'].length : 0}</td>
-          <td>${row['profile']['bonuses'] ? row['profile']['bonuses'] : ''}</td>
-          <td>${row['profile']['points']}</td>
+          <td>${row['profile']['attendance'].filter(e => e['meeting_type'] == "GENERAL").length }</td>
+          <td>${row['profile']['attendance'].filter(e => e['meeting_type'] == "COMMITTEE").length }</td>
+          <td>${row['profile']['attendance'].filter(e => e['meeting_type'] == "SOCIAL").length }</td>
+          <td>${row['profile']['attendance'].filter(e => e['meeting_type'] == "VOLUNTEER").length }</td>
           <td class="dbTablePH"></td>
           <td>
               <img src="../static/images/options.png" width="16" class="edit-profile-btn" data-user-id="${row['profile']['profile_id']}" />
@@ -98,64 +195,127 @@ const addTableRows = (rows) => {
     });
 };
 
-const applyFilters = () => {
-    const sortBy = document.getElementById("filter-sort-by").value;
-    const sortOrder = document.getElementById("filter-sort-order").value;
-    const membership = document.getElementById("filter-membership").value;
-    const semesters = document.getElementById("filter-semesters").value;
-    const search = document.getElementById("search").value;
+const applyFilters = async () => {
+    console.log("applyFilters called"); // Debugging
+    const searchQuery = document.getElementById("search").value;
+    console.log("Search query:", searchQuery); // Debugging
     
-    console.log("Applying filters:", { sortBy, sortOrder, membership, semesters, search });
-    
-    const queryParams = new URLSearchParams();
-    queryParams.append("filter-sort-by", sortBy);
-    queryParams.append("filter-sort-order", sortOrder);
-    queryParams.append("filter-membership", membership);
-    queryParams.append("filter-semesters", semesters);
-    if (search) {
-        queryParams.append("search", search);
+    // Build filter parameters
+    const filterParams = new URLSearchParams();
+    if (searchQuery) {
+        filterParams.append("search", searchQuery);
     }
     
-    const endpoint = `http://localhost:8080/admin/profiles/1?${queryParams.toString()}`;
-    
-    fetch(endpoint)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+    // Add other filter parameters from the form
+    const filterForm = document.getElementById("filter-settings");
+    if (filterForm) {
+        const formData = new FormData(filterForm);
+        for (let [key, value] of formData.entries()) {
+            if (value !== "All") {
+                filterParams.append(key, value);
             }
-            return response.json();
-        })
-        .then(data => {
-            const table = document.getElementById("orgMembers");
-            // Remove existing rows (assuming rows have the class "dbTableRow")
-            table.querySelectorAll(".dbTableRow").forEach(row => row.remove());
-            addTableRows(data);
-        })
-        .catch(err => {
-            console.error("Filter error:", err);
-            alert("There was an error applying the filters. Please try again.");
-        });
+        }
+    }
+    
+    // Make the API request with filters
+    try {
+        const endpoint = `/admin/profiles/${getCurrentOrgId()}?${filterParams.toString()}`;
+        console.log("Filter endpoint:", endpoint); // Debugging
+        
+        const response = await fetch(endpoint);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log("Filter results:", data.length); // Debugging
+        
+        const table = document.getElementById("dbTable");
+        
+        // Remove existing rows
+        table.querySelectorAll(".dbTableRow").forEach(row => row.remove());
+        addTableRows(data);
+    }
+    catch (err) {
+        console.error("Filter error:", err);
+        alert("There was an error applying the filters. Please try again.");
+    }
 };
+
+// Helper function to get organization ID
+function getCurrentOrgId() {
+    // Check for organization ID in the page
+    // Default to 1 for WiC or 2 for COMS
+    if (document.querySelector("input[name='organization_id'][value='2']")) {
+        return 2; // COMS
+    }
+    return 1; // Default to WiC
+}
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Page loaded, fetching profiles...');
+    
+    // Initialize search functionality
+    const searchInput = document.getElementById("search");
+    if (searchInput) {
+        console.log("Search input found, adding event listener");
+        searchInput.addEventListener("input", (e) => {
+            console.log("Search input event fired", e.target.value);
+            // Debounce to avoid too many requests
+            if (window.searchTimeout) clearTimeout(window.searchTimeout);
+            window.searchTimeout = setTimeout(() => {
+                applyFilters();
+            }, 500);
+        });
+    } else {
+        console.error("Search input element not found");
+    }
+    
+    // Initialize filter form
+    const filterForm = document.getElementById("filter-settings");
+    if (filterForm) {
+        filterForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            console.log("Filter form submitted");
+            applyFilters();
+        });
+    }
+    
+    // Initial data load
     listProfiles().then(data => {
         addTableRows(data);
     });
-
-    // Monitor filter form submission
-    document.getElementById("filter-settings").addEventListener("submit", (e) => {
-        e.preventDefault();
-        applyFilters();
+    
+    // Add click event listeners to table headers for sorting
+    document.querySelectorAll('#dbTable th[data-column]').forEach(th => {
+        th.addEventListener('click', handleTableHeaderClick);
+        th.style.cursor = 'pointer';
     });
     
-    // Monitor search field input for real-time filtering
-    document.getElementById("search").addEventListener("input", (e) => {
-        // Debounce to avoid too many requests - wait 500ms after typing stops
-        if (window.searchTimeout) clearTimeout(window.searchTimeout);
-        window.searchTimeout = setTimeout(() => {
-            applyFilters();
-        }, 500);
-    });
+    // If no data-column attributes exist yet, add them after DOM is loaded
+    if (!document.querySelector('#dbTable th[data-column]')) {
+        const headerCells = document.querySelectorAll('#dbTable .dbTableTop th');
+        const columnMappings = {
+            1: "First Name",
+            2: "Last Name", 
+            3: "Membership",
+            4: "Semesters", 
+            5: "Email",
+            6: "General Meetings",
+            7: "Committee Meetings",
+            8: "Social Events",
+            9: "Volunteering",
+            10: "Points"
+        };
+        
+        // Skip first and last columns (checkbox and options)
+        for (let i = 1; i < headerCells.length - 2; i++) {
+            if (columnMappings[i]) {
+                headerCells[i].dataset.column = columnMappings[i];
+                headerCells[i].style.cursor = 'pointer';
+                headerCells[i].addEventListener('click', handleTableHeaderClick);
+            }
+        }
+    }
 });

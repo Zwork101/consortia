@@ -1,23 +1,33 @@
 import csv
-from sqlalchemy import or_
 import os
 import logging
+from functools import wraps
 
 from backend.email import send_email
-from backend.db import create_attendance, commit, Event, Profile, create_bonus
+from backend.db import Organizations, create_attendance, commit, Event, Profile, create_bonus
 
 from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, abort
 from flask_wtf import FlaskForm
-from wtforms import FileField, IntegerField, StringField
+from flask_login import current_user
+from wtforms import FileField, IntegerField, StringField, SelectField
 from wtforms.validators import DataRequired, ValidationError, Email
 
 from backend.db import Event, commit, create_attendance, Profile, db
 from backend.email import send_email
 
 from sqlalchemy.orm import Session
-from sqlalchemy import func
+from sqlalchemy import func, or_
 from wtforms import FileField, IntegerField, StringField, SubmitField
 from wtforms.validators import DataRequired, ValidationError, NumberRange, Length
+
+
+class NonValidatingSelectField(SelectField):
+    """
+    Attempt to make an open ended select multiple field that can accept dynamic
+    choices added by the browser.
+    """
+    def pre_validate(self, form):
+        pass
 
 
 class CampusGroupsValidator:
@@ -34,7 +44,7 @@ class CampusGroupsValidator:
         
 
 class AttendanceForm(FlaskForm):
-    meeting_id = IntegerField("Meeting ID", validators=[DataRequired("Please provide a meeting ID")], render_kw = {'hidden': 'true'})
+    meeting_id = NonValidatingSelectField("Meeting", validators=[DataRequired("Please provide a meeting ID")], choices=[("", "Select an Event")])
     csv_data = FileField("Data Upload", validators=[DataRequired("Please upload a CSV file with attendance data"), CampusGroupsValidator(
         "Unable to parse attendance file, ensure correct file was uploaded.",
         "Invalid fields in CSV file, missing 'Email' column. Ensure correct file was uploaded.",
@@ -80,7 +90,6 @@ class serachId(FlaskForm):
     rit_id = StringField("RIT ID", validators=[DataRequired("Please provide a RIT ID")], render_kw = {'hidden': 'true'})
     submit = SubmitField("Check RIT ID")
 
-
 class BonusForm(FlaskForm):
     giver_id = IntegerField("Giver ID", validators=[DataRequired("Please provide a profile ID to grant the points."), DataRequired()])
     point_value = IntegerField("Point Value", validators=[NumberRange(min=1, message="Please provide a point value greater than 0"), DataRequired()])
@@ -89,17 +98,41 @@ class BonusForm(FlaskForm):
 
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
 
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        org = kwargs.get('org')
 
-@admin.route("/admin")
-def admin_interface():
-    return render_template("database-view-coms.html.j2")
+        if org:
+            if org not in [a.organization_id for a in current_user.positions]:
+                abort(403)
+        else:
+            if not current_user.positions:
+                abort(403)
 
-@admin.route("/meetings/upload", methods=["POST", "GET"])
-def update_attendance_data():
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+@admin.route("/admin/<int:org>")
+@admin_required
+def dashboard(org: int):
+    if org == Organizations.WIC:
+        return render_template("database-view-wic.html.j2", title="WIC Dashboard", upload_form=AttendanceForm())
+    elif org == Organizations.COMS:
+        return render_template("database-view-coms.html.j2", title="COMS Dashboard", upload_form=AttendanceForm())
+
+
+@admin.route("/meetings/<int:org>/upload", methods=["POST", "GET"])
+@admin_required
+def update_attendance_data(org: int):
     form = AttendanceForm()
-    form.meeting_id.data = 8080
 
     if form.validate_on_submit():
+        valid_meeting = db.session.query(Event.event_id).select_from(Event).where(Event.organizer_id == org).where(Event.event_id == form.meeting_id.data)
+        if valid_meeting.first() is None:
+            return abort(404)
+
         reader = csv.DictReader(line.decode() for line in request.files[form.csv_data.name])
         updated_users = []
         
@@ -117,11 +150,16 @@ def update_attendance_data():
         return render_template("upload-test.html", form=form)
     
 
-@admin.route("/meetings/<int:meeting_id>/attendance")
-def get_attendance_data(meeting_id: int):
+@admin.route("/meetings/<int:org>/<int:meeting_id>/attendance")
+@admin_required
+def get_attendance_data(org:int, meeting_id: int):
     event = Event.query.get(meeting_id)
+
     if event is None:
         return abort(404)
+
+    if event.organizer_id != org:
+        abort(403)
     
     try:
         skip = request.args.get("skip", 0, type = int)
@@ -142,24 +180,21 @@ def get_attendance_data(meeting_id: int):
         ]
     )
     
-@admin.route("/profile/<int:person_id>")
-def get_profile_data(person_id: int):
+@admin.route("/profile/<int:org>/<int:person_id>")
+@admin_required
+def get_profile_data(org:int, person_id: int):
     profile = Profile.query.get(person_id)
     if profile is None:
         return abort(404)
-        
-    try:
-        org = request.args.get("org_id", None, type = int)
-    except TypeError:
-        return abort(400)
     
     return jsonify(
         profile.serialize(org)
     )
         
 
-@admin.route("/profile/<int:person_id>/bonuses", methods=["POST"])
-def grant_bonus(person_id: int):
+@admin.route("/profile/<int:org>/<int:person_id>/bonuses", methods=["POST"])
+@admin_required
+def grant_bonus(org: int, person_id: int):
     form = BonusForm()
     
     if form.validate_on_submit():
@@ -172,7 +207,6 @@ def grant_bonus(person_id: int):
         commit()
         return 201
     return 400, "Unable to validate request"
-
 
 # search for id in the meetings attendance
 @admin.route("/search", methods=['POST'])
@@ -190,7 +224,6 @@ def id_search():
         return render_template('/', form = form, data = filtered_data)
     
     abort(200)
-
 
 @admin.route("/email")
 def send_update():
@@ -222,9 +255,9 @@ def list_users(organization: int):
     
     # Apply membership filter if requested.
     if membership_filter != "All":
-        if membership_filter == "None":
+        if membership_filter == "Non-Active Member":
             query = query.filter(Profile.membership_sql(organization) == "inactive")
-        else:
+        elif membership_filter == "Active Member":
             query = query.filter(Profile.membership_sql(organization) == "active")
     
     # Filter on semesters if selected.
@@ -265,6 +298,7 @@ def list_users(organization: int):
 
 
 @admin.route("/admin/add_user", methods=["GET", "POST"])
+@admin_required
 def add_user():
     form = AddUserForm()
     if form.validate_on_submit():
@@ -285,6 +319,7 @@ def add_user():
 
 
 @admin.route("/admin/select_user", methods=["GET", "POST"])
+@admin_required
 def select_user():
     form = SelectUserForm()
     if form.validate_on_submit():
@@ -296,6 +331,7 @@ def select_user():
     return render_template("select-user.html", form=form)
 
 @admin.route("/admin/edit_user", methods=["GET", "POST"])
+@admin_required
 def edit_user():
     user_id = request.args.get("user_id", type=int)
     if not user_id:
@@ -327,6 +363,7 @@ def edit_user():
     return render_template("edit-user.html", form=form, user=user)
 
 @admin.route("/admin/edit_user/confirm", methods=["POST"])
+@admin_required
 def confirm_edit_user():
     user_id = request.form.get("user_id", type=int)
     if not user_id:
@@ -346,11 +383,14 @@ def confirm_edit_user():
     user.pronouns = request.form.get("pronouns")
     user.avatar_path = request.form.get("avatar_path")
 
+    org_id = request.form.get("organization_id", type=int) or Organizations.COMS
+    
     db.session.commit()
     flash("User updated successfully.")
-    return redirect(url_for("admin.admin_interface"))
+    return redirect(url_for("admin.dashboard", org=org_id))
 
 @admin.route("/admin/delete_user", methods=["GET", "POST"])
+@admin_required
 def delete_user():
     if request.method == "GET":
         user_id = request.args.get("user_id", type=int)

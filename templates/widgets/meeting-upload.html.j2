@@ -1,0 +1,48 @@
+<div id="import-data-dialog-box" title="Import Data">
+    <form action="{{ url_for("admin.update_attendance_data", org=org) }}" name="import-data" id="import-data" method="post" enctype="multipart/form-data">
+        <fieldset>
+            {{ upload_form.csrf_token }}
+            <div>
+				<label for="csv-file" class="drop-container" id="dropcontainer">
+ 					<span class="drop-title">Drag files here</span>
+					or
+					{{ upload_form.csv_data(class_="csv-file", id="csv-file", accept=".csv") | safe }}
+					<div>
+ 						<p class="upload-warning">CSV file only</p>
+ 					</div>
+                </label>
+            </div>
+            <br>
+            <div>
+                {{ upload_form.meeting_id(id="meeting-select", onmousedown="refreshMeetingSelection({})".format(org)) | safe }}
+            </div>
+            <br>
+            <div>
+                <button type="button" id="submit-file" class="upload-submit" onclick="handleFileUpload({{ org }})">Upload File</button>
+            </div>
+            
+        </fieldset>
+    </form>
+</div>
+<script>
+	const dropContainer = document.getElementById("dropcontainer")
+	const fileInput = document.getElementById("csv-file")
+
+	dropContainer.addEventListener("dragover", (e) => {
+	e.preventDefault()
+	}, false)
+
+	dropContainer.addEventListener("dragenter", () => {
+	dropContainer.classList.add("drag-active")
+	})
+
+	dropContainer.addEventListener("dragleave", () => {
+	dropContainer.classList.remove("drag-active")
+	})
+
+	dropContainer.addEventListener("drop", (e) => {
+	e.preventDefault()
+	dropContainer.classList.remove("drag-active")
+	fileInput.files = e.dataTransfer.files
+	})
+</script>

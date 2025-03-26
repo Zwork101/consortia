@@ -1072,7 +1072,7 @@ works properly when clicked or hovered */
             .ui-button:hover,
             .ui-button:focus {
                 border: 1px solid #cccccc;
-                background: #ededed;
+                /* background: #ededed; */
                 font-weight: normal;
                 color: #2b2b2b;
             }

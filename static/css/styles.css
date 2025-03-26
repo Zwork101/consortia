@@ -1188,6 +1188,16 @@ svg {
     transform: translateY(-60px);
     margin-left: 120px;
 }
+/*
+    All classes containing styling for config pages
+*/
+.config-container {
+    border: 1px solid #727578;
+    border-radius: 8px;
+    width: calc(100vw -160px);
+    display: inline-block;
+    margin-left: 80px;
+}
 
 
 /* Modal styling - update with !important to ensure these take precedence */

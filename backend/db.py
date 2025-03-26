@@ -523,6 +523,22 @@ class Event(db.Model):
     def semester_sql(cls):
         return (func.strftime('%Y', Event.start_time) * 10) + (cast(func.strftime('%m', Event.start_time) / 7, Integer) * 5)
 
+
+class Token(db.Model):
+    __tablename__ = 'Token'
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    org_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
+
+    token: Mapped[str]
+    refresh_token: Mapped[str]
+    token_uri: Mapped[str]
+    client_id: Mapped[str]
+    client_secret: Mapped[str]
+    expirey: Mapped[datetime]
+
+    email: Mapped[str]
+
 # class Attendance(db.Model):
 #     __tablename__ = 'Attendance'
 

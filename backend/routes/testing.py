@@ -41,7 +41,6 @@ def return_coms():
     return render_template("coms-profile.html.j2")
 
 
-
 @test.route("/com-email")
 def return_com_email():
     return render_template("comsemail.html.j2", member_name="John Doe", points="5", events=[{

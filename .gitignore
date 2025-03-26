@@ -16,4 +16,11 @@ instance/*
 
 pyrightconfig.json
 
+<<<<<<< Updated upstream
 development.log
+=======
+development.log
+
+# Creds
+client_secret.json
+>>>>>>> Stashed changes

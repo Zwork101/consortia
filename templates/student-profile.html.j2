@@ -6,18 +6,19 @@
 {% include "nav.html.j2" %} 
 	<main>
 
-        <h2 style="margin-left: 80px; margin-top: 80px;">Firstname Lastname</h2>
+        <h2 style="margin-left: 80px; margin-top: 80px;">{{ user.first_name }} {{ user.last_name }}</h2>
         <div class="profile-container">
             <div class="profile-sec">
                 <h3>MEMBERSHIP INFORMATION</h3>
                 <div class="profile-subsec">
                     <h4>Membership:</h4>
-                    <p>Membership Status</p>
+                    <p>{{ user.membership }}</p>
 
                     <h4>Semester:</h4>
                     <p>Semesters with group</p>
 
                     <h4>Awards:</h4>
+                    <!-- Loop Awards Recieved --!>
                     <p>Awards Received</p>
 
                     <h4 style="opacity:0%;">placeholder</h4>
@@ -44,10 +45,10 @@
                     <h3>PERSONAL INFORMATION</h3>
                     <div class="profile-subsec">
                         <h4>Graduation Year:</h4>
-                        <input type="text" id="graduation-year" name="graduation-year" value="DataHere">
+                        <input type="text" id="graduation-year" name="graduation-year" value="{{ user.graduation_year }}">
 
                         <h4>Degree:</h4>
-                        <input type="text" id="degree" name="degree" value="DataHere">
+                        <input type="text" id="degree" name="degree" value="{{ user.degree }}">
 
                         <h4 style="opacity:0%;">placeholder</h4>
                         <p style="opacity:0%;">placeholder</p>
@@ -57,7 +58,7 @@
                     </div>
                     <div class="profile-subsec" style="margin-left: 100px;">
                         <h4>Pronouns:</h4>
-                        <input type="text" id="pronouns" name="pronouns" value="DataHere">
+                        <input type="text" id="pronouns" name="pronouns" value="{{ user.pronouns }}">
 
                         <h4>T-shirt size:</h4>
                         <input type="text" id="size" name="size" value="DataHere">

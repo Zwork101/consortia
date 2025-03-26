@@ -1,17 +1,22 @@
 let maxPoints = 0;
 let earnedPoints = 0;
 
+// For volunteering 
+let volunteeringHours = 0;
+let totalVolunteerHours = 0;
+
 // For attendence
 let attendedMeetings = 0;
 let totalMeetings = 0; 
 
 // Calculate points for the user
 let mentorshipPoints = 0;
-let voluenteeringPoints = 0;
+let volunteeringPoints = 0;
 let attendancePoints = 0;
 let miscPoints = 0;
 
 // Calculate total points that can be picked in total:
+let totalMentorshipPoints = 0;
 let totalVolunteerPoints = 0;
 
 //Enum for attendance
@@ -24,8 +29,8 @@ const AttendancePercentage = Object.freeze({
 const hasMentorshipPoints = 3;
 
 const getProfile = async () => {
-	const profileEndpoint = "http://localhost:8080/profile/1?org_id=1";
-  const meetingsEndpoint = "http://localhost:8080/meetings";
+	const profileEndpoint = "/profile?org=1";
+  const meetingsEndpoint = "/meetings/1";
 	try {
       var endpointList = []
     	const response = await fetch(profileEndpoint);
@@ -50,7 +55,19 @@ const getProfile = async () => {
   }
 }
 
-
+function getVolunteeringPoints(hours){
+  if (hours > 9){
+    return 4;
+  } else if (hours > 6){
+    return 3;
+  } else if (hours > 3){
+    return 2;
+  } else if (hours > 1){
+    return 1;
+  } else {
+    return 0;
+  }
+}
 
 const getStudentPoints = (endpointData) => {
 
@@ -66,12 +83,13 @@ const getStudentPoints = (endpointData) => {
     if (attendanceDay.meeting_type == "GENERAL"){
       attendedMeetings += 1;
     } else if (attendanceDay.meeting_type == "VOLUNTEER"){
-      voluenteeringPoints += attendanceDay.point_value; 
+      volunteeringHours += attendanceDay.point_value; 
     } else if (attendanceDay.meeting_type == "MENTORSHIP"){
-      // TODO
+      mentorshipPoints += 1;
     }
   })
 
+  volunteeringPoints = getVolunteeringPoints(volunteeringHours);
   miscPoints = studentData.profile.bonus_points;
 
   //Calculate max number of points
@@ -80,12 +98,13 @@ const getStudentPoints = (endpointData) => {
     if (meeting.meeting_type == "GENERAL"){
       totalMeetings += 1;
     } else if (meeting.meeting_type == "VOLUNTEER") {
-      totalVolunteerPoints += meeting.point_value
+      totalVolunteerHours += meeting.point_value
     } else if (meeting.meeting_type == "MENTORSHIP"){
-      // TODO
+      totalMentorshipPoints += 1;
     }
   })
 
+  totalVolunteerPoints = getVolunteeringPoints(totalVolunteerHours);
   let meetingAttendedPercentage = attendedMeetings/totalMeetings;
 
   if (meetingAttendedPercentage == 1){
@@ -98,16 +117,16 @@ const getStudentPoints = (endpointData) => {
 
   // Point rewarding
 
-  earnedPoints = mentorshipPoints + voluenteeringPoints + attendancePoints + miscPoints;
-  maxPoints = hasMentorshipPoints + totalVolunteerPoints + AttendancePercentage.Percent100 + miscPoints;
+  earnedPoints = mentorshipPoints + volunteeringHours + attendancePoints + miscPoints;
+  maxPoints = totalMentorshipPoints + totalVolunteerPoints + AttendancePercentage.Percent100 + miscPoints;
 
   document.getElementById("mentor-bar").style.width = `${(mentorshipPoints/maxPoints)*100}%`;
-  document.getElementById("voluenteer-bar").style.width = `${(voluenteeringPoints/maxPoints)*100}%`;
+  document.getElementById("voluenteer-bar").style.width = `${(volunteeringPoints/maxPoints)*100}%`;
   document.getElementById("attendance-bar").style.width = `${(attendancePoints/maxPoints)*100}%`;
   document.getElementById("misc-bar").style.width = `${(miscPoints/maxPoints)*100}%`;
     
   document.getElementById("mentor-points").innerHTML= mentorshipPoints;
-  document.getElementById("voluenteering-points").innerHTML= voluenteeringPoints;
+  document.getElementById("voluenteering-points").innerHTML= volunteeringPoints;
   document.getElementById("attendance-points").innerHTML= attendancePoints;
   document.getElementById("misc-points").innerHTML= miscPoints;
     
@@ -125,8 +144,8 @@ const loadSemesters = () => {
   semesters.forEach(sem => {
       const semElement = document.createElement("div");
       semElement.innerHTML = 
-      '<h3>${sem.semester_coms} ${sem.year_coms}</h3>' +
-      '<p>{sem.organizer_coms}, ${sem.meeting_type_coms}: ${sem.description_coms}, ${sem.point_value_coms}</p>';
+      `<h3>${sem.semester_coms} ${sem.year_coms}</h3>` +
+      `<p>${sem.organizer_coms}, ${sem.meeting_type_coms}: ${sem.description_coms}, ${sem.point_value_coms}</p>`;
       container.appendChild(semElement);
     }
   );

@@ -1,4 +1,6 @@
 /* Calendar CSS */
+
+/* This may not be needed anymore as other files define what Roboto is.*/
 @font-face {
     font-family: Roboto;
     src: url(fonts/Roboto-VariableFont_opsz\,wght.ttf);
@@ -72,7 +74,7 @@
 .weekday {
     border-radius: 5px;
     color: #F76902;
-    font-family: Roboto;
+    font-family: var(--main-font);
     font-weight: 800;
 }
 
@@ -89,7 +91,7 @@
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;
-    font-family: Roboto;
+    font-family: var(--main-font);
     border-radius: 100px;
 }
 
@@ -118,12 +120,12 @@
 }
 
 .event strong{
-    font-family: Roboto;
+    font-family: var(--main-font);
     margin:12px;
 }
 
 .event p{
-    font-family: Roboto;
+    font-family: var(--main-font);
     margin: 12px;
 }
 

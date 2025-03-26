@@ -1,7 +1,7 @@
 {% block content %}
 <div class="titletabssection">
         <h2>Computing<br> Organization for <br>Multicultural Students</h2>
-        <h3 class="status">Status: Non-Active Member</h3>
+        <h3 class="status">Status: {% if not current_user.membership(2) %}Non-{% endif %}Active Member</h3>
         <div class="tabs">
     <button class="tablinks" onclick="window.location.href='{{ url_for('testing.return_comms_int') }}'">Current Semester</button>
     <button class="tablinks" onclick="window.location.href='{{ url_for('testing.return_coms_hist') }}'">History</button>

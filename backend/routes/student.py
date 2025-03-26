@@ -1,3 +1,4 @@
+from flask_login import current_user
 from sqlalchemy import case, desc
 from backend import db
 from backend.db import Event, Profile
@@ -16,8 +17,17 @@ def wic_homepage():
 def coms_homepage():
     return render_template("coms-profile.html.j2", title="COMS")
 
-@student.route("/meetings")
-def upcoming_meetings():
+@student.route("/profile")
+def return_profile():
+    org = request.args.get("org", type=int)
+    if org:
+        return current_user.serialize(org)
+    else:
+        return current_user.serialize()
+    return abort(403)
+
+@student.route("/meetings/<int:org>")
+def upcoming_meetings(org: int):
     """Return upcoming meetings based on pagination parameters."""
     try:
         skip = request.args.get("skip", 0, type=int)
@@ -28,9 +38,8 @@ def upcoming_meetings():
     except ValueError:
         return jsonify({"Error": "Invalid input type"})
 
-    total_meetings = Event.query.filter(Event.start_time >= date.today()).count()
     meeting_results = (
-        Event.query.filter(Event.start_time >= date.today())
+        Event.query.filter(Event.organizer_id == org)
         .order_by(Event.start_time)
         .offset(skip)
         .all()
@@ -46,6 +55,7 @@ def upcoming_meetings():
             "description": meeting.description,
             "point_value": meeting.point_value,
             "organizer_id": meeting.organizer_id,
+            "semester": meeting.semester,
             "organizer": {
                  "profile_id": meeting.organizer.organization_id,  # updated field name
                  "name": meeting.organizer.name,
@@ -64,7 +74,7 @@ def upcoming_meetings():
         }
         for meeting in meeting_results
     ]
-    return jsonify({"Total": total_meetings, "Meetings": meetings})
+    return jsonify({"Meetings": meetings})
 
 @student.route("/attendance")
 def member_attendance():

@@ -11,24 +11,22 @@
          &#9776;
       </div>
 
-			<ul class="nav-options-box">
-                <li><a href=""><p>NOTIFICATIONS</p></a></li>
-                <li><a href=""><p>SETTINGS</p></a></li>
-                <li>
-                    <div class="navbar-dropdown">
-                        <button onclick="dropDown4()" class="dropbtn4">
-                            {{ current_user.full_name | upper }}
-                            <span class="dropDownArrow">
-                                <img src="{{url_for('static', filename="images/down-arrow-white.png")}}" width="10" />
-                            </span>
-                        </button>
-                        <div id="DropdownContent4" class="dropdown-content-navbar">
-                            <a>Profile</a>
-                            <a>Logout</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+		<div class="navbar">
+			<div class="dropdown" style="float:right">
+				<button class="dropbtn">
+					<b>{{ current_user.full_name | upper }}</b>
+					<span class="dropDownArrow-nav">
+						<img src="/static/images/down-arrow-white.png" width="10">
+					</span>
+				</button>
+				<div class="dropdown-content">
+					<a href="#">Profile</a>
+					<a href="#">Logout</a>
+				</div>
+			</div>
+			<a style="float:right;">SETTINGS</a>
+			<a style="float:right; padding-left: 40px;">NOTIFICATIONS</a>
+		</div>
         </nav>
 		
 		

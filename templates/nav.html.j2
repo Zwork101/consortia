@@ -20,12 +20,13 @@
 					</span>
 				</button>
 				<div class="dropdown-content">
-					<a href="#">Profile</a>
+					<a href='{{ url_for('testing.studentview') }}'>Profile</a>
 					<a href="#">Logout</a>
 				</div>
 			</div>
-			<a style="float:right;">SETTINGS</a>
-			<a style="float:right; padding-left: 40px;">NOTIFICATIONS</a>
+			<a href="{{ url_for('testing.return_settingswic') }}" style="float:right;">SETTINGS</a>
+			<a href="{{ url_for('testing.return_notifications') }}" style="float:right; padding-left: 40px;" >NOTIFICATIONS</a>
+
 		</div>
         </nav>
 		

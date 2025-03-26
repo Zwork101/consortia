@@ -141,3 +141,19 @@ def test_email(org: int):
             cred[0]
         )
         return "Sent!"
+
+@test.route('/meetings/studentview', methods=['GET', 'POST'])
+def studentview():
+    return render_template('student-profile.html.j2')
+
+@test.route("/notifications")
+def return_notifications():
+    return render_template("admin-notification-page.html.j2")
+
+@test.route("/settingswic")
+def return_settingswic():
+    return render_template("configuration-wics.html.j2")
+
+@test.route("/yearlyreports")
+def return_yearlyreports():
+    return render_template("yearly-reports.html.j2")

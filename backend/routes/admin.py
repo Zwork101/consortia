@@ -1,10 +1,10 @@
 import csv
 import os
 import logging
-from functools import wraps
 
 from backend.email import send_email
 from backend.db import Organizations, create_attendance, commit, Event, Profile, create_bonus
+from backend.auth import admin_required
 
 from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, abort
 from flask_wtf import FlaskForm
@@ -13,7 +13,6 @@ from wtforms import FileField, IntegerField, StringField, SelectField
 from wtforms.validators import DataRequired, ValidationError, Email
 
 from backend.db import Event, commit, create_attendance, Profile, db
-from backend.email import send_email
 
 from sqlalchemy.orm import Session
 from sqlalchemy import func, or_
@@ -97,22 +96,6 @@ class BonusForm(FlaskForm):
 
 
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
-
-def admin_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        org = kwargs.get('org')
-
-        if org:
-            if org not in [a.organization_id for a in current_user.positions]:
-                abort(403)
-        else:
-            if not current_user.positions:
-                abort(403)
-
-        return f(*args, **kwargs)
-    return decorated_function
-
 
 @admin.route("/admin/<int:org>")
 @admin_required

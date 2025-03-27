@@ -380,7 +380,8 @@ class Profile(db.Model, UserMixin):
                         "name": award.name,
                         "description": award.description,
                         "icon_path": award.icon_path,
-                        "prize": award.prize            
+                        "prize": award.prize,
+                        "award_date": db.session.query(ProfileAward.award_date).where(ProfileAward.profile_id == self.profile_id).where(ProfileAward.award_id == award.award_id).first()[0]
                     } for award in self.awards if org_id is None or award.organization_id == org_id
                 ],
                 
@@ -455,6 +456,7 @@ class ProfileAward(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
     profile_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
     award_id: Mapped[int] = mapped_column(ForeignKey("Award.award_id"))
+    award_date: Mapped[datetime]
     # id = db.Column(Integer, primary_key=True, autoincrement=True)
     # profile_id = db.Column(Integer, ForeignKey('Profile.profile_id'), nullable=False)
     # award_id = db.Column(Integer, ForeignKey('Award.award_id'), nullable=False)
@@ -523,6 +525,22 @@ class Event(db.Model):
     def semester_sql(cls):
         return (func.strftime('%Y', Event.start_time) * 10) + (cast(func.strftime('%m', Event.start_time) / 7, Integer) * 5)
 
+
+class Token(db.Model):
+    __tablename__ = 'Token'
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    org_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
+
+    token: Mapped[str]
+    refresh_token: Mapped[str]
+    token_uri: Mapped[str]
+    client_id: Mapped[str]
+    client_secret: Mapped[str]
+    expirey: Mapped[datetime]
+
+    email: Mapped[str]
+
 # class Attendance(db.Model):
 #     __tablename__ = 'Attendance'
 
@@ -553,6 +571,22 @@ def db_testing_setup():
     COMS = Organizer(
         name = "Computing Organization for Multicultural Students",
         email = "coms@rit.edu"
+    )
+
+    wic_award = Award(
+        organization_id = Organizations.WIC,
+        name = "being super cool award",
+        description = "For gamers only",
+        icon_path = "../static/images/award.webp",
+        prize = "6 Dining Dollars"
+    )
+
+    coms_award = Award(
+        organization_id = Organizations.COMS,
+        name = "being super cool award",
+        description = "For gamers only",
+        icon_path = "../static/images/award.webp",
+        prize = "6 Dining Dollars"
     )
     
     with open("testing_data/users.json") as f:
@@ -658,7 +692,7 @@ def db_testing_setup():
     )
 
     db.session.add_all([
-        *users, *events, WiC, COMS, will_smith, *developer_profiles
+        *users, *events, WiC, COMS, will_smith, *developer_profiles, wic_award, coms_award
     ])
     db.session.commit()
 
@@ -671,6 +705,29 @@ def db_testing_setup():
             will_smith.attendance.append(event)
             for user in developer_profiles:
                     user.attendance.append(event)
+
+    assign_awards = []
+
+    users.append(will_smith)
+
+    for semester in range(20220, 20250, 5):
+        for user in random.choices(users, k=random.randint(100, len(users) // 2)):
+            assign_awards.append(
+                ProfileAward(
+                    profile_id = user.profile_id,
+                    award_id = wic_award.award_id,
+                    award_date = datetime(year = semester // 10, month = 10 if semester % 5 else 2, day = 10)
+                )
+            )
+            assign_awards.append(
+                ProfileAward(
+                    profile_id = user.profile_id,
+                    award_id = coms_award.award_id,
+                    award_date = datetime(year = semester // 10, month = 10 if semester % 5 else 2, day = 10)
+                )
+            )
+
+    db.session.add_all(assign_awards)
 
     make_admin(will_smith.profile_id, Organizations.WIC, RoleType.ADMIN)
     make_admin(will_smith.profile_id, Organizations.COMS, RoleType.ADMIN)

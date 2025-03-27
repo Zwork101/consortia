@@ -3,39 +3,40 @@
 <script src="../static/js/mainjavascript.js"></script>
 {% endblock %}
 {% block content %}
+<body data-profile-id="{{ current_user.profile_id }}">
 {% include "nav.html.j2" %} 
 	<main>
 
-        <h2 style="margin-left: 80px; margin-top: 80px;">{{ user.first_name }} {{ user.last_name }}</h2>
+        <h2 style="margin-left: 80px; margin-top: 80px;">{{ current_user.first_name }} {{ current_user.last_name }}</h2>
         <div class="profile-container">
             <div class="profile-sec">
                 <h3>MEMBERSHIP INFORMATION</h3>
                 <div class="profile-subsec">
                     <h4>Membership:</h4>
-                    <p>{{ user.membership }}</p>
+                    <p>Status: {% if not current_user.membership(1) %}Non-{% endif %}Active Member</p>
 
                     <h4>Semester:</h4>
-                    <p>{{ user.semesters }}</p>
+                    <p>{{ current_user.current_semester }}</p>
 
                     <h4>Awards:</h4>
-                    <!-- Loop Awards Recieved --!>
-                    <p>{{ user.award.name }}</p>
+                    <!-- For Loop multiple awards -->
+                    <p>{{ current_user.awards }}</p>
 
                     <h4 style="opacity:0%;">placeholder</h4>
                     <p style="opacity:0%;">placeholder</p>
                 </div>
                 <div class="profile-subsec" style="margin-left: 100px;">
                     <h4>General Meetings:</h4>
-                    <p>{{ user.general_meetings }}/14</p>
+                    <p>{{ current_user.general_meetings }}/14</p>
 
                     <h4>Committee Meetings:</h4>
-                    <p>{{ user.committee }}/6</p>
+                    <p>{{ current_user.committee }}/6</p>
 
                     <h4>Social Events:</h4>
-                    <p>{{ user.social_event }}/1</p>
+                    <p>{{ current_user.social_event }}/1</p>
 
                     <h4>Volunteering:</h4>
-                    <p>{{ user.volunteer }}/1</p>
+                    <p>{{ current_user.volunteer }}/1</p>
                 </div>
             </div>
         </div>
@@ -45,10 +46,10 @@
                     <h3>PERSONAL INFORMATION</h3>
                     <div class="profile-subsec">
                         <h4>Graduation Year:</h4>
-                        <input type="text" id="graduation-year" name="graduation-year" value="{{ user.graduation_year }}">
+                        <input type="text" id="graduation-year" name="graduation-year" value="{{ current_user.graduation_year }}">
 
                         <h4>Degree:</h4>
-                        <input type="text" id="degree" name="degree" value="{{ user.degree }}">
+                        <input type="text" id="degree" name="degree" value="{{ current_user.degree }}">
 
                         <h4 style="opacity:0%;">placeholder</h4>
                         <p style="opacity:0%;">placeholder</p>
@@ -58,7 +59,7 @@
                     </div>
                     <div class="profile-subsec" style="margin-left: 100px;">
                         <h4>Pronouns:</h4>
-                        <input type="text" id="pronouns" name="pronouns" value="{{ user.pronouns }}">
+                        <input type="text" id="pronouns" name="pronouns" value="{{ current_user.pronouns }}">
 
                         <h4>T-shirt size:</h4>
                         <input type="text" id="size" name="size" value="DataHere">

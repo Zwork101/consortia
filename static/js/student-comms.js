@@ -95,18 +95,15 @@ const getStudentPoints = (endpointData) => {
 
   volunteeringPoints = getVolunteeringPoints(volunteeringHours);
   miscPoints = studentData.profile.bonus_points;
+  mentorshipPoints = Math.min(mentorshipPoints, 9);
 
-  // //Calculate max number of points
-  // let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
-  // listOfAllMeetings.forEach(meeting => {
-  //   if (meeting.meeting_type == "GENERAL"){
-  //     totalMeetings += 1;
-  //   } else if (meeting.meeting_type == "VOLUNTEER") {
-  //     totalVolunteerHours += meeting.point_value
-  //   } else if (meeting.meeting_type == "MENTORSHIP"){
-  //     totalMentorshipPoints += 1;
-  //   }
-  // })
+  //Calculate max number of points
+  let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
+  listOfAllMeetings.forEach(meeting => {
+    if (meeting.meeting_type == "GENERAL"){
+      totalMeetings += 1;
+    }
+  })
 
   // totalVolunteerPoints = getVolunteeringPoints(totalVolunteerHours);
   let meetingAttendedPercentage = attendedMeetings/totalMeetings;

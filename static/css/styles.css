@@ -1144,7 +1144,7 @@ svg {
     font-family: var( --main-font);
 }
 
-.semester-report-btn:hover {
+.semester-report-btn:hover, .semester-config .trashbtn:hover {
     background-color: #000;
 }
 
@@ -1176,7 +1176,7 @@ svg {
         width: 160px;
     }
 
-    .profile-subsec h4 {
+    .profile-subsec h4, .config-sec h4 {
         font-size: 0.8rem;
         color: #727578;
         margin-bottom: 0px;
@@ -1194,7 +1194,59 @@ svg {
     transform: translateY(-60px);
     margin-left: 120px;
 }
+/*
+    All classes containing styling for config pages
+*/
+.config-sec {
+    border: 1px solid #727578;
+    border-radius: 8px;
+    width: calc(100vw - 13vw);
+    display: inline-block;
+    margin-left: 80px;
+}
 
+.config-sec h3{
+    margin-top: 60px;
+}
+.config-sec h4, .config-sec select, .config-sec input{
+    margin-left: 40px;
+}
+
+.config-sec-sub {
+    margin-left: 120px;
+}
+
+.config-sec-sub select{
+    width: 258px; 
+    padding: 20px 0px;
+    display: inline-block;
+    font-family: var(--main-font);
+}
+
+.semester-config, .admin-config{
+    height: 80px !important;
+}
+
+.semester-config input {
+}
+
+.trashbtn {
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    border: none;
+    margin-left: 20px;
+    background-color: var(--orange);
+    font-family: var( --main-font);
+}
+
+.addsem {
+    width: fit-content;
+}
+
+#last-of-config{
+    margin-bottom: 40px;
+}
 
 /* Modal styling - update with !important to ensure these take precedence */
 .modal {

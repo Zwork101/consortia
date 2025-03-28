@@ -17,3 +17,7 @@ instance/*
 pyrightconfig.json
 
 development.log
+
+# Creds
+client_secret.json
+

@@ -1,10 +1,11 @@
 import csv
+from datetime import datetime
 import os
 import logging
-from functools import wraps
 
 from backend.email import send_email
-from backend.db import Organizations, create_attendance, commit, Event, Profile, create_bonus
+from backend.db import Organizations, ProfileAward, create_attendance, commit, Event, Profile, create_bonus
+from backend.auth import admin_required
 
 from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, abort
 from flask_wtf import FlaskForm
@@ -12,8 +13,7 @@ from flask_login import current_user
 from wtforms import FileField, IntegerField, StringField, SelectField
 from wtforms.validators import DataRequired, ValidationError, Email
 
-from backend.db import Event, commit, create_attendance, Profile, db
-from backend.email import send_email
+from backend.db import Award, Event, commit, create_attendance, Profile, db
 
 from sqlalchemy.orm import Session
 from sqlalchemy import func, or_
@@ -97,22 +97,6 @@ class BonusForm(FlaskForm):
 
 
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
-
-def admin_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        org = kwargs.get('org')
-
-        if org:
-            if org not in [a.organization_id for a in current_user.positions]:
-                abort(403)
-        else:
-            if not current_user.positions:
-                abort(403)
-
-        return f(*args, **kwargs)
-    return decorated_function
-
 
 @admin.route("/admin/<int:org>")
 @admin_required
@@ -414,3 +398,41 @@ def delete_user():
         db.session.commit()
         flash("User deleted successfully.")
         return redirect(url_for("admin.admin_interface"))
+
+@admin.route("/admin/profiles/<int:org>/worthy")
+@admin_required
+def worthy_members(org: int):
+    # This code is so, so bad. And so slow :(
+    org_profiles = db.session.query(Profile) \
+                        .filter(Profile.semesters(org) > 0) \
+                        .all()
+
+    awards = []
+    awards_db = []
+
+    reached_active = [p for p in org_profiles if p.membership(org)]
+
+    print(reached_active)
+
+    for profile in reached_active:
+        award = db.session.query(Award.award_id, Award.name, Award.active_semester_requirements)\
+            .filter(Award.active_semester_requirements == profile.membership_semesters(org))\
+            .filter(Award.organization_id == org)\
+            .first()
+        if award:
+            awards.append((profile, award))
+            awards_db.append(
+                ProfileAward(profile_id=profile.profile_id, award_id=award.award_id, award_date=datetime.now())
+            )
+
+    commit(*awards_db)
+    return jsonify([
+        {
+            "profile_id": award[0].profile_id,
+            "first_name": award[0].first_name,
+            "last_name": award[0].last_name,
+            "award_id": award[1][0],
+            "award_name": award[1][1],
+            "award_requirement": award[1][2]
+        } for award in awards
+    ])

@@ -21,3 +21,4 @@ development.log
 # Creds
 client_secret.json
 
+/backend/routes/report.py

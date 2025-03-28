@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, jsonify, request, render_template
 
 test = Blueprint("testing", __name__, static_folder="static/", template_folder="templates/")
 
@@ -138,3 +138,20 @@ def return_settingswic():
 @test.route("/yearlyreports")
 def return_yearlyreports():
     return render_template("yearly-reports.html.j2")
+
+@test.route('/admin/update_attendance_data/<org>', methods=['POST'])
+def update_attendance_data(org):
+    if 'csv_data' not in request.files:  # Ensure file is uploaded
+        return jsonify({"success": False, "message": "No file uploaded"}), 400
+
+    file = request.files['csv_data']  # Get file
+
+    if not file or not file.filename:  # Ensure file has a name
+        return jsonify({"success": False, "message": "No selected file"}), 400
+
+    filename = file.filename  # Store filename
+    if isinstance(filename, str) and filename.lower().endswith('.csv'):  # Check if it's a valid string
+        file.save(f"./uploads/{filename}")  # Save file (update path as needed)
+        return jsonify({"success": True, "file_name": filename})  # Success response
+
+    return jsonify({"success": False, "message": "Invalid file type"}), 400

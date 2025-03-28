@@ -83,7 +83,7 @@ const getStudentPoints = (endpointData) => {
     if (attendanceDay.meeting_type == "GENERAL"){
       attendedMeetings += 1;
     } else if (attendanceDay.meeting_type == "VOLUNTEER"){
-      volunteeringHours += attendanceDay.point_value; 
+      volunteeringHours += attendanceDay.hours; 
     } else if (attendanceDay.meeting_type == "MENTORSHIP"){
       mentorshipPoints += 1;
     }
@@ -98,7 +98,7 @@ const getStudentPoints = (endpointData) => {
     if (meeting.meeting_type == "GENERAL"){
       totalMeetings += 1;
     } else if (meeting.meeting_type == "VOLUNTEER") {
-      totalVolunteerHours += meeting.point_value
+      totalVolunteerHours += meeting.hours
     } else if (meeting.meeting_type == "MENTORSHIP"){
       totalMentorshipPoints += 1;
     }
@@ -116,8 +116,9 @@ const getStudentPoints = (endpointData) => {
   }
 
   // Point rewarding
-
-  earnedPoints = mentorshipPoints + volunteeringHours + attendancePoints + miscPoints;
+  console.log(mentorshipPoints, volunteeringHours, attendancePoints, miscPoints);
+  earnedPoints = mentorshipPoints + volunteeringHours + attendedMeetings + miscPoints;
+  console.log(totalMentorshipPoints, totalVolunteerPoints, AttendancePercentage.Percent100, miscPoints);
   maxPoints = totalMentorshipPoints + totalVolunteerPoints + AttendancePercentage.Percent100 + miscPoints;
 
   document.getElementById("mentor-bar").style.width = `${(mentorshipPoints/maxPoints)*100}%`;

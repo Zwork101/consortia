@@ -1,0 +1,2186 @@
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'testing' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 851-401-905
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "GET /static/css/mobile.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "GET /static/css/calendar.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "GET /static/css/normalize/normalize.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "GET /static/js/mainjavascript.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "GET /static/css/styles.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "GET /static/css/dialogue.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "GET /static/css/jquery/jquery-ui.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "GET /static/js/jquery-ui.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "GET /static/js/dialogs.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "GET /static/js/calendar.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "GET /static/images/down-arrow-white.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "GET /static/images/WICimg.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "GET /static/images/COMSimg.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:09:57] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:00] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:00] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:00] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:00] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:00] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:00] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:00] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:00] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:00] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:00] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:00] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:00] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:00] "[36mGET /static/images/COMSimg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:00] "[36mGET /static/images/WICimg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:00] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:03] "[35m[1mGET /grad_report HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:03] "GET /grad_report?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:03] "GET /grad_report?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:03] "GET /grad_report?__debugger__=yes&cmd=resource&f=console.png&s=VcaOjGu6dCdfmODdYTru HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:03] "GET /grad_report?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:58] "[35m[1mGET /grad_report HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:58] "[36mGET /grad_report?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:58] "[36mGET /grad_report?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:10:58] "GET /grad_report?__debugger__=yes&cmd=resource&f=console.png&s=E8O0XsHtvHuvTUyCRdFB HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:11:43] "[35m[1mGET /grad_report HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:11:43] "[36mGET /grad_report?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:11:43] "[36mGET /grad_report?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:11:43] "GET /grad_report?__debugger__=yes&cmd=resource&f=console.png&s=WQ2Ee0gKSD6W1JQk25uR HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:13:18] "[33mGET /grad_report HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:13:29] "[35m[1mGET /grad_report/1 HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:13:29] "GET /grad_report/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:13:29] "GET /grad_report/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:13:29] "GET /grad_report/1?__debugger__=yes&cmd=resource&f=console.png&s=SWiC3eH8UJYslb9Kzdts HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:13:29] "GET /grad_report/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:13:37] "[35m[1mGET /grad_report/1 HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:13:37] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:13:37] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:13:37] "GET /grad_report/1?__debugger__=yes&cmd=resource&f=console.png&s=QAc2uJAA2C0cfpyUk6kr HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:02] "[35m[1mGET /grad_report/1 HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:02] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:02] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:02] "GET /grad_report/1?__debugger__=yes&cmd=resource&f=console.png&s=ilK4seNKTvqJh2DqqeEP HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:35] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:35] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:35] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:35] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:35] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:35] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:35] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:35] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:35] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:35] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:35] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:35] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:35] "GET /static/images/back-arrow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:14:35] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:26] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:26] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:26] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:26] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:26] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:26] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:26] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:26] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:26] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:26] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:26] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:26] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:26] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:26] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:38] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:38] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:38] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:38] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:38] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:38] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:38] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:38] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:38] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:38] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:38] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:38] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:38] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:15:38] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:25] "[35m[1mGET /grad_report/1 HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:25] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:25] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:25] "GET /grad_report/1?__debugger__=yes&cmd=resource&f=console.png&s=BrFgiRse3Wnz4Be61rDs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:43] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:43] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:43] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:43] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:43] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:43] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:43] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:43] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:43] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:43] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:43] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:43] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:43] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:16:43] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=console.png&s=SWiC3eH8UJYslb9Kzdts HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:31] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:42] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:42] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:42] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:42] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:42] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:42] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:42] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:42] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:42] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:42] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:42] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:42] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:42] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:26:42] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:08] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:08] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:08] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:08] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:08] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:08] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:08] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:08] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:08] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:08] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:08] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:08] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:08] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:08] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:30] "[35m[1mGET /grad_report/1 HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:30] "GET /grad_report/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:30] "GET /grad_report/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:30] "GET /grad_report/1?__debugger__=yes&cmd=resource&f=console.png&s=nCKHrrh7X44PCiKSt4L7 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:38] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:38] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:38] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:38] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:38] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:38] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:38] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:38] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:38] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:38] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:38] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:38] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:38] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:27:38] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:29:09] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:29:09] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:29:09] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:29:09] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:29:09] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:29:09] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:29:09] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:29:09] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:29:09] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:29:09] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:29:09] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:29:09] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:29:09] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:29:09] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:32:44] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:32:44] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:32:44] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:32:44] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:32:44] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:32:44] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:32:44] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:32:44] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:32:44] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:32:44] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:32:44] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:32:44] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:32:44] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:32:44] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:35:25] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:35:25] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:35:25] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:35:25] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:35:25] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:35:25] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:35:25] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:35:25] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:35:25] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:35:25] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:35:25] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:35:25] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:35:25] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:35:25] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:37:41] "[35m[1mGET /grad_report/1 HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:37:41] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:37:41] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:37:41] "GET /grad_report/1?__debugger__=yes&cmd=resource&f=console.png&s=z60LbCj8heUN9ehUSe3J HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:38:45] "[35m[1mGET /grad_report/1 HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:38:45] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:38:45] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:38:45] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=console.png&s=z60LbCj8heUN9ehUSe3J HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:38:53] "[35m[1mGET /grad_report/1 HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:38:53] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:38:53] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:38:53] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=console.png&s=z60LbCj8heUN9ehUSe3J HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:39:13] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:39:13] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:39:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:39:13] "GET /grad_report/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:05] "[35m[1mGET /grad_report/1 HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:05] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:05] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:05] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=console.png&s=z60LbCj8heUN9ehUSe3J HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:17] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:17] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:17] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:17] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:17] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:17] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:17] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:17] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:17] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:17] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:17] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:17] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:17] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:40:17] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:26] "[35m[1mGET /grad_report/1 HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:26] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:26] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:26] "[36mGET /grad_report/1?__debugger__=yes&cmd=resource&f=console.png&s=z60LbCj8heUN9ehUSe3J HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:44] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:44] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:44] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:44] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:44] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:44] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:44] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:44] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:44] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:44] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:44] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:44] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:44] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:41:44] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:29] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:29] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:29] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:29] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:29] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:29] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:29] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:29] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:29] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:29] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:29] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:29] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:29] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:29] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:39] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:39] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:39] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:39] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:39] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:39] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:39] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:39] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:39] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:39] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:39] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:39] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:39] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:39] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:48] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:48] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:48] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:48] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:48] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:48] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:48] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:48] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:48] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:48] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:48] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:48] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:48] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:42:48] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:43:56] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:43:56] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:43:56] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:43:56] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:43:56] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:43:56] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:43:56] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:43:56] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:43:56] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:43:56] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:43:56] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:43:56] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:43:56] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:43:56] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:44:43] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:44:43] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:44:43] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:44:43] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:44:43] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:44:43] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:44:43] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:44:43] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:44:43] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:44:43] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:44:43] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:44:43] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:44:43] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:44:43] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:12] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:12] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:12] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:12] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:12] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:12] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:12] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:12] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:12] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:12] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:12] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:12] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:12] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:12] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:13] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:13] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:13] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:13] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:13] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:13] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:13] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:13] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:13] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:13] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:13] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:13] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:13] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:45:13] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:46:51] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:46:51] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:46:51] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:46:51] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:46:51] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:46:51] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:46:51] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:46:51] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:46:51] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:46:51] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:46:51] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:46:51] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:46:51] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:46:51] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:21] "[33mGET /grad_report/wic HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:21] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:50] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:50] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:50] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:50] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:50] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:50] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:50] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:50] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:50] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:50] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:50] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:50] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:50] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:50] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:56] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:56] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:56] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:56] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:56] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:56] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:56] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:56] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:56] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:56] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:56] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:56] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:56] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:47:56] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:43] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:43] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:43] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:43] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:43] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:43] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:43] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:43] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:43] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:43] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:43] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:43] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:43] "[36mGET /static/images/COMSimg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:43] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:43] "[36mGET /static/images/WICimg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "GET /wic HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "GET /static/images/awards.webp HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "GET /static/images/prev-arrow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "GET /static/images/next-arrow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:49:52] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:50:06] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:50:06] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:50:06] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:50:06] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:50:06] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:50:06] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:50:06] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:50:06] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:50:06] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:50:06] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:50:06] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:50:06] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:50:06] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:50:06] "[36mGET /static/images/WICimg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:50:06] "[36mGET /static/images/COMSimg.png HTTP/1.1[0m" 304 -
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:02] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:02] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:02] "GET /static/css/styles.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:02] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:02] "GET /static/js/mainjavascript.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:02] "GET /static/css/jquery/jquery-ui.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:02] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:02] "GET /static/css/calendar.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:02] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:02] "GET /static/js/dialogs.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:02] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:02] "GET /static/js/calendar.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:02] "[36mGET /static/images/COMSimg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:02] "[36mGET /static/images/WICimg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:02] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "GET /admin/2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "GET /static/js/admin2.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "GET /static/images/down-arrow-black.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "GET /static/images/opticon1.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "GET /static/images/opticon2.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "GET /static/images/opticon5.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:05] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:06] "GET /admin/profiles/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:06] "GET /static/images/options.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:09] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:09] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:09] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:09] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:09] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:09] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:09] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:09] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:09] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:09] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:09] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:09] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:09] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:09] "[36mGET /static/images/COMSimg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:09] "[36mGET /static/images/WICimg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:10] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:10] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:10] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:10] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:10] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:10] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:10] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:10] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:10] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:10] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:10] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:10] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:10] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:10] "[36mGET /static/images/COMSimg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:10] "[36mGET /static/images/WICimg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:12] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:12] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:12] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:12] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:12] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:12] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:12] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:12] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:12] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:12] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:12] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:12] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:12] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:12] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:15] "[33mGET /grad_report HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:15] "[36mGET /grad_report?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:15] "[36mGET /grad_report?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:15] "[36mGET /grad_report?__debugger__=yes&cmd=resource&f=console.png&s=VcaOjGu6dCdfmODdYTru HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:15] "[36mGET /grad_report?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:16] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:16] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:17] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:17] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:17] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:17] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:17] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:17] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:17] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:17] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:17] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:17] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:17] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:17] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:40] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:40] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:40] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:40] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:40] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:40] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:40] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:40] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:40] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:40] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:40] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:40] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:40] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:53:40] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:15] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:15] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:15] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:15] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:15] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:15] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:15] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:15] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:15] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:15] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:15] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:15] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:15] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:15] "[36mGET /static/images/COMSimg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:15] "[36mGET /static/images/WICimg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:17] "GET /grad_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:17] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:17] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:17] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:17] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:17] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:17] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:17] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:17] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:17] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:17] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:17] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:17] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:54:17] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:59:41] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:59:41] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:59:41] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:59:41] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:59:41] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:59:41] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:59:41] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:59:41] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:59:41] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:59:41] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:59:41] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:59:41] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:59:41] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 17:59:41] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:42] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:42] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:42] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:42] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:42] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:42] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:42] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:42] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:42] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:42] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:42] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:42] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:42] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:42] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:53] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:53] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:53] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:53] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:53] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:53] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:53] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:53] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:53] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:53] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:53] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:53] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:53] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:00:53] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:01:56] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:01:56] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:01:56] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:01:56] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:01:56] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:01:56] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:01:56] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:01:56] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:01:56] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:01:56] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:01:56] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:01:56] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:01:56] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:01:56] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:01] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:01] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:01] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:01] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:01] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:01] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:01] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:01] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:01] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:01] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:01] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:01] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:01] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:01] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:29] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:29] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:29] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:29] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:29] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:29] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:29] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:29] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:29] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:29] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:29] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:29] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:29] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:02:29] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:14] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:14] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:14] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:14] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:14] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:14] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:14] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:14] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:14] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:14] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:14] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:14] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:14] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:14] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:42] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:42] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:42] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:42] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:42] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:42] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:42] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:42] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:42] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:42] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:42] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:42] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:42] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:05:42] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:12:11] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:12:11] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:12:11] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:12:11] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:12:11] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:12:11] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:12:11] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:12:11] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:12:11] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:12:11] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:12:11] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:12:11] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:12:11] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:12:11] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:03] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:03] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:03] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:03] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:03] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:03] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:03] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:03] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:03] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:03] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:03] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:03] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:03] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:03] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:17] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:17] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:17] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:17] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:17] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:17] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:17] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:17] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:17] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:17] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:17] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:17] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:17] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:13:17] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:14:16] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:14:16] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:14:16] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:14:16] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:14:16] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:14:16] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:14:16] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:14:16] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:14:16] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:14:16] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:14:16] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:14:16] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:14:16] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:14:16] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:15:46] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:15:46] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:15:46] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:15:46] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:15:46] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:15:46] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:15:46] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:15:46] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:15:46] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:15:46] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:15:46] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:15:46] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:15:46] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:15:46] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "[35m[1mGET /yearly_report/1 HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "GET /yearly_report/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "GET /yearly_report/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "GET /yearly_report/1?__debugger__=yes&cmd=resource&f=console.png&s=Z322Sd2YHsQCjEB5H6wU HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 18:58:26] "GET /yearly_report/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:00:44] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:00:44] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:00:44] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:00:44] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:00:44] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:00:44] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:00:44] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:00:44] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:00:44] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:00:44] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:00:44] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:00:44] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:00:44] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:00:44] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:04] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:04] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:04] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:04] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:04] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:04] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:04] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:04] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:04] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:04] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:04] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:04] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:04] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:04] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:23] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:23] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:23] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:23] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:23] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:23] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:23] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:23] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:23] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:23] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:23] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:23] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:23] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:01:23] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:07] "[35m[1mGET /yearly_report/1 HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:07] "[36mGET /yearly_report/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:07] "[36mGET /yearly_report/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:07] "[36mGET /yearly_report/1?__debugger__=yes&cmd=resource&f=console.png&s=Z322Sd2YHsQCjEB5H6wU HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:16] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:16] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:16] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:16] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:16] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:16] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:16] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:16] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:16] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:16] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:16] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:16] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:16] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:16] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:50] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:50] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:50] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:50] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:50] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:50] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:50] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:50] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:50] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:50] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:50] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:50] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:50] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:02:50] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:03:13] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:03:13] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:03:13] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:03:13] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:03:13] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:03:13] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:03:13] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:03:13] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:03:13] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:03:13] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:03:13] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:03:13] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:03:13] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:03:13] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:04:20] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:04:20] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:04:20] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:04:20] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:04:20] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:04:20] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:04:20] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:04:20] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:04:20] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:04:20] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:04:20] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:04:20] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:04:20] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:04:20] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:06:18] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:06:18] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:06:18] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:06:18] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:06:18] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:06:18] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:06:18] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:06:18] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:06:18] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:06:18] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:06:18] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:06:18] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:06:18] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:06:18] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:08:40] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:08:40] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:08:40] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:08:40] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:08:40] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:08:40] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:08:40] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:08:40] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:08:40] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:08:40] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:08:40] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:08:40] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:08:40] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:08:40] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:10:02] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:10:02] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:10:02] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:10:02] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:10:02] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:10:02] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:10:02] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:10:02] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:10:02] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:10:02] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:10:02] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:10:02] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:10:02] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:10:02] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:11:41] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:11:41] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:11:41] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:11:41] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:11:41] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:11:41] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:11:41] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:11:41] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:11:41] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:11:41] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:11:41] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:11:41] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:11:41] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:11:41] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:19] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:19] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:19] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:19] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:19] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:19] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:19] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:19] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:19] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:19] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:19] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:19] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:19] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:19] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:39] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:39] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:39] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:39] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:39] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:39] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:39] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:39] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:39] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:39] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:39] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:39] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:39] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:39] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:58] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:58] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:58] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:58] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:58] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:58] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:58] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:58] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:58] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:58] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:58] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:58] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:58] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:12:58] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:13:27] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:13:27] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:13:27] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:13:27] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:13:27] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:13:27] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:13:27] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:13:27] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:13:27] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:13:27] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:13:27] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:13:27] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:13:27] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:13:27] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:38] "[35m[1mGET /yearly_report/1 HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:38] "GET /yearly_report/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:38] "GET /yearly_report/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:38] "GET /yearly_report/1?__debugger__=yes&cmd=resource&f=console.png&s=Tcy0Z1d4W1OmE4WZbTYJ HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:55] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:55] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:55] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:55] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:55] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:55] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:55] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:55] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:55] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:55] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:55] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:55] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:55] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:14:55] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:07] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:07] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:07] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:07] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:07] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:07] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:07] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:07] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:07] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:07] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:07] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:07] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:07] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:07] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:50] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:50] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:50] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:50] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:50] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:50] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:50] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:50] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:50] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:50] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:50] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:50] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:50] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:18:50] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:12] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:12] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:12] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:12] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:12] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:12] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:12] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:12] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:12] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:12] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:12] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:12] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:12] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:12] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:30] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:30] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:30] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:30] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:30] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:30] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:30] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:30] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:30] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:30] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:30] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:30] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:30] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:19:30] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8080
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:16] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:16] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:16] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:16] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:16] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:16] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:16] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:16] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:16] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:16] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:16] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:16] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:16] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:16] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:30] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:30] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:30] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:30] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:30] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:30] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:30] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:30] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:30] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:30] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:30] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:30] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:30] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:30] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:46] "GET /notifications HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:46] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:46] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:46] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:46] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:46] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:46] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:46] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:46] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:46] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:46] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:46] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:46] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:46] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:50] "GET /settingswic HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:50] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:50] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:50] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:50] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:50] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:50] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:50] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:50] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:50] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:50] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:50] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:50] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:50] "GET /static/images/trash.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:50] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:55] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:55] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:55] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:55] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:55] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:55] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:55] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:55] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:55] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:55] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:55] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:55] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:55] "[36mGET /static/images/WICimg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:55] "[36mGET /static/images/COMSimg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:22:55] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in '/Users/dylsand/RIT/Spring25/ISTE501/Coding/consortia/backend/routes/report.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'oauth' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 464-260-844
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:23:13] "GET /yearly_report/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:23:13] "[36mGET /static/css/normalize/normalize.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:23:13] "[36mGET /static/css/mobile.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:23:13] "[36mGET /static/css/calendar.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:23:13] "[36mGET /static/css/jquery/jquery-ui.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:23:13] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:23:13] "[36mGET /static/css/dialogue.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:23:13] "[36mGET /static/js/mainjavascript.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:23:13] "[36mGET /static/js/dialogs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:23:13] "[36mGET /static/js/calendar.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:23:13] "[36mGET /static/js/jquery-ui.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:23:13] "[36mGET /static/images/back-arrow.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:23:13] "[36mGET /static/images/down-arrow-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Mar/2025 19:23:13] "[33mGET /static/css/fonts/Roboto-VariableFont_opsz,wght.ttf HTTP/1.1[0m" 404 -

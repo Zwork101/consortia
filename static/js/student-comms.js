@@ -1,4 +1,4 @@
-let maxPoints = 0;
+let maxPoints = 18;
 let earnedPoints = 0;
 
 // For volunteering 
@@ -75,9 +75,9 @@ const getStudentPoints = (endpointData) => {
   allMeetingData = endpointData[1];
 
   // Calculate points fo the user
-  if (studentData.profile.membership == true){
-    mentorshipPoints += hasMentorshipPoints;
-  } 
+  // if (studentData.profile.membership == true){
+  //   mentorshipPoints += hasMentorshipPoints;
+  // } 
   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
   attendance.forEach(attendanceDay =>{
     if (attendanceDay.meeting_type == "GENERAL"){
@@ -89,22 +89,26 @@ const getStudentPoints = (endpointData) => {
     }
   })
 
+  if (mentorshipPoints > 0){
+    mentorshipPoints += hasMentorshipPoints;
+  }
+
   volunteeringPoints = getVolunteeringPoints(volunteeringHours);
   miscPoints = studentData.profile.bonus_points;
 
-  //Calculate max number of points
-  let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
-  listOfAllMeetings.forEach(meeting => {
-    if (meeting.meeting_type == "GENERAL"){
-      totalMeetings += 1;
-    } else if (meeting.meeting_type == "VOLUNTEER") {
-      totalVolunteerHours += meeting.hours
-    } else if (meeting.meeting_type == "MENTORSHIP"){
-      totalMentorshipPoints += 1;
-    }
-  })
+  // //Calculate max number of points
+  // let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
+  // listOfAllMeetings.forEach(meeting => {
+  //   if (meeting.meeting_type == "GENERAL"){
+  //     totalMeetings += 1;
+  //   } else if (meeting.meeting_type == "VOLUNTEER") {
+  //     totalVolunteerHours += meeting.point_value
+  //   } else if (meeting.meeting_type == "MENTORSHIP"){
+  //     totalMentorshipPoints += 1;
+  //   }
+  // })
 
-  totalVolunteerPoints = getVolunteeringPoints(totalVolunteerHours);
+  // totalVolunteerPoints = getVolunteeringPoints(totalVolunteerHours);
   let meetingAttendedPercentage = attendedMeetings/totalMeetings;
 
   if (meetingAttendedPercentage == 1){
@@ -116,16 +120,10 @@ const getStudentPoints = (endpointData) => {
   }
 
   // Point rewarding
-  console.log(mentorshipPoints, volunteeringHours, attendancePoints, miscPoints);
-  earnedPoints = mentorshipPoints + volunteeringHours + attendedMeetings + miscPoints;
-  console.log(totalMentorshipPoints, totalVolunteerPoints, AttendancePercentage.Percent100, miscPoints);
-  maxPoints = totalMentorshipPoints + totalVolunteerPoints + AttendancePercentage.Percent100 + miscPoints;
 
-  document.getElementById("mentor-bar").style.width = `${(mentorshipPoints/maxPoints)*100}%`;
-  document.getElementById("voluenteer-bar").style.width = `${(volunteeringPoints/maxPoints)*100}%`;
-  document.getElementById("attendance-bar").style.width = `${(attendancePoints/maxPoints)*100}%`;
-  document.getElementById("misc-bar").style.width = `${(miscPoints/maxPoints)*100}%`;
-    
+  earnedPoints = mentorshipPoints + volunteeringPoints + attendancePoints + miscPoints;
+  //maxPoints = totalMentorshipPoints + totalVolunteerPoints + AttendancePercentage.Percent100 + miscPoints;
+
   document.getElementById("mentor-points").innerHTML= mentorshipPoints;
   document.getElementById("voluenteering-points").innerHTML= volunteeringPoints;
   document.getElementById("attendance-points").innerHTML= attendancePoints;
@@ -133,6 +131,19 @@ const getStudentPoints = (endpointData) => {
     
   document.getElementById("earned-points").innerHTML= earnedPoints;
   document.getElementById("max-points").innerHTML= maxPoints;
+
+  // If the user exceeds the max points, we want to resize the bar so that it does not cause UI conflicts.
+
+  let pointUIValue;
+  if (earnedPoints > maxPoints) {
+    pointUIValue = earnedPoints;
+  } else {
+    pointUIValue = maxPoints;
+  }
+  document.getElementById("mentor-bar").style.width = `${(mentorshipPoints/pointUIValue)*100}%`;
+  document.getElementById("voluenteer-bar").style.width = `${(volunteeringPoints/pointUIValue)*100}%`;
+  document.getElementById("attendance-bar").style.width = `${(attendancePoints/pointUIValue)*100}%`;
+  document.getElementById("misc-bar").style.width = `${(miscPoints/pointUIValue)*100}%`;
 }
 
 getProfile().then(

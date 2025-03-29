@@ -20,7 +20,6 @@
                 {% for event in current_user.attendance %}
                     
                 {% set whatever = event.meeting_type %}
-                <!--{% print(whatever.name) %}-->
                 
                     {% if 'GENERAL' in whatever.name %}
                         {% set general_meetings.value  = general_meetings.value + 1 %}    

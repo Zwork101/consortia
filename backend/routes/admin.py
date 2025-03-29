@@ -410,7 +410,7 @@ def worthy_members(org: int):
     awards = []
     awards_db = []
 
-    reached_active = [p for p in org_profiles if p.membership(org)]
+    reached_active = [p for p in org_profiles if p.membership_sql(org)]
 
     print(reached_active)
 
@@ -436,3 +436,23 @@ def worthy_members(org: int):
             "award_requirement": award[1][2]
         } for award in awards
     ])
+
+@admin.route("/admin/events/<int:org>", methods=["GET"])
+@admin_required
+def list_events(org: int):
+    # Count profiles that have attended any event for this org
+    total_profiles = Profile.query.filter(Profile.attendance.any(Event.organizer_id == org)).count()
+    # Order events by start_time descending (default sort by date)
+    events = Event.query.filter_by(organizer_id=org).order_by(Event.start_time.desc()).all()
+    result = []
+    for event in events:
+        attendees = len(event.attendants)
+        percentage = (attendees / total_profiles * 100) if total_profiles > 0 else 0
+        result.append({
+            "event_id": event.event_id,
+            "name": event.name,
+            "start_time": event.start_time.isoformat(),
+            "attendance_count": attendees,
+            "attendance_percentage": round(percentage)
+        })
+    return jsonify(result)

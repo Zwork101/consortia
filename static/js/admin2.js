@@ -252,6 +252,69 @@ function getCurrentOrgId() {
     return 1; // Default to WiC
 }
 
+// Load events for attendance data view
+const loadEvents = async () => {
+    const table = document.getElementById("dbTable");
+    // Replace table header with event columns
+    table.innerHTML = `
+        <tr class="dbTableTop">
+            <th>Event Name</th>
+            <th>Date</th>
+            <th>Attendees</th>
+            <th>Attendance %</th>
+        </tr>
+    `;
+    try {
+        const org = getCurrentOrgId();
+        const response = await fetch(`/admin/events/${org}`);
+        if (!response.ok) throw new Error(`Response status: ${response.status}`);
+        const events = await response.json();
+        events.forEach(evt => {
+            const newRow = `
+            <tr class="dbTableRow">
+                <td>${evt.name}</td>
+                <td>${new Date(evt.start_time).toLocaleDateString()}</td>
+                <td>${evt.attendance_count}</td>
+                <td>${evt.attendance_percentage}%</td>
+            </tr>
+            `;
+            table.insertAdjacentHTML('beforeend', newRow);
+        });
+    } catch (error) {
+        console.error(error.message);
+    }
+};
+
+// Function to reload student profiles
+const loadProfiles = async () => {
+    const table = document.getElementById("dbTable");
+    // Restore table header for profiles
+    table.innerHTML = `
+        <tr class="dbTableTop">
+            <th></th>
+            <th>FIRST NAME</th>
+            <th>LAST NAME</th>
+            <th>MEMBERSHIP</th>
+            <th>SEMESTER</th>
+            <th>E-MAIL ADDRESS</th>
+            <th>MENTORSHIP</th>
+            <th>VOLUNTEERING</th>
+            <th>ATTENDANCE</th>
+            <th>MISC</th>
+            <th>TOTAL POINTS</th>
+            <th class="dbTablePH"></th>
+            <th></th>
+        </tr>
+    `;
+    // Clear existing rows and load profiles
+    listProfiles().then(data => {
+        addTableRows(data);
+    });
+};
+
+// Current view (default: profiles)
+let currentView = 'profiles';
+
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Page loaded, fetching profiles...');
@@ -283,9 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Initial data load
-    listProfiles().then(data => {
-        addTableRows(data);
-    });
+    loadProfiles();
     
     // Add click event listeners to table headers for sorting
     document.querySelectorAll('#dbTable th[data-column]').forEach(th => {
@@ -317,5 +378,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 headerCells[i].addEventListener('click', handleTableHeaderClick);
             }
         }
+    }
+
+    const studentOption = document.getElementById("student-data-option");
+    const attendanceOption = document.getElementById("attendance-data-option");
+
+    if (studentOption) {
+        studentOption.addEventListener("click", (e) => {
+            e.preventDefault();
+            // Highlight selected option if desired
+            loadProfiles();
+        });
+    }
+    
+    if (attendanceOption) {
+        attendanceOption.addEventListener("click", (e) => {
+            e.preventDefault();
+            loadEvents();
+        });
+    }
+
+    // Toggle dropdown view using the dropdown content option.
+    const dropdownOption = document.querySelector('#DropdownContent1 a');
+    const dropdownButton = document.querySelector('.dropbtn1');
+    if (dropdownOption && dropdownButton) {
+        dropdownOption.addEventListener("click", (e) => {
+            e.preventDefault();
+            const org = getCurrentOrgId();
+            const orgName = org === 1 ? "WiC" : "COMS";
+            if (currentView === 'profiles') {
+                loadEvents();
+                dropdownButton.textContent = `${orgName} Attendance Data`;
+                currentView = 'events';
+            } else {
+                loadProfiles();
+                dropdownButton.textContent = `${orgName} Student Data`;
+                currentView = 'profiles';
+            }
+        });
     }
 });

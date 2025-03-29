@@ -4,7 +4,7 @@
 	<nav>
 		 {% if request.url_rule.endpoint != 'home.homepage' %}
 			<a href="{{ url_for('home.homepage') }}">
-				<img class="backarrow" src="../static/images/back-arrow.png" width="16" />
+				<img class="backarrow" src="../static/images/back-arrow.png" width="20" color="white"/>
 			</a>
 	    {% endif %}
       <div class="menu-toggle" onclick="toggleMenu()">
@@ -24,8 +24,7 @@
 					<a href="#">Logout</a>
 				</div>
 			</div>
-			<a href="{{ url_for('testing.return_settingswic') }}" style="float:right;">SETTINGS</a>
-			<a href="{{ url_for('testing.return_notifications') }}" style="float:right; padding-left: 40px;" >NOTIFICATIONS</a>
+			<a href="{{ url_for('testing.return_settingswic') }}" style="float:right; padding-left:50px;">SETTINGS</a>
 
 		</div>
         </nav>

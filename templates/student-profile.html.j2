@@ -4,39 +4,76 @@
 {% endblock %}
 {% block content %}
 <body data-profile-id="{{ current_user.profile_id }}">
+{% set whatever = "" %}
+{% set general_meetings = namespace(value=0) %}
+{% set committee = namespace(value=0) %}
+{% set social_events = namespace(value=0) %}
+{% set volunteering = namespace(value=0) %}
 {% include "nav.html.j2" %} 
 	<main>
 
         <h2 style="margin-left: 80px; margin-top: 80px;">{{ current_user.first_name }} {{ current_user.last_name }}</h2>
         <div class="profile-container">
             <div class="profile-sec">
+
+                <!-- for Loop for attendance -->
+                {% for event in current_user.attendance %}
+                    
+                {% set whatever = event.meeting_type %}
+                
+                    {% if 'GENERAL' in whatever.name %}
+                        {% set general_meetings.value  = general_meetings.value + 1 %}    
+                    {% endif %} 
+                    {% if 'COMMITTEE' in whatever.name %}
+                        {% set committee.value  = committee.value + 1 %}    
+                    {% endif %} 
+                    {% if 'SOCIAL' in whatever.name %}
+                        {% set social_events.value  = social_events.value + 1 %}    
+                    {% endif %} 
+                    {% if 'VOLUNTEER' in whatever.name %}
+                        {% set volunteering.value  = volunteering.value + 1 %}    
+                    {% endif %} 
+                {% endfor %}
                 <h3>MEMBERSHIP INFORMATION</h3>
                 <div class="profile-subsec">
                     <h4>Membership:</h4>
-                    <p>Status: {% if not current_user.membership(1) %}Non-{% endif %}Active Member</p>
+                    <p>{% if not current_user.membership(1) %}Non-{% endif %}Active Member</p>
 
+                    <!-- Count Semesters , basically just loops thru and counts unique enterants-->
                     <h4>Semester:</h4>
-                    <p>{{ current_user.current_semester }}</p>
+                    {% set semesters_list = [] %}
+                    {% set current_semester = "" %}
+                    {% for event in current_user.attendance %}
+                        {% set current_semeter = event.semester %}
+                        {% set semesters_list = semesters_list.append(current_semeter) %}
+                    {% endfor %}
+
+                    <p>{{ semesters_list| unique| list | length }}</p>
+                    
 
                     <h4>Awards:</h4>
-                    <!-- For Loop multiple awards -->
-                    <p>{{ current_user.awards }}</p>
+                                    <!-- for Loop Awards -->
+                    {% for award in current_user.awards %} 
+                    <li> {{ award.name }}</li>
+                    {% endfor %}
+                    
 
                     <h4 style="opacity:0%;">placeholder</h4>
                     <p style="opacity:0%;">placeholder</p>
                 </div>
                 <div class="profile-subsec" style="margin-left: 100px;">
+                    </li>
                     <h4>General Meetings:</h4>
-                    <p>{{ current_user.general_meetings }}/14</p>
+                    <p>{{ general_meetings.value }}/14</p>
 
                     <h4>Committee Meetings:</h4>
-                    <p>{{ current_user.committee }}/6</p>
+                    <p>{{ committee.value }}/6</p>
 
                     <h4>Social Events:</h4>
-                    <p>{{ current_user.social_event }}/1</p>
+                    <p>{{ social_events.value }}/1</p>
 
                     <h4>Volunteering:</h4>
-                    <p>{{ current_user.volunteer }}/1</p>
+                    <p>{{ volunteering.value }}/1</p>
                 </div>
             </div>
         </div>

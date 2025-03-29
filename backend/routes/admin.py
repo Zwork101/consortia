@@ -442,7 +442,8 @@ def worthy_members(org: int):
 def list_events(org: int):
     # Count profiles that have attended any event for this org
     total_profiles = Profile.query.filter(Profile.attendance.any(Event.organizer_id == org)).count()
-    events = Event.query.filter_by(organizer_id=org).all()
+    # Order events by start_time descending (default sort by date)
+    events = Event.query.filter_by(organizer_id=org).order_by(Event.start_time.desc()).all()
     result = []
     for event in events:
         attendees = len(event.attendants)

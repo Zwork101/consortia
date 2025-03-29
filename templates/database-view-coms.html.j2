@@ -107,7 +107,18 @@
             <div class="dialog-item">
                 <label for="meeting-title">Title:</label>
                 <input type="text" name="meeting-title" id="meeting-title">
+               
             </div>
+            <div class="dialog-row">
+                <label for="meeting-type">Meeting Type:</label>
+                <select name="meeting-type" id="meeting-type">
+                    <option>General</option>
+                    <option>Committee</option>
+                    <option>Social</option>
+                    <option>Volunteering</option>
+                </select>
+            </div>
+            <br>
             <div class="dialog-row">
                 <div>
                     <label for="meeting-date">Date:</label>
@@ -268,9 +279,11 @@
                 <label for="description">Description</label>
                 <textarea id="description" rows="6" cols="58" style="min-width:520px"></textarea>
             </div>
+             
         </fieldset>
     </form>
 </div>
+
 
 {% with org=2 %}
     {% include "widgets/meeting-upload.html.j2" %}

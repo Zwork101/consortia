@@ -5224,3 +5224,13 @@ INFO:werkzeug:127.0.0.1 - - [29/Mar/2025 15:09:45] "[36mGET /static/css/jquery/
 INFO:werkzeug:127.0.0.1 - - [29/Mar/2025 15:09:48] "[36mGET /static/css/jquery/images/ui-icons_ffffff_256x240.png HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [29/Mar/2025 15:09:54] "GET /admin/profiles/1 HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [29/Mar/2025 15:09:54] "[36mGET /static/images/options.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\Blank\\source\\repos\\consortia\\backend\\db.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Added 'admin' blueprint.
+INFO:root:Added 'home' blueprint.
+INFO:root:Added 'oauth' blueprint.
+INFO:root:Added 'report' blueprint.
+INFO:root:Added 'student' blueprint.
+INFO:root:Added 'testing' blueprint.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 272-437-389

@@ -410,7 +410,7 @@ def worthy_members(org: int):
     awards = []
     awards_db = []
 
-    reached_active = [p for p in org_profiles if p.membership(org)]
+    reached_active = [p for p in org_profiles if p.membership_sql(org)]
 
     print(reached_active)
 

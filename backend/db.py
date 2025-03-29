@@ -207,42 +207,127 @@ class Profile(db.Model, UserMixin):
     @classmethod
     def membership_sql(cls, org: int):
         current_semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
-        general_meeting_query = db.session.query(func.count(Event.event_id))\
-            .select_from(Event)\
-            .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
-            .where(attendance_table.c.profile_id == cls.profile_id)\
-            .where(Event.semester == current_semester)\
-            .where(Event.meeting_type == MeetingType.GENERAL)\
-            .scalar_subquery()
+        
+        if org == Organizations.WIC:
+            general_meeting_query = db.session.query(func.count(Event.event_id))\
+                .select_from(Event)\
+                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.semester == current_semester)\
+                .where(Event.meeting_type == MeetingType.GENERAL)\
+                .scalar_subquery()
 
-        committee_meeting_query = db.session.query(func.count())\
-            .select_from(Event)\
-            .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
-            .where(attendance_table.c.profile_id == cls.profile_id)\
-            .where(Event.semester == current_semester)\
-            .where(Event.meeting_type == MeetingType.COMMITTEE)\
-            .scalar_subquery()
+            committee_meeting_query = db.session.query(func.count())\
+                .select_from(Event)\
+                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.semester == current_semester)\
+                .where(Event.meeting_type == MeetingType.COMMITTEE)\
+                .scalar_subquery()
 
-        social_meeting_query = db.session.query(func.count())\
-            .select_from(Event)\
-            .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
-            .where(attendance_table.c.profile_id == cls.profile_id)\
-            .where(Event.semester == current_semester)\
-            .where(Event.meeting_type == MeetingType.SOCIAL)\
-            .scalar_subquery()
+            social_meeting_query = db.session.query(func.count())\
+                .select_from(Event)\
+                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.semester == current_semester)\
+                .where(Event.meeting_type == MeetingType.SOCIAL)\
+                .scalar_subquery()
 
-        volunteer_meeting_query = db.session.query(func.count())\
-            .select_from(Event)\
-            .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
-            .where(attendance_table.c.profile_id == cls.profile_id)\
-            .where(Event.semester == current_semester)\
-            .where(Event.meeting_type == MeetingType.VOLUNTEER)\
-            .scalar_subquery()
+            volunteer_meeting_query = db.session.query(func.count())\
+                .select_from(Event)\
+                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.semester == current_semester)\
+                .where(Event.meeting_type == MeetingType.VOLUNTEER)\
+                .scalar_subquery()
 
-        return case(
-            ((general_meeting_query >= 14) & (committee_meeting_query >= 6) & (social_meeting_query >= 1) & (volunteer_meeting_query >= 1), "active"),
-            else_="inactive"
-        )
+            return case(
+                ((general_meeting_query >= 14) & (committee_meeting_query >= 6) & (social_meeting_query >= 1) & (volunteer_meeting_query >= 1), "active"),
+                else_="inactive"
+            )
+        
+        elif org == Organizations.COMS:
+            # Get total general meetings for the semester
+            total_general_meetings = db.session.query(func.count(Event.event_id))\
+                .where(Event.organizer_id == org)\
+                .where(Event.semester == current_semester)\
+                .where(Event.meeting_type == MeetingType.GENERAL)\
+                .scalar_subquery()
+            
+            # Calculate attended general meetings
+            attended_general_meetings = db.session.query(func.count(Event.event_id))\
+                .select_from(Event)\
+                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.organizer_id == org)\
+                .where(Event.semester == current_semester)\
+                .where(Event.meeting_type == MeetingType.GENERAL)\
+                .scalar_subquery()
+            
+            # Calculate attendance percentage
+            attendance_percent = case(
+                (total_general_meetings > 0, (cast(attended_general_meetings * 100, Integer) / total_general_meetings)),
+                else_=0
+            )
+            
+            # Calculate general meeting points
+            general_meeting_points = case(
+                (attendance_percent >= 100, 3),
+                (attendance_percent >= 75, 2),
+                (attendance_percent >= 50, 1),
+                else_=0
+            )
+            
+            # Calculate volunteer hours
+            volunteer_hours = db.session.query(func.coalesce(func.sum(attendance_table.c.hours), 0))\
+                .select_from(attendance_table)\
+                .join(Event, Event.event_id == attendance_table.c.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.organizer_id == org)\
+                .where(Event.semester == current_semester)\
+                .where(Event.meeting_type == MeetingType.VOLUNTEER)\
+                .scalar_subquery()
+            
+            # Calculate volunteer points
+            volunteer_points = case(
+                (volunteer_hours >= 9, 4),
+                (volunteer_hours >= 6, 3),
+                (volunteer_hours >= 3, 2),
+                (volunteer_hours >= 1, 1),
+                else_=0
+            )
+            
+            # Calculate mentorship meetings
+            mentorship_meetings = db.session.query(func.count(Event.event_id))\
+                .select_from(Event)\
+                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.organizer_id == org)\
+                .where(Event.semester == current_semester)\
+                .where(Event.meeting_type == MeetingType.MENTORSHIP)\
+                .scalar_subquery()
+            
+            # Calculate mentorship points (base 3 + 1 per meeting, capped at 9)
+            has_mentorship = mentorship_meetings > 0
+            mentorship_points = case(
+                (has_mentorship, func.least(3 + mentorship_meetings, 9)),
+                else_=0
+            )
+            
+            # Get bonus points
+            bonus_points = cls.bonus_points_sql(org)
+            
+            # Calculate total points
+            total_points = general_meeting_points + volunteer_points + mentorship_points + bonus_points
+            
+            return case(
+                (total_points >= 16, "active"),
+                else_="inactive"
+            )
+        
+        else:
+            # Default case for unknown organizations
+            return "'unknown'"
         
     @hybrid_method
     def bonus_points(self, org: int, semester_only: bool = True):

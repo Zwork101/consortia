@@ -356,6 +356,7 @@ class Profile(db.Model, UserMixin):
                     "point_value": event.point_value,
                     "organizer_id": event.organizer_id,
                     "start_time": event.start_time.isoformat(),
+                    "semester": event.semester,
                     "hours": db.session.query(attendance_table.c.hours).where(attendance_table.c.profile_id == self.profile_id).where(attendance_table.c.event_id == event.event_id).first()[0]
                     
                 } for event in self.attendance if event.organizer_id == org_id

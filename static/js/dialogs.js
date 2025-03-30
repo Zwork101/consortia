@@ -7,7 +7,7 @@ $( function() {
     // Create a success banner
     success_banner = $("<div id='success-banner' style='display:none; background-color: #F76902; color: white; padding: 10px; text-align: center; position: fixed; top: 0; left: 40%; width: 20%; z-index: 9999;'>Task completed successfully!</div>").appendTo("body");
 
-
+  
     /*
     
     Filter dialog box
@@ -84,6 +84,11 @@ $( function() {
         create_meeting_dialog.dialog('open');
         console.log("create meeting button pressed");
     });
+
+   $("#save-changes-button").click(function() {
+    console.log("Button clicked!");
+    success_banner.text("Meeting created successfully!").fadeIn().delay(3000).fadeOut();
+});
 
     /*
 

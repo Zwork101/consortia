@@ -28,32 +28,34 @@ const AttendancePercentage = Object.freeze({
 
 const hasMentorshipPoints = 3;
 
-const getProfile = async () => {
-	const profileEndpoint = "/profile?org=2";
-  const meetingsEndpoint = "/meetings/2";
-	try {
-      var endpointList = []
-    	const response = await fetch(profileEndpoint);
-	    if (!response.ok) {
-	      throw new Error(`Response status: ${response.status}`);
-	    }
+const endpointOrganizationID = 2;
 
-	    const json = await response.json();
-      endpointList.push(json);
+// const getProfile = async () => {
+// 	const profileEndpoint = "/profile?org=2";
+//   const meetingsEndpoint = "/meetings/2";
+// 	try {
+//       var endpointList = []
+//     	const response = await fetch(profileEndpoint);
+// 	    if (!response.ok) {
+// 	      throw new Error(`Response status: ${response.status}`);
+// 	    }
 
-	    const response2 = await fetch(meetingsEndpoint);
-	    if (!response2.ok) {
-	      throw new Error(`Response status: ${response2.status}`);
-	    }
+// 	    const json = await response.json();
+//       endpointList.push(json);
 
-	    const json2 = await response2.json();
-      endpointList.push(json2);
+// 	    const response2 = await fetch(meetingsEndpoint);
+// 	    if (!response2.ok) {
+// 	      throw new Error(`Response status: ${response2.status}`);
+// 	    }
+
+// 	    const json2 = await response2.json();
+//       endpointList.push(json2);
       
-      return endpointList;
-	 } catch (error) {
-	    console.error(error.message);
-  }
-}
+//       return endpointList;
+// 	 } catch (error) {
+// 	    console.error(error.message);
+//   }
+// }
 
 function getVolunteeringPoints(hours){
   if (hours > 9){
@@ -69,15 +71,25 @@ function getVolunteeringPoints(hours){
   }
 }
 
+function getAttendancePoints(attendedMeetings, totalMeetings){
+  let meetingAttendedPercentage = attendedMeetings/totalMeetings;
+
+  if (meetingAttendedPercentage == 1){
+    return AttendancePercentage.Percent100;
+  } else if (meetingAttendedPercentage >= .75){
+    return AttendancePercentage.Percent75;
+  } else if (meetingAttendedPercentage >= .5){
+    return AttendancePercentage.Percent50;
+  } else {
+    return 0;
+  }
+}
+
 const getStudentPoints = (endpointData) => {
 
   studentData = endpointData[0];
   allMeetingData = endpointData[1];
 
-  // Calculate points fo the user
-  // if (studentData.profile.membership == true){
-  //   mentorshipPoints += hasMentorshipPoints;
-  // } 
   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
   attendance.forEach(attendanceDay =>{
     if (attendanceDay.meeting_type == "GENERAL"){
@@ -88,33 +100,35 @@ const getStudentPoints = (endpointData) => {
       mentorshipPoints += 1;
     }
   })
-
   if (mentorshipPoints > 0){
     mentorshipPoints += hasMentorshipPoints;
   }
+  mentorshipPoints = Math.min(mentorshipPoints, 9);
 
   volunteeringPoints = getVolunteeringPoints(volunteeringHours);
   miscPoints = studentData.profile.bonus_points;
-  mentorshipPoints = Math.min(mentorshipPoints, 9);
+
 
   //Calculate max number of points
-  let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
-  listOfAllMeetings.forEach(meeting => {
-    if (meeting.meeting_type == "GENERAL"){
-      totalMeetings += 1;
-    }
-  })
+  // let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
+  // listOfAllMeetings.forEach(meeting => {
+  //   if (meeting.meeting_type == "GENERAL"){
+  //     totalMeetings += 1;
+  //   }
+  // })
 
   // totalVolunteerPoints = getVolunteeringPoints(totalVolunteerHours);
-  let meetingAttendedPercentage = attendedMeetings/totalMeetings;
 
-  if (meetingAttendedPercentage == 1){
-    attendancePoints = AttendancePercentage.Percent100;
-  } else if (meetingAttendedPercentage >= .75){
-    attendancePoints = AttendancePercentage.Percent75;
-  } else if (meetingAttendedPercentage >= .5){
-    attendancePoints = AttendancePercentage.Percent50;
-  }
+  attendancePoints = getAttendancePoints(attendedMeetings, totalMeetings);
+  // let meetingAttendedPercentage = attendedMeetings/totalMeetings;
+
+  // if (meetingAttendedPercentage == 1){
+  //   attendancePoints = AttendancePercentage.Percent100;
+  // } else if (meetingAttendedPercentage >= .75){
+  //   attendancePoints = AttendancePercentage.Percent75;
+  // } else if (meetingAttendedPercentage >= .5){
+  //   attendancePoints = AttendancePercentage.Percent50;
+  // }
 
   // Point rewarding
 
@@ -141,11 +155,13 @@ const getStudentPoints = (endpointData) => {
   document.getElementById("voluenteer-bar").style.width = `${(volunteeringPoints/pointUIValue)*100}%`;
   document.getElementById("attendance-bar").style.width = `${(attendancePoints/pointUIValue)*100}%`;
   document.getElementById("misc-bar").style.width = `${(miscPoints/pointUIValue)*100}%`;
+
+  historyBuilder(builderMode.COMS, studentData, allMeetingData);
 }
 
-getProfile().then(
-  getStudentPoints
-)
+// getProfile().then(
+//   getStudentPoints
+// )
 
 const loadSemesters = () => {
   const container = document.getElementById("semesters");

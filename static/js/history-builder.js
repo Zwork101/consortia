@@ -7,8 +7,22 @@ const builderMode = Object.freeze({
 // Enum for sorting order
 const sortingOrder = Object.freeze({
     Ascending: Symbol("Ascending"),
-    Desending: Symbol("Decending"),
+    Descending: Symbol("Descending"),
 })
+
+// Enum for semester term
+const semesterTerm = Object.freeze({
+    Spring: "Spring",
+    Fall: "Fall",
+})
+
+// Enum for finding if user is active
+const activeUser = Object.freeze({
+    Active: "Active",
+    NonActive: "Non-Active",
+})
+
+const awardHTML = `<img src="../static/images/awards.webp" alt="Award" >`;
 
 /**
  * Given a list of meetings, sort and order by semester
@@ -32,7 +46,7 @@ function meetingsSortedBySemester(meetings, sortOrder){
     if (sortOrder == sortingOrder.Ascending){
         // Ascending - Earlest to latest
         sortedMeetings.sort((a, b) => parseFloat(a.semester) - parseFloat(b.semester))
-    } else if (sortOrder == sortingOrder.Desending) {
+    } else if (sortOrder == sortingOrder.Descending) {
         // Desending - Latest to earliest
         sortedMeetings.sort((a, b) => parseFloat(b.semester) - parseFloat(a.semester))
     }
@@ -41,60 +55,78 @@ function meetingsSortedBySemester(meetings, sortOrder){
 }
 
 /**
- * Builds a list of all the semesters
- * @param {Symbol} mode The mode that will be entered in. 
- *  - If WIC is entered in, it will compute the meetings attended
- *  - If COMS is entered in, it will compute the points earned
- * @param {*} userValue The endpoint data of the user will be passed in
- * @param {*} totalValue The endpoint data of all users will be passed in.
- * @param {String} semester The semester that will be displayed
+ * Creates an Object that contains semester date data based on an semesterID.
+ * @param {Number} semester The semesterID to pass in.
+ * @returns An object containing term and year data.
  */
-function historyBuilder(mode, userValue, totalValue){
-
-    //let sortedUserMeetings = meetingsSortedBySemester(userValue.profile.attendance);
-    let sortedAllMeetings = meetingsSortedBySemester(totalValue.Meetings, sortingOrder.Desending);
-    console.log(sortedAllMeetings);
-
-    
-    if (mode == builderMode.WIC){
-        //console.log("WICMODE")
-    } else if (mode == builderMode.COMS) {
-        //console.log("COMSMODE")
+function semesterTermAndYear(semester){
+    semesterDateObject = {}
+    if (semester%10 == 0){
+        semesterDateObject.term = semesterTerm.Spring;
     } else {
-        console.log("Error: invalid mode entered in.")
+        semesterDateObject.term = semesterTerm.Fall;
     }
-
-    // var newElement = `
-    //     <div>
-    //         <div>
-    //             <p>
-    //                 <b>Fall 2025:</b> Non-Active Member
-    //             </p>
-    //             <p>
-    //                 <span>11/14 Total Points</span>
-    //             </p>
-    //         </div>
-    //         <div>
-    //             <img src="../static/images/awards.webp" alt="Award" >
-    //         </div>
-    //     </div>`
-
-    //     container = document.getElementById("history-containers").appendChild();
+    semesterDateObject.year = Math.floor(semester/10);
+    
+    return semesterDateObject;
 }
 
+/**
+ * Builds a list of all the semesters
+ * @param {Symbol} mode The mode that will be entered in. 
+ *  - If builderMode.WIC is entered in, it will compute the meetings attended
+ *  - If builderMode.COMS is entered in, it will compute the points earned
+ * @param {Object} userObject The object that represents the user 
+ * @param {Object} allMeetingsObject The object that represents all meetings.
+ */
+function historyBuilder(mode, userObject, allMeetingsObject){
 
-/*
-<div>
-    <div>
-        <p>
-            <b>Fall 2025:</b> Non-Active Member
-        </p>
-        <p>
-            <span>14 Total Points</span>
-        </p>
-    </div>
-    <div>
-        <img src="../static/images/awards.webp" alt="Award" >
-    </div>
-</div>
-*/
+    let sortedUserMeetings = meetingsSortedBySemester(userObject.profile.attendance, sortingOrder.Descending);
+
+    sortedUserMeetings.forEach(userSemester => {
+
+        semesterDateData = semesterTermAndYear(userSemester.semester);
+        let isUserActive = activeUser.NonActive;
+        let awardValues, awardImage = ``
+        if (mode == builderMode.WIC){
+            //console.log("WICMODE")
+            //let matchedSemester = sortedAllMeetings.find(semesterDate => semesterDate.semester === userSemester.semester);
+        } else if (mode == builderMode.COMS) {
+            //console.log("COMSMODE")
+
+            // Set up total point Calculation
+            let userSemesterPoints = getPointObject(userSemester.meetings);
+            let userSemesterTotalPoints = pointSummer(userSemesterPoints);
+            awardValues = `<span>${userSemesterTotalPoints}/${maxPoints} Total Points</span>`;
+
+            // Set user to be active if they were active (by going to a mentorship meeting)
+            if (userSemesterPoints.mentorshipPoints > 0){
+                isUserActive = activeUser.Active;
+            }
+            // Award image if requirements were reached or exceeded
+            if (userSemesterTotalPoints >= maxPoints){
+                awardImage = awardHTML;
+            }
+        } else {
+            console.log("Error: invalid mode entered in.");
+        }
+
+        table = document.getElementById("history-container");
+        var semesterElement = `
+            <div>
+                <div>
+                    <p>
+                        <b>${semesterDateData.term} ${semesterDateData.year}:</b> ${isUserActive} Member
+                    </p>
+                    <p>
+                        ${awardValues}
+                    </p>
+                </div>
+                <div>
+                    ${awardImage}
+                </div>
+            </div>`
+        table.insertAdjacentHTML( 'beforeend', semesterElement);
+
+    })
+}

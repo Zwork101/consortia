@@ -1,10 +1,10 @@
 {% extends "base.html.j2" %}
-<!-- testing purporses only -->
 {% block head %}
 <script src="{{ url_for("static", filename="js/semester-sort-and-filter.js") }}" defer></script>
+<script src="{{ url_for("static", filename="js/history-builder.js") }}" defer></script>
 <script src="{{ url_for("static", filename="js/student-comms.js") }}" defer></script>
+<script src="{{ url_for("static", filename="js/student-data-processing-common.js") }}" defer></script>
 {% endblock %}
-<!-- testing purporses only -->
 {% block content %}
 
 <body data-profile-id="{{ current_user.profile_id }}">
@@ -42,7 +42,7 @@
                     <div></div> <!--Circle-->
                     <p>Miscellaneous (<span id="misc-points"></span>)</p>
                 </div>
-                <p><b><span id="earned-points"></span>/<span id="max-points"></span> Points</b></p>
+                <p><b><span id="earned-points"></span>/<span id="min-point-requirement"></span> Points</b></p>
             </div>
         </div>
         <div class="points-info-container">
@@ -120,72 +120,6 @@
                             </div>
                             <div>
                                 <p><b>Awards</b></p>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p><b>Fall 2025:</b> Non-Active Member</p>
-                                <p>
-                                    <span>14 Total Points</span>
-                                </p>
-                            </div>
-                            <div>
-                                <img src="../static/images/awards.webp" alt="Award" >
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p><b>Spring 2024:</b> Active Member</p>
-                                <p>
-                                    <span>18 Total Points</span>
-                                </p>
-                            </div>
-                            <div>
-                                
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p><b>Fall 2023:</b> Active Member</p>
-                                <p>
-                                    <span>18 Total Points</span>
-                                </p>
-                            </div>
-                            <div>
-            
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p><b>Spring 2023:</b> Active Member</p>
-                                <p>
-                                    <span>18 Total Points</span>
-                                </p>
-                            </div>
-                            <div>
-            
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p><b>Fall 2022:</b> Non-Active Member</p>
-                                <p>
-                                    <span>14 Total Points</span>
-                                </p>
-                            </div>
-                            <div>
-                                <img src="../static/images/awards.webp" alt="Award" >
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p><b>Spring 2022:</b> Active Member</p>
-                                <p>
-                                    <span>18 Total Points</span>
-                                </p>
-                            </div>
-                            <div>
-            
                             </div>
                         </div>
                     </div>

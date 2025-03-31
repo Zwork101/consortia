@@ -1,7 +1,9 @@
 {% extends "base.html.j2" %}
 {% block head %}
 <script src="{{ url_for("static", filename="js/semester-sort-and-filter.js") }}" defer></script>
+<script src="{{ url_for("static", filename="js/history-builder.js") }}" defer></script>
 <script src="{{ url_for("static", filename="js/student-wics.js") }}" defer></script>
+<script src="{{ url_for("static", filename="js/student-data-processing-common.js") }}" defer></script>
 {% endblock %}
 {% block content %}
 
@@ -110,7 +112,7 @@
                 </div> <!--MEMBERSHIP SECTION-->
 
                 <div id="history" class="tabcontent"> <!--HISTORY SECTION-->
-                    <div class="table-container membership-history-container">
+                    <div class="table-container membership-history-container" id="history-container">
                         <div>
                             <div>
                                 <p><b>Membership History by Semester</b></p>

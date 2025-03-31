@@ -31,8 +31,8 @@ function getVolunteeringPoints(hours){
 
 /**
  * The amount of attendance points one would earn.
- * @param {*} attendedMeetings The number of meetings the user has atteneded
- * @param {*} totalMeetings The total number of meetings that has existed in the semester
+ * @param {Number} attendedMeetings The number of meetings the user has atteneded
+ * @param {Number} totalMeetings The total number of meetings that has existed in the semester
  * @returns 0-4 points based on the percentage
  */
 function getAttendancePoints(attendedMeetings, totalMeetings){
@@ -96,12 +96,21 @@ function getPointObject(listOfmeetings){
 }
 
 /**
+ * Sums all of the points together
+ * @param {Object} pointObject Object containing all of the point values
+ * @returns A number representing the total number of points earned.
+ */
+function pointSummer(pointObject){
+  return pointObject.mentorshipPoints + pointObject.volunteeringPoints + 
+  pointObject.attendancePoints + pointObject.miscPoints;
+}
+
+/**
  * Display values for the bar on the "Current Semester" tab
  * @param {Object} pointsFromThisSemester An object with point values from the most recent semester
  */
 function showResults(pointsFromThisSemester){
-  let earnedPoints = pointsFromThisSemester.mentorshipPoints + pointsFromThisSemester.volunteeringPoints + 
-  pointsFromThisSemester.attendancePoints + pointsFromThisSemester.miscPoints;
+  let earnedPoints = pointSummer(pointsFromThisSemester);
 
   document.getElementById("mentor-points").innerHTML= pointsFromThisSemester.mentorshipPoints;
   document.getElementById("voluenteering-points").innerHTML= pointsFromThisSemester.volunteeringPoints;
@@ -137,15 +146,3 @@ const getStudentPoints = (endpointData) => {
 
   historyBuilder(builderMode.COMS, studentData, allMeetingData);
 }
-// const loadSemesters = () => {
-//   const container = document.getElementById("semesters");
-
-//   semesters.forEach(sem => {
-//       const semElement = document.createElement("div");
-//       semElement.innerHTML = 
-//       `<h3>${sem.semester_coms} ${sem.year_coms}</h3>` +
-//       `<p>${sem.organizer_coms}, ${sem.meeting_type_coms}: ${sem.description_coms}, ${sem.point_value_coms}</p>`;
-//       container.appendChild(semElement);
-//     }
-//   );
-// };

@@ -1,4 +1,4 @@
-let maxPoints = 18;
+let minPointRequirements = 18;
 
 //Enum for attendance
 const AttendancePercentage = Object.freeze({
@@ -118,14 +118,14 @@ function showResults(pointsFromThisSemester){
   document.getElementById("misc-points").innerHTML= pointsFromThisSemester.miscPoints;
     
   document.getElementById("earned-points").innerHTML= earnedPoints;
-  document.getElementById("max-points").innerHTML= maxPoints;
+  document.getElementById("min-point-requirement").innerHTML= minPointRequirements;
 
   // If the user exceeds the max points, we want to resize the bar so that it does not cause UI conflicts.
   let pointUIValue;
-  if (earnedPoints > maxPoints) {
+  if (earnedPoints > minPointRequirements) {
     pointUIValue = earnedPoints;
   } else {
-    pointUIValue = maxPoints;
+    pointUIValue = minPointRequirements;
   }
   document.getElementById("mentor-bar").style.width = `${(pointsFromThisSemester.mentorshipPoints/pointUIValue)*100}%`;
   document.getElementById("voluenteer-bar").style.width = `${(pointsFromThisSemester.volunteeringPoints/pointUIValue)*100}%`;

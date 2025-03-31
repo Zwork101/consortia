@@ -1,23 +1,4 @@
 let maxPoints = 18;
-let earnedPoints = 0;
-
-// For volunteering 
-// let volunteeringHours = 0;
-// let totalVolunteerHours = 0;
-
-// // For attendence
-// let attendedMeetings = 0;
-// let totalMeetings = 0; 
-
-// // Calculate points for the user
-// let mentorshipPoints = 0;
-// let volunteeringPoints = 0;
-// let attendancePoints = 0;
-// let miscPoints = 0;
-
-// Calculate total points that can be picked in total:
-let totalMentorshipPoints = 0;
-let totalVolunteerPoints = 0;
 
 //Enum for attendance
 const AttendancePercentage = Object.freeze({
@@ -27,35 +8,7 @@ const AttendancePercentage = Object.freeze({
 })
 
 const hasMentorshipPoints = 3;
-
 const endpointOrganizationID = 2;
-
-// const getProfile = async () => {
-// 	const profileEndpoint = "/profile?org=2";
-//   const meetingsEndpoint = "/meetings/2";
-// 	try {
-//       var endpointList = []
-//     	const response = await fetch(profileEndpoint);
-// 	    if (!response.ok) {
-// 	      throw new Error(`Response status: ${response.status}`);
-// 	    }
-
-// 	    const json = await response.json();
-//       endpointList.push(json);
-
-// 	    const response2 = await fetch(meetingsEndpoint);
-// 	    if (!response2.ok) {
-// 	      throw new Error(`Response status: ${response2.status}`);
-// 	    }
-
-// 	    const json2 = await response2.json();
-//       endpointList.push(json2);
-      
-//       return endpointList;
-// 	 } catch (error) {
-// 	    console.error(error.message);
-//   }
-// }
 
 /**
  * Given a number of hours, return a number of points
@@ -150,9 +103,8 @@ function getPointObject(listOfmeetings){
  * @param {Object} pointsFromThisSemester An object with point values from the most recent semester
  */
 function showResults(pointsFromThisSemester){
-  earnedPoints = pointsFromThisSemester.mentorshipPoints + pointsFromThisSemester.volunteeringPoints + 
+  let earnedPoints = pointsFromThisSemester.mentorshipPoints + pointsFromThisSemester.volunteeringPoints + 
   pointsFromThisSemester.attendancePoints + pointsFromThisSemester.miscPoints;
-  //maxPoints = totalMentorshipPoints + totalVolunteerPoints + AttendancePercentage.Percent100 + miscPoints;
 
   document.getElementById("mentor-points").innerHTML= pointsFromThisSemester.mentorshipPoints;
   document.getElementById("voluenteering-points").innerHTML= pointsFromThisSemester.volunteeringPoints;
@@ -183,79 +135,12 @@ const getStudentPoints = (endpointData) => {
 
   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
   let pointsFromThisSemester = getPointObject(attendance);
-  // attendance.forEach(attendanceDay =>{
-  //   if (attendanceDay.meeting_type == "GENERAL"){
-  //     attendedMeetings += 1;
-  //   } else if (attendanceDay.meeting_type == "VOLUNTEER"){
-  //     volunteeringHours += attendanceDay.hours; 
-  //   } else if (attendanceDay.meeting_type == "MENTORSHIP"){
-  //     mentorshipPoints += 1;
-  //   }
-  // })
-  // if (mentorshipPoints > 0){
-  //   mentorshipPoints += hasMentorshipPoints;
-  // }
-  // mentorshipPoints = Math.min(mentorshipPoints, 9);
-
-  // volunteeringPoints = getVolunteeringPoints(volunteeringHours);
-  // miscPoints = studentData.profile.bonus_points;
-
-
-  //Calculate max number of points
-  // let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
-  // listOfAllMeetings.forEach(meeting => {
-  //   if (meeting.meeting_type == "GENERAL"){
-  //     totalMeetings += 1;
-  //   }
-  // })
-
-  // totalVolunteerPoints = getVolunteeringPoints(totalVolunteerHours);
-
-  // attendancePoints = getAttendancePoints(attendedMeetings, totalMeetings);
-  // let meetingAttendedPercentage = attendedMeetings/totalMeetings;
-
-  // if (meetingAttendedPercentage == 1){
-  //   attendancePoints = AttendancePercentage.Percent100;
-  // } else if (meetingAttendedPercentage >= .75){
-  //   attendancePoints = AttendancePercentage.Percent75;
-  // } else if (meetingAttendedPercentage >= .5){
-  //   attendancePoints = AttendancePercentage.Percent50;
-  // }
-
-  // Point rewarding
 
   showResults(pointsFromThisSemester);
-
-  // earnedPoints = pointsFromThisSemester.mentorshipPoints + pointsFromThisSemester.volunteeringPoints + 
-  //   pointsFromThisSemester.attendancePoints + pointsFromThisSemester.miscPoints;
-  // //maxPoints = totalMentorshipPoints + totalVolunteerPoints + AttendancePercentage.Percent100 + miscPoints;
-
-  // document.getElementById("mentor-points").innerHTML= pointsFromThisSemester.mentorshipPoints;
-  // document.getElementById("voluenteering-points").innerHTML= pointsFromThisSemester.volunteeringPoints;
-  // document.getElementById("attendance-points").innerHTML= pointsFromThisSemester.attendancePoints;
-  // document.getElementById("misc-points").innerHTML= pointsFromThisSemester.miscPoints;
-    
-  // document.getElementById("earned-points").innerHTML= earnedPoints;
-  // document.getElementById("max-points").innerHTML= maxPoints;
-
-  // // If the user exceeds the max points, we want to resize the bar so that it does not cause UI conflicts.
-  // let pointUIValue;
-  // if (earnedPoints > maxPoints) {
-  //   pointUIValue = earnedPoints;
-  // } else {
-  //   pointUIValue = maxPoints;
-  // }
-  // document.getElementById("mentor-bar").style.width = `${(pointsFromThisSemester.mentorshipPoints/pointUIValue)*100}%`;
-  // document.getElementById("voluenteer-bar").style.width = `${(pointsFromThisSemester.volunteeringPoints/pointUIValue)*100}%`;
-  // document.getElementById("attendance-bar").style.width = `${(pointsFromThisSemester.attendancePoints/pointUIValue)*100}%`;
-  // document.getElementById("misc-bar").style.width = `${(pointsFromThisSemester.miscPoints/pointUIValue)*100}%`;
 
   historyBuilder(builderMode.COMS, studentData, allMeetingData);
 }
 
-// getProfile().then(
-//   getStudentPoints
-// )
 
 const loadSemesters = () => {
   const container = document.getElementById("semesters");

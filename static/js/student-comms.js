@@ -92,9 +92,6 @@ function getPointObject(listOfmeetings){
   pointObject.attendancePoints = attendancePoints;
   pointObject.miscPoints = miscPoints;
 
-  console.log("aaa");
-  console.log(pointObject);
-
   return pointObject;
 }
 

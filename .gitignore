@@ -17,3 +17,8 @@ instance/*
 pyrightconfig.json
 
 development.log
+
+# Creds
+client_secret.json
+
+/backend/routes/report.py

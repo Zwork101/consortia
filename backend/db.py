@@ -114,8 +114,9 @@ class Profile(db.Model, UserMixin):
         return str(self.profile_id)
     
     @hybrid_method
-    def membership(self, org: int):
-        current_semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
+    def membership(self, org: int, current_semester = None):
+        if current_semester is None:
+            current_semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
         
         if org == Organizations.WIC:
             general_meetings = 0
@@ -138,8 +139,8 @@ class Profile(db.Model, UserMixin):
         
         elif org == Organizations.COMS:
             # Get current semester events for COMS
-            org_events = [e for e in self.attendance if e.organizer_id == org and e.semester == current_semester]
-
+            org_events = [e for e in self.attendance if (e.organizer_id == org and e.semester == current_semester)]
+            print(f"Org Events: {org_events}")
             total_points = 0
             
             # General meeting attendance points
@@ -148,10 +149,12 @@ class Profile(db.Model, UserMixin):
                 meeting_type=MeetingType.GENERAL,
                 semester=current_semester
             ).count()
+
+            print(f"Total General: {total_general_meetings}")
             
             if total_general_meetings > 0:
                 attended_meetings = len([e for e in org_events if e.meeting_type == MeetingType.GENERAL])
-                attendance_percent = attended_meetings / total_general_meetings * 100
+                attendance_percent = (attended_meetings / total_general_meetings) * 100
                 
                 if attendance_percent >= 100:
                     total_points += 3
@@ -159,12 +162,19 @@ class Profile(db.Model, UserMixin):
                     total_points += 2
                 elif attendance_percent >= 50:
                     total_points += 1
+
+                print(f"General Attended: {attended_meetings}")
             
             # Volunteer work points
-            volunteer_hours = sum(
-                (e.end_time - e.start_time).total_seconds() / 3600 
-                for e in org_events if e.meeting_type == MeetingType.VOLUNTEER
-            )
+            volunteer_hours = 0
+                
+            for e in org_events:
+
+                if e.meeting_type == MeetingType.VOLUNTEER:
+                    print(e.name, e.get_hours(self.profile_id))
+                    volunteer_hours += e.get_hours(self.profile_id)
+
+            print(volunteer_hours)
             
             if volunteer_hours >= 9:
                 total_points += 4
@@ -182,13 +192,14 @@ class Profile(db.Model, UserMixin):
                 mentorship_points = 3 + len(mentorship_meetings)
                 # Cap at 9 points
                 total_points += min(mentorship_points, 9)
+
+                print(f"Mentor Points: {len(mentorship_meetings)}")
             
             # Add bonus points from miscellaneous contributions
             total_points += self.bonus_points(org)
             
-            # Return True if they have 18 or more points
-            print(total_points)
-            return total_points >= 18
+            # Return True if they have 16 or more points
+            return total_points >= 16
         else:
             raise ValueError(f"Unknown Organization: {org}")
 
@@ -196,44 +207,127 @@ class Profile(db.Model, UserMixin):
     @classmethod
     def membership_sql(cls, org: int):
         current_semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
-        general_meeting_query = db.session.query(func.count(Event.event_id))\
-            .select_from(Event)\
-            .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
-            .where(attendance_table.c.profile_id == cls.profile_id)\
-            .where(Event.semester == current_semester)\
-            .where(Event.meeting_type == MeetingType.GENERAL)\
-            .scalar_subquery()
-
-        committee_meeting_query = db.session.query(func.count())\
-            .select_from(Event)\
-            .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
-            .where(attendance_table.c.profile_id == cls.profile_id)\
-            .where(Event.semester == current_semester)\
-            .where(Event.meeting_type == MeetingType.COMMITTEE)\
-            .scalar_subquery()
-
-        social_meeting_query = db.session.query(func.count())\
-            .select_from(Event)\
-            .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
-            .where(attendance_table.c.profile_id == cls.profile_id)\
-            .where(Event.semester == current_semester)\
-            .where(Event.meeting_type == MeetingType.SOCIAL)\
-            .scalar_subquery()
-
-        volunteer_meeting_query = db.session.query(func.count())\
-            .select_from(Event)\
-            .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
-            .where(attendance_table.c.profile_id == cls.profile_id)\
-            .where(Event.semester == current_semester)\
-            .where(Event.meeting_type == MeetingType.VOLUNTEER)\
-            .scalar_subquery()
-
-        return case(
-            ((general_meeting_query >= 14) & (committee_meeting_query >= 6) & (social_meeting_query >= 1) & (volunteer_meeting_query >= 1), "active"),
-            else_="inactive"
-        )
-
         
+        if org == Organizations.WIC:
+            general_meeting_query = db.session.query(func.count(Event.event_id))\
+                .select_from(Event)\
+                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.semester == current_semester)\
+                .where(Event.meeting_type == MeetingType.GENERAL)\
+                .scalar_subquery()
+
+            committee_meeting_query = db.session.query(func.count())\
+                .select_from(Event)\
+                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.semester == current_semester)\
+                .where(Event.meeting_type == MeetingType.COMMITTEE)\
+                .scalar_subquery()
+
+            social_meeting_query = db.session.query(func.count())\
+                .select_from(Event)\
+                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.semester == current_semester)\
+                .where(Event.meeting_type == MeetingType.SOCIAL)\
+                .scalar_subquery()
+
+            volunteer_meeting_query = db.session.query(func.count())\
+                .select_from(Event)\
+                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.semester == current_semester)\
+                .where(Event.meeting_type == MeetingType.VOLUNTEER)\
+                .scalar_subquery()
+
+            return case(
+                ((general_meeting_query >= 14) & (committee_meeting_query >= 6) & (social_meeting_query >= 1) & (volunteer_meeting_query >= 1), "active"),
+                else_="inactive"
+            )
+        
+        elif org == Organizations.COMS:
+            # Get total general meetings for the semester
+            total_general_meetings = db.session.query(func.count(Event.event_id))\
+                .where(Event.organizer_id == org)\
+                .where(Event.semester == current_semester)\
+                .where(Event.meeting_type == MeetingType.GENERAL)\
+                .scalar_subquery()
+            
+            # Calculate attended general meetings
+            attended_general_meetings = db.session.query(func.count(Event.event_id))\
+                .select_from(Event)\
+                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.organizer_id == org)\
+                .where(Event.semester == current_semester)\
+                .where(Event.meeting_type == MeetingType.GENERAL)\
+                .scalar_subquery()
+            
+            # Calculate attendance percentage
+            attendance_percent = case(
+                (total_general_meetings > 0, (cast(attended_general_meetings * 100, Integer) / total_general_meetings)),
+                else_=0
+            )
+            
+            # Calculate general meeting points
+            general_meeting_points = case(
+                (attendance_percent >= 100, 3),
+                (attendance_percent >= 75, 2),
+                (attendance_percent >= 50, 1),
+                else_=0
+            )
+            
+            # Calculate volunteer hours
+            volunteer_hours = db.session.query(func.coalesce(func.sum(attendance_table.c.hours), 0))\
+                .select_from(attendance_table)\
+                .join(Event, Event.event_id == attendance_table.c.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.organizer_id == org)\
+                .where(Event.semester == current_semester)\
+                .where(Event.meeting_type == MeetingType.VOLUNTEER)\
+                .scalar_subquery()
+            
+            # Calculate volunteer points
+            volunteer_points = case(
+                (volunteer_hours >= 9, 4),
+                (volunteer_hours >= 6, 3),
+                (volunteer_hours >= 3, 2),
+                (volunteer_hours >= 1, 1),
+                else_=0
+            )
+            
+            # Calculate mentorship meetings
+            mentorship_meetings = db.session.query(func.count(Event.event_id))\
+                .select_from(Event)\
+                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.organizer_id == org)\
+                .where(Event.semester == current_semester)\
+                .where(Event.meeting_type == MeetingType.MENTORSHIP)\
+                .scalar_subquery()
+            
+            # Calculate mentorship points (base 3 + 1 per meeting, capped at 9)
+            has_mentorship = mentorship_meetings > 0
+            mentorship_points = case(
+                (has_mentorship, func.least(3 + mentorship_meetings, 9)),
+                else_=0
+            )
+            
+            # Get bonus points
+            bonus_points = cls.bonus_points_sql(org)
+            
+            # Calculate total points
+            total_points = general_meeting_points + volunteer_points + mentorship_points + bonus_points
+            
+            return case(
+                (total_points >= 16, "active"),
+                else_="inactive"
+            )
+        
+        else:
+            # Default case for unknown organizations
+            return "'unknown'"
         
     @hybrid_method
     def bonus_points(self, org: int, semester_only: bool = True):
@@ -307,6 +401,12 @@ class Profile(db.Model, UserMixin):
                 .distinct().subquery()
         ).scalar_subquery()
 
+    def membership_semesters(self, org: int):
+        total = 0
+        for semester in set(((event.start_time.month // 7 * 5) + event.start_time.year * 10) for event in self.attendance if event.organizer_id == org):
+            total += 1 if self.membership(org, semester) else 0
+        return total
+
     # profile_id = db.Column(Integer, primary_key=True, autoincrement=True, unique=True, nullable=False)
     # rit_id = db.Column(Text, nullable=False)
     # last_name = db.Column(String(50), nullable=False)
@@ -341,6 +441,7 @@ class Profile(db.Model, UserMixin):
                     "point_value": event.point_value,
                     "organizer_id": event.organizer_id,
                     "start_time": event.start_time.isoformat(),
+                    "semester": event.semester,
                     "hours": db.session.query(attendance_table.c.hours).where(attendance_table.c.profile_id == self.profile_id).where(attendance_table.c.event_id == event.event_id).first()[0]
                     
                 } for event in self.attendance if event.organizer_id == org_id
@@ -380,7 +481,8 @@ class Profile(db.Model, UserMixin):
                         "name": award.name,
                         "description": award.description,
                         "icon_path": award.icon_path,
-                        "prize": award.prize            
+                        "prize": award.prize,
+                        "award_date": db.session.query(ProfileAward.award_date).where(ProfileAward.profile_id == self.profile_id).where(ProfileAward.award_id == award.award_id).first()[0].isoformat()
                     } for award in self.awards if org_id is None or award.organization_id == org_id
                 ],
                 
@@ -416,8 +518,9 @@ class Award(db.Model):
     icon_path: Mapped[str]
     prize: Mapped[str]
     organization_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
+    active_semester_requirements: Mapped[int]
 
-    conditions: Mapped[list["AwardCondition"]] = relationship(back_populates="award")
+    # conditions: Mapped[list["AwardCondition"]] = relationship(back_populates="award")
     recipients: Mapped[list["Profile"]] = relationship(secondary="ProfileAward", back_populates="awards")
 
     # award_id = db.Column(Integer, primary_key=True, autoincrement=True, nullable=False)
@@ -428,17 +531,17 @@ class Award(db.Model):
     # conditions = relationship('AwardCondition', back_populates='award')
     # profile_awards = relationship('ProfileAward', back_populates='award')
 
-class AwardCondition(db.Model):
-    __tablename__ = 'AwardCondition'
+# class AwardCondition(db.Model):
+#     __tablename__ = 'AwardCondition'
 
-    condition_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
-    name: Mapped[str]
-    point_requirement: Mapped[Optional[int]]
-    meeting_requirement: Mapped[Optional[int]]
-    # meeting_type: Mapped[list[MeetingType]]
-    check_time: Mapped[str]
-    award: Mapped["Award"] = relationship(back_populates="conditions")
-    award_id: Mapped[int] = mapped_column(ForeignKey("Award.award_id"))
+#     condition_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
+#     name: Mapped[str]
+#     point_requirement: Mapped[Optional[int]]
+#     meeting_requirement: Mapped[Optional[int]]
+#     # meeting_type: Mapped[list[MeetingType]]
+#     check_time: Mapped[str]
+#     award: Mapped["Award"] = relationship(back_populates="conditions")
+#     award_id: Mapped[int] = mapped_column(ForeignKey("Award.award_id"))
 
     # condition_id = db.Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     # name = db.Column(Text, nullable=False)
@@ -455,6 +558,7 @@ class ProfileAward(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
     profile_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
     award_id: Mapped[int] = mapped_column(ForeignKey("Award.award_id"))
+    award_date: Mapped[datetime]
     # id = db.Column(Integer, primary_key=True, autoincrement=True)
     # profile_id = db.Column(Integer, ForeignKey('Profile.profile_id'), nullable=False)
     # award_id = db.Column(Integer, ForeignKey('Award.award_id'), nullable=False)
@@ -515,6 +619,17 @@ class Event(db.Model):
     # organizer = relationship('Organizer', back_populates='events')
     # attendance = relationship('Attendance', back_populates='event')
 
+    def get_hours(self, profile_id: int) -> int:
+        row = db.session.query(attendance_table.c.hours)\
+        .filter(attendance_table.c.event_id == self.event_id)\
+        .filter(attendance_table.c.profile_id == profile_id)\
+        .first()
+
+        if row is None:
+            return 0
+        else:
+            return row[0]
+
     @hybrid_property
     def semester(self):
         return (self.start_time.year * 10) + ((self.start_time.month // 7) * 5)
@@ -522,6 +637,22 @@ class Event(db.Model):
     @semester.inplace.expression
     def semester_sql(cls):
         return (func.strftime('%Y', Event.start_time) * 10) + (cast(func.strftime('%m', Event.start_time) / 7, Integer) * 5)
+
+
+class Token(db.Model):
+    __tablename__ = 'Token'
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    org_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
+
+    token: Mapped[str]
+    refresh_token: Mapped[str]
+    token_uri: Mapped[str]
+    client_id: Mapped[str]
+    client_secret: Mapped[str]
+    expirey: Mapped[datetime]
+
+    email: Mapped[str]
 
 # class Attendance(db.Model):
 #     __tablename__ = 'Attendance'
@@ -553,6 +684,24 @@ def db_testing_setup():
     COMS = Organizer(
         name = "Computing Organization for Multicultural Students",
         email = "coms@rit.edu"
+    )
+
+    wic_award = Award(
+        organization_id = Organizations.WIC,
+        name = "being super cool award",
+        description = "For gamers only",
+        icon_path = "../static/images/award.webp",
+        prize = "6 Dining Dollars",
+        active_semester_requirements = 2
+    )
+
+    coms_award = Award(
+        organization_id = Organizations.COMS,
+        name = "being super cool award",
+        description = "For gamers only",
+        icon_path = "../static/images/award.webp",
+        prize = "6 Dining Dollars",
+        active_semester_requirements = 1
     )
     
     with open("testing_data/users.json") as f:
@@ -602,9 +751,9 @@ def db_testing_setup():
             MeetingType.COMMITTEE
         ])
         events[-1].start_time = datetime.strptime(events[-1].start_time, "%Y-%m-%d %H:%M:%S")
-        events[-1].start_time += timedelta(days=random.randint(-200, 200))
+        events[-1].start_time = events[-1].start_time.replace(year=datetime.now().year, month=datetime.now().month)
         events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S")
-        events[-1].end_time += timedelta(hours=random.randint(1, 8))
+        events[-1].end_time = events[-1].end_time.replace(year=datetime.now().year, month=datetime.now().month)
 
     developer_profiles_data = [
         {
@@ -658,7 +807,7 @@ def db_testing_setup():
     )
 
     db.session.add_all([
-        *users, *events, WiC, COMS, will_smith, *developer_profiles
+        *users, *events, WiC, COMS, will_smith, *developer_profiles, wic_award, coms_award
     ])
     db.session.commit()
 
@@ -667,10 +816,32 @@ def db_testing_setup():
             create_attendance(user.email, event.event_id, user.first_name, user.last_name, random.randint(1,8))
 
     for event in db.session.query(Event).all():
-        if random.randint(0, 2) == 2:
-            will_smith.attendance.append(event)
-            for user in developer_profiles:
-                    user.attendance.append(event)
+        create_attendance(will_smith.email, event.event_id, will_smith.first_name, will_smith.last_name, random.randint(1, 8))
+        for user in developer_profiles:
+                create_attendance(user.email, event.event_id, user.first_name, user.last_name, random.randint(1, 8))
+
+    assign_awards = []
+
+    users.append(will_smith)
+
+    for semester in range(20220, 20250, 5):
+        for user in random.choices(users, k=random.randint(100, len(users) // 2)):
+            assign_awards.append(
+                ProfileAward(
+                    profile_id = user.profile_id,
+                    award_id = wic_award.award_id,
+                    award_date = datetime(year = semester // 10, month = 10 if semester % 5 else 2, day = 10)
+                )
+            )
+            assign_awards.append(
+                ProfileAward(
+                    profile_id = user.profile_id,
+                    award_id = coms_award.award_id,
+                    award_date = datetime(year = semester // 10, month = 10 if semester % 5 else 2, day = 10)
+                )
+            )
+
+    db.session.add_all(assign_awards)
 
     make_admin(will_smith.profile_id, Organizations.WIC, RoleType.ADMIN)
     make_admin(will_smith.profile_id, Organizations.COMS, RoleType.ADMIN)

@@ -1,7 +1,6 @@
 from flask_login import current_user
 from sqlalchemy import case, desc
-from backend import db
-from backend.db import Event, Profile
+from backend.db import Event, Profile, db
 from flask import Blueprint, abort, jsonify, request, render_template
 from flask_login import current_user
 from datetime import date
@@ -112,8 +111,7 @@ def get_attendance(meeting_id: int):
     
     return jsonify(
         record.serialize(meeting_id)
-    ) 
-
+    )
 
 @student.route('/?sort=semester')
 def sort_semester():

@@ -4,6 +4,10 @@ $( function() {
         import_data_dialog, import_data_form,
         send_email_dialog, send_email_form;
 
+    // Create a success banner
+    success_banner = $("<div id='success-banner' style='display:none; background-color: #F76902; color: white; padding: 10px; text-align: center; position: fixed; top: 0; left: 40%; width: 20%; z-index: 9999;'>Task completed successfully!</div>").appendTo("body");
+
+  
     /*
     
     Filter dialog box
@@ -64,6 +68,8 @@ $( function() {
                     $("#create-meeting").submit;
                     create_meeting_dialog.dialog('close');
                     console.log("create meeting box closed");
+
+                    success_banner.text("Meeting created successfully!").fadeIn().delay(3000).fadeOut();
                 }
             },
         ],
@@ -79,6 +85,11 @@ $( function() {
         console.log("create meeting button pressed");
     });
 
+   $("#save-changes-button").click(function() {
+    console.log("Button clicked!");
+    success_banner.text("Meeting created successfully!").fadeIn().delay(3000).fadeOut();
+});
+
     /*
 
     Create Import Data Dialog box
@@ -89,6 +100,8 @@ $( function() {
         height: 500,
         width: 600,
         modal: true,
+            
+            
         // close:function() {
         //     filter_dialog.dialog('close');
             // filter_form[0].reset();
@@ -96,10 +109,15 @@ $( function() {
         // }
     });
 
+
+
     $("#import-data-button").button().on("click", function() {
         import_data_dialog.dialog('open');
         console.log("import meeting button pressed");
+       
+
     });
+   
 
     $( "#data-event-name" )
     .selectmenu()

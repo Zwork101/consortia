@@ -482,7 +482,7 @@ class Profile(db.Model, UserMixin):
                         "description": award.description,
                         "icon_path": award.icon_path,
                         "prize": award.prize,
-                        "award_date": db.session.query(ProfileAward.award_date).where(ProfileAward.profile_id == self.profile_id).where(ProfileAward.award_id == award.award_id).first()[0]
+                        "award_date": db.session.query(ProfileAward.award_date).where(ProfileAward.profile_id == self.profile_id).where(ProfileAward.award_id == award.award_id).first()[0].isoformat()
                     } for award in self.awards if org_id is None or award.organization_id == org_id
                 ],
                 

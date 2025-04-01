@@ -172,6 +172,8 @@ const getStudentPoints = (endpointData) => {
   // document.getElementById("total-volunteering-events").innerHTML = allMeetingsForCurrentSemester.voluenteeringEvents;
   // document.getElementById("total-committee-events").innerHTML = allMeetingsForCurrentSemester.committeeEvents;
   // document.getElementById("total-general-events").innerHTML = allMeetingsForCurrentSemester.generalEvents;
+
+  historyBuilder(builderMode.WIC, studentData, allMeetingData);
 }
 
 

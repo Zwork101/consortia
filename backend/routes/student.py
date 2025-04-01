@@ -156,7 +156,7 @@ class EditUserForm(FlaskForm):
 
 @student.route("/meetings/studentview", methods=["POST", "GET"])
 def edit_student():
-    user_id = request.args.get("profile_id", type=int)
+    user_id = request.args.get("current_user.profile_id", type=int)
 
     user = Profile.query.get(user_id)
     

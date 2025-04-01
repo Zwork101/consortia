@@ -4,6 +4,8 @@ from backend.db import Event, Profile, db
 from flask import Blueprint, abort, jsonify, request, render_template
 from flask_login import current_user
 from datetime import date
+from flask_wtf import FlaskForm
+from wtforms import FileField, IntegerField, StringField, SubmitField
 
 student = Blueprint("student", __name__, static_folder="static/", template_folder="templates/")
 
@@ -142,3 +144,44 @@ def sort_semester():
     ]
 
     return jsonify(semester_wics, semester_coms)
+# Reused from admin.py... 
+class EditUserForm(FlaskForm):
+    graduation_year = IntegerField("Graduation Year (Optional)")
+    degree = StringField("Degree (Optional)")
+    pronouns = StringField("Pronouns (Optional)")
+    tshirt = StringField("TShirt Size")
+    pants = StringField("Pants Size")
+    submit = SubmitField("Update User")
+
+
+@student.route("/meetings/studentview", methods=["POST", "GET"])
+def edit_student():
+    user_id = request.args.get("profile_id", type=int)
+
+    user = Profile.query.get(user_id)
+    
+    form = EditUserForm(obj=user)
+
+    if request.method == "POST":
+        grad =  request.form.get("graduation-year")
+        degree = request.form.get("degree")
+        pronouns = request.form.get("pronouns")
+        shirt = request.form.get("Tsize")
+        pants = request.form.get("Psize")
+    
+    #updated_data = { 
+    #        "graduation_year": grad,
+    #        "degree": degree,
+     #       "pronouns": pronouns,
+    #        "Tsize": shirt,
+    #        "Psize": pants,
+    #    }
+
+    #user.graduation_year = request.form.get("graduation_year", type=int)
+    #user.degree = request.form.get("degree")
+    #user.pronouns = request.form.get("pronouns")
+    #user.tshirt = request.form.get("Tsize")
+    #user.pants = request.form.get("Psize")
+
+    # Save to Database
+    return render_template("student-profile.html.j2", title="Student Profile")

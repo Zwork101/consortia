@@ -72,7 +72,27 @@ function semesterTermAndYear(semester){
 }
 
 /**
- * Builds a list of all the semesters
+ * Converts an array of awards to an custom format that can be compared to by other functions.
+ * @param {Array} awardList 
+ * @returns An arry of the custom format of the year followed by a number representing the semester:
+ * - 0 is the Spring semester
+ * - 5 is the Fall semester 
+ */
+function convertAwardDatesToCustomTimestamp(awardList){
+    let semesterArray = []
+    awardList.forEach(award => {
+        let awardDateArray = returnDateAsArray(award.award_date);
+        if (awardDateArray[ISODate.MONTH] <= 6){
+            semesterArray.push(awardDateArray[ISODate.YEAR] + "0");
+        } else {
+            semesterArray.push(awardDateArray[ISODate.YEAR] + "5");
+        }
+    });
+    return semesterArray;
+}
+
+/**
+ * Builds a list of all the semesters in the history tab.
  * @param {Symbol} mode The mode that will be entered in. 
  *  - If builderMode.WIC is entered in, it will compute the meetings attended
  *  - If builderMode.COMS is entered in, it will compute the points earned
@@ -82,15 +102,36 @@ function semesterTermAndYear(semester){
 function historyBuilder(mode, userObject, allMeetingsObject){
 
     let sortedUserMeetings = meetingsSortedBySemester(userObject.profile.attendance, sortingOrder.Descending);
-
+    let userAwards = convertAwardDatesToCustomTimestamp(userObject.profile.awards);
     sortedUserMeetings.forEach(userSemester => {
-
         semesterDateData = semesterTermAndYear(userSemester.semester);
         let isUserActive = activeUser.NonActive;
         let awardValues, awardImage = ``
         if (mode == builderMode.WIC){
             //console.log("WICMODE")
-            //let matchedSemester = sortedAllMeetings.find(semesterDate => semesterDate.semester === userSemester.semester);
+
+            // Find the semester in allMeetings Object
+            let sortedAllMeetings = meetingsSortedBySemester(allMeetingsObject.Meetings);
+            let matchedSemester = sortedAllMeetings.find(semesterDate => semesterDate.semester === userSemester.semester);
+            let userMeetingDataForThisSemester = getMeetingData(userSemester.meetings);
+            let allMeetingDataForThisSemester = getMeetingData(matchedSemester.meetings);
+            awardValues = `
+                                    <span>${userMeetingDataForThisSemester.generalEvents}/${allMeetingDataForThisSemester.generalEvents} General Meetings</span>
+                                    <span>${userMeetingDataForThisSemester.committeeEvents}/${allMeetingDataForThisSemester.committeeEvents} Committee Meetings</span>
+                                    <span>${userMeetingDataForThisSemester.socialEvents}/${allMeetingDataForThisSemester.socialEvents} Social Event</span>
+                                    <span>${userMeetingDataForThisSemester.voluenteeringEvents}/${allMeetingDataForThisSemester.voluenteeringEvents} Volunteering</span>
+            `
+            
+            // Set user to be active if they are a member
+            if (userObject.profile.membership == true){
+                isUserActive = activeUser.Active;
+            }
+
+            // Award image if year matches with userAwards
+            let findAward = userAwards.find(awardYear => awardYear == userSemester.semester);
+            if (findAward != undefined){
+                awardImage = awardHTML;
+            }
         } else if (mode == builderMode.COMS) {
             //console.log("COMSMODE")
 

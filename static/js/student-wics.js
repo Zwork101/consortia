@@ -42,11 +42,6 @@ function getMeetingData(listOfMeetings){
  * @param {Object} allMeetingsForCurrentSemester An object representing all meetings with values from the most recent semester
  */
 function showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemester){
-  // Draw bars and display numbers.
-  document.getElementById("social-total-points-bar").style.width = `${(userMeetingsForCurrentSemester.socialEvents/maxEvents)*100}%`;
-  document.getElementById("volunteering-total-points-bar").style.width = `${(userMeetingsForCurrentSemester.voluenteeringEvents/maxEvents)*100}%`;
-  document.getElementById("committee-total-points-bar").style.width = `${(userMeetingsForCurrentSemester.committeeEvents/maxEvents)*100}%`;
-  document.getElementById("general-total-points-bar").style.width = `${(userMeetingsForCurrentSemester.generalEvents/maxEvents)*100}%`;
     
   document.getElementById("social-events").innerHTML = userMeetingsForCurrentSemester.socialEvents;
   document.getElementById("volunteering-events").innerHTML = userMeetingsForCurrentSemester.voluenteeringEvents;
@@ -58,6 +53,23 @@ function showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemest
   document.getElementById("total-committee-events").innerHTML = allMeetingsForCurrentSemester.committeeEvents;
   document.getElementById("total-general-events").innerHTML = allMeetingsForCurrentSemester.generalEvents;
   
+  // If the user exceeds the max events, we want to resize the bar so that it does not cause UI conflicts.
+  let maximumUIValue = Math.max(
+        userMeetingsForCurrentSemester.socialEvents,
+        userMeetingsForCurrentSemester.voluenteeringEvents,
+        userMeetingsForCurrentSemester.committeeEvents,
+        userMeetingsForCurrentSemester.generalEvents
+      ) 
+  let meetingMaxUIValue;
+  if (maximumUIValue > maxEvents) {
+    meetingMaxUIValue = maximumUIValue;
+  } else {
+    meetingMaxUIValue = maxEvents;
+  }
+  document.getElementById("social-total-points-bar").style.width = `${(userMeetingsForCurrentSemester.socialEvents/meetingMaxUIValue)*100}%`;
+  document.getElementById("volunteering-total-points-bar").style.width = `${(userMeetingsForCurrentSemester.voluenteeringEvents/meetingMaxUIValue)*100}%`;
+  document.getElementById("committee-total-points-bar").style.width = `${(userMeetingsForCurrentSemester.committeeEvents/meetingMaxUIValue)*100}%`;
+  document.getElementById("general-total-points-bar").style.width = `${(userMeetingsForCurrentSemester.generalEvents/meetingMaxUIValue)*100}%`;
 }
 
 const getStudentPoints = (endpointData) => {

@@ -52,9 +52,10 @@ function getAttendancePoints(attendedMeetings, totalMeetings){
 /**
  * Create an Object that contains values of points
  * @param {Array} listOfmeetings The list of meetings
+ * @param {Number} bonusPoints The number of bonus points to award.
  * @returns An Object containg values of points
  */
-function getPointObject(listOfmeetings){
+function getPointObject(listOfmeetings, bonusPoints){
   let pointObject = {};
 
   let volunteeringHours = 0;
@@ -85,7 +86,7 @@ function getPointObject(listOfmeetings){
   mentorshipPoints = Math.min(mentorshipPoints, 9);
   volunteeringPoints = getVolunteeringPoints(volunteeringHours);
   attendancePoints = getAttendancePoints(attendedMeetings, totalMeetings);
-  miscPoints = studentData.profile.bonus_points;
+  miscPoints = bonusPoints;
 
   pointObject.mentorshipPoints = mentorshipPoints;
   pointObject.volunteeringPoints = volunteeringPoints;
@@ -134,15 +135,30 @@ function showResults(pointsFromThisSemester){
   
 }
 
-const getStudentPoints = (endpointData) => {
-
-  studentData = endpointData[0];
-  allMeetingData = endpointData[1];
+/**
+ * Process the data for COMS.
+ * @param {Object} studentData An Object representing the data of a student.
+ * @param {Object} allMeetingData An Object that represents the data of all meetings.
+ */
+function processDataCOMS(studentData, allMeetingData){
 
   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
-  let pointsFromThisSemester = getPointObject(attendance);
+  let pointsFromThisSemester = getPointObject(attendance, studentData.profile.bonus_points);
 
   showResults(pointsFromThisSemester);
 
   historyBuilder(builderMode.COMS, studentData, allMeetingData);
 }
+
+// const getStudentPoints = (endpointData) => {
+
+//   studentData = endpointData[0];
+//   allMeetingData = endpointData[1];
+
+//   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
+//   let pointsFromThisSemester = getPointObject(attendance);
+
+//   showResults(pointsFromThisSemester);
+
+//   historyBuilder(builderMode.COMS, studentData, allMeetingData);
+// }

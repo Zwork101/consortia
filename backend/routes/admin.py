@@ -70,11 +70,19 @@ class EditUserForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired("Email is required"), Email(message="Invalid email address")])
     first_name = StringField("First Name", validators=[DataRequired("First name is required")])
     last_name = StringField("Last Name", validators=[DataRequired("Last name is required")])
-    rit_id = IntegerField("RIT ID (Optional)")
+    # rit_id = IntegerField("RIT ID (Optional)")
     graduation_year = IntegerField("Graduation Year (Optional)")
     degree = StringField("Degree (Optional)")
     pronouns = StringField("Pronouns (Optional)")
-    avatar_path = StringField("Avatar Path (Optional)")
+    # avatar_path = StringField("Avatar Path (Optional)")
+    t_shirt_size = SelectField("Select a T-Shirt Size", choices=[
+        ("Unset", "Unset"),
+        ("Small", "Small"),
+        ("Medium", "Medium"),
+        ("Large", "Large"),
+        ("X-Large", "X-Large"),
+        ("XX-Large", "XX-Large"),
+    ])
     submit = SubmitField("Update User")
 
     def validate_email(self, field):
@@ -209,24 +217,12 @@ def id_search():
     
     abort(200)
 
-@admin.route("/email")
-def send_update():
-    send_email(
-        subject="This is an email test",
-        body="Hello, I hope you received this email",
-        sender=os.environ["EMAIL"],
-        recipients=["njz8626@g.rit.edu"],
-        password=os.environ["EMAIL_PASSWORD"]
-    )
-    return "Email sent!"
-
-
 @admin.route("/admin/profiles/<int:organization>", methods=["GET"])
 def list_users(organization: int):
     try:
         skip = request.args.get("skip", 0, type=int)
         count = request.args.get("count", 100, type=int)
-        sort_by = request.args.get("filter-sort-by", "First Name")
+        sort_by = request.args.get("filter-sort-by", "first_name")
         sort_order = request.args.get("filter-sort-order", "Ascending")
         membership_filter = request.args.get("filter-membership", "All")
         semesters_filter = request.args.get("filter-semesters", "All")
@@ -261,14 +257,21 @@ def list_users(organization: int):
             )
         )
     
-    # Determine sort column.
-    if sort_by.lower() == "first name":
-        sort_column = Profile.first_name
-    elif sort_by.lower() == "last name":
-        sort_column = Profile.last_name
-    else:
-        sort_column = Profile.first_name
+    # Determine sort column - only for allowed sortable columns
+    # Map the frontend sort keys to actual model attributes
+    sort_column_map = {
+        "first_name": Profile.first_name,
+        "last_name": Profile.last_name,
+        "email": Profile.email,
+        "semesters": Profile.semesters_sql(organization),
+        "points": Profile.points(organization)
+        # Removed 'membership' from sortable columns
+    }
     
+    # Get the sort column or default to first_name
+    sort_column = sort_column_map.get(sort_by.lower(), Profile.first_name)
+    
+    # Apply sort direction
     if sort_order.lower().startswith("desc"):
         sort_column = sort_column.desc()
     else:
@@ -279,7 +282,6 @@ def list_users(organization: int):
         {"profile": user.serialize(organization)["profile"]}
         for user in users
     ])
-
 
 @admin.route("/admin/add_user", methods=["GET", "POST"])
 @admin_required
@@ -357,7 +359,7 @@ def confirm_edit_user():
     if not user:
         return f"No user found with ID {user_id}", 404
 
-    # The confirmation form submits updated fields as hidden values.
+    # Update basic profile data
     user.email = request.form.get("email")
     user.first_name = request.form.get("first_name")
     user.last_name = request.form.get("last_name")
@@ -366,8 +368,20 @@ def confirm_edit_user():
     user.degree = request.form.get("degree")
     user.pronouns = request.form.get("pronouns")
     user.avatar_path = request.form.get("avatar_path")
-
+    
     org_id = request.form.get("organization_id", type=int) or Organizations.COMS
+
+    # Process bonus points for COMS profiles if provided
+    bonus_points = request.form.get("bonus_points", type=int)
+    bonus_reason = request.form.get("bonus_reason")
+    if org_id == Organizations.COMS and bonus_points and bonus_reason:
+        create_bonus(
+            bonus_points,
+            user.profile_id,
+            current_user.profile_id,
+            bonus_reason,
+            org_id
+        )
     
     db.session.commit()
     flash("User updated successfully.")
@@ -440,10 +454,33 @@ def worthy_members(org: int):
 @admin.route("/admin/events/<int:org>", methods=["GET"])
 @admin_required
 def list_events(org: int):
+    # Get sorting parameters
+    sort_by = request.args.get("filter-sort-by", "date")
+    sort_order = request.args.get("filter-sort-order", "Descending")
+    
     # Count profiles that have attended any event for this org
     total_profiles = Profile.query.filter(Profile.attendance.any(Event.organizer_id == org)).count()
-    # Order events by start_time descending (default sort by date)
-    events = Event.query.filter_by(organizer_id=org).order_by(Event.start_time.desc()).all()
+    
+    # Base query
+    query = Event.query.filter_by(organizer_id=org)
+    
+    # Map frontend sort keys to actual model attributes
+    sort_column_map = {
+        "name": Event.name,
+        "date": Event.start_time
+    }
+    
+    # Get the sort column
+    sort_column = sort_column_map.get(sort_by.lower(), Event.start_time)
+    
+    # Apply sort direction
+    if sort_order.lower().startswith("desc"):
+        query = query.order_by(sort_column.desc())
+    else:
+        query = query.order_by(sort_column.asc())
+    
+    events = query.all()
+    
     result = []
     for event in events:
         attendees = len(event.attendants)
@@ -455,4 +492,11 @@ def list_events(org: int):
             "attendance_count": attendees,
             "attendance_percentage": round(percentage)
         })
+    
+    # For attendance_count and percentage sorting, we need to sort the result list
+    if sort_by.lower() in ["attendees", "percentage"]:
+        sort_key = "attendance_count" if sort_by.lower() == "attendees" else "attendance_percentage"
+        reverse = sort_order.lower().startswith("desc")
+        result.sort(key=lambda x: x[sort_key], reverse=reverse)
+    
     return jsonify(result)

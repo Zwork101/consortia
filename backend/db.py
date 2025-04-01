@@ -65,6 +65,7 @@ class Profile(db.Model, UserMixin):
     degree: Mapped[Optional[str]]
     pronouns: Mapped[Optional[str]]
     avatar_path: Mapped[Optional[str]]
+    t_shirt_size: Mapped[Optional[str]]
 
     attendance: Mapped[list["Event"]] = relationship(secondary=attendance_table, back_populates="attendants")
     awards: Mapped[list["Award"]] = relationship(secondary="ProfileAward", back_populates="recipients")
@@ -307,10 +308,9 @@ class Profile(db.Model, UserMixin):
                 .where(Event.meeting_type == MeetingType.MENTORSHIP)\
                 .scalar_subquery()
             
-            # Calculate mentorship points (base 3 + 1 per meeting, capped at 9)
-            has_mentorship = mentorship_meetings > 0
             mentorship_points = case(
-                (has_mentorship, func.least(3 + mentorship_meetings, 9)),
+                ((mentorship_meetings > 0) & (3 + mentorship_meetings <= 9), 3 + mentorship_meetings),
+                ((mentorship_meetings > 0) & (3 + mentorship_meetings > 9), 9),
                 else_=0
             )
             
@@ -328,7 +328,7 @@ class Profile(db.Model, UserMixin):
         else:
             # Default case for unknown organizations
             return "'unknown'"
-        
+    
     @hybrid_method
     def bonus_points(self, org: int, semester_only: bool = True):
         if semester_only:
@@ -346,18 +346,18 @@ class Profile(db.Model, UserMixin):
     @classmethod
     def bonus_points_sql(cls, org: int, semester_only: bool = True):
         if semester_only:
-            current_semester = (datetime.now(timezone.utc).year * 10) + (0 if datetime.now(timezone.utc).month <= 7 else 5)
-            bonus_semester_expr = (func.strftime('%Y', BonusPoints.created_at) * 10) + \
-                                  func.case(
-                                      [(cast(func.strftime('%m', BonusPoints.created_at), Integer) <= 7, 0)],
-                                      else_=5
-                                  )
+            # Get current semester
+            current_semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
+            
+            # Query that selects sum of bonus points for the given organization in the current semester
             return db.session.query(func.coalesce(func.sum(BonusPoints.point_value), 0))\
                 .where(BonusPoints.recipient_id == cls.profile_id)\
                 .where(BonusPoints.organization_id == org)\
-                .where(bonus_semester_expr == current_semester)\
+                .where(func.strftime('%Y', BonusPoints.created_at) * 10 + 
+                       cast(func.strftime('%m', BonusPoints.created_at) / 7, Integer) * 5 == current_semester)\
                 .scalar_subquery()
         else:
+            # Query that selects sum of all bonus points for the given organization
             return db.session.query(func.coalesce(func.sum(BonusPoints.point_value), 0))\
                 .where(BonusPoints.recipient_id == cls.profile_id)\
                 .where(BonusPoints.organization_id == org)\
@@ -751,9 +751,9 @@ def db_testing_setup():
             MeetingType.COMMITTEE
         ])
         events[-1].start_time = datetime.strptime(events[-1].start_time, "%Y-%m-%d %H:%M:%S")
-        events[-1].start_time = events[-1].start_time.replace(year=datetime.now().year, month=datetime.now().month)
+        events[-1].start_time = events[-1].start_time.replace(year=datetime.now().year, month=datetime.now().month - 1)
         events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S")
-        events[-1].end_time = events[-1].end_time.replace(year=datetime.now().year, month=datetime.now().month)
+        events[-1].end_time = events[-1].end_time.replace(year=datetime.now().year, month=datetime.now().month - 1)
 
     developer_profiles_data = [
         {

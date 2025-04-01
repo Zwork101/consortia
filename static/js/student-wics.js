@@ -72,12 +72,12 @@ function showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemest
   document.getElementById("general-total-points-bar").style.width = `${(userMeetingsForCurrentSemester.generalEvents/meetingMaxUIValue)*100}%`;
 }
 
-const getStudentPoints = (endpointData) => {
-
-  let studentData = endpointData[0];
-  let allMeetingData = endpointData[1];
-
-  // Trim down list to current semester only
+/**
+ * Process the data for WIC.
+ * @param {Object} studentData An Object representing the data of a student.
+ * @param {Object} allMeetingData An Object that represents the data of all meetings.
+ */
+function processDataWIC(studentData, allMeetingData){
   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
   let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
 
@@ -88,3 +88,21 @@ const getStudentPoints = (endpointData) => {
 
   historyBuilder(builderMode.WIC, studentData, allMeetingData);
 }
+
+
+// const getStudentPoints = (endpointData) => {
+
+//   let studentData = endpointData[0];
+//   let allMeetingData = endpointData[1];
+
+//   // Trim down list to current semester only
+//   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
+//   let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
+
+//   let userMeetingsForCurrentSemester = getMeetingData(attendance);
+//   let allMeetingsForCurrentSemester = getMeetingData(listOfAllMeetings);
+
+//   showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemester);
+
+//   historyBuilder(builderMode.WIC, studentData, allMeetingData);
+// }

@@ -120,7 +120,7 @@ function showResults(pointsFromThisSemester){
   document.getElementById("earned-points").innerHTML= earnedPoints;
   document.getElementById("min-point-requirement").innerHTML= minPointRequirements;
 
-  // If the user exceeds the max points, we want to resize the bar so that it does not cause UI conflicts.
+  // If the user exceeds the max events, we want to resize the bar so that it does not cause UI conflicts.
   let pointUIValue;
   if (earnedPoints > minPointRequirements) {
     pointUIValue = earnedPoints;

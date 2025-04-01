@@ -57,8 +57,8 @@
                     <li> {{ award.name }}</li>
                     {% endfor %}
                     
-
-                    <h4 style="opacity:0%;">placeholder</h4>
+                    <!-- Testing Purposes, Revert when done style="opacity:0%;" -->
+                    <h4 >{{ current_user.profile_id }}</h4>
                     <p style="opacity:0%;">placeholder</p>
                 </div>
                 <div class="profile-subsec" style="margin-left: 100px;">
@@ -79,7 +79,7 @@
         </div>
         <div class="profile-container">
             <div class="profile-sec">
-                <form>
+                <form method="post" action="{{ url_for('student.edit_student') }}">
                     <h3>PERSONAL INFORMATION</h3>
                     <div class="profile-subsec">
                         <h4>Graduation Year:</h4>

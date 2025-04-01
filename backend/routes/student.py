@@ -1,12 +1,15 @@
-from flask_login import current_user
-from sqlalchemy import case, desc
-from backend.db import Event, Profile, db
-from flask import Blueprint, abort, jsonify, request, render_template
-from flask_login import current_user
 from datetime import date
 
-student = Blueprint("student", __name__, static_folder="static/", template_folder="templates/")
+from backend.db import Event, Profile, db
 
+from flask_login import current_user
+from flask import Blueprint, abort, jsonify, request, render_template
+from flask_wtf import FlaskForm
+
+from sqlalchemy import case, desc
+from wtforms import Form
+
+student = Blueprint("student", __name__, static_folder="static/", template_folder="templates/")
 
 @student.route("/wic")
 def wic_homepage():
@@ -16,7 +19,7 @@ def wic_homepage():
 def coms_homepage():
     return render_template("coms-profile.html.j2", title="COMS")
 
-@student.route("/profile")
+@student.route("/profile", methods=["GET"])
 def return_profile():
     org = request.args.get("org", type=int)
     if org:
@@ -24,6 +27,10 @@ def return_profile():
     else:
         return current_user.serialize()
     return abort(403)
+
+@student.route('/account', methods=['GET', 'POST'])
+def account():
+    return render_template('student-profile.html.j2')
 
 @student.route("/meetings/<int:org>")
 def upcoming_meetings(org: int):

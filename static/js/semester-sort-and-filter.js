@@ -1,4 +1,3 @@
-
 const ISODate = Object.freeze({
     YEAR: 0,
     MONTH: 1,

@@ -1,14 +1,19 @@
-from flask_login import current_user
-from sqlalchemy import case, desc
-from backend.db import Event, Profile, db
-from flask import Blueprint, abort, jsonify, request, render_template
-from flask_login import current_user
 from datetime import date
+from os import curdir
 from flask_wtf import FlaskForm
 from wtforms import FileField, IntegerField, StringField, SubmitField
 
-student = Blueprint("student", __name__, static_folder="static/", template_folder="templates/")
+from backend.db import Event, Profile, commit, db
+from backend.routes.admin import EditUserForm
 
+from flask_login import current_user
+from flask import Blueprint, abort, jsonify, redirect, request, render_template, url_for
+from flask_wtf import FlaskForm
+
+from sqlalchemy import case, desc
+from wtforms import Form
+
+student = Blueprint("student", __name__, static_folder="static/", template_folder="templates/")
 
 @student.route("/wic")
 def wic_homepage():
@@ -18,7 +23,7 @@ def wic_homepage():
 def coms_homepage():
     return render_template("coms-profile.html.j2", title="COMS")
 
-@student.route("/profile")
+@student.route("/profile", methods=["GET"])
 def return_profile():
     org = request.args.get("org", type=int)
     if org:
@@ -78,7 +83,7 @@ def upcoming_meetings(org: int):
     return jsonify({"Meetings": meetings})
 
 @student.route("/attendance")
-def member_attendance():
+def member_attendance():  # What is going on in this function??
     profile_id = 5 # request.get_json()
     # if not profile_id not in profile_id:
     #     return jsonify({"error": "Missing profile_id in request"})
@@ -145,43 +150,37 @@ def sort_semester():
 
     return jsonify(semester_wics, semester_coms)
 # Reused from admin.py... 
-class EditUserForm(FlaskForm):
-    graduation_year = IntegerField("Graduation Year (Optional)")
-    degree = StringField("Degree (Optional)")
-    pronouns = StringField("Pronouns (Optional)")
-    tshirt = StringField("TShirt Size")
-    pants = StringField("Pants Size")
-    submit = SubmitField("Update User")
 
+@student.route("/account", methods=["POST", "GET"])
+def account():
+    form = EditUserForm(
+        graduation_year=current_user.graduation_year,
+        first_name=current_user.first_name,
+        last_name=current_user.last_name,
+        degree=current_user.degree,
+        pronouns=current_user.pronouns,
+        t_shirt_size=current_user.t_shirt_size if current_user.t_shirt_size else "Unset",
+        email=current_user.email
+    )
 
+<<<<<<< HEAD
 @student.route("/meetings/studentview", methods=["POST", "GET"])
 def edit_student():
     user_id = request.args.get("current_user.profile_id", type=int)
 
     user = Profile.query.get(user_id)
+=======
+    if form.validate_on_submit():
+        current_user.email = form.email.data
+        current_user.first_name = form.first_name.data
+        current_user.last_name = form.last_name.data
+        current_user.graduation_year = form.graduation_year.data
+        current_user.degree = form.degree.data
+        current_user.pronouns = form.pronouns.data
+        if form.t_shirt_size.data != "Unset":
+            current_user.t_shirt_size = form.t_shirt_size.data
+        commit(current_user)
+        return redirect(url_for("student.account"))
+>>>>>>> bf3ced259a8768429267fe6b23b056848ffb533a
     
-    form = EditUserForm(obj=user)
-
-    if request.method == "POST":
-        grad =  request.form.get("graduation-year")
-        degree = request.form.get("degree")
-        pronouns = request.form.get("pronouns")
-        shirt = request.form.get("Tsize")
-        pants = request.form.get("Psize")
-    
-    #updated_data = { 
-    #        "graduation_year": grad,
-    #        "degree": degree,
-     #       "pronouns": pronouns,
-    #        "Tsize": shirt,
-    #        "Psize": pants,
-    #    }
-
-    #user.graduation_year = request.form.get("graduation_year", type=int)
-    #user.degree = request.form.get("degree")
-    #user.pronouns = request.form.get("pronouns")
-    #user.tshirt = request.form.get("Tsize")
-    #user.pants = request.form.get("Psize")
-
-    # Save to Database
-    return render_template("student-profile.html.j2", title="Student Profile")
+    return render_template("student-profile.html.j2", title="Student Profile", form=form)

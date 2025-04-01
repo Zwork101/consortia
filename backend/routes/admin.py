@@ -70,11 +70,19 @@ class EditUserForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired("Email is required"), Email(message="Invalid email address")])
     first_name = StringField("First Name", validators=[DataRequired("First name is required")])
     last_name = StringField("Last Name", validators=[DataRequired("Last name is required")])
-    rit_id = IntegerField("RIT ID (Optional)")
+    # rit_id = IntegerField("RIT ID (Optional)")
     graduation_year = IntegerField("Graduation Year (Optional)")
     degree = StringField("Degree (Optional)")
     pronouns = StringField("Pronouns (Optional)")
-    avatar_path = StringField("Avatar Path (Optional)")
+    # avatar_path = StringField("Avatar Path (Optional)")
+    t_shirt_size = SelectField("Select a T-Shirt Size", choices=[
+        ("Unset", "Unset"),
+        ("Small", "Small"),
+        ("Medium", "Medium"),
+        ("Large", "Large"),
+        ("X-Large", "X-Large"),
+        ("XX-Large", "XX-Large"),
+    ])
     submit = SubmitField("Update User")
 
     def validate_email(self, field):
@@ -208,18 +216,6 @@ def id_search():
         return render_template('/', form = form, data = filtered_data)
     
     abort(200)
-
-@admin.route("/email")
-def send_update():
-    send_email(
-        subject="This is an email test",
-        body="Hello, I hope you received this email",
-        sender=os.environ["EMAIL"],
-        recipients=["njz8626@g.rit.edu"],
-        password=os.environ["EMAIL_PASSWORD"]
-    )
-    return "Email sent!"
-
 
 @admin.route("/admin/profiles/<int:organization>", methods=["GET"])
 def list_users(organization: int):

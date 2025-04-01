@@ -65,6 +65,7 @@ class Profile(db.Model, UserMixin):
     degree: Mapped[Optional[str]]
     pronouns: Mapped[Optional[str]]
     avatar_path: Mapped[Optional[str]]
+    t_shirt_size: Mapped[Optional[str]]
 
     attendance: Mapped[list["Event"]] = relationship(secondary=attendance_table, back_populates="attendants")
     awards: Mapped[list["Award"]] = relationship(secondary="ProfileAward", back_populates="recipients")
@@ -751,9 +752,9 @@ def db_testing_setup():
             MeetingType.COMMITTEE
         ])
         events[-1].start_time = datetime.strptime(events[-1].start_time, "%Y-%m-%d %H:%M:%S")
-        events[-1].start_time = events[-1].start_time.replace(year=datetime.now().year, month=datetime.now().month)
+        events[-1].start_time = events[-1].start_time.replace(year=datetime.now().year, month=datetime.now().month - 1)
         events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S")
-        events[-1].end_time = events[-1].end_time.replace(year=datetime.now().year, month=datetime.now().month)
+        events[-1].end_time = events[-1].end_time.replace(year=datetime.now().year, month=datetime.now().month - 1)
 
     developer_profiles_data = [
         {

@@ -163,13 +163,6 @@ def account():
         email=current_user.email
     )
 
-<<<<<<< HEAD
-@student.route("/meetings/studentview", methods=["POST", "GET"])
-def edit_student():
-    user_id = request.args.get("profile_id", type=int)
-
-    user = Profile.query.get(user_id)
-=======
     if form.validate_on_submit():
         current_user.email = form.email.data
         current_user.first_name = form.first_name.data
@@ -181,6 +174,5 @@ def edit_student():
             current_user.t_shirt_size = form.t_shirt_size.data
         commit(current_user)
         return redirect(url_for("student.account"))
->>>>>>> bf3ced259a8768429267fe6b23b056848ffb533a
     
     return render_template("student-profile.html.j2", title="Student Profile", form=form)

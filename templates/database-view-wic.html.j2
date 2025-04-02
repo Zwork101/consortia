@@ -245,7 +245,7 @@
                 </div>
             </div>
             <div class="dialog-row">
-                <div>
+                {# <div>
                     <div class="week-row">
                         <input type="checkbox" id="repeat-days" name="repeat-days"><label for="repeat-days">Repeat Every:</label>
                     </div>
@@ -258,7 +258,23 @@
                         <input type="checkbox" id="Sat" name="Sat"><label for="Sat">S</label>
                         <input type="checkbox" id="Sun" name="Sun"><label for="Sun">S</label>
                     </div>
+                </div> #}
+
+            <div>
+                <div class="dialog-row";>
+                    <label for="meeting-type">Meeting Type:</label>
                 </div>
+
+                <select name="meeting-type" id="meeting-type">
+                    <option>General</option>
+                    <option>Committee</option>
+                    <option>Social</option>
+                    <option>Volunteering</option>
+                    <option>Mentorship</option>
+
+                </select>
+            </div>
+            
                 <div style="margin-left:60px;">
                     <label for="meeting-location">Meeting Location:</label>
                     <input type="text" name="meeting-location" id="meeting-location">

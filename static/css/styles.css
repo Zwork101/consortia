@@ -1599,3 +1599,7 @@ input[type=file]::file-selector-button:hover, .upload-submit:hover {
     position: absolute;
     transform:translate(65vw, 80px);
 }
+
+#meeting-type{
+    padding: 0.7rem;
+}

@@ -13,7 +13,7 @@
 	<main>
 
         <h2 style="margin-left: 80px; margin-top: 80px;">{{ current_user.first_name }} {{ current_user.last_name }}</h2>
-        <div class="profile-container">
+        <div class="profile-container" style="width:300px; height:400px;">
             <div class="profile-sec">
 
                 <!-- for Loop for attendance -->
@@ -61,23 +61,9 @@
                     <h4 >{{ current_user.profile_id }}</h4>
                     <p style="opacity:0%;">placeholder</p>
                 </div>
-                <div class="profile-subsec" style="margin-left: 100px;">
-                    </li>
-                    <h4>General Meetings:</h4>
-                    <p>{{ general_meetings.value }}/14</p>
-
-                    <h4>Committee Meetings:</h4>
-                    <p>{{ committee.value }}/6</p>
-
-                    <h4>Social Events:</h4>
-                    <p>{{ social_events.value }}/1</p>
-
-                    <h4>Volunteering:</h4>
-                    <p>{{ volunteering.value }}/1</p>
-                </div>
             </div>
         </div>
-        <div class="profile-container">
+        <div class="profile-container" style="height:400px; transform: translateY(63px);">
             <div class="profile-sec">
                 <form method="post" action="{{ url_for('student.account') }}">
                     {{ form.csrf_token }}
@@ -95,7 +81,7 @@
                         <h4>Last Name:</h4>
                         {{ form.last_name(id="last-name") }}
                     </div>
-                    <div class="profile-subsec" style="margin-left: 100px;">
+                    <div class="profile-subsec" style="margin-left: 100px; position: absolute;">
                         <h4>Pronouns:</h4>
                         {{ form.pronouns(id="pronouns") }}
 

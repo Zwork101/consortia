@@ -1154,7 +1154,7 @@ svg {
 .profile-container {
     border: 1px solid #727578;
     border-radius: 8px;
-    width: 40vw;
+    width: 600px;
     display: inline-block;
     margin-left: 80px;
 }
@@ -1168,13 +1168,45 @@ svg {
     display: inline-block;
 }
 
-    .profile-subsec input {
+    .profile-subsec input, #graduation-year {
         height: 20px;
         padding: 7px 10px;
         margin-top: 10px;
         margin-left: 20px;
         width: 160px;
+        font-family: var( --main-font);
+        border: 1px solid #727578;
     }
+
+    #graduation-year{
+        height: 17px;
+    }
+
+    .profile-subsec select{
+        width: 182px; 
+        margin-left:20px; 
+        padding: 6px; 
+        font-family: var( --main-font);
+        margin-top: 10px;
+        border: 1px solid #727578;
+    }
+
+.profile-subsec #submit {
+    font-family: var(--main-font);
+    font-size: 1rem;
+    width: auto;
+    align-self: flex-start;
+    padding: 8px 20px;
+    border: 2px solid var(--orange);
+    background-color: var(--orange);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    height: 40px;
+    border-radius: 2px;
+    position: absolute;
+    transform: translate(-200px, 80px)
+}
 
     .profile-subsec h4, .config-sec h4 {
         font-size: 0.8rem;

@@ -12,11 +12,11 @@
                 <div class="wicsextra-info">
                     <!-- <img src="../images/women-in-computing.jpg" alt="women-in-computing"> -->
                     
-                    <button class="wicscomsbutton" onclick="window.location.href='{{ url_for('student.wic_homepage') }}'">See Profile</button>
+                    <button class="wicscomsbutton" onclick="window.location.href='{{ url_for('student.wic_homepage') }}'">WIC Profile</button>
 
                     {% for admin_profile in current_user.positions %}
                         {% if admin_profile.organization_id == 1  %}
-                            <button class="indexdbbutton" onclick="window.location.href='{{ url_for('admin.dashboard', org=1) }}'">See Data</button>
+                            <button class="indexdbbutton" onclick="window.location.href='{{ url_for('admin.dashboard', org=1) }}'">Member Data</button>
                             {% break %}
                         {% endif %}
                     {% endfor %}
@@ -25,13 +25,13 @@
                 </div>
             </section>
             <section class="coms">
-                <h2>Computing<br> Organization for <br>Multicultural Students</h2>
+                <h2>Computing Organization for <br>Multicultural Students</h2>
                 <div class="wicsextra-info">
-                    <button class="wicscomsbutton" onclick="window.location.href='{{ url_for('student.coms_homepage') }}'">See Profile</button>
+                    <button class="wicscomsbutton" onclick="window.location.href='{{ url_for('student.coms_homepage') }}'">COMS Profile</button>
 
                     {% for admin_profile in current_user.positions %}
                         {% if admin_profile.organization_id == 2  %}
-                            <button class="indexdbbutton" onclick="window.location.href='{{ url_for('admin.dashboard', org=2) }}'">See Data</button>
+                            <button class="indexdbbutton" onclick="window.location.href='{{ url_for('admin.dashboard', org=2) }}'">Member Data</button>
                             {% break %}
                         {% endif %}
                     {% endfor %}

@@ -202,6 +202,13 @@ const loadTableData = async (tableType, params = {}) => {
     loadingCell.textContent = "Loading...";
     loadingCell.style.textAlign = "center";
     
+
+    //  spinner element and load
+    const spinner = document.createElement("div");
+    spinner.classList.add("spinner");
+    loadingCell.appendChild(spinner);
+
+
     // Build query parameters
     const queryParams = new URLSearchParams();
     for (const [key, value] of Object.entries(params)) {

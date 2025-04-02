@@ -1022,7 +1022,7 @@ svg {
 }
 
 .indexdbbutton {
-    transform: translate(-380px, 14px);
+    transform: translate(-400px, 14px);
     background-color: transparent;
     border: none;
     text-decoration: underline;

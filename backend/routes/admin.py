@@ -2,9 +2,10 @@ import csv
 from datetime import datetime
 import os
 import logging
+from time import sleep
 
-from backend.email import send_email
-from backend.db import Organizations, ProfileAward, create_attendance, commit, Event, Profile, create_bonus
+from backend.email import create_batches, generate_award_email, get_token, send_email
+from backend.db import Award, Organizations, ProfileAward, award_user, create_attendance, commit, Event, Profile, create_bonus, db
 from backend.auth import admin_required
 
 from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, abort
@@ -12,9 +13,6 @@ from flask_wtf import FlaskForm
 from flask_login import current_user
 from wtforms import FileField, IntegerField, StringField, SelectField
 from wtforms.validators import DataRequired, ValidationError, Email
-
-from backend.db import Award, Event, commit, create_attendance, Profile, db
-
 from sqlalchemy.orm import Session
 from sqlalchemy import func, or_
 from wtforms import FileField, IntegerField, StringField, SubmitField
@@ -110,9 +108,9 @@ admin = Blueprint("admin", __name__, static_folder="static/", template_folder="t
 @admin_required
 def dashboard(org: int):
     if org == Organizations.WIC:
-        return render_template("database-view-wic.html.j2", title="WIC Dashboard", upload_form=AttendanceForm())
+        return render_template("database-view-wic.html.j2", title="WIC Dashboard", upload_form=AttendanceForm(), org_id=org)
     elif org == Organizations.COMS:
-        return render_template("database-view-coms.html.j2", title="COMS Dashboard", upload_form=AttendanceForm())
+        return render_template("database-view-coms.html.j2", title="COMS Dashboard", upload_form=AttendanceForm(), org_id=org)
 
 
 @admin.route("/meetings/<int:org>/upload", methods=["POST", "GET"])
@@ -426,8 +424,6 @@ def worthy_members(org: int):
 
     reached_active = [p for p in org_profiles if p.membership_sql(org)]
 
-    print(reached_active)
-
     for profile in reached_active:
         award = db.session.query(Award.award_id, Award.name, Award.active_semester_requirements)\
             .filter(Award.active_semester_requirements == profile.membership_semesters(org))\
@@ -450,6 +446,44 @@ def worthy_members(org: int):
             "award_requirement": award[1][2]
         } for award in awards
     ])
+
+@admin.route("/admin/awards/<int:org>/notify", methods=["POST"])
+@admin_required
+def send_awards(org: int):
+    selected_users = request.get_json()
+    awards = []
+    
+    for user in selected_users:
+        awards.append(award_user(user['award_id'], user['profile_id']))
+
+    commit(*awards)
+
+    profiles = [Profile.query.get(int(u['profile_id'])) for u in selected_users]
+    awards = [Award.query.get(int(u['award_id'])) for u in selected_users]
+
+    emails = []
+
+    for profile, award in zip(profiles, awards):
+        emails.append(
+            generate_award_email(profile, award, org)
+        )
+
+    cred_emails = get_token(org)
+
+    if not cred_emails:
+        return jsonify({
+            "success": False,
+            "url": url_for("oauth.authorize_email", org=org)
+            })
+
+    for i, batch in enumerate(create_batches(emails, cred_emails[1], cred_emails[0], "You've earned a reward!")):
+        if i != 0:
+            sleep(2)
+        batch.execute()
+
+    return jsonify({
+        "success": True
+    })
 
 @admin.route("/admin/events/<int:org>", methods=["GET"])
 @admin_required

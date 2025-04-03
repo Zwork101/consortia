@@ -157,5 +157,64 @@ $( function() {
         console.log("send email button pressed");
     });
 
+    $('#notify-students').button().on("click", async function() {
+        const org_id = document.getElementsByTagName("body")[0].dataset.org
+        const awarded_users = document.querySelectorAll('.modal-rep-content input:checked');
+        const data = []
+        awarded_users.forEach((inp) => {
+            data.push({
+                profile_id: inp.dataset.profileId,
+                award_id: inp.dataset.awardId
+            })
+        })
+
+        const resp = await fetch(`/admin/awards/${org_id}/notify`, {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+
+        const content = await resp.json();
+
+        if (!content.success) {
+            window.location.replace(content.url)
+        } else {
+            document.getElementById('modal-rep').style.display = "none";
+        }
+    })
+
+    $('#modal-rep-Btn').button().on("click", async function() {
+        const org_id = document.getElementsByTagName("body")[0].dataset.org
+        const resp = await fetch(`/admin/profiles/${org_id}/worthy`);
+
+        if (!resp.ok) {
+              throw new Error(`Response status: ${resp.status}`);
+        }
+
+        const json = await resp.json();
+        const table = document.getElementById("reward-table");
+        table.innerHTML = "";
+
+        json.forEach((recipient) => {
+            table.insertAdjacentHTML('beforeend', `
+            <tr class="dbTableRow">
+                <td>
+                    <label class="container">
+                        <input checked type="checkbox" data-profile-id="${recipient.profile_id}" data-award-id="${recipient.award_id}">
+                        <span class="checkmark"></span>
+                    </label>
+                </td>
+                <td style="transform: translateX(-30px);"><b>${recipient.first_name} ${recipient.last_name}</b> has met the requirements for this award: <b>${recipient.award_name}</b></td>
+                <td class="dbTablePH"></td>
+                <td style="padding-right: 0px;">Active Semesters: <b>${recipient.award_requirement}</b></td>
+            </tr>
+            `);
+        })
+     });
+
+
 
 });

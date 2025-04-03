@@ -905,6 +905,14 @@ def create_bonus(point_value: int, recipient_id: int, giver_id: int, reason: str
     db.session.add(grant)
     return grant
 
+def award_user(award_id: int, profile_id: int):
+    award = ProfileAward(
+        profile_id=profile_id,
+        award_id=award_id,
+        award_date=datetime.now(tz=timezone.utc)
+    )
+    return award
+
 def commit(*objects: Base):
     if objects:
         db.session.add_all(objects)

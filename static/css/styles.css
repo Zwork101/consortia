@@ -1215,11 +1215,17 @@ svg {
         margin-left: 20px;
     }
 
-    .profile-subsec p {
-        margin-top: 4px;
-        margin-bottom: 40px;
-        margin-left: 20px;
-    }
+.profile-subsec p, .profile-subsec li {
+    margin-top: 4px;
+    margin-bottom: 40px;
+    margin-left: 20px;
+    font-family: var( --main-font);
+    font-size: 1rem;
+}
+
+.profile-subsec li{
+    margin-bottom: 0px;
+}
 
 .savebtn {
     position: absolute;

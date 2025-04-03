@@ -5,7 +5,7 @@ $( function() {
         send_email_dialog, send_email_form;
 
     // Create a success banner
-    success_banner = $("<div id='success-banner' style='display:none; background-color: #F76902; color: white; padding: 10px; text-align: center; position: fixed; top: 0; left: 40%; width: 20%; z-index: 9999;'>Task completed successfully!</div>").appendTo("body");
+    success_banner = $("<div id='success-banner' style='display:none; background-color: #F76902; color: white; padding: 10px; text-align: center; position: fixed; bottom: 20px; left: 40%; width: 20%; z-index: 9999; font-family: var(--main-font);'>Task completed successfully!</div>").appendTo("body");
 
   
     /*
@@ -87,7 +87,7 @@ $( function() {
 
    $("#save-changes-button").click(function() {
     console.log("Button clicked!");
-    success_banner.text("Meeting created successfully!").fadeIn().delay(3000).fadeOut();
+    success_banner.text("Changes saved successfully!").fadeIn().delay(3000).fadeOut();
 });
 
     /*
@@ -218,3 +218,4 @@ $( function() {
 
 
 });
+

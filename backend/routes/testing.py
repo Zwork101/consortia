@@ -42,6 +42,10 @@ def return_wic():
 def return_coms():
     return render_template("coms-profile.html.j2")
 
+@test.route("/coms_settings")
+def return_coms_settings():
+    return render_template("configuration-coms.html.j2")
+
 
 @test.route("/com-email")
 def return_com_email():
@@ -149,6 +153,10 @@ def return_notifications():
 @test.route("/settingswic")
 def return_settingswic():
     return render_template("configuration-wics.html.j2")
+
+@test.route("/settingscom")
+def return_settingscom():
+    return render_template("configuration-coms.html.j2")
 
 @test.route("/yearlyreports")
 def return_yearlyreports():

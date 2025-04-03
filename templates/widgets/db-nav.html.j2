@@ -104,16 +104,6 @@
                
             </div>
             <div class="dialog-row">
-                <label for="meeting-type">Meeting Type:</label>
-                <select name="meeting-type" id="meeting-type">
-                    <option>General</option>
-                    <option>Committee</option>
-                    <option>Social</option>
-                    <option>Volunteering</option>
-                </select>
-            </div>
-            <br>
-            <div class="dialog-row">
                 <div>
                     <label for="meeting-date">Date:</label>
                     <input type="date" name="meeting-date" id="meeing-date" style="padding: 8px 0px;">
@@ -249,8 +239,8 @@
                     </select>
                 </div>
             </div>
-            <div class="dialog-row">
-                <div>
+             <div class="dialog-row">
+                {# <div>
                     <div class="week-row">
                         <input type="checkbox" id="repeat-days" name="repeat-days"><label for="repeat-days">Repeat Every:</label>
                     </div>
@@ -263,7 +253,23 @@
                         <input type="checkbox" id="Sat" name="Sat"><label for="Sat">S</label>
                         <input type="checkbox" id="Sun" name="Sun"><label for="Sun">S</label>
                     </div>
+                </div> #}
+
+            <div>
+                <div class="dialog-row";>
+                    <label for="meeting-type">Meeting Type:</label>
                 </div>
+
+                <select name="meeting-type" id="meeting-type">
+                    <option>General</option>
+                    <option>Committee</option>
+                    <option>Social</option>
+                    <option>Volunteering</option>
+                    <option>Mentorship</option>
+
+                </select>
+            </div>
+            
                 <div style="margin-left:60px;">
                     <label for="meeting-location">Meeting Location:</label>
                     <input type="text" name="meeting-location" id="meeting-location">
@@ -273,13 +279,12 @@
                 <label for="description">Description</label>
                 <textarea id="description" rows="6" cols="58" style="min-width:520px"></textarea>
             </div>
-             
         </fieldset>
     </form>
 </div>
 
 
-{% with org=org_id %}
+{% with org=2 %}
     {% include "widgets/meeting-upload.html.j2" %}
 {% endwith %}
 
@@ -303,11 +308,11 @@
     <div class="search-tools-container">
         <div class="database-dropdown-large1">
             <button onclick="dropDown1()" class="dropbtn1">
-                Student Data
+                COMS Student Data
                 <span class="dropDownArrow"><img src="../static/images/down-arrow-black.png" width="16" /></span>
             </button>
             <div id="DropdownContent1" class="dropdown-content-large1">
-                <a>Attendance Data</a>
+                <a>COMS Attendance Data</a>
             </div>
         </div>
 
@@ -316,29 +321,33 @@
         </div>
 
         <div class="optbutton">
-            <button id="filter-button"><img src="../static/images/opticon1.png" width="32" /></button>
+            <button id="filter-button"><img src="../static/images/opticon1.png" width="32" title="Filters"/></button>
         </div>
 
         <div class="optbutton">
-            <button id="import-data-button"><img src="../static/images/opticon2.png" width="32" /></button>
+            <button id="import-data-button"><img src="../static/images/opticon2.png" width="32" title="Import Data"/></button>
         </div>
 
         <div class="optbutton">
-            <button id="create-meeting-button"><img src="../static/images/opticon5.png" width="32" /></button>
+            <button id="create-meeting-button"><img src="../static/images/opticon5.png" width="32" title="Create Meeting"/></button>
         </div>
         <div class="optbutton">
-            <button id="modal-rew-Btn"><img src="../static/images/reports.png" width="32" /></button>
+            <button id="modal-rew-Btn"><img src="../static/images/reports.png" width="32" title="Reports"/></button>
         </div>
          <div class="optbutton">
-            <button id="modal-rep-Btn"><img src="../static/images/awards-white.png" width="32" /></button>
+            <button id="modal-rep-Btn"><img src="../static/images/awards-white.png" width="32" title="Rewards"/></button>
         </div>
+         <div class="optbutton">
+            <a href='{{ url_for('testing.return_settingscom') }}'><img src="../static/images/conficon1.png" width="32" style="transform:translate(14px, 14px);" title="Configuration"/></a>
+        </div>
+
 
 <!--Reports Modal -->
 <div id="modal-rew" class="modal-rew">
   <div class="modal-rew-content">
   <button class="semester-report-btn report-btn" >Download</button>
     <span class="close">&times;</span>
-    <h2 style="margin-left: 80px; margin-top: 80px;">2024-2025 Yearly Report</h2>
+    <h2 style="margin-left: 80px; margin-top: 80px;">Reports</h2>
         <div class="report-upper" style="margin-left: 80px;">
             <p>Active Members: {{ active_count_members }}</p>
 
@@ -407,15 +416,15 @@
 
 <!--Rewards Modal -->
 <div id="modal-rep" class="modal-rew">
-<button class="semester-report-btn report-btn" style="margin-left:100px;" id="notify-students">Notify Students</button>
+<button class="semester-report-btn report-btn" style="margin-left:100px;">Notify Students</button>
   <div class="modal-rep-content">
     <span class="close2">&times;</span>
     <h2 style="margin-left: 80px; margin-top: 80px;">Rewards</h2>
-        <table id="reward-table" class="smallerTable" style="margin-top: 100px;">
+        <table class="smallerTable" style="margin-top: 100px;">
             <tr class="dbTableRow">
                 <td>
                     <label class="container">
-                        <input type="checkbox" checked>
+                        <input type="checkbox">
                         <span class="checkmark"></span>
                     </label>
                 </td>

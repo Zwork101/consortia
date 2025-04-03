@@ -116,6 +116,9 @@ const tableConfigs = {
         headers: [
             { title: "EVENT NAME", sortKey: "Name", dataKey: "name", backendSortKey: "name" },
             { title: "DATE", sortKey: "Date", dataKey: "start_time", backendSortKey: "date" },
+            { title: "TIME", sortKey: "Time", dataKey: "start_time", backendSortKey: "time" },
+            { title: "TYPE", sortKey: "Type", dataKey: "meeting_type", backendSortKey: "type" },
+            { title: "LOCATION", sortKey: "Location", dataKey: "location", backendSortKey: "location" },
             { title: "ATTENDEES", sortKey: "Attendees", dataKey: "attendance_count", backendSortKey: "attendees" },
             { title: "ATTENDANCE %", sortKey: "Percentage", dataKey: "attendance_percentage", backendSortKey: "percentage" }
         ],
@@ -124,6 +127,9 @@ const tableConfigs = {
             <tr class="dbTableRow">
                 <td>${evt.name}</td>
                 <td>${new Date(evt.start_time).toLocaleDateString()}</td>
+                <td>${new Date(evt.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
+                <td>${evt.meeting_type}</td>
+                <td>${evt.location}</td>
                 <td>${evt.attendance_count}</td>
                 <td>${evt.attendance_percentage}%</td>
             </tr>`;
@@ -202,6 +208,13 @@ const loadTableData = async (tableType, params = {}) => {
     loadingCell.textContent = "Loading...";
     loadingCell.style.textAlign = "center";
     
+
+    //  spinner element and load
+    const spinner = document.createElement("div");
+    spinner.classList.add("spinner");
+    loadingCell.appendChild(spinner);
+
+
     // Build query parameters
     const queryParams = new URLSearchParams();
     for (const [key, value] of Object.entries(params)) {
@@ -424,6 +437,12 @@ const refreshMeetingSelection = async (org) => {
     });
     meetingDropdown.removeAttribute("onmousedown");
 }
+
+$(function() {
+    $( document ).tooltip({
+        track: true
+    });
+});
 
 // Current view (default: profiles)
 let currentView = 'profiles';

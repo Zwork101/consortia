@@ -4,7 +4,7 @@
 	<nav>
 		 {% if request.url_rule.endpoint != 'home.homepage' %}
 			<a href="{{ url_for('home.homepage') }}">
-				<img class="backarrow" src="../static/images/back-arrow.png" width="20" color="white"/>
+				<img class="backarrow" src="../static/images/home.png" width="20" color="white"/>
 			</a>
 	    {% endif %}
       <div class="menu-toggle" onclick="toggleMenu()">
@@ -24,7 +24,6 @@
 					<a href="#">Logout</a>
 				</div>
 			</div>
-			<a href="{{ url_for('student.account') }}" style="float:right; padding-left:50px;">SETTINGS</a>
 
 		</div>
         </nav>

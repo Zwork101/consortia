@@ -602,6 +602,7 @@ class Event(db.Model):
     name: Mapped[str]
     start_time: Mapped[datetime]
     end_time: Mapped[datetime]
+    location: Mapped[Optional[str]]
     description: Mapped[Optional[str]]
     point_value: Mapped[int] = mapped_column(default=0)
     organizer: Mapped["Organizer"] = relationship(back_populates="events")

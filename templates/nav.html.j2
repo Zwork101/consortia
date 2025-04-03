@@ -4,7 +4,7 @@
 	<nav>
 		 {% if request.url_rule.endpoint != 'home.homepage' %}
 			<a href="{{ url_for('home.homepage') }}">
-				<img class="backarrow" src="../static/images/back-arrow.png" width="20" color="white"/>
+				<img class="backarrow" src="../static/images/home.png" width="24" color="white"/>
 			</a>
 	    {% endif %}
       <div class="menu-toggle" onclick="toggleMenu()">

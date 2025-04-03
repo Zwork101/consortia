@@ -114,6 +114,27 @@ def dashboard(org: int):
     elif org == Organizations.COMS:
         return render_template("database-view-coms.html.j2", title="COMS Dashboard", upload_form=AttendanceForm())
 
+@admin.route("/admin/<int:org>/create", methods=["POST"])
+@admin_required
+def create_event(org: int):
+    meeting_org = org
+    meeting_name = request.form.get("meeting_name")
+    meeting_description = request.form.get("meeting_description")
+    meeting_start_time = request.form.get("meeting_start_time")
+    meeting_end_time = request.form.get("meeting_end_time")
+    meeting_location = request.form.get("meeting_location")
+    
+    db.session.add(Event(
+        name=meeting_name,
+        description=meeting_description,
+        start_time=meeting_start_time,
+        end_time=meeting_end_time,
+        location=meeting_location,
+        organizer_id=meeting_org
+    ))
+    db.session.commit()
+    return redirect(url_for("admin.dashboard", org=org))
+    
 
 @admin.route("/meetings/<int:org>/upload", methods=["POST", "GET"])
 @admin_required
@@ -488,6 +509,9 @@ def list_events(org: int):
         result.append({
             "event_id": event.event_id,
             "name": event.name,
+            "type": event.meeting_type.value, 
+            "description": event.description,
+            "location": event.location,
             "start_time": event.start_time.isoformat(),
             "attendance_count": attendees,
             "attendance_percentage": round(percentage)

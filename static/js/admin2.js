@@ -438,6 +438,12 @@ const refreshMeetingSelection = async (org) => {
     meetingDropdown.removeAttribute("onmousedown");
 }
 
+$(function() {
+    $( document ).tooltip({
+        track: true
+    });
+});
+
 // Current view (default: profiles)
 let currentView = 'profiles';
 

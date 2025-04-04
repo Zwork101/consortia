@@ -593,5 +593,21 @@ window.onclick = function(event) {
     modal2.style.display = "none";
   }
 }
+
+function dropDown1() {
+    const dropdown = document.getElementById("DropdownContent1");
+    const isVisible = dropdown.style.display === "block";
+    dropdown.style.display = isVisible ? "none" : "block";
+}
+
+// Close dropdown when clicking outside
+document.addEventListener("click", function(event) {
+    const dropdown = document.getElementById("DropdownContent1");
+    const button = document.querySelector(".dropbtn1");
+    if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+        dropdown.style.display = "none";
+    }
+});
+
 </script>
 {% endblock %}

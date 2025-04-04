@@ -479,9 +479,6 @@ class Profile(db.Model, UserMixin):
                     {
                         "award_id": award.award_id,
                         "name": award.name,
-                        "description": award.description,
-                        "icon_path": award.icon_path,
-                        "prize": award.prize,
                         "award_date": db.session.query(ProfileAward.award_date).where(ProfileAward.profile_id == self.profile_id).where(ProfileAward.award_id == award.award_id).first()[0].isoformat()
                     } for award in self.awards if org_id is None or award.organization_id == org_id
                 ],
@@ -514,9 +511,9 @@ class Award(db.Model):
 
     award_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
     name: Mapped[str]
-    description: Mapped[str]
-    icon_path: Mapped[str]
-    prize: Mapped[str]
+    # description: Mapped[str]
+    # icon_path: Mapped[str]
+    # prize: Mapped[str]
     organization_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
     active_semester_requirements: Mapped[int]
 

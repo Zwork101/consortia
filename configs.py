@@ -1,18 +1,35 @@
 import os
 import dotenv
+import json
 
 dotenv.load_dotenv()
 
-from dotenv import load_dotenv
+org_settings_path = os.environ.get("ORG_SETTINGS", "settings.json")
 
-load_dotenv()
+try:
+    with open(org_settings_path) as f:
+        data = json.load(f)
+except FileNotFoundError:
+    with open(org_settings_path, "w") as f:
+        data = {
+            "1": {
+                "general_meetings_requirement": 16,
+                "committee_meetings_requirement": 6,
+                "social_meetings_requirement": 1,
+                "volunteering_meetings_requirement": 1
+            }
+        }
+        json.dump(data, f)
 
+def update_org_settings(org: int, **kwargs):
+    data.update({str(org): dict(**kwargs)})
 
-from dotenv import load_dotenv
+    with open(org_settings_path, "w") as f:
+        json.dump(data)
 
-load_dotenv()
 class Config:
     SECRET_KEY = os.environ["SECRET_KEY"]
+    ORG_SETTINGS = data
 
 
 class DevelopmentConfig(Config):

@@ -150,14 +150,6 @@ def student_view_data():
 def return_notifications():
     return render_template("admin-notification-page.html.j2")
 
-@test.route("/settingswic")
-def return_settingswic():
-    return render_template("configuration-wics.html.j2")
-
-@test.route("/settingscom")
-def return_settingscom():
-    return render_template("configuration-coms.html.j2")
-
 @test.route("/yearlyreports")
 def return_yearlyreports():
     return render_template("yearly-reports.html.j2")

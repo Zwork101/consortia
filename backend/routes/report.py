@@ -1,10 +1,12 @@
 import datetime
 from backend import db
+from backend.auth import admin_required
 from flask import Blueprint, Flask, render_template
 
 report = Blueprint("report", __name__, static_folder="static/", template_folder="templates/")
 
 @report.route("/yearly_report/<int:org>")
+@admin_required
 def yearly_report(org: int):
     # year
     current_year = datetime.datetime.now().year

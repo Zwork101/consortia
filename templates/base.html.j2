@@ -15,12 +15,12 @@
     <link rel="stylesheet" type="text/css" href="../static/css/dialogue.css">
     <script src=" https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js "></script>
     <script src="../static/js/jquery-ui.min.js"></script>
-    <script src="../static/js/dialogs.js"></script>
+    <script defer src="../static/js/dialogs.js"></script>
 	<script defer src="../static/js/calendar.js"></script>
     {% block head %}
     {% endblock %}
 </head>
-<body>
+<body data-org="{{ org_id }}">
 {% block content %}
 {% endblock %}
 </body>

@@ -687,18 +687,12 @@ def db_testing_setup():
     wic_award = Award(
         organization_id = Organizations.WIC,
         name = "being super cool award",
-        description = "For gamers only",
-        icon_path = "../static/images/award.webp",
-        prize = "6 Dining Dollars",
         active_semester_requirements = 2
     )
 
     coms_award = Award(
         organization_id = Organizations.COMS,
         name = "being super cool award",
-        description = "For gamers only",
-        icon_path = "../static/images/award.webp",
-        prize = "6 Dining Dollars",
         active_semester_requirements = 1
     )
     

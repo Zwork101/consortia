@@ -25,7 +25,7 @@ def update_org_settings(org: int, **kwargs):
     data.update({str(org): dict(**kwargs)})
 
     with open(org_settings_path, "w") as f:
-        json.dump(data)
+        json.dump(data, f)
 
 class Config:
     SECRET_KEY = os.environ["SECRET_KEY"]

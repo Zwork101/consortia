@@ -27,10 +27,16 @@
                     {{ form.volunteering_meetings_requirement() }}
                 </div>
 
-                <div class="config-sec-sub">
+                <div class="config-sec-sub" id="award-list">
                     <!--This is where semester amounts can be configured-->
                     <h3>SEMESTER AWARDS</h3>
-
+                    
+                    <div class="semester-config" id="semester-template" hidden>
+                        <input min="1" name="award_settings-0-semester" required="" type="number" value="" disabled>
+                        <input maxlength="40" name="award_settings-0-award_name" required="" type="text" value="" disabled>
+                        <button type="button" class="trashbtn" onclick="rmConfig(this)"><img width="20" src="{{ url_for("static", filename="images/trash.png") }}" /></button>
+                    </div>
+                    
                     {% for award_form in form.award_settings %}
                      <div class="semester-config">
                         {{ award_form.award_id() }}
@@ -47,7 +53,7 @@
                     <h3>ADMINISTRATORS</h3>
                     <div class="admin-config" id="admin-template" hidden>
                         <h4>Please type in an email address</h4>
-                        {{ form.admins[0](value="", id="admin-new", disabled=True)}}
+                        {{ form.admins[0](value="", disabled=True)}}
                         <button type="button" class="trashbtn" onclick="rmConfig(this)"><img width="20" src="{{ url_for("static", filename="images/trash.png") }}" /></button>
                     </div>
                     {% for admin in form.admins %}

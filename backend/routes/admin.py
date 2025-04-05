@@ -12,7 +12,7 @@ from backend.forms import CampusGroupsValidator, AttendanceForm, AddUserForm, Ed
 from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, abort, current_app
 from flask_login import current_user
 from sqlalchemy.orm import Session
-from sqlalchemy import func, or_
+from sqlalchemy import func, or_, delete
 
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
 
@@ -68,9 +68,10 @@ def org_settings(org: int):
                         award.active_semester_requirements = new_award.semester.data
                         award.name = new_award.award_name.data
 
-            print(form.admins.data)
-            removed_admins = [admin for admin in admins if admin not in form.admins.data]
-            db.session.query(Administrator).where(Administrator.profile.email.in_(removed_admins)).delete()
+            removed_admins = [admin[0] for admin in admins if admin not in form.admins.data]
+            admins_to_remove = db.session.query(Administrator).join(Profile).where(Profile.email.in_(removed_admins))
+            for admin in admins_to_remove:
+                db.session.delete(admin)
             new_admins = [admin for admin in form.admins.data if admin not in admins]
             for admin in new_admins:
                 user_id = db.session.query(Profile.profile_id).where(Profile.email == admin).one_or_none()
@@ -82,6 +83,9 @@ def org_settings(org: int):
             return redirect(
                 url_for("admin.org_settings", org=org)
             )
+
+        for fieldName, errorMessages in form.errors.items():
+            print(fieldName, errorMessages)
 
         return render_template("configuration-wics.html.j2", title="WiC Configuration", org_id=org, form=form)
 

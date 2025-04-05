@@ -2,7 +2,7 @@ import csv
 
 from flask import request
 from flask_wtf import FlaskForm
-from wtforms import EmailField, FileField, IntegerField, StringField, SelectField, SubmitField, FieldList, FormField, HiddenField
+from wtforms import EmailField, FileField, Form, IntegerField, StringField, SelectField, SubmitField, FieldList, FormField, HiddenField
 from wtforms.validators import DataRequired, ValidationError, Email, NumberRange, Length
 
 class NonValidatingSelectField(SelectField):
@@ -89,10 +89,10 @@ class BonusForm(FlaskForm):
     reason = StringField("Reason for points", validators=[Length(min=2, max=500, message="Please keep the reason between 2 and 500 characters."), DataRequired()])
 
 
-class AwardForm(FlaskForm):
+class AwardForm(Form):
     award_id = HiddenField("Award ID")
     semester = IntegerField("Required Semesters", validators=[NumberRange(min=1), DataRequired()])
-    award_name = StringField("Award Name", validators=[DataRequired(), Length(max=20)])
+    award_name = StringField("Award Name", validators=[DataRequired(), Length(max=40)])
 
 class WICConfigForm(FlaskForm):
     general_meetings_requirement = IntegerField("General Meetings Required", validators=[NumberRange(min=1), DataRequired()])

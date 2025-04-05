@@ -1,17 +1,11 @@
 from datetime import date
 from os import curdir
-from flask_wtf import FlaskForm
-from wtforms import FileField, IntegerField, StringField, SubmitField
 
-from backend.db import Event, Profile, commit, db
-from backend.routes.admin import EditUserForm
+from backend.db import Event, Profile, commit, db, Administrator, Award
+from backend.forms import EditUserForm
 
 from flask_login import current_user
-from flask import Blueprint, abort, jsonify, redirect, request, render_template, url_for
-from flask_wtf import FlaskForm
-
-from sqlalchemy import case, desc
-from wtforms import Form
+from flask import Blueprint, abort, current_app, jsonify, redirect, request, render_template, url_for
 
 student = Blueprint("student", __name__, static_folder="static/", template_folder="templates/")
 
@@ -22,6 +16,27 @@ def wic_homepage():
 @student.route("/coms")
 def coms_homepage():
     return render_template("coms-profile.html.j2", title="COMS")
+
+@student.route("/settings/<int:org>")
+def provide_org_config(org: int):
+    org_awards = db.session.query(Award.award_id, Award.name, Award.active_semester_requirements).where(Award.organization_id == org).all()
+    admins = db.session.query(Profile.email, Profile.first_name, Profile.last_name)\
+        .select_from(Administrator)\
+        .join(Profile, Administrator.profile_id == Profile.profile_id)\
+        .where(Administrator.organization_id == org).all()
+
+    return jsonify({
+        "config": current_app.config["ORG_SETTINGS"][str(org)],
+        "awards": [{
+            "award_id": award[0],
+            "award_name": award[1],
+            "semester_requirement": award[2]
+        } for award in org_awards],
+        "admins": [{
+            "admin_name": admin[1] + " " + admin[2],
+            "admin_email": admin[0]
+        } for admin in admins]
+    })
 
 @student.route("/profile", methods=["GET"])
 def return_profile():

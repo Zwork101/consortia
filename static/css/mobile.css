@@ -1,20 +1,25 @@
 @media screen and (max-width: 900px) {
-    .points-bar, .chart-background {
-        transform: rotate(-90deg);
-        width: 93vw;
-        top: 60vw;
-        right: 5vw;
-        position: absolute;
+    html {
+        max-width: 100%;
+        font-size: 0.8rem;
     }
-    .chart-background {
-        top:64vw;
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .points-bar, .chart-background {
+        transform: rotate(-90deg) translate(-50px, -60px);
+        width: 400px !important;
+        position: absolute !important;
     }
 
     .chart-background p {
         transform: rotate(90deg) translate(5vw, -11vw) !important;
         position: absolute;
         top: 57vw;
-        
     }
 
     .chart-placeholder{
@@ -40,4 +45,15 @@
         transform: translateY(500px);
     }
 
+    .calendar-sec {
+        position: absolute;
+        transform: translate(-15px, 1500px);
+        width: 80vw;
+    }
+    .day{
+        padding: 2px !important;
+    }
+    .calendar-status{
+        transform: translateX(50px);
+    }
 }

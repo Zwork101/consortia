@@ -35,60 +35,9 @@
         position: absolute;
         width: 80vw;
     }
-    /* nav mobile */
-    .nav-options-box {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 50px;
-        right: 15px;
-        background-color: #F76902;
-        width: 150px;
-        border-radius: 5px;
-        padding: 4px 0; 
-        z-index: 1;
-    
+
+    .coms{
+        transform: translateY(500px);
     }
-
-    .nav-options-box li {
-        padding: 10px 12px;
-        color: #fff;
-        background-color:#F76902;
-        display: block;
-        width: 100%;
-    }
-
-    .nav-options-box.show {
-        display: flex;
-    }
-
-    .menu-toggle {
-        display: block;
-        cursor: pointer;
-        color: #fff;
-        font-size: 30px;
-
-    }
-
-
-    .nav-options-box li:hover {
-        background-color: #000000; 
-        color: #000;
-    }
-
-    .navbar-dropdown button {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .dropdown-content-navbar {
-        width: 100%;
-        transform: translate(0, 0);
-    }
-  
-   
-
-        
-  
 
 }

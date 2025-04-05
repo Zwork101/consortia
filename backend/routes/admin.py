@@ -31,14 +31,14 @@ def org_settings(org: int):
     if org == Organizations.WIC:
 
         org_awards = db.session.query(Award.award_id, Award.name, Award.active_semester_requirements).where(Award.organization_id == org).all()
-        admins = db.session.query(Administrator.profile.email).where(Administrator.organization_id == org).all()
+        admins = db.session.query(Profile.email).select_from(Administrator).join(Profile, Administrator.profile_id == Profile.profile_id).where(Administrator.organization_id == org).all()
 
         form = WICConfigForm(
             **current_app.config["ORG_SETTINGS"][str(org)],
             award_settings=[
             {"award_id": award[0], "semester": award[2], "award_name": award[1]}
             for award in org_awards],
-            admins=admins
+            admins=map(lambda x: x[0], admins)
         )
 
         if form.validate_on_submit():
@@ -83,15 +83,13 @@ def org_settings(org: int):
                 url_for("admin.org_settings", org=org)
             )
 
+        return render_template("configuration-wics.html.j2", title="WiC Configuration", org_id=org, form=form)
+
     elif org == Organizations.COMS:
         form = WICConfigForm()
+        return render_template("confirmation-coms.html.j2", title="COMS Configuration", org_id=org, form=form)
     else:
         return abort(404)
-
-    if org == Organizations.WIC:
-        return render_template("configuration-wics.html.j2", title="WiC Configuration", org_id=org, form=form)
-    elif org == Organizations.COMS:
-        return render_template("confirmation-coms.html.j2", title="COMS Configuration", org_id=org, form=form)
 
 @admin.route("/admin/<int:org>/create", methods=["POST"])
 @admin_required

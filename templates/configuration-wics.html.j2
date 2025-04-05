@@ -1,11 +1,13 @@
 {% extends "base.html.j2" %}
 {% block head %}
+<script defer src="{{ url_for("static", filename="js/admin-config.js") }}"></script>
 {% endblock %}
 {% block content %}
 {% include "nav.html.j2" %} 
 
     <main>
         <form method="POST" action={{ url_for("admin.org_settings", org=org_id) }}>
+            {{ form.csrf_token }}
             <h2 style="margin-left: 80px; margin-top: 80px;">Settings</h2>
 
             <div class="config-sec">
@@ -13,73 +15,51 @@
                     <!--This is where meeting amounts can be configured-->
                     <h3>MEMBERSHIP REQUIREMENTS</h3>
                     <h4>General Meetings Required:</h4>
-                    <input type="text" id="GenMeet" name="GenMeetReq" value="DataHere">
+                    {{ form.general_meetings_requirement() }}
 
                     <h4>Committee Meetings Required:</h4>
-                    <input type="text" id="ComMeet" name="ComMeetReq" value="DataHere">
+                    {{ form.committee_meetings_requirement() }}
 
                     <h4>Social Events Required:</h4>
-                    <input type="text" id="SocEven" name="SocEvenReq" value="DataHere">
+                    {{ form.social_meetings_requirement() }}
 
                     <h4>Volunteering Required:</h4>
-                    <input type="text" id="Volun" name="VolunReq" value="DataHere">
+                    {{ form.volunteering_meetings_requirement() }}
                 </div>
 
                 <div class="config-sec-sub">
                     <!--This is where semester amounts can be configured-->
                     <h3>SEMESTER AWARDS</h3>
 
+                    {% for award_form in form.award_settings %}
                      <div class="semester-config">
-                        <select name="semesters" id="semesters">
-                            <option>Semester 1</option>
-                            <option>Semester 2</option>
-                            <option>Semester 3</option>
-                            <option>Semester 4</option>
-                            <option>Semester 5</option>
-                            <option>Semester 6</option>
-                            <option>Semester 7</option>
-                            <option>Semester 8</option>
-                            <option>Semester 9</option>
-                            <option>Semester 10</option>
-                        </select>
-                        <input type="text" id="reward" name="reward" value="DataHere">
-                        <button class="trashbtn"><img width="20" src="{{ url_for("static", filename="images/trash.png") }}" /></button>
+                        {{ award_form.award_id() }}
+                        {{ award_form.semester() }}
+                        {{ award_form.award_name() }}
+                        <button type="button" class="trashbtn" onclick="rmConfig(this)"><img width="20" src="{{ url_for("static", filename="images/trash.png") }}" /></button>
                     </div>
-                     <div class="semester-config">
-                        <select name="semesters" id="semesters">
-                            <option>Semester 1</option>
-                            <option>Semester 2</option>
-                            <option>Semester 3</option>
-                            <option>Semester 4</option>
-                            <option>Semester 5</option>
-                            <option>Semester 6</option>
-                            <option>Semester 7</option>
-                            <option>Semester 8</option>
-                            <option>Semester 9</option>
-                            <option>Semester 10</option>
-                        </select>
-                        <input type="text" id="reward" name="reward" value="DataHere">
-                        <button class="trashbtn"><img width="20" src="../static/images/trash.png" /></button>
-                    </div>
-                    <button class="semester-report-btn addsem">Add Semester</button>  <!--If this button is pressed, a row should be added-->
+                    {% endfor %}
+                    <button type="button" class="semester-report-btn addsem" onclick="addAward()">Add Semester</button>  <!--If this button is pressed, a row should be added-->
                 </div>
 
                 <div class="config-sec-sub" id="last-of-config">
                     <!--This is where admins can be configured-->
                     <h3>ADMINISTRATORS</h3>
+                    <div class="admin-config" id="admin-template" hidden>
+                        <h4>Please type in an email address</h4>
+                        {{ form.admins[0](value="", id="admin-new", disabled=True)}}
+                        <button type="button" class="trashbtn" onclick="rmConfig(this)"><img width="20" src="{{ url_for("static", filename="images/trash.png") }}" /></button>
+                    </div>
+                    {% for admin in form.admins %}
                     <div class="admin-config">
                         <h4>Please type in an email address</h4>
-                        <input type="text" id="admin" name="admin" value="MeetMax"> <!--Email address should be given admin priviliges for that group-->
-                        <button class="trashbtn"><img width="20" src="{{ url_for("static", filename="images/trash.png") }}" /></button> <!--If this button is pressed, this row should be deleted-->
+                        {{ admin() }} <!--Email address should be given admin priviliges for that group-->
+                        <button type="button" class="trashbtn" onclick="rmConfig(this)"><img width="20" src="{{ url_for("static", filename="images/trash.png") }}" /></button> <!--If this button is pressed, this row should be deleted-->
                     </div>
-                    <div class="admin-config">
-                        <h4>Please type in an email address</h4>
-                        <input type="text" id="admin" name="admin" value="MeetMax">
-                        <button class="trashbtn"><img width="20" src="{{ url_for("static", filename="images/trash.png") }}" /></button>
-                    </div>
-                    <button style="margin-top:16px" class="semester-report-btn addsem">Add Administrator</button> <!--If this button is pressed, a row should be added-->
+                    {% endfor %}
+                    <button type="button" style="margin-top:16px" class="semester-report-btn addsem" onclick="addAdmin()">Add Administrator</button> <!--If this button is pressed, a row should be added-->
                 </div>
-                <button style="margin:20px; float:right" class="wicscomsbutton">Save Changes</button>
+                <button type="submit" style="margin:20px; float:right" class="wicscomsbutton">Save Changes</button>
             </div>
         </form>
     </main>

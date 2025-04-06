@@ -1,9 +1,10 @@
 from datetime import datetime, timedelta, timezone
-from enum import Enum as EnumClass
+from enum import Enum as EnumClass, member
 from types import MethodType
 from typing import Any, Optional
 import logging
 
+from flask import current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
@@ -119,6 +120,8 @@ class Profile(db.Model, UserMixin):
         if current_semester is None:
             current_semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
         
+        member_conf =  current_app.config["ORG_SETTINGS"][str(org)]
+
         if org == Organizations.WIC:
             general_meetings = 0
             committee = 0
@@ -136,7 +139,10 @@ class Profile(db.Model, UserMixin):
                 elif event.meeting_type == MeetingType.VOLUNTEER:
                     volunteer += 1
 
-            return (general_meetings >= 14) and (committee >= 6) and (volunteer >= 1) and (social_event >= 1)
+            return (general_meetings >= member_conf['general_meetings_requirement']) and \
+                    (committee >= member_conf['committee_meetings_requirement']) and \
+                    (volunteer >= member_conf['social_meetings_requirement']) and \
+                    (social_event >= member_conf['volunteering_meetings_requirement'])
         
         elif org == Organizations.COMS:
             # Get current semester events for COMS
@@ -209,6 +215,8 @@ class Profile(db.Model, UserMixin):
     def membership_sql(cls, org: int):
         current_semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
         
+        member_conf =  current_app.config["ORG_SETTINGS"][str(org)]
+
         if org == Organizations.WIC:
             general_meeting_query = db.session.query(func.count(Event.event_id))\
                 .select_from(Event)\
@@ -243,7 +251,10 @@ class Profile(db.Model, UserMixin):
                 .scalar_subquery()
 
             return case(
-                ((general_meeting_query >= 14) & (committee_meeting_query >= 6) & (social_meeting_query >= 1) & (volunteer_meeting_query >= 1), "active"),
+                ((general_meeting_query >= member_conf['general_meetings_requirement']) & \
+                    (committee_meeting_query >= member_conf['committee_meetings_requirement']) & \
+                    (social_meeting_query >= member_conf['social_meetings_requirement']) & \
+                    (volunteer_meeting_query >= member_conf['volunteering_meetings_requirement']), "active"),
                 else_="inactive"
             )
         
@@ -479,9 +490,6 @@ class Profile(db.Model, UserMixin):
                     {
                         "award_id": award.award_id,
                         "name": award.name,
-                        "description": award.description,
-                        "icon_path": award.icon_path,
-                        "prize": award.prize,
                         "award_date": db.session.query(ProfileAward.award_date).where(ProfileAward.profile_id == self.profile_id).where(ProfileAward.award_id == award.award_id).first()[0].isoformat()
                     } for award in self.awards if org_id is None or award.organization_id == org_id
                 ],
@@ -514,9 +522,9 @@ class Award(db.Model):
 
     award_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
     name: Mapped[str]
-    description: Mapped[str]
-    icon_path: Mapped[str]
-    prize: Mapped[str]
+    # description: Mapped[str]
+    # icon_path: Mapped[str]
+    # prize: Mapped[str]
     organization_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
     active_semester_requirements: Mapped[int]
 
@@ -690,18 +698,12 @@ def db_testing_setup():
     wic_award = Award(
         organization_id = Organizations.WIC,
         name = "being super cool award",
-        description = "For gamers only",
-        icon_path = "../static/images/award.webp",
-        prize = "6 Dining Dollars",
         active_semester_requirements = 2
     )
 
     coms_award = Award(
         organization_id = Organizations.COMS,
         name = "being super cool award",
-        description = "For gamers only",
-        icon_path = "../static/images/award.webp",
-        prize = "6 Dining Dollars",
         active_semester_requirements = 1
     )
     
@@ -905,6 +907,14 @@ def create_bonus(point_value: int, recipient_id: int, giver_id: int, reason: str
     )
     db.session.add(grant)
     return grant
+
+def award_user(award_id: int, profile_id: int):
+    award = ProfileAward(
+        profile_id=profile_id,
+        award_id=award_id,
+        award_date=datetime.now(tz=timezone.utc)
+    )
+    return award
 
 def commit(*objects: Base):
     if objects:

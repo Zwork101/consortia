@@ -1,108 +1,18 @@
-import csv
 from datetime import datetime
 import os
 import logging
+from time import sleep
 
-from backend.email import send_email
-from backend.db import Organizations, ProfileAward, create_attendance, commit, Event, Profile, create_bonus
+from configs import update_org_settings
+from backend.email import create_batches, generate_award_email, get_token, send_email
+from backend.db import Administrator, Award, Organizations, ProfileAward, RoleType, award_user, create_attendance, commit, Event, Profile, create_bonus, db, make_admin
 from backend.auth import admin_required
+from backend.forms import CampusGroupsValidator, AttendanceForm, AddUserForm, EditUserForm, SelectUserForm, serachId, BonusForm, WICConfigForm
 
-from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, abort
-from flask_wtf import FlaskForm
+from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, abort, current_app
 from flask_login import current_user
-from wtforms import FileField, IntegerField, StringField, SelectField
-from wtforms.validators import DataRequired, ValidationError, Email
-
-from backend.db import Award, Event, commit, create_attendance, Profile, db
-
 from sqlalchemy.orm import Session
-from sqlalchemy import func, or_
-from wtforms import FileField, IntegerField, StringField, SubmitField
-from wtforms.validators import DataRequired, ValidationError, NumberRange, Length
-
-
-class NonValidatingSelectField(SelectField):
-    """
-    Attempt to make an open ended select multiple field that can accept dynamic
-    choices added by the browser.
-    """
-    def pre_validate(self, form):
-        pass
-
-
-class CampusGroupsValidator:
-
-    def __init__(self, parse_error_msg: str, invalid_fields_msg: str):
-        self.parse_error_msg = parse_error_msg
-        self.invalid_fields_msg = invalid_fields_msg
-
-    def __call__(self, _: FlaskForm, field: FileField):
-        reader = csv.DictReader(line.decode() for line in request.files[field.name])
-        if reader.fieldnames is None or "Email" not in reader.fieldnames:
-            raise ValidationError(self.invalid_fields_msg)
-        request.files[field.name].seek(0)  # Reset stream to start to re-read later
-        
-
-class AttendanceForm(FlaskForm):
-    meeting_id = NonValidatingSelectField("Meeting", validators=[DataRequired("Please provide a meeting ID")], choices=[("", "Select an Event")])
-    csv_data = FileField("Data Upload", validators=[DataRequired("Please upload a CSV file with attendance data"), CampusGroupsValidator(
-        "Unable to parse attendance file, ensure correct file was uploaded.",
-        "Invalid fields in CSV file, missing 'Email' column. Ensure correct file was uploaded.",
-    )])
-
-
-class AddUserForm(FlaskForm):
-    email = StringField("Email", validators=[DataRequired("Email is required"), Email(message="Invalid email address")])
-    first_name = StringField("First Name", validators=[DataRequired("First name is required")])
-    last_name = StringField("Last Name", validators=[DataRequired("Last name is required")])
-    rit_id = IntegerField("RIT ID (Optional)")
-    graduation_year = IntegerField("Graduation Year (Optional)")
-    degree = StringField("Degree (Optional)")
-    pronouns = StringField("Pronouns (Optional)")
-    avatar_path = StringField("Avatar Path (Optional)")
-
-    def validate_email(self, field):
-        if not field.data.lower().endswith("@rit.edu"):
-            raise ValidationError("Email must be a @rit.edu email address")
-
-
-class EditUserForm(FlaskForm):
-    email = StringField("Email", validators=[DataRequired("Email is required"), Email(message="Invalid email address")])
-    first_name = StringField("First Name", validators=[DataRequired("First name is required")])
-    last_name = StringField("Last Name", validators=[DataRequired("Last name is required")])
-    # rit_id = IntegerField("RIT ID (Optional)")
-    graduation_year = IntegerField("Graduation Year (Optional)")
-    degree = StringField("Degree (Optional)")
-    pronouns = StringField("Pronouns (Optional)")
-    # avatar_path = StringField("Avatar Path (Optional)")
-    t_shirt_size = SelectField("Select a T-Shirt Size", choices=[
-        ("Unset", "Unset"),
-        ("Small", "Small"),
-        ("Medium", "Medium"),
-        ("Large", "Large"),
-        ("X-Large", "X-Large"),
-        ("XX-Large", "XX-Large"),
-    ])
-    submit = SubmitField("Update User")
-
-    def validate_email(self, field):
-        if not field.data.lower().endswith("@rit.edu"):
-            raise ValidationError("Email must be a @rit.edu email address")
-
-
-class SelectUserForm(FlaskForm):
-    user_id = IntegerField("User ID", validators=[DataRequired("Please provide a user ID")])
-
-# creates a search bar and searches rit id
-class serachId(FlaskForm):
-    rit_id = StringField("RIT ID", validators=[DataRequired("Please provide a RIT ID")], render_kw = {'hidden': 'true'})
-    submit = SubmitField("Check RIT ID")
-
-class BonusForm(FlaskForm):
-    giver_id = IntegerField("Giver ID", validators=[DataRequired("Please provide a profile ID to grant the points."), DataRequired()])
-    point_value = IntegerField("Point Value", validators=[NumberRange(min=1, message="Please provide a point value greater than 0"), DataRequired()])
-    reason = StringField("Reason for points", validators=[Length(min=2, max=500, message="Please keep the reason between 2 and 500 characters."), DataRequired()])
-
+from sqlalchemy import func, or_, delete
 
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
 
@@ -110,9 +20,80 @@ admin = Blueprint("admin", __name__, static_folder="static/", template_folder="t
 @admin_required
 def dashboard(org: int):
     if org == Organizations.WIC:
-        return render_template("database-view-wic.html.j2", title="WIC Dashboard", upload_form=AttendanceForm())
+        return render_template("database-view-wic.html.j2", title="WIC Dashboard", upload_form=AttendanceForm(), org_id=org)
     elif org == Organizations.COMS:
-        return render_template("database-view-coms.html.j2", title="COMS Dashboard", upload_form=AttendanceForm())
+        return render_template("database-view-coms.html.j2", title="COMS Dashboard", upload_form=AttendanceForm(), org_id=org)
+    return abort(404)
+
+@admin.route("/admin/<int:org>/settings", methods=["GET", "POST"])
+@admin_required
+def org_settings(org: int):
+    if org == Organizations.WIC:
+
+        org_awards = db.session.query(Award.award_id, Award.name, Award.active_semester_requirements).where(Award.organization_id == org).all()
+        admins = db.session.query(Profile.email).select_from(Administrator).join(Profile, Administrator.profile_id == Profile.profile_id).where(Administrator.organization_id == org).all()
+
+        form = WICConfigForm(
+            **current_app.config["ORG_SETTINGS"][str(org)],
+            award_settings=[
+            {"award_id": award[0], "semester": award[2], "award_name": award[1]}
+            for award in org_awards],
+            admins=map(lambda x: x[0], admins)
+        )
+
+        if form.validate_on_submit():
+            update_org_settings(org, 
+                general_meetings_requirement = form.general_meetings_requirement.data,
+                committee_meetings_requirement = form.committee_meetings_requirement.data,
+                social_meetings_requirement = form.social_meetings_requirement.data,
+                volunteering_meetings_requirement = form.volunteering_meetings_requirement.data
+            )
+            for award in org_awards:
+                if award[0] not in map(lambda x: x.award_id.data, form.award_settings):
+                    db.session.query(Award).where(Award.award_id == award[0]).delete()
+
+            for new_award in form.award_settings:
+                existing_award = next((oa for oa in org_awards if oa[0] == new_award.award_id.data), None)
+                if existing_award is None:
+                    db.session.add(
+                        Award(
+                            name = new_award.award_name.data,
+                            organization_id = org,
+                            active_semester_requirements = new_award.semester.data
+                        )
+                    )
+                else:
+                    if existing_award[2] != new_award.semester.data or existing_award[1] != new_award.award_name.data:
+                        award = db.session.get_one(Award, existing_award[0])
+                        award.active_semester_requirements = new_award.semester.data
+                        award.name = new_award.award_name.data
+
+            removed_admins = [admin[0] for admin in admins if admin not in form.admins.data]
+            admins_to_remove = db.session.query(Administrator).join(Profile).where(Profile.email.in_(removed_admins))
+            for admin in admins_to_remove:
+                db.session.delete(admin)
+            new_admins = [admin for admin in form.admins.data if admin not in admins]
+            for admin in new_admins:
+                user_id = db.session.query(Profile.profile_id).where(Profile.email == admin).one_or_none()
+                if user_id is not None:
+                    make_admin(user_id[0], org, RoleType.ADMIN)
+
+            commit()
+
+            return redirect(
+                url_for("admin.org_settings", org=org)
+            )
+
+        for fieldName, errorMessages in form.errors.items():
+            print(fieldName, errorMessages)
+
+        return render_template("configuration-wics.html.j2", title="WiC Configuration", org_id=org, form=form)
+
+    elif org == Organizations.COMS:
+        form = WICConfigForm()
+        return render_template("confirmation-coms.html.j2", title="COMS Configuration", org_id=org, form=form)
+    else:
+        return abort(404)
 
 @admin.route("/admin/<int:org>/create", methods=["POST"])
 @admin_required
@@ -447,8 +428,6 @@ def worthy_members(org: int):
 
     reached_active = [p for p in org_profiles if p.membership_sql(org)]
 
-    print(reached_active)
-
     for profile in reached_active:
         award = db.session.query(Award.award_id, Award.name, Award.active_semester_requirements)\
             .filter(Award.active_semester_requirements == profile.membership_semesters(org))\
@@ -471,6 +450,44 @@ def worthy_members(org: int):
             "award_requirement": award[1][2]
         } for award in awards
     ])
+
+@admin.route("/admin/awards/<int:org>/notify", methods=["POST"])
+@admin_required
+def send_awards(org: int):
+    selected_users = request.get_json()
+    awards = []
+    
+    for user in selected_users:
+        awards.append(award_user(user['award_id'], user['profile_id']))
+
+    commit(*awards)
+
+    profiles = [Profile.query.get(int(u['profile_id'])) for u in selected_users]
+    awards = [Award.query.get(int(u['award_id'])) for u in selected_users]
+
+    emails = []
+
+    for profile, award in zip(profiles, awards):
+        emails.append(
+            generate_award_email(profile, award, org)
+        )
+
+    cred_emails = get_token(org)
+
+    if not cred_emails:
+        return jsonify({
+            "success": False,
+            "url": url_for("oauth.authorize_email", org=org)
+            })
+
+    for i, batch in enumerate(create_batches(emails, cred_emails[1], cred_emails[0], "You've earned a reward!")):
+        if i != 0:
+            sleep(2)
+        batch.execute()
+
+    return jsonify({
+        "success": True
+    })
 
 @admin.route("/admin/events/<int:org>", methods=["GET"])
 @admin_required

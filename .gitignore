@@ -9,6 +9,7 @@ venv/
 
 # Ignore database file
 instance/*
+settings.json
 
 .vs/
 

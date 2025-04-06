@@ -64,4 +64,8 @@ def callback():
 		email = session['email_auth'][1]
 	)
 	commit(t)
+	
+	if 'oauth-redirect' in session:
+		return redirect(session['oauth-redirect'])
+
 	return "Oauth2 dance complete"

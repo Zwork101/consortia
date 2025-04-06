@@ -103,6 +103,7 @@ function historyBuilder(mode, userObject, allMeetingsObject){
 
     let sortedUserMeetings = meetingsSortedBySemester(userObject.profile.attendance, sortingOrder.Descending);
     let userAwards = convertAwardDatesToCustomTimestamp(userObject.profile.awards);
+    console.log(userAwards);
     sortedUserMeetings.forEach(userSemester => {
         semesterDateData = semesterTermAndYear(userSemester.semester);
         let isUserActive = activeUser.NonActive;
@@ -145,8 +146,10 @@ function historyBuilder(mode, userObject, allMeetingsObject){
             if (userSemesterPoints.mentorshipPoints > 0){
                 isUserActive = activeUser.Active;
             }
-            // Award image if requirements were reached or exceeded
-            if (userSemesterTotalPoints >= minPointRequirements){
+            
+            // Award image if year matches with userAwards
+            let findAward = userAwards.find(awardYear => awardYear == userSemester.semester);
+            if (findAward != undefined){
                 awardImage = awardHTML;
             }
         } else {

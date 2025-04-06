@@ -147,7 +147,6 @@ class Profile(db.Model, UserMixin):
         elif org == Organizations.COMS:
             # Get current semester events for COMS
             org_events = [e for e in self.attendance if (e.organizer_id == org and e.semester == current_semester)]
-            print(f"Org Events: {org_events}")
             total_points = 0
             
             # General meeting attendance points
@@ -162,15 +161,15 @@ class Profile(db.Model, UserMixin):
             if total_general_meetings > 0:
                 attended_meetings = len([e for e in org_events if e.meeting_type == MeetingType.GENERAL])
                 attendance_percent = (attended_meetings / total_general_meetings) * 100
-                
-                if attendance_percent >= 100:
-                    total_points += 3
-                elif attendance_percent >= 75:
-                    total_points += 2
-                elif attendance_percent >= 50:
-                    total_points += 1
 
-                print(f"General Attended: {attended_meetings}")
+                total_points += max([p['points'] for p in member_conf['attendance'] if p['percent'] <= attendance_percent], default=0)
+                
+                # if attendance_percent >= 100:
+                #     total_points += 3
+                # elif attendance_percent >= 75:
+                #     total_points += 2
+                # elif attendance_percent >= 50:
+                #     total_points += 1
             
             # Volunteer work points
             volunteer_hours = 0
@@ -180,30 +179,30 @@ class Profile(db.Model, UserMixin):
                 if e.meeting_type == MeetingType.VOLUNTEER:
                     volunteer_hours += e.get_hours(self.profile_id)
 
-            print(volunteer_hours)
+            total_points += max([p['points'] for p in member_conf['volunteer'] if p['threshold'] <= volunteer_hours], default=0)
             
-            if volunteer_hours >= 9:
-                total_points += 4
-            elif volunteer_hours >= 6:
-                total_points += 3
-            elif volunteer_hours >= 3:
-                total_points += 2
-            elif volunteer_hours >= 1:
-                total_points += 1
+            # if volunteer_hours >= 9:
+            #     total_points += 4
+            # elif volunteer_hours >= 6:
+            #     total_points += 3
+            # elif volunteer_hours >= 3:
+            #     total_points += 2
+            # elif volunteer_hours >= 1:
+            #     total_points += 1
             
             # Mentorship program points
             mentorship_meetings = [e for e in org_events if e.meeting_type == MeetingType.MENTORSHIP]
             if mentorship_meetings:
                 # Base 3 points for being in the program
-                mentorship_points = 3 + len(mentorship_meetings)
+                mentorship_points = member_conf['mentorship_minimum'] + len(mentorship_meetings)
                 # Cap at 9 points
-                total_points += min(mentorship_points, 9)
+                total_points += min(mentorship_points, member_conf['mentorship_maximum'])
             
             # Add bonus points from miscellaneous contributions
             total_points += self.bonus_points(org)
             
             # Return True if they have 16 or more points
-            return total_points >= 16
+            return total_points >= member_conf['required_points']
         else:
             raise ValueError(f"Unknown Organization: {org}")
 
@@ -280,12 +279,19 @@ class Profile(db.Model, UserMixin):
             )
             
             # Calculate general meeting points
-            general_meeting_points = case(
-                (attendance_percent >= 100, 3),
-                (attendance_percent >= 75, 2),
-                (attendance_percent >= 50, 1),
-                else_=0
-            )
+            requirement_list = []
+            for requirement in sorted(member_conf['attendance'], key=lambda req: req['percent'], reverse=True):
+                requirement_list.append(
+                    (attendance_percent >= requirement['percent'], requirement['points'])
+                )
+            general_meeting_points = case(*requirement_list, else_=0)
+
+            # general_meeting_points = case(
+            #     (attendance_percent >= 100, 3),
+            #     (attendance_percent >= 75, 2),
+            #     (attendance_percent >= 50, 1),
+            #     else_=0
+            # )
             
             # Calculate volunteer hours
             volunteer_hours = db.session.query(func.coalesce(func.sum(attendance_table.c.hours), 0))\
@@ -298,13 +304,20 @@ class Profile(db.Model, UserMixin):
                 .scalar_subquery()
             
             # Calculate volunteer points
-            volunteer_points = case(
-                (volunteer_hours >= 9, 4),
-                (volunteer_hours >= 6, 3),
-                (volunteer_hours >= 3, 2),
-                (volunteer_hours >= 1, 1),
-                else_=0
-            )
+            requirement_list = []
+            for requirement in sorted(member_conf['volunteer'], key=lambda req: req['threshold'], reverse=True):
+                requirement_list.append(
+                    (attendance_percent >= requirement['threshold'], requirement['points'])
+                )
+            volunteer_points = case(*requirement_list, else_=0)
+
+            # volunteer_points = case(
+            #     (volunteer_hours >= 9, 4),
+            #     (volunteer_hours >= 6, 3),
+            #     (volunteer_hours >= 3, 2),
+            #     (volunteer_hours >= 1, 1),
+            #     else_=0
+            # )
             
             # Calculate mentorship meetings
             mentorship_meetings = db.session.query(func.count(Event.event_id))\
@@ -317,8 +330,8 @@ class Profile(db.Model, UserMixin):
                 .scalar_subquery()
             
             mentorship_points = case(
-                ((mentorship_meetings > 0) & (3 + mentorship_meetings <= 9), 3 + mentorship_meetings),
-                ((mentorship_meetings > 0) & (3 + mentorship_meetings > 9), 9),
+                ((mentorship_meetings > 0) & (member_conf['mentorship_minimum'] + mentorship_meetings <= member_conf['mentorship_maximum']), member_conf['mentorship_minimum'] + mentorship_meetings),
+                ((mentorship_meetings > 0) & (member_conf['mentorship_minimum'] + mentorship_meetings > member_conf['mentorship_maximum']), member_conf['mentorship_maximum']),
                 else_=0
             )
             
@@ -329,7 +342,7 @@ class Profile(db.Model, UserMixin):
             total_points = general_meeting_points + volunteer_points + mentorship_points + bonus_points
             
             return case(
-                (total_points >= 16, "active"),
+                (total_points >= member_conf['required_points'], "active"),
                 else_="inactive"
             )
         

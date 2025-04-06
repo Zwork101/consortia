@@ -32,7 +32,6 @@ def org_settings(org: int):
     admins = db.session.query(Profile.email).select_from(Administrator).join(Profile, Administrator.profile_id == Profile.profile_id).where(Administrator.organization_id == org).all()
 
     if org == Organizations.WIC:
-
         form = WICConfigForm(
             **current_app.config["ORG_SETTINGS"][str(org)],
             award_settings=[
@@ -40,55 +39,6 @@ def org_settings(org: int):
             for award in org_awards],
             admins=map(lambda x: x[0], admins)
         )
-
-        if form.validate_on_submit():
-            update_org_settings(org, 
-                general_meetings_requirement = form.general_meetings_requirement.data,
-                committee_meetings_requirement = form.committee_meetings_requirement.data,
-                social_meetings_requirement = form.social_meetings_requirement.data,
-                volunteering_meetings_requirement = form.volunteering_meetings_requirement.data
-            )
-            for award in org_awards:
-                if award[0] not in map(lambda x: x.award_id.data, form.award_settings):
-                    db.session.query(Award).where(Award.award_id == award[0]).delete()
-
-            for new_award in form.award_settings:
-                existing_award = next((oa for oa in org_awards if oa[0] == new_award.award_id.data), None)
-                if existing_award is None:
-                    db.session.add(
-                        Award(
-                            name = new_award.award_name.data,
-                            organization_id = org,
-                            active_semester_requirements = new_award.semester.data
-                        )
-                    )
-                else:
-                    if existing_award[2] != new_award.semester.data or existing_award[1] != new_award.award_name.data:
-                        award = db.session.get_one(Award, existing_award[0])
-                        award.active_semester_requirements = new_award.semester.data
-                        award.name = new_award.award_name.data
-
-            removed_admins = [admin[0] for admin in admins if admin not in form.admins.data]
-            admins_to_remove = db.session.query(Administrator).join(Profile).where(Profile.email.in_(removed_admins))
-            for admin in admins_to_remove:
-                db.session.delete(admin)
-            new_admins = [admin for admin in form.admins.data if admin not in admins]
-            for admin in new_admins:
-                user_id = db.session.query(Profile.profile_id).where(Profile.email == admin).one_or_none()
-                if user_id is not None:
-                    make_admin(user_id[0], org, RoleType.ADMIN)
-
-            commit()
-
-            return redirect(
-                url_for("admin.org_settings", org=org)
-            )
-
-        for fieldName, errorMessages in form.errors.items():
-            print(fieldName, errorMessages)
-
-        return render_template("configuration-wics.html.j2", title="WiC Configuration", org_id=org, form=form)
-
     elif org == Organizations.COMS:
         form = COMSConfigForm(
             **current_app.config["ORG_SETTINGS"][str(org)],
@@ -97,13 +47,75 @@ def org_settings(org: int):
             for award in org_awards],
             admins=map(lambda x: x[0], admins)
         )
-
-        if form.validate_on_submit():
-            pass
-
-        return render_template("configuration-coms.html.j2", title="COMS Configuration", org_id=org, form=form)
     else:
-        return abort(404)
+        abort(404)
+
+
+
+    if form.validate_on_submit():
+        if org == Organizations.WIC:
+            update_org_settings(org, 
+                general_meetings_requirement = form.general_meetings_requirement.data,
+                committee_meetings_requirement = form.committee_meetings_requirement.data,
+                social_meetings_requirement = form.social_meetings_requirement.data,
+                volunteering_meetings_requirement = form.volunteering_meetings_requirement.data
+            )
+        elif org == Organizations.COMS:
+            update_org_settings(org,
+                attendance = [
+                    {"percent": requirement.percent.data, "points": requirement.points.data}
+                for requirement in form.attendance],
+                volunteer = [
+                    {"threshold": requirement.threshold.data, "points": requirement.points.data}
+                for requirement in form.volunteer],
+                mentorship_minimum = form.mentorship_minimum.data,
+                mentorship_maximum = form.mentorship_maximum.data,
+                required_points = form.required_points.data
+            )
+
+        for award in org_awards:
+            if award[0] not in map(lambda x: x.award_id.data, form.award_settings):
+                db.session.query(Award).where(Award.award_id == award[0]).delete()
+
+        for new_award in form.award_settings:
+            existing_award = next((oa for oa in org_awards if oa[0] == new_award.award_id.data), None)
+            if existing_award is None:
+                db.session.add(
+                    Award(
+                        name = new_award.award_name.data,
+                        organization_id = org,
+                        active_semester_requirements = new_award.semester.data
+                    )
+                )
+            else:
+                if existing_award[2] != new_award.semester.data or existing_award[1] != new_award.award_name.data:
+                    award = db.session.get_one(Award, existing_award[0])
+                    award.active_semester_requirements = new_award.semester.data
+                    award.name = new_award.award_name.data
+
+        removed_admins = [admin[0] for admin in admins if admin not in form.admins.data]
+        admins_to_remove = db.session.query(Administrator).join(Profile).where(Profile.email.in_(removed_admins))
+        for admin in admins_to_remove:
+            db.session.delete(admin)
+        new_admins = [admin for admin in form.admins.data if admin not in admins]
+        for admin in new_admins:
+            user_id = db.session.query(Profile.profile_id).where(Profile.email == admin).one_or_none()
+            if user_id is not None:
+                make_admin(user_id[0], org, RoleType.ADMIN)
+
+        commit()
+
+        return redirect(
+            url_for("admin.org_settings", org=org)
+        )
+
+    for fieldName, errorMessages in form.errors.items():
+        print(fieldName, errorMessages)
+
+    if org == Organizations.WIC:
+        return render_template("configuration-wics.html.j2", title="WiC Configuration", org_id=org, form=form)
+    elif org == Organizations.COMS:
+        return render_template("configuration-coms.html.j2", title="COMS Configuration", org_id=org, form=form)
 
 @admin.route("/admin/<int:org>/create", methods=["POST"])
 @admin_required

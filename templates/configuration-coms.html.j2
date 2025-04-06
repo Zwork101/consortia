@@ -14,11 +14,11 @@
                     <!--This is where point amounts can be configured-->
                     <h3>MEMBERSHIP REQUIREMENTS</h3>
                     <h4>General Meeting Attendance:</h4>
-                    <div class="requirement-config" hidden id="percentage-template">
+                    <div class="percentage-config" hidden id="percentage-template">
                         <label for="attendance-0-percent">Attendance Percentage</label>
-                        <input disabled id="attendance-0-percent" max="100" min="1" name="attendance-0-percent" required="" type="number" value="100">
+                        <input disabled id="attendance-0-percent" max="100" min="1" name="attendance-0-percent" required="" type="number">
                         <label for="attendance-0-points">Point Value</label>
-                        <input disabled id="attendance-0-points" min="1" name="attendance-0-points" required="" type="number" value="3">
+                        <input disabled id="attendance-0-points" min="1" name="attendance-0-points" required="" type="number">
                         <button type="button" class="trashbtn" onclick="rmConfig(this)"><img width="20" src="/static/images/trash.png"></button>
                     </div>
                     <div id="percentages">
@@ -32,9 +32,16 @@
                         </div>
                         {% endfor %}
                         <button type="button" class="semester-report-btn addsem" onclick="addPercentage()">Add Percentage</button>
-                    <div>
+                    </div>
 
                     <h4>Volunteer Hour Thresholds:</h4>
+                    <div class="threshold-config" hidden id="threshold-template">
+                            <label for="volunteer-0-threshold">Hour Threshold</label>
+                            <input disabled id="volunteer-0-threshold" min="1" name="volunteer-0-threshold" required="" type="number">
+                            <label for="volunteer-0-points">Point Value</label>
+                            <input disabled id="volunteer-0-points" min="1" name="volunteer-0-points" required="" type="number">
+                            <button type="button" class="trashbtn" onclick="rmConfig(this)"><img width="20" src="/static/images/trash.png"></button>
+                    </div>
                     <div id="thresholds">
                         {% for hours in form.volunteer %}
                         <div class="threshold-config">
@@ -43,7 +50,7 @@
                             {{ hours.points.label }}
                             {{ hours.points() }}
                             <button type="button" class="trashbtn" onclick="rmConfig(this)"><img width="20" src="{{ url_for("static", filename="images/trash.png") }}" /></button>
-                        <div class="requirement-config">
+                        </div>
                         {% endfor %}
                         <button type="button" class="semester-report-btn addsem" onclick="addThreshold()">Add Threshold</button>
                     </div>

@@ -37,6 +37,25 @@ function getMeetingData(listOfMeetings){
 }
 
 /**
+ * Draws the progress bar on the WIC webpage. This does not return anything.
+ * @param {String} mainBarID The CSS ID of the main element to target.
+ * @param {String} fillerBarID The CSS ID of the filler (gray) bar to target.
+ * @param {Number} minMeetingsRequirements A number representing the minimum number of meetings one needs to attend.
+ * @param {Number} meetingsAttended A number representing the actual number of meetings attended.
+ * @param {Number} meetingMaxUIValue A number representing the upper bounds of the meeting bar. This is for the UI of the meeting bar.
+ */
+function drawProgressBar(mainBarID, fillerBarID, minMeetingsRequirements, meetingsAttended, meetingMaxUIValue){
+
+  if (meetingsAttended < minMeetingsRequirements){
+    let polyfillAmount = minSocialEventsRequirements - userMeetingsForCurrentSemester.socialEvents;
+    // add code for gray polyfill
+    document.getElementByID(fillerBarID).style.width = `${(polyfillAmount/meetingMaxUIValue)*100}%`;
+  }
+
+  document.getElementById(mainBarID).style.width = `${(meetingsAttended/meetingMaxUIValue)*100}%`;
+}
+
+/**
  * Display values for the bar on the "Current Semester" tab
  * @param {Object} userMeetingsForCurrentSemester An object representing the user with values from the most recent semester
  * @param {Object} allMeetingsForCurrentSemester An object representing all meetings with values from the most recent semester
@@ -66,10 +85,16 @@ function showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemest
   } else {
     meetingMaxUIValue = maxEvents;
   }
-  document.getElementById("social-total-points-bar").style.width = `${(userMeetingsForCurrentSemester.socialEvents/meetingMaxUIValue)*100}%`;
-  document.getElementById("volunteering-total-points-bar").style.width = `${(userMeetingsForCurrentSemester.voluenteeringEvents/meetingMaxUIValue)*100}%`;
-  document.getElementById("committee-total-points-bar").style.width = `${(userMeetingsForCurrentSemester.committeeEvents/meetingMaxUIValue)*100}%`;
-  document.getElementById("general-total-points-bar").style.width = `${(userMeetingsForCurrentSemester.generalEvents/meetingMaxUIValue)*100}%`;
+
+  let minSocialEventsRequirements = 1;
+  let minVolunteeringEventsRequirements = 1;
+  let minCommitteeEventsRequirements = 6;
+  let minGeneralEventsRequirements = 14;
+
+  drawProgressBar("social-total-points-bar", "social-min-requirements", minSocialEventsRequirements, userMeetingsForCurrentSemester.socialEvents, meetingMaxUIValue);
+  drawProgressBar("volunteering-total-points-bar", "volunteering-min-requirements", minVolunteeringEventsRequirements, userMeetingsForCurrentSemester.voluenteeringEvents, meetingMaxUIValue);
+  drawProgressBar("committee-total-points-bar", "committee-min-requirements", minCommitteeEventsRequirements, userMeetingsForCurrentSemester.committeeEvents, meetingMaxUIValue);
+  drawProgressBar("general-total-points-bar", "general-min-requirements" , minGeneralEventsRequirements, userMeetingsForCurrentSemester.generalEvents, meetingMaxUIValue);
 }
 
 /**

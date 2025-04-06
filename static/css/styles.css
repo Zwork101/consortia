@@ -10,6 +10,7 @@
     --label-blue: #66B4C4;
     --label-green: #B7D478;
     --label-yellow: #EEDA8F;
+    --label-gray: #ededed;
     --medium-gray: #E9ECEF;
     --stroke-gray: #DEDEDE;
     --label-opacity: .5;
@@ -247,6 +248,10 @@ Classes related to "chart-bar" and related subitems
 
     .chart-bar div:nth-child(4) {
         background-color: var(--label-yellow);
+    }
+
+    .chart-bar div:nth-child(5){
+        background-color: var(--label-gray);
     }
 
 .wic-bar {

@@ -1735,19 +1735,24 @@ input[type=file]::file-selector-button:hover, .upload-submit:hover {
     margin-bottom: 10px;
 }
 
-.percentage-config input, .threshold-config input, .semester-config input, .admin-config input, #mentorship_minimum, #mentorship_maximum, #required_points{
-    margin-right: 30px;
-    margin-left: 5px;
-    height: 40px;
-    padding-left: 10px;
+    .percentage-config input, .threshold-config input, .semester-config input, .admin-config input, #mentorship_minimum, #mentorship_maximum,
+    #required_points, #general_meetings_requirement, #committee_meetings_requirement, #social_meetings_requirement, #volunteering_meetings_requirement {
+        margin-right: 30px;
+        margin-left: 5px;
+        height: 40px;
+        padding-left: 10px;
+        font-family: var(--main-font);
+        font-size: 0.85rem;
+    }
+
+.admin-config input {
+    margin-left: 35px;
 }
 
-.admin-config input{
-    margin-left:35px;
-}
-
-#mentorship_minimum, #mentorship_maximum, #required_points {
+#mentorship_minimum, #mentorship_maximum, #required_points, #general_meetings_requirement, #committee_meetings_requirement, #social_meetings_requirement, #volunteering_meetings_requirement {
     margin-left: 40px;
+    font-family: var(--main-font);
+    font-size: 0.85rem;
 }
 
 .semester-report-btn{

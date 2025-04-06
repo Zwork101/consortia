@@ -59,8 +59,9 @@ function drawProgressBar(mainBarID, fillerBarID, minMeetingsRequirements, meetin
  * Display values for the bar on the "Current Semester" tab
  * @param {Object} userMeetingsForCurrentSemester An object representing the user with values from the most recent semester
  * @param {Object} allMeetingsForCurrentSemester An object representing all meetings with values from the most recent semester
+ * @param {Object} settingsAndConfigData An object containing all the settings and configuration data
  */
-function showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemester){
+function showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemester, settingsAndConfigData){
     
   document.getElementById("social-events").innerHTML = userMeetingsForCurrentSemester.socialEvents;
   document.getElementById("volunteering-events").innerHTML = userMeetingsForCurrentSemester.voluenteeringEvents;
@@ -86,10 +87,10 @@ function showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemest
     meetingMaxUIValue = maxEvents;
   }
 
-  let minSocialEventsRequirements = 1;
-  let minVolunteeringEventsRequirements = 1;
-  let minCommitteeEventsRequirements = 6;
-  let minGeneralEventsRequirements = 14;
+  let minSocialEventsRequirements = settingsAndConfigData.config.social_meetings_requirement;
+  let minVolunteeringEventsRequirements = settingsAndConfigData.config.volunteering_meetings_requirement;
+  let minCommitteeEventsRequirements = settingsAndConfigData.config.committee_meetings_requirement;
+  let minGeneralEventsRequirements = settingsAndConfigData.config.general_meetings_requirement;
 
   drawProgressBar("social-total-points-bar", "social-min-requirements", minSocialEventsRequirements, userMeetingsForCurrentSemester.socialEvents, meetingMaxUIValue);
   drawProgressBar("volunteering-total-points-bar", "volunteering-min-requirements", minVolunteeringEventsRequirements, userMeetingsForCurrentSemester.voluenteeringEvents, meetingMaxUIValue);
@@ -101,15 +102,16 @@ function showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemest
  * Process the data for WIC.
  * @param {Object} studentData An Object representing the data of a student.
  * @param {Object} allMeetingData An Object that represents the data of all meetings.
+ * @param {Object} settingsAndConfigurationData An Object that represents the settings and configuration data.
  */
-function processDataWIC(studentData, allMeetingData){
+function processDataWIC(studentData, allMeetingData, settingsAndConfigurationData){
   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
   let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
 
   let userMeetingsForCurrentSemester = getMeetingData(attendance);
   let allMeetingsForCurrentSemester = getMeetingData(listOfAllMeetings);
 
-  showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemester);
+  showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemester, settingsAndConfigurationData);
 
   historyBuilder(builderMode.WIC, studentData, allMeetingData);
 }

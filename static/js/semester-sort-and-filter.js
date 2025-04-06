@@ -5,7 +5,7 @@ const ISODate = Object.freeze({
 })
 
 /**
- * 
+ * Takes an ISO 8601 string and returns the date as an array.
  * @param {String} jsonDate The date in a JSON encoded 8601 string
  * @returns {Array} An array seperated by the dashes in the 8601 string. 
  * - The first item in the array is the year.

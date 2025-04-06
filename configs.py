@@ -17,6 +17,22 @@ except FileNotFoundError:
                 "committee_meetings_requirement": 6,
                 "social_meetings_requirement": 1,
                 "volunteering_meetings_requirement": 1
+            },
+            "2": {
+                "attendance": [
+                    {"percent": 100, "points": 3},
+                    {"percent": 75, "points": 2},
+                    {"percent": 1, "points": 1}
+                ],
+                "volunteer": [
+                    {"threshold": 9, "points": 4},
+                    {"threshold": 6, "points": 3},
+                    {"threshold": 3, "points": 2},
+                    {"threshold": 1, "points": 1},
+                ],
+                "mentorship_minimum": 3,
+                "mentorship_maximum": 9,
+                "required_points": 18
             }
         }
         json.dump(data, f)

@@ -7,7 +7,7 @@ from configs import update_org_settings
 from backend.email import create_batches, generate_award_email, get_token, send_email
 from backend.db import Administrator, Award, Organizations, ProfileAward, RoleType, award_user, create_attendance, commit, Event, Profile, create_bonus, db, make_admin
 from backend.auth import admin_required
-from backend.forms import CampusGroupsValidator, AttendanceForm, AddUserForm, EditUserForm, SelectUserForm, serachId, BonusForm, WICConfigForm
+from backend.forms import CampusGroupsValidator, AttendanceForm, AddUserForm, EditUserForm, SelectUserForm, serachId, BonusForm, WICConfigForm, COMSConfigForm
 
 from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, abort, current_app
 from flask_login import current_user
@@ -28,10 +28,10 @@ def dashboard(org: int):
 @admin.route("/admin/<int:org>/settings", methods=["GET", "POST"])
 @admin_required
 def org_settings(org: int):
-    if org == Organizations.WIC:
+    org_awards = db.session.query(Award.award_id, Award.name, Award.active_semester_requirements).where(Award.organization_id == org).all()
+    admins = db.session.query(Profile.email).select_from(Administrator).join(Profile, Administrator.profile_id == Profile.profile_id).where(Administrator.organization_id == org).all()
 
-        org_awards = db.session.query(Award.award_id, Award.name, Award.active_semester_requirements).where(Award.organization_id == org).all()
-        admins = db.session.query(Profile.email).select_from(Administrator).join(Profile, Administrator.profile_id == Profile.profile_id).where(Administrator.organization_id == org).all()
+    if org == Organizations.WIC:
 
         form = WICConfigForm(
             **current_app.config["ORG_SETTINGS"][str(org)],
@@ -90,8 +90,18 @@ def org_settings(org: int):
         return render_template("configuration-wics.html.j2", title="WiC Configuration", org_id=org, form=form)
 
     elif org == Organizations.COMS:
-        form = WICConfigForm()
-        return render_template("confirmation-coms.html.j2", title="COMS Configuration", org_id=org, form=form)
+        form = COMSConfigForm(
+            **current_app.config["ORG_SETTINGS"][str(org)],
+            award_settings=[
+            {"award_id": award[0], "semester": award[2], "award_name": award[1]}
+            for award in org_awards],
+            admins=map(lambda x: x[0], admins)
+        )
+
+        if form.validate_on_submit():
+            pass
+
+        return render_template("configuration-coms.html.j2", title="COMS Configuration", org_id=org, form=form)
     else:
         return abort(404)
 

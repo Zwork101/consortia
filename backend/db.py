@@ -178,7 +178,6 @@ class Profile(db.Model, UserMixin):
             for e in org_events:
 
                 if e.meeting_type == MeetingType.VOLUNTEER:
-                    print(e.name, e.get_hours(self.profile_id))
                     volunteer_hours += e.get_hours(self.profile_id)
 
             print(volunteer_hours)
@@ -199,8 +198,6 @@ class Profile(db.Model, UserMixin):
                 mentorship_points = 3 + len(mentorship_meetings)
                 # Cap at 9 points
                 total_points += min(mentorship_points, 9)
-
-                print(f"Mentor Points: {len(mentorship_meetings)}")
             
             # Add bonus points from miscellaneous contributions
             total_points += self.bonus_points(org)

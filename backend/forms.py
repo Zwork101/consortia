@@ -94,10 +94,31 @@ class AwardForm(Form):
     semester = IntegerField("Required Semesters", validators=[NumberRange(min=1), DataRequired()])
     award_name = StringField("Award Name", validators=[DataRequired(), Length(max=40)])
 
+
 class WICConfigForm(FlaskForm):
     general_meetings_requirement = IntegerField("General Meetings Required", validators=[NumberRange(min=1), DataRequired()])
     committee_meetings_requirement = IntegerField("Committee Meetings Required", validators=[NumberRange(min=1), DataRequired()])
     social_meetings_requirement = IntegerField("Social Meetings Required", validators=[NumberRange(min=1), DataRequired()])
     volunteering_meetings_requirement = IntegerField("Volunteering Meetings Required", validators=[NumberRange(min=1), DataRequired()])
+    award_settings = FieldList(FormField(AwardForm), "Awards per Semester")
+    admins = FieldList(EmailField("Admins"))
+
+
+class GeneralPointsForm(Form):
+    percent = IntegerField("Attendance Percentage", validators=[NumberRange(min=1, max=100), DataRequired()])
+    points = IntegerField("Point Value", validators=[NumberRange(min=1), DataRequired()])
+
+
+class VolunteerPointsForm(Form):
+    threshold = IntegerField("Hour Threshold", validators=[NumberRange(min=1), DataRequired()])
+    points = IntegerField("Point Value", validators=[NumberRange(min=1), DataRequired()])
+
+
+class COMSConfigForm(FlaskForm):
+    attendance = FieldList(FormField(GeneralPointsForm))
+    volunteer = FieldList(FormField(VolunteerPointsForm))
+    mentorship_minimum = IntegerField("Minimum points for mentoring", validators=[NumberRange(min=0), DataRequired()])
+    mentorship_maximum = IntegerField("Maximum points for mentoring", validators=[NumberRange(min=1), DataRequired()])
+    required_points = IntegerField("Required points for active", validators=[NumberRange(min=1), DataRequired()])
     award_settings = FieldList(FormField(AwardForm), "Awards per Semester")
     admins = FieldList(EmailField("Admins"))

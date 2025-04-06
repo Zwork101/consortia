@@ -152,4 +152,12 @@
     .comscalendar {
         transform: translate(-20px, 2000px);
     }
-}
+
+    ..profile-subsec {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .profile-container, .stuprof-name {
+        margin-left: 20px !important;
+    }

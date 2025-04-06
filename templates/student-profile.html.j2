@@ -60,7 +60,7 @@
                 </div>
             </div>
         </div>
-        <div class="profile-container" style="height:400px; transform: translateY(44px);">
+        <div class="profile-container secondprofcontainer" style="height:400px; transform: translateY(44px);">
             <div class="profile-sec">
                 <form method="post" action="{{ url_for('student.account') }}">
                     {{ form.csrf_token }}
@@ -78,7 +78,7 @@
                         <h4>Last Name:</h4>
                         {{ form.last_name(id="last-name") }}
                     </div>
-                    <div class="profile-subsec" style="margin-left: 100px; position: absolute;">
+                    <div class="profile-subsec secondprof-subsec" style="margin-left: 100px; position: absolute;">
                         <h4>Pronouns:</h4>
                         {{ form.pronouns(id="pronouns") }}
 

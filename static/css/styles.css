@@ -455,9 +455,9 @@ Items specifc to COMMS below
     grid-column: 3;
 }
 
-    .attendance-points-box p {
+    /* .attendance-points-box p {
         font-size: 0.75em;
-    }
+    } */
 
 .miscellaneous-points-box {
     grid-row: 2;

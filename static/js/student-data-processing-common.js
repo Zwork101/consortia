@@ -6,23 +6,32 @@ const organizationID = Object.freeze({
 const getProfile = async () => {
     const profileEndpoint = `/profile?org=${endpointOrganizationID}`;
     const meetingsEndpoint = `/meetings/${endpointOrganizationID}`;
+	const settingsEndpoint = `/settings/${endpointOrganizationID}`;
 	try {
 		var endpointList = []
-		const response = await fetch(profileEndpoint);
-		if (!response.ok) {
-			throw new Error(`Response status: ${response.status}`);
+		const profileResponse = await fetch(profileEndpoint);
+		if (!profileResponse.ok) {
+			throw new Error(`Response status: ${profileResponse.status}`);
 		}
 
-		const json = await response.json();
-		endpointList.push(json);
+		const profileJson = await profileResponse.json();
+		endpointList.push(profileJson);
 
-		const response2 = await fetch(meetingsEndpoint);
-		if (!response2.ok) {
-			throw new Error(`Response status: ${response2.status}`);
+		const meetingsResponse = await fetch(meetingsEndpoint);
+		if (!meetingsResponse.ok) {
+			throw new Error(`Response status: ${meetingsResponse.status}`);
 		}
 
-		const json2 = await response2.json();
-		endpointList.push(json2);
+		const meetingsJson = await meetingsResponse.json();
+		endpointList.push(meetingsJson);
+
+		const settingsResponse = await fetch(settingsEndpoint);
+		if (!settingsResponse.ok) {
+			throw new Error(`Response status: ${settingsResponse.status}`);
+		}
+
+		const settingsJson = await settingsResponse.json();
+		endpointList.push(settingsJson);
 		
 		return endpointList;
 	} catch (error) {

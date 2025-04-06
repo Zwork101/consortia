@@ -56,14 +56,11 @@
                     {% for award in current_user.awards %} 
                     <li> {{ award.name }}</li>
                     {% endfor %}
-                    
-                    <!-- Testing Purposes, Revert when done style="opacity:0%;" -->
-                    <h4 >{{ current_user.profile_id }}</h4>
                     <p style="opacity:0%;">placeholder</p>
                 </div>
             </div>
         </div>
-        <div class="profile-container" style="height:400px; transform: translateY(63px);">
+        <div class="profile-container" style="height:400px; transform: translateY(44px);">
             <div class="profile-sec">
                 <form method="post" action="{{ url_for('student.account') }}">
                     {{ form.csrf_token }}

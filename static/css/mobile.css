@@ -1,29 +1,45 @@
 @media screen and (max-width: 900px) {
-    .points-bar, .chart-background {
-        transform: rotate(-90deg);
-        width: 93vw;
-        top: 60vw;
-        right: 5vw;
-        position: absolute;
+    html {
+        max-width: 100%;
+        font-size: 0.8rem;
     }
-    .chart-background {
-        top:64vw;
+
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    h2 {
+        width: 200px;
+    }
+
+    .points-bar, .chart-background {
+        transform: rotate(-90deg) translate(-50px, -50px);
+        width: 400px !important;
+        position: absolute !important;
+    }
+
+    .pointsbarcoms {
+        transform: rotate(-90deg) translate(-50px, 160px);
+        position:relative !important;
     }
 
     .chart-background p {
         transform: rotate(90deg) translate(5vw, -11vw) !important;
         position: absolute;
         top: 57vw;
-        
     }
 
-    .chart-placeholder{
+    .chart-placeholder {
         height: 120vw;
         width: 100%;
         color: #ff0000;
     }
 
-    .chart-first-zero{
+    .chart-first-zero {
         opacity: 0;
     }
 
@@ -33,62 +49,107 @@
 
     .wics-coms-container section {
         position: absolute;
+        width: 70vw;
+    }
+
+    .coms {
+        transform: translateY(500px);
+    }
+
+    .calendar-sec {
+        position: absolute;
+        transform: translate(-20px, 1300px);
         width: 80vw;
     }
-    /* nav mobile */
-    .nav-options-box {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 50px;
-        right: 15px;
-        background-color: #F76902;
-        width: 150px;
-        border-radius: 5px;
-        padding: 4px 0; 
-        z-index: 1;
-    
+
+    .day {
+        padding: 2px !important;
     }
 
-    .nav-options-box li {
-        padding: 10px 12px;
-        color: #fff;
-        background-color:#F76902;
-        display: block;
-        width: 100%;
+    .calendar-status {
+        transform: translate(43vw, -13px) !important;
     }
 
-    .nav-options-box.show {
+    .points-info-container2 {
+        display: grid;
+        grid-template-columns: repeat(4, 2fr);
+        width: 164%;
+    }
+
+    .social-events {
+        grid-column: 1/5 !important;
+        grid-row: 1;
+    }
+
+    .volunteering {
+        grid-column: 1/5 !important;
+        grid-row: 2;
+    }
+
+    .meeting-marker {
+        height: 104.25px !important;
+    }
+
+    .chart-labels div:not(div:first-of-type) div {
+        margin-left: 0px !important;
+    }
+
+    .chart-labels {
+        transform: translateY(-5vw);
+    }
+
+    #history {
+        width: 160%;
+    }
+
+    .table-container p {
         display: flex;
+        flex-direction: column;
     }
 
-    .menu-toggle {
-        display: block;
-        cursor: pointer;
-        color: #fff;
-        font-size: 30px;
-
+    .points-info-container {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr) !important;
+        grid-template-rows: repeat(6, 1fr) !important;
+        width: 160% !important;
+        transform: translateY(400px);
+        overscroll-behavior-y:none;
     }
 
-
-    .nav-options-box li:hover {
-        background-color: #000000; 
-        color: #000;
+    .mentorship-points-box {
+        grid-row: 1 / 2 !important;
+        grid-column: 1 !important;
     }
 
-    .navbar-dropdown button {
-        width: 100%;
-        padding: 10px;
+    .volunteering-points-box {
+        grid-row: 2 / 3 !important;
+        grid-column: 1 !important;
     }
 
-    .dropdown-content-navbar {
-        width: 100%;
-        transform: translate(0, 0);
+    .attendance-points-box {
+        grid-row: 3 !important;
+        grid-column: 1 !important;
     }
-  
-   
+    .miscellaneous-points-box {
+        grid-row: 4 !important;
+        grid-column: 1 !important;
+    }
 
-        
-  
+    .comschartlabels {
+        transform: rotate(90deg) translateX(-450px) !important;
+        display: flex;
+        flex-direction: column !important;
+    }
 
+    .comscircle {
+        transform: translateX(420px);
+    }
+
+    .comsinfocontainer{
+       transform: translateY(200px); 
+    }
+
+    .comscalendar {
+        transform: translate(-20px, 2000px);
+    }
 }

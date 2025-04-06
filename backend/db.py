@@ -835,7 +835,7 @@ def db_testing_setup():
 
     assign_awards = []
 
-    users.append(will_smith)
+    
 
     for semester in range(20220, 20250, 5):
         for user in random.choices(users, k=random.randint(100, len(users) // 2)):
@@ -853,6 +853,23 @@ def db_testing_setup():
                     award_date = datetime(year = semester // 10, month = 10 if semester % 5 else 2, day = 10)
                 )
             )
+
+    users.append(will_smith)
+
+    assign_awards.append(
+        ProfileAward(
+            profile_id = will_smith.profile_id,
+            award_id = wic_award.award_id,
+            award_date = datetime(year = 2025, month = 2, day = 10)
+        )
+    )
+    assign_awards.append(
+        ProfileAward(
+            profile_id = will_smith.profile_id,
+            award_id = coms_award.award_id,
+            award_date = datetime(year = 2025, month = 2, day = 10)
+        )
+    )
 
     db.session.add_all(assign_awards)
 

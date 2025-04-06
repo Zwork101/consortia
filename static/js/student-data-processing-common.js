@@ -26,7 +26,7 @@ const getProfile = async () => {
 		endpointList.push(meetingsJson);
 
 		const settingsResponse = await fetch(settingsEndpoint);
-		if (!settingsResponseResponse.ok) {
+		if (!settingsResponse.ok) {
 			throw new Error(`Response status: ${settingsResponse.status}`);
 		}
 

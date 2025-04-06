@@ -24,12 +24,13 @@
 
     .pointsbarcoms {
         transform: rotate(-90deg) translate(-50px, 160px);
+        position:relative !important;
     }
 
     .chart-background p {
         transform: rotate(90deg) translate(5vw, -11vw) !important;
         position: absolute;
-        op: 57vw;
+        top: 57vw;
     }
 
     .chart-placeholder {
@@ -112,6 +113,7 @@
         grid-template-rows: repeat(6, 1fr) !important;
         width: 160% !important;
         transform: translateY(400px);
+        overscroll-behavior-y:none;
     }
 
     .mentorship-points-box {
@@ -129,7 +131,7 @@
         grid-column: 1 !important;
     }
     .miscellaneous-points-box {
-        grid-row: 3 !important;
+        grid-row: 4 !important;
         grid-column: 1 !important;
     }
 
@@ -137,5 +139,17 @@
         transform: rotate(90deg) translateX(-450px) !important;
         display: flex;
         flex-direction: column !important;
+    }
+
+    .comscircle {
+        transform: translateX(420px);
+    }
+
+    .comsinfocontainer{
+       transform: translateY(200px); 
+    }
+
+    .comscalendar {
+        transform: translate(-20px, 2000px);
     }
 }

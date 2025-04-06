@@ -310,7 +310,6 @@ Classes related to "chart-labels" and related subitems
     flex-direction: row;
     flex-wrap: wrap;
     padding-bottom: 16px;
-    transform: translateY(-16px)
 }
 
     .chart-labels div {

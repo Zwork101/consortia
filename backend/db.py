@@ -114,6 +114,28 @@ class Profile(db.Model, UserMixin):
 
     def get_id(self):
         return str(self.profile_id)
+
+    @hybrid_method
+    def count_attendance(self, org: int, meeting_type: MeetingType, semester = None):
+        if semester is None:
+            semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
+        return len([
+            event for event in self.attendance if event.semester == semester and event.organizer_id == org and event.meeting_type == meeting_type
+        ])
+
+    @count_attendance.expression
+    @classmethod
+    def sql_count_attendance(cls, org: int, meeting_type: MeetingType, semester = None):
+        if semester is None:
+            semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
+
+        return db.session.query(func.count(Event.event_id))\
+                .select_from(Event)\
+                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.semester == semester)\
+                .where(Event.meeting_type == meeting_type)\
+                .scalar_subquery()
     
     @hybrid_method
     def membership(self, org: int, current_semester = None):
@@ -214,37 +236,13 @@ class Profile(db.Model, UserMixin):
         member_conf =  current_app.config["ORG_SETTINGS"][str(org)]
 
         if org == Organizations.WIC:
-            general_meeting_query = db.session.query(func.count(Event.event_id))\
-                .select_from(Event)\
-                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
-                .where(attendance_table.c.profile_id == cls.profile_id)\
-                .where(Event.semester == current_semester)\
-                .where(Event.meeting_type == MeetingType.GENERAL)\
-                .scalar_subquery()
+            general_meeting_query = cls.count_attendance(org, MeetingType.GENERAL, current_semester)
 
-            committee_meeting_query = db.session.query(func.count())\
-                .select_from(Event)\
-                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
-                .where(attendance_table.c.profile_id == cls.profile_id)\
-                .where(Event.semester == current_semester)\
-                .where(Event.meeting_type == MeetingType.COMMITTEE)\
-                .scalar_subquery()
+            committee_meeting_query = cls.count_attendance(org, MeetingType.COMMITTEE, current_semester)
 
-            social_meeting_query = db.session.query(func.count())\
-                .select_from(Event)\
-                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
-                .where(attendance_table.c.profile_id == cls.profile_id)\
-                .where(Event.semester == current_semester)\
-                .where(Event.meeting_type == MeetingType.SOCIAL)\
-                .scalar_subquery()
+            social_meeting_query = cls.count_attendance(org, MeetingType.SOCIAL, current_semester)
 
-            volunteer_meeting_query = db.session.query(func.count())\
-                .select_from(Event)\
-                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
-                .where(attendance_table.c.profile_id == cls.profile_id)\
-                .where(Event.semester == current_semester)\
-                .where(Event.meeting_type == MeetingType.VOLUNTEER)\
-                .scalar_subquery()
+            volunteer_meeting_query = cls.count_attendance(org, MeetingType.VOLUNTEER, current_semester)
 
             return case(
                 ((general_meeting_query >= member_conf['general_meetings_requirement']) & \

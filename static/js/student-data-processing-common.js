@@ -43,9 +43,10 @@ const getStudentPoints = (endpointData) => {
 
 	let studentData = endpointData[0];
 	let allMeetingData = endpointData[1];
+	let settingsData = endpointData[2];
 
 	if (endpointOrganizationID == organizationID.WIC){
-		processDataWIC(studentData, allMeetingData);
+		processDataWIC(studentData, allMeetingData, settingsData);
 	} else if (endpointOrganizationID == organizationID.COMS){
 		processDataCOMS(studentData, allMeetingData);
 	} else {

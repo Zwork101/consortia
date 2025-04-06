@@ -103,7 +103,6 @@ function historyBuilder(mode, userObject, allMeetingsObject){
 
     let sortedUserMeetings = meetingsSortedBySemester(userObject.profile.attendance, sortingOrder.Descending);
     let userAwards = convertAwardDatesToCustomTimestamp(userObject.profile.awards);
-    console.log(userAwards);
     sortedUserMeetings.forEach(userSemester => {
         semesterDateData = semesterTermAndYear(userSemester.semester);
         let isUserActive = activeUser.NonActive;

@@ -96,67 +96,52 @@
 </div>
 
 <div id="create-meeting-dialog-box" title="Create Meeting">
-    <form name="create-meeting" id="create-meeting" method="post">
+    <form name="create-meeting" id="create-meeting" method="post" action="/admin/{{ org_id }}/create">
         <fieldset>
             <div class="dialog-item">
-                <label for="meeting-title">Title:</label>
-                <input type="text" name="meeting-title" id="meeting-title">
-
-                <div class="dialog-row">
-                    <div>
-                        <label for="meeting-date">Date:</label>
-                        <input type="date" name="meeting-date" id="meeting-date" style="padding: 8px 0px;">
-                    </div>
-                    <div>
-                        <label for="meeting-time-start">Start Time:</label>
-                        <input type="time" name="meeting-time-start" id="meeting-time-start">
-                    </div> 
-                    <div>
-                        <label for="meeting-time-end">End Time:</label>
-                        <input type="time" name="meeting-time-end" id="meeting-time-end">
-                    </div>
+                <label for="meeting_name">Title:</label>
+                <input type="text" name="meeting_name" id="meeting_name">
+            <div class="dialog-row">
+                <div>
+                    <label for="meeting-date">Date:</label>
+                    <input type="date" name="meeting-date" id="meeting-date" style="padding: 8px 0px;">
+                </div>
+                <div>
+                    <label for="meeting-time-start">Start Time:</label>
+                    <input type="time" name="meeting-time-start" id="meeting-time-start">
+                </div> 
+                <div>
+                    <label for="meeting-time-end">End Time:</label>
+                    <input type="time" name="meeting-time-end" id="meeting-time-end">
                 </div>
             </div>
-             <div class="dialog-row">
-                {# <div>
-                    <div class="week-row">
-                        <input type="checkbox" id="repeat-days" name="repeat-days"><label for="repeat-days">Repeat Every:</label>
+        </div>
+            <div class="dialog-row">
+                <div>
+                    <div class="dialog-row";>
+                        <label for="meeting_type">Meeting Type:</label>
                     </div>
-                    <div class="week-row">
-                        <input type="checkbox" id="M" name="M"><label for="M">M</label>
-                        <input type="checkbox" id="Tu" name="Tu"><label for="Tu">T</label>
-                        <input type="checkbox" id="W" name="W"><label for="W">W</label>
-                        <input type="checkbox" id="Th" name="Th"><label for="Th">T</label>
-                        <input type="checkbox" id="F" name="F"><label for="F">F</label>
-                        <input type="checkbox" id="Sat" name="Sat"><label for="Sat">S</label>
-                        <input type="checkbox" id="Sun" name="Sun"><label for="Sun">S</label>
-                    </div>
-                </div> #}
-
-            <div>
-                <div class="dialog-row";>
-                    <label for="meeting-type">Meeting Type:</label>
+                    <select name="meeting_type" id="meeting_type">
+                        <option>General</option>
+                        <option>Committee</option>
+                        <option>Social</option>
+                        <option>Volunteering</option>
+                        <option>Mentorship</option>
+                    </select>
                 </div>
-
-                <select name="meeting-type" id="meeting-type">
-                    <option>General</option>
-                    <option>Committee</option>
-                    <option>Social</option>
-                    <option>Volunteering</option>
-                    <option>Mentorship</option>
-
-                </select>
-            </div>
-            
                 <div style="margin-left:60px;">
-                    <label for="meeting-location">Meeting Location:</label>
-                    <input type="text" name="meeting-location" id="meeting-location">
+                    <label for="meeting_location">Meeting Location:</label>
+                    <input type="text" name="meeting_location" id="meeting_location">
                 </div>
             </div>
             <div class="dialog-item">
-                <label for="description">Description</label>
-                <textarea id="description" rows="6" cols="58" style="min-width:520px"></textarea>
+                <label for="meeting_description">Description</label>
+                <textarea id="meeting_description" name="meeting_description" rows="6" cols="58" style="min-width:520px"></textarea>
             </div>
+            
+            <!-- Hidden fields for combined datetime values -->
+            <input type="hidden" id="meeting_start_time" name="meeting_start_time">
+            <input type="hidden" id="meeting_end_time" name="meeting_end_time">
         </fieldset>
     </form>
 </div>

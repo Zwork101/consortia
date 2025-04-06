@@ -63,23 +63,53 @@ $( function() {
         buttons: [
             {
                 text: "Create Event",
-                // click: submit_filter_settings(filter_dialog),
                 click: function() {
-                    $("#create-meeting").submit;
+                    // Format date and times for backend
+                    const date = $("#meeting-date").val();
+                    const startTime = $("#meeting-time-start").val();
+                    const endTime = $("#meeting-time-end").val();
+                    
+                    // Combine date and times into ISO strings
+                    $("#meeting_start_time").val(formatDateTime(date, startTime));
+                    $("#meeting_end_time").val(formatDateTime(date, endTime));
+                    
+                    // Properly submit the form
+                    $("#create-meeting").submit();
+                    
                     create_meeting_dialog.dialog('close');
                     console.log("create meeting box closed");
-
                     success_banner.text("Meeting created successfully!").fadeIn().delay(3000).fadeOut();
                 }
             },
         ],
-        // close:function() {
-        //     filter_dialog.dialog('close');
-            // filter_form[0].reset();
-            // allFields.removeClass("ui-state-error")
-        // }
     });
 
+    // Helper function to format date and time for backend
+    function formatDateTime(date, timeStr) {
+        if (!date) return '';
+        
+        // Parse the time string (e.g., "6:30pm")
+        let hours = 0;
+        let minutes = 0;
+        let isPM = timeStr.toLowerCase().includes('pm');
+        
+        // Extract hours and minutes
+        const timeParts = timeStr.replace(/(am|pm)/i, '').trim().split(':');
+        hours = parseInt(timeParts[0], 10);
+        if (timeParts.length > 1) {
+            minutes = parseInt(timeParts[1], 10);
+        }
+        
+        // Convert to 24-hour format
+        if (isPM && hours < 12) hours += 12;
+        if (!isPM && hours === 12) hours = 0;
+        
+        // Create a date object and format as ISO string
+        const dateObj = new Date(date);
+        dateObj.setHours(hours, minutes, 0, 0);
+        return dateObj.toISOString();
+    }
+    
     $("#create-meeting-button").button().on("click", function() {
         create_meeting_dialog.dialog('open');
         console.log("create meeting button pressed");

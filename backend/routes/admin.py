@@ -126,16 +126,46 @@ def create_event(org: int):
     meeting_start_time = request.form.get("meeting_start_time")
     meeting_end_time = request.form.get("meeting_end_time")
     meeting_location = request.form.get("meeting_location")
+    meeting_type = request.form.get("meeting_type", "GENERAL").upper()
     
-    db.session.add(Event(
-        name=meeting_name,
-        description=meeting_description,
-        start_time=meeting_start_time,
-        end_time=meeting_end_time,
-        location=meeting_location,
-        organizer_id=meeting_org
-    ))
-    db.session.commit()
+    # Validate required fields
+    if not meeting_name or not meeting_start_time:
+        flash("Meeting name and start time are required", "error")
+        return redirect(url_for("admin.dashboard", org=org))
+    
+    # Convert ISO datetime strings to Python datetime objects
+    from datetime import datetime
+    
+    try:
+        # Parse the ISO format datetime strings
+        start_time = datetime.fromisoformat(meeting_start_time.replace('Z', '+00:00'))
+        
+        # Only parse end_time if it exists
+        end_time = None
+        if meeting_end_time:
+            end_time = datetime.fromisoformat(meeting_end_time.replace('Z', '+00:00'))
+        
+        db.session.add(Event(
+            name=meeting_name,
+            description=meeting_description,
+            start_time=start_time,
+            end_time=end_time,
+            location=meeting_location,
+            organizer_id=meeting_org,
+            meeting_type=meeting_type
+        ))
+        db.session.commit()
+        flash("Meeting created successfully!", "success")
+        
+    except ValueError as e:
+        # Handle date parsing errors
+        flash(f"Invalid date format: {str(e)}", "error")
+        print(f"Date parsing error: {str(e)}")
+    except Exception as e:
+        # Handle other errors
+        flash(f"Error creating meeting: {str(e)}", "error")
+        print(f"Error creating meeting: {str(e)}")
+    
     return redirect(url_for("admin.dashboard", org=org))
     
 

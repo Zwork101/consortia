@@ -113,21 +113,3 @@ function processDataWIC(studentData, allMeetingData){
 
   historyBuilder(builderMode.WIC, studentData, allMeetingData);
 }
-
-
-// const getStudentPoints = (endpointData) => {
-
-//   let studentData = endpointData[0];
-//   let allMeetingData = endpointData[1];
-
-//   // Trim down list to current semester only
-//   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
-//   let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
-
-//   let userMeetingsForCurrentSemester = getMeetingData(attendance);
-//   let allMeetingsForCurrentSemester = getMeetingData(listOfAllMeetings);
-
-//   showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemester);
-
-//   historyBuilder(builderMode.WIC, studentData, allMeetingData);
-// }

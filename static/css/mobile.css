@@ -47,13 +47,29 @@
 
     .calendar-sec {
         position: absolute;
-        transform: translate(-15px, 1500px);
+        transform: translate(-20px, 1500px);
         width: 80vw;
     }
     .day{
         padding: 2px !important;
     }
-    .calendar-status{
-        transform: translateX(50px);
+    .calendar-status {
+        transform: translate(43vw, -13px) !important;
+    }
+    .points-info-container2 {
+        display: grid;
+        grid-template-columns: repeat(4, 2fr);
+        width: 164%;
+    }
+    .social-events{
+        grid-column: 1/5 !important; 
+        grid-row: 1;
+    }
+    .volunteering {
+        grid-column: 1/5 !important;
+        grid-row: 2;
+    }
+    .meeting-marker {
+        height: 104.25px !important;
     }
 }

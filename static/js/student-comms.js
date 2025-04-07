@@ -149,16 +149,3 @@ function processDataCOMS(studentData, allMeetingData){
 
   historyBuilder(builderMode.COMS, studentData, allMeetingData);
 }
-
-// const getStudentPoints = (endpointData) => {
-
-//   studentData = endpointData[0];
-//   allMeetingData = endpointData[1];
-
-//   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
-//   let pointsFromThisSemester = getPointObject(attendance);
-
-//   showResults(pointsFromThisSemester);
-
-//   historyBuilder(builderMode.COMS, studentData, allMeetingData);
-// }

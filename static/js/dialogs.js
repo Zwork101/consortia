@@ -5,7 +5,7 @@ $( function() {
         send_email_dialog, send_email_form;
 
     // Create a success banner
-    success_banner = $("<div id='success-banner' style='display:none; background-color: #F76902; color: white; padding: 10px; text-align: center; position: fixed; top: 0; left: 40%; width: 20%; z-index: 9999;'>Task completed successfully!</div>").appendTo("body");
+    success_banner = $("<div id='success-banner' style='display:none; background-color: #F76902; color: white; padding: 10px; text-align: center; position: fixed; bottom: 20px; left: 40%; width: 20%; z-index: 9999; font-family: var(--main-font);'>Task completed successfully!</div>").appendTo("body");
 
   
     /*
@@ -21,12 +21,13 @@ $( function() {
         buttons: [
             {
                 text: "Apply All",
-                click: function() {
+                click: async function() {
                     // Properly submit the form
-                    $("#filter-settings").trigger("submit");
+                    // $("#filter-settings").trigger("submit");
+                    filter_dialog.dialog('close');
+                    await applyFilters();
                     
                     // Close the dialog after the form is processed
-                    filter_dialog.dialog('close');
                     console.log("filter box closed");
                 }
             },
@@ -43,11 +44,11 @@ $( function() {
     $("#filter-sort-by").selectmenu();
     $("#filter-sort-order").selectmenu();
     $("#filter-membership").selectmenu();
-    $("#filter-semesters").selectmenu();
-    $("#filter-gen-meetings").selectmenu();
-    $("#filter-con-meetings").selectmenu();
-    $("#filter-social-event").selectmenu();
-    $("#filter-volunteering").selectmenu();
+    //$("#filter-semesters").selectmenu();
+    //$("#filter-gen-meetings").selectmenu();
+    //$("#filter-con-meetings").selectmenu();
+    //$("#filter-social-event").selectmenu();
+    //$("#filter-volunteering").selectmenu();
 
 
     /*
@@ -63,23 +64,53 @@ $( function() {
         buttons: [
             {
                 text: "Create Event",
-                // click: submit_filter_settings(filter_dialog),
                 click: function() {
-                    $("#create-meeting").submit;
+                    // Format date and times for backend
+                    const date = $("#meeting-date").val();
+                    const startTime = $("#meeting-time-start").val();
+                    const endTime = $("#meeting-time-end").val();
+                    
+                    // Combine date and times into ISO strings
+                    $("#meeting_start_time").val(formatDateTime(date, startTime));
+                    $("#meeting_end_time").val(formatDateTime(date, endTime));
+                    
+                    // Properly submit the form
+                    $("#create-meeting").submit();
+                    
                     create_meeting_dialog.dialog('close');
                     console.log("create meeting box closed");
-
                     success_banner.text("Meeting created successfully!").fadeIn().delay(3000).fadeOut();
                 }
             },
         ],
-        // close:function() {
-        //     filter_dialog.dialog('close');
-            // filter_form[0].reset();
-            // allFields.removeClass("ui-state-error")
-        // }
     });
 
+    // Helper function to format date and time for backend
+    function formatDateTime(date, timeStr) {
+        if (!date) return '';
+        
+        // Parse the time string (e.g., "6:30pm")
+        let hours = 0;
+        let minutes = 0;
+        let isPM = timeStr.toLowerCase().includes('pm');
+        
+        // Extract hours and minutes
+        const timeParts = timeStr.replace(/(am|pm)/i, '').trim().split(':');
+        hours = parseInt(timeParts[0], 10);
+        if (timeParts.length > 1) {
+            minutes = parseInt(timeParts[1], 10);
+        }
+        
+        // Convert to 24-hour format
+        if (isPM && hours < 12) hours += 12;
+        if (!isPM && hours === 12) hours = 0;
+        
+        // Create a date object and format as ISO string
+        const dateObj = new Date(date);
+        dateObj.setHours(hours, minutes, 0, 0);
+        return dateObj.toISOString();
+    }
+    
     $("#create-meeting-button").button().on("click", function() {
         create_meeting_dialog.dialog('open');
         console.log("create meeting button pressed");
@@ -87,7 +118,7 @@ $( function() {
 
    $("#save-changes-button").click(function() {
     console.log("Button clicked!");
-    success_banner.text("Meeting created successfully!").fadeIn().delay(3000).fadeOut();
+    success_banner.text("Changes saved successfully!").fadeIn().delay(3000).fadeOut();
 });
 
     /*
@@ -157,5 +188,65 @@ $( function() {
         console.log("send email button pressed");
     });
 
+    $('#notify-students').button().on("click", async function() {
+        const org_id = document.getElementsByTagName("body")[0].dataset.org
+        const awarded_users = document.querySelectorAll('.modal-rep-content input:checked');
+        const data = []
+        awarded_users.forEach((inp) => {
+            data.push({
+                profile_id: inp.dataset.profileId,
+                award_id: inp.dataset.awardId
+            })
+        })
+
+        const resp = await fetch(`/admin/awards/${org_id}/notify`, {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+
+        const content = await resp.json();
+
+        if (!content.success) {
+            window.location.replace(content.url)
+        } else {
+            document.getElementById('modal-rep').style.display = "none";
+        }
+    })
+
+    $('#modal-rep-Btn').button().on("click", async function() {
+        const org_id = document.getElementsByTagName("body")[0].dataset.org
+        const resp = await fetch(`/admin/profiles/${org_id}/worthy`);
+
+        if (!resp.ok) {
+              throw new Error(`Response status: ${resp.status}`);
+        }
+
+        const json = await resp.json();
+        const table = document.getElementById("reward-table");
+        table.innerHTML = "";
+
+        json.forEach((recipient) => {
+            table.insertAdjacentHTML('beforeend', `
+            <tr class="dbTableRow">
+                <td>
+                    <label class="container">
+                        <input checked type="checkbox" data-profile-id="${recipient.profile_id}" data-award-id="${recipient.award_id}">
+                        <span class="checkmark"></span>
+                    </label>
+                </td>
+                <td style="transform: translateX(-30px);"><b>${recipient.first_name} ${recipient.last_name}</b> has met the requirements for this award: <b>${recipient.award_name}</b></td>
+                <td class="dbTablePH"></td>
+                <td style="padding-right: 0px;">Active Semesters: <b>${recipient.award_requirement}</b></td>
+            </tr>
+            `);
+        })
+     });
+
+
 
 });
+

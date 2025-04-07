@@ -136,16 +136,19 @@ function historyBuilder(mode, userObject, allMeetingsObject){
             //console.log("COMSMODE")
 
             // Set up total point Calculation
-            let userSemesterPoints = getPointObject(userSemester.meetings);
+            let userSemesterPoints = getPointObject(userSemester.meetings, userObject.profile.bonus_points);
             let userSemesterTotalPoints = pointSummer(userSemesterPoints);
+            //console.log(userSemesterPoints);
             awardValues = `<span>${userSemesterTotalPoints}/${minPointRequirements} Total Points</span>`;
 
             // Set user to be active if they were active (by going to a mentorship meeting)
             if (userSemesterPoints.mentorshipPoints > 0){
                 isUserActive = activeUser.Active;
             }
-            // Award image if requirements were reached or exceeded
-            if (userSemesterTotalPoints >= minPointRequirements){
+            
+            // Award image if year matches with userAwards
+            let findAward = userAwards.find(awardYear => awardYear == userSemester.semester);
+            if (findAward != undefined){
                 awardImage = awardHTML;
             }
         } else {

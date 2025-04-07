@@ -10,6 +10,7 @@
     --label-blue: #66B4C4;
     --label-green: #B7D478;
     --label-yellow: #EEDA8F;
+    --label-gray: #ededed;
     --medium-gray: #E9ECEF;
     --stroke-gray: #DEDEDE;
     --label-opacity: .5;
@@ -249,6 +250,10 @@ Classes related to "chart-bar" and related subitems
         background-color: var(--label-yellow);
     }
 
+    .chart-bar div:nth-child(5){
+        background-color: var(--label-gray);
+    }
+
 .wic-bar {
     margin-bottom: 32px;
 }
@@ -305,7 +310,6 @@ Classes related to "chart-labels" and related subitems
     flex-direction: row;
     flex-wrap: wrap;
     padding-bottom: 16px;
-    transform: translateY(-16px)
 }
 
     .chart-labels div {
@@ -451,9 +455,9 @@ Items specifc to COMMS below
     grid-column: 3;
 }
 
-    .attendance-points-box p {
+    /* .attendance-points-box p {
         font-size: 0.75em;
-    }
+    } */
 
 .miscellaneous-points-box {
     grid-row: 2;
@@ -1022,7 +1026,7 @@ svg {
 }
 
 .indexdbbutton {
-    transform: translate(-380px, 14px);
+    transform: translate(-400px, 14px);
     background-color: transparent;
     border: none;
     text-decoration: underline;
@@ -1104,12 +1108,17 @@ svg {
     font-weight: 500;
 }
 
-.form-group input {
+.form-group input, .form-group input[type=number] {
     padding: 8px;
     border: 1px solid var(--stroke-gray);
     border-radius: 2px;
     font-family: var(--main-font);
     font-size: 0.9rem !important;
+    width: 253.33px;
+}
+.form-group input[type=number]{
+    width: 212px;
+    padding: 20px;
 }
 
 .form-submit-button {
@@ -1154,7 +1163,7 @@ svg {
 .profile-container {
     border: 1px solid #727578;
     border-radius: 8px;
-    width: 40vw;
+    width: 600px;
     display: inline-block;
     margin-left: 80px;
 }
@@ -1168,13 +1177,45 @@ svg {
     display: inline-block;
 }
 
-    .profile-subsec input {
+    .profile-subsec input, #graduation-year {
         height: 20px;
         padding: 7px 10px;
         margin-top: 10px;
         margin-left: 20px;
         width: 160px;
+        font-family: var( --main-font);
+        border: 1px solid #727578;
     }
+
+    #graduation-year{
+        height: 17px;
+    }
+
+    .profile-subsec select{
+        width: 182px; 
+        margin-left:20px; 
+        padding: 6px; 
+        font-family: var( --main-font);
+        margin-top: 10px;
+        border: 1px solid #727578;
+    }
+
+.profile-subsec #submit {
+    font-family: var(--main-font);
+    font-size: 1rem;
+    width: auto;
+    align-self: flex-start;
+    padding: 8px 20px;
+    border: 2px solid var(--orange);
+    background-color: var(--orange);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    height: 40px;
+    border-radius: 2px;
+    position: absolute;
+    transform: translate(-200px, 80px)
+}
 
     .profile-subsec h4, .config-sec h4 {
         font-size: 0.8rem;
@@ -1183,11 +1224,17 @@ svg {
         margin-left: 20px;
     }
 
-    .profile-subsec p {
-        margin-top: 4px;
-        margin-bottom: 40px;
-        margin-left: 20px;
-    }
+.profile-subsec p, .profile-subsec li {
+    margin-top: 4px;
+    margin-bottom: 40px;
+    margin-left: 20px;
+    font-family: var( --main-font);
+    font-size: 1rem;
+}
+
+.profile-subsec li{
+    margin-bottom: 0px;
+}
 
 .savebtn {
     position: absolute;
@@ -1503,7 +1550,7 @@ input[type=file]::file-selector-button:hover, .upload-submit:hover {
     border: none;
     outline: none;
     color: white;
-    padding: 14px 16px;
+    padding: 14px 56px;
     background-color: inherit;
     font-family: inherit;
     margin: 0;
@@ -1599,3 +1646,154 @@ input[type=file]::file-selector-button:hover, .upload-submit:hover {
     position: absolute;
     transform:translate(65vw, 80px);
 }
+
+#meeting-type{
+    padding: 0.7rem;
+}
+
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #F76902;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+    background: white;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.hidden {
+    display: none;
+}
+
+.sort-indicator {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+#dbTable th[data-column] {
+    cursor: pointer;
+    position: relative;
+}
+
+    #dbTable th[data-column]:hover {
+        background-color: #f5f5f5;
+    }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow: auto;
+}
+
+    .modal.show-modal {
+        display: block;
+    }
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+}
+
+/*
+    Styling for config pages
+*/
+
+.percentage-config, .threshold-config, .semester-config {
+    margin-left: 40px;
+    font-family: var(--main-font);
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+    .percentage-config input, .threshold-config input, .semester-config input, .admin-config input, #mentorship_minimum, #mentorship_maximum,
+    #required_points, #general_meetings_requirement, #committee_meetings_requirement, #social_meetings_requirement, #volunteering_meetings_requirement {
+        margin-right: 30px;
+        margin-left: 5px;
+        height: 40px;
+        padding-left: 10px;
+        font-family: var(--main-font);
+        font-size: 0.85rem;
+    }
+
+.admin-config input {
+    margin-left: 35px;
+}
+
+#mentorship_minimum, #mentorship_maximum, #required_points, #general_meetings_requirement, #committee_meetings_requirement, #social_meetings_requirement, #volunteering_meetings_requirement {
+    margin-left: 40px;
+    font-family: var(--main-font);
+    font-size: 0.85rem;
+}
+
+.semester-report-btn{
+    margin-bottom: 50px;
+}
+
+.config-sec-sub h4{
+    margin-bottom: 10px;
+}
+
+/*
+    Filter modal styling
+*/
+
+fieldset input[type=number] {
+    padding: 5px 10px;
+    border: #000 solid 1px;
+    width: 235px;
+    border-radius: 2px;
+}
+#filter-membership-button{
+    margin-left: 160px !important;
+}
+#filter-semesters{
+    margin-left: 99px !important;
+}
+#filter-gen-meetings{
+    margin-left: 71px !important;
+}
+#filter-con-meetings{
+    margin-left: 66.5px !important;
+}
+#filter-social-event{
+    margin-left: 85px !important;
+}
+#filter-volunteering{
+    margin-left: 83.5px !important;
+}
+

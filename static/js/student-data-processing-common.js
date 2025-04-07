@@ -1,30 +1,58 @@
-const getProfile = async () => {
-    	const profileEndpoint = `/profile?org=${endpointOrganizationID}`;
-      const meetingsEndpoint = `/meetings/${endpointOrganizationID}`;
-    	try {
-          var endpointList = []
-        	const response = await fetch(profileEndpoint);
-    	    if (!response.ok) {
-    	      throw new Error(`Response status: ${response.status}`);
-    	    }
-    
-    	    const json = await response.json();
-          endpointList.push(json);
-    
-    	    const response2 = await fetch(meetingsEndpoint);
-    	    if (!response2.ok) {
-    	      throw new Error(`Response status: ${response2.status}`);
-    	    }
-    
-    	    const json2 = await response2.json();
-          endpointList.push(json2);
-          
-          return endpointList;
-    	 } catch (error) {
-    	    console.error(error.message);
-      }
-    }
+const organizationID = Object.freeze({
+    WIC: 1,
+	COMS: 2,
+})
 
+const getProfile = async () => {
+    const profileEndpoint = `/profile?org=${endpointOrganizationID}`;
+    const meetingsEndpoint = `/meetings/${endpointOrganizationID}`;
+	const settingsEndpoint = `/settings/${endpointOrganizationID}`;
+	try {
+		var endpointList = []
+		const profileResponse = await fetch(profileEndpoint);
+		if (!profileResponse.ok) {
+			throw new Error(`Response status: ${profileResponse.status}`);
+		}
+
+		const profileJson = await profileResponse.json();
+		endpointList.push(profileJson);
+
+		const meetingsResponse = await fetch(meetingsEndpoint);
+		if (!meetingsResponse.ok) {
+			throw new Error(`Response status: ${meetingsResponse.status}`);
+		}
+
+		const meetingsJson = await meetingsResponse.json();
+		endpointList.push(meetingsJson);
+
+		const settingsResponse = await fetch(settingsEndpoint);
+		if (!settingsResponse.ok) {
+			throw new Error(`Response status: ${settingsResponse.status}`);
+		}
+
+		const settingsJson = await settingsResponse.json();
+		endpointList.push(settingsJson);
+		
+		return endpointList;
+	} catch (error) {
+		console.error(error.message);
+	}
+}
+
+const getStudentPoints = (endpointData) => {
+
+	let studentData = endpointData[0];
+	let allMeetingData = endpointData[1];
+	let settingsData = endpointData[2];
+
+	if (endpointOrganizationID == organizationID.WIC){
+		processDataWIC(studentData, allMeetingData, settingsData);
+	} else if (endpointOrganizationID == organizationID.COMS){
+		processDataCOMS(studentData, allMeetingData);
+	} else {
+		console.log("Invalid Endpoint");
+	}
+}
 
 getProfile().then(
   getStudentPoints

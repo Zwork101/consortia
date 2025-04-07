@@ -19,7 +19,6 @@
 
                 <div class="tabcontent" id="membership"> <!--MEMBERSHIP SECTION-->
                     <!--Chart Background-->
-                    <p class="chart-first-zero">0</p>
                     <div class="chart-background">
                         <div class="chart-bckg1 one-dig-num"></div>
                         <div class="chart-bckg2 one-dig-num"></div>
@@ -31,33 +30,37 @@
 
                     </div>
                     <div class="points-bar">
-                        <div class="chart-bar wic-bar" id="social-total-points-bar" style="width:7.14%">
+                        <div class="chart-bar wic-bar" id="social-total-points-bar" style="width:0%">
                             <!--Flexbox-->
                             <div id="social-earned-points-bar" style="width:100%"></div><!--Social Event--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
+                            <div id="social-min-requirements"style="width:0%"></div><!--Placeholder-->
                         </div>
-                        <div class="chart-bar wic-bar" id="volunteering-total-points-bar" style="width:7.14%">
+                        <div class="chart-bar wic-bar" id="volunteering-total-points-bar" style="width:0%">
                             <!--Flexbox-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div id="volunteering-earned-points-bar" style="width:100%"></div><!--Volunteering--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
+                            <div id="volunteering-min-requirements" style="width:0%"></div><!--Placeholder-->
                         </div>
-                        <div class="chart-bar wic-bar" id="committee-total-points-bar" style="width:42.86%">
+                        <div class="chart-bar wic-bar" id="committee-total-points-bar" style="width:0%">
                             <!--Flexbox-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div id="committee-earned-points-bar" style="width:100%"></div><!--Committee Meetings--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
                             <div style="width:0%"></div><!--Placeholder-->
+                            <div id="committee-min-requirements" style="width:0%"></div><!--Placeholder-->
                         </div>
-                        <div class="chart-bar wic-bar" id="general-total-points-bar">
+                        <div class="chart-bar wic-bar" id="general-total-points-bar" style="width:0%">
                             <!--Flexbox-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div id="general-earned-points-bar" style="width:100%"></div><!--General Meetings--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
+                            <div id="general-min-requirements" style="width:0%"></div><!--Placeholder-->
                         </div>
                     </div>
                     <div class="chart-placeholder"></div>
@@ -88,7 +91,7 @@
                         <section class="info-box-gray social-events">
                             <h2>Volunteering</h2>
                             <p>
-                                WiC is committed to be a part of the community. To find more information about volunteering opportunities, please visit  <span class="external-url">WiC's Events Page</span>.
+                                WiC is committed to be a part of the community. To find more information about volunteering opportunities, please visit WiC's Events Page.
                             </p>
                             <span class="learn-more-cont">
                                 <button class="learn-more" onclick="window.open('https://www.rit.edu/womenincomputing/events', '_blank')">
@@ -100,7 +103,7 @@
                         <section class="info-box-gray volunteering">
                             <h2>Social Events</h2>
                             <p>
-                                There are various social events hosted by WiC throughout the year. To find out more about these events, please visit <span class="external-url">WiC's Events Page</span>.
+                                There are various social events hosted by WiC throughout the year. To find out more about these events, please visit WiC's Events Page.
                             </p>
                             <span class="learn-more-cont">
                                 <button class="learn-more" onclick="window.open('https://www.rit.edu/womenincomputing/events', '_blank')">

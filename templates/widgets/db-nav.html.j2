@@ -1,0 +1,249 @@
+<div id="filter-dialog-box" title="Filters">
+    <form name="filter-settings" id="filter-settings" method="get">
+        <fieldset>
+            <div>
+                <label for="filter-semester">Semester</label>
+                <select name="filter-semester" id="filter-semester">
+                    <option>Fall 2024</option>
+                    <option>Spring 2024</option>
+                    <option>Fall 2023</option>
+                    <option>Spring 2023</option>
+                    <option>Fall 2022</option>
+                    <option>Spring 2022</option>
+                    <option>Fall 2021</option>
+                </select>
+            </div>
+            <div> 
+                <label for="filter-membership">Membership</label>
+                <select name="filter-membership" id="filter-membership">
+					<option>All</option>
+                    <option>Active Member</option>
+                    <option>Non-Active Member</option>
+                </select>    
+            </div>
+            <div>
+                <label for="filter-semesters">Minimum Semesters</label>
+                <input type="number" min="1" name="filter-semesters" id="filter-semesters" />
+            </div>
+            <div>
+                <label for="filter-gen-meetings">Minimum Gen. Meetings</label>
+                <input type="number" name="filter-gen-meetings" id="filter-gen-meetings" />
+            </div>
+            <div>
+                <label for="filter-con-meetings">Minimum Com. Meetings</label>
+                <input type="number" name="filter-con-meetings" id="filter-con-meetings" />
+            </div>
+            <div>
+                <label for="filter-social-event">Minimum Social Event</label>
+                <input type="number" name="filter-social-event" id="filter-social-event" />
+            </div>
+            <div>
+                <label for="filter-volunteering">Minimum Volunteering</label>
+                <input type="number" name="filter-volunteering" id="filter-volunteering">
+            </div>
+            <!-- allow for form submission without duplicating the dialog button-->
+            <!-- <input type="submit" tabindex="-1" style="position: absolute; top: -1000px"> -->
+        </fieldset>
+    </form>
+</div>
+
+<div id="create-meeting-dialog-box" title="Create Meeting">
+    <form name="create-meeting" id="create-meeting" method="post" action="/admin/{{ org_id }}/create">
+        <fieldset>
+            <div class="dialog-item">
+                <label for="meeting_name">Title:</label>
+                <input type="text" name="meeting_name" id="meeting_name">
+            <div class="dialog-row">
+                <div>
+                    <label for="meeting-date">Date:</label>
+                    <input type="date" name="meeting-date" id="meeting-date" style="padding: 8px 0px;">
+                </div>
+                <div>
+                    <label for="meeting-time-start">Start Time:</label>
+                    <input type="time" name="meeting-time-start" id="meeting-time-start">
+                </div> 
+                <div>
+                    <label for="meeting-time-end">End Time:</label>
+                    <input type="time" name="meeting-time-end" id="meeting-time-end">
+                </div>
+            </div>
+        </div>
+            <div class="dialog-row">
+                <div>
+                    <div class="dialog-row";>
+                        <label for="meeting_type">Meeting Type:</label>
+                    </div>
+                    <select name="meeting_type" id="meeting_type">
+                        <option>General</option>
+                        <option>Committee</option>
+                        <option>Social</option>
+                        <option>Volunteering</option>
+                        <option>Mentorship</option>
+                    </select>
+                </div>
+                <div style="margin-left:60px;">
+                    <label for="meeting_location">Meeting Location:</label>
+                    <input type="text" name="meeting_location" id="meeting_location">
+                </div>
+            </div>
+            <div class="dialog-item">
+                <label for="meeting_description">Description</label>
+                <textarea id="meeting_description" name="meeting_description" rows="6" cols="58" style="min-width:520px"></textarea>
+            </div>
+            
+            <!-- Hidden fields for combined datetime values -->
+            <input type="hidden" id="meeting_start_time" name="meeting_start_time">
+            <input type="hidden" id="meeting_end_time" name="meeting_end_time">
+        </fieldset>
+    </form>
+</div>
+
+{% include "widgets/meeting-upload.html.j2" %}
+
+<div id="send-email-dialog-box" title="Send Email">
+    <form name="send-email" id="send-email">
+        <fieldset>
+            <div>
+                <label for="send-to">To:</label>
+                <input type="text" name="send-to" id="send-to">
+            </div>
+            <div>
+                <textarea id="email-message" rows="6" cols="58"></textarea>
+            </div>
+            <div class="add-file-button">
+                <button>Add Files</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+    <div class="search-tools-container">
+        <div class="database-dropdown-large1">
+            <button onclick="dropDown1()" class="dropbtn1">
+                Student Data
+                <span class="dropDownArrow"><img src="../static/images/down-arrow-black.png" width="16" /></span>
+            </button>
+            <div id="DropdownContent1" class="dropdown-content-large1">
+                <a>Attendance Data</a>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="search" name="search" placeholder="Search Students" autocomplete="off">
+        </div>
+
+        <div class="optbutton">
+            <button id="filter-button"><img src="../static/images/opticon1.png" width="32" title="Filters"/></button>
+        </div>
+
+        <div class="optbutton">
+            <button id="import-data-button"><img src="../static/images/opticon2.png" width="32" title="Import Data"/></button>
+        </div>
+
+        <div class="optbutton">
+            <button id="create-meeting-button"><img src="../static/images/opticon5.png" width="32" title="Create Meeting"/></button>
+        </div>
+        <div class="optbutton">
+            <button id="modal-rew-Btn"><img src="../static/images/reports.png" width="32" title="Reports"/></button>
+        </div>
+         <div class="optbutton">
+            <button id="modal-rep-Btn"><img src="../static/images/awards-white.png" width="32" title="Rewards"/></button>
+        </div>
+         <div class="optbutton">
+            <a href='{{ url_for('admin.org_settings', org=org_id) }}'><img src="../static/images/conficon1.png" width="32" style="transform:translate(14px, 14px);" title="Configuration"/></a>
+        </div>
+
+
+<!--Reports Modal -->
+<div id="modal-rew" class="modal-rew">
+  <div class="modal-rew-content">
+  <button class="semester-report-btn report-btn" >Download</button>
+    <span class="close">&times;</span>
+    <h2 style="margin-left: 80px; margin-top: 80px;">Reports</h2>
+        <div class="report-upper" style="margin-left: 80px;">
+            <p>Active Members: {{ active_count_members }}</p>
+
+            <p>Inactive Members: {{ inactive_count_members }}</p>
+
+            <p>Alumni Members: {{ alumni_count_memebers }}</p>
+        </div>
+
+        <h3 style="margin-left: 80px; transform:translateY(20px);">GRADUATING MEMBERS</h3>
+
+        <table class=" smallerTable" style="margin-top: 100px;">
+            <!--THIS TABLE SHOULD LIST ALL MEMBERS GRADUATING THIS YEAR-->
+            <tr class="dbTableTop">
+                <th></th>
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+                <th>MEMBERSHIP</th>
+                <th>SEMESTER</th>
+                <th>EMAIL ADRESS</th>
+                <th class="dbTablePH"></th>
+                <th></th>
+            </tr>
+                {% for grad_students in graduation_students %}
+            <tr class="dbTableRow">
+                <td></td>
+                <td>{{ grad_students['first_name'] }}</td>
+                <td>{{ grad_students['last_name'] }}</td>
+                <td>{{ "Active" if grad_students['membership'] else "Inactive" }}</td>
+                <td>{{ grad_students['semesters'] }}</td>
+                <td>{{ grad_students['email_address'] }}</td>
+                <td class="dbTablePH"></td>
+                <td></td>
+            </tr>
+                {% endfor %}
+        </table>
+
+        <h3 style="margin-left: 80px; transform:translateY(20px);">ACTIVE MEMBERS</h3>
+
+        <table class=" smallerTable" style="margin-top: 100px;"> <!--THIS TABLE SHOULD LIST ALL ACTIVE MEMBERS DESCENDING BASED ON NUMBER OF SEMESTERS-->
+            <tr class="dbTableTop">
+                <th></th>
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+                <th>MEMBERSHIP</th>
+                <th>SEMESTER</th>
+                <th>EMAIL ADRESS</th>
+                <th class="dbTablePH"></th>
+                <th></th>
+            </tr>
+                {% for active_students in active %}
+            <tr class="dbTableRow">
+                <td></td>
+                <td>{{ active_students['first_name'] }}</td>
+                <td>{{ active_students['last_name'] }}</td>
+                <td>{{ "Active" if active_students['membership'] else "Inactive" }}</td>
+                <td>{{ active_students['semesters'] }}</td>
+                <td>{{ active_students['email_address'] }}</td>
+                <td class="dbTablePH"></td>
+                <td></td>
+            </tr>
+                {% endfor %}
+        </table>
+        </div>
+    </div>
+</div>
+
+<!--Rewards Modal -->
+<div id="modal-rep" class="modal-rew">
+<button class="semester-report-btn report-btn" style="margin-left:100px;" id="notify-students">Notify Students</button>
+  <div class="modal-rep-content">
+    <span class="close2">&times;</span>
+    <h2 style="margin-left: 80px; margin-top: 80px;">Rewards</h2>
+        <table id="reward-table" class="smallerTable" style="margin-top: 100px;">
+            <tr class="dbTableRow">
+                <td>
+                    <label class="container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </td>
+                <td style="transform: translateX(-30px);"><b>Firstname Lastname</b> has met the requirements for this award: <b>AwardName</b></td>
+                <td class="dbTablePH"></td>
+                <td style="padding-right: 0px;">MM/DD/YYYY</td> <!--When the notification was sent-->
+            </tr>
+        </table>
+    </div>
+</div>

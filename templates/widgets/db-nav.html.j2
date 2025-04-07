@@ -54,15 +54,15 @@
                 <label for="meeting_name">Title:</label>
                 <input type="text" name="meeting_name" id="meeting_name">
             <div class="dialog-row">
-                <div>
+                <div style="margin-top:10px;">
                     <label for="meeting-date">Date:</label>
                     <input type="date" name="meeting-date" id="meeting-date" style="padding: 8px 0px;">
                 </div>
-                <div>
+                <div style="margin-left:20px; margin-top:10px;">
                     <label for="meeting-time-start">Start Time:</label>
                     <input type="time" name="meeting-time-start" id="meeting-time-start">
                 </div> 
-                <div>
+                <div style=" margin-top:10px;">
                     <label for="meeting-time-end">End Time:</label>
                     <input type="time" name="meeting-time-end" id="meeting-time-end">
                 </div>
@@ -73,7 +73,7 @@
                     <div class="dialog-row";>
                         <label for="meeting_type">Meeting Type:</label>
                     </div>
-                    <select name="meeting_type" id="meeting_type">
+                    <select name="meeting_type" id="meeting_type" style="padding: 10px; width:250px;">
                         <option>General</option>
                         <option>Committee</option>
                         <option>Social</option>
@@ -81,12 +81,12 @@
                         <option>Mentorship</option>
                     </select>
                 </div>
-                <div style="margin-left:60px;">
+                <div style="transform:translateX(-10px);">
                     <label for="meeting_location">Meeting Location:</label>
                     <input type="text" name="meeting_location" id="meeting_location">
                 </div>
             </div>
-            <div class="dialog-item">
+            <div class="dialog-item" style="margin-top: 10px;">
                 <label for="meeting_description">Description</label>
                 <textarea id="meeting_description" name="meeting_description" rows="6" cols="58" style="min-width:520px"></textarea>
             </div>

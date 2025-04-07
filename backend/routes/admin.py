@@ -516,7 +516,8 @@ def worthy_members(org: int):
     awards = []
     awards_db = []
 
-    reached_active = [p for p in org_profiles if p.membership_sql(org)]
+    reached_active = [p for p in org_profiles if p.membership(org)]
+    print(reached_active)
 
     for profile in reached_active:
         award = db.session.query(Award.award_id, Award.name, Award.active_semester_requirements)\
@@ -525,11 +526,7 @@ def worthy_members(org: int):
             .first()
         if award:
             awards.append((profile, award))
-            awards_db.append(
-                ProfileAward(profile_id=profile.profile_id, award_id=award.award_id, award_date=datetime.now())
-            )
 
-    commit(*awards_db)
     return jsonify([
         {
             "profile_id": award[0].profile_id,

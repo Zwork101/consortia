@@ -140,6 +140,7 @@ class Profile(db.Model, UserMixin):
                 .where(attendance_table.c.profile_id == cls.profile_id)\
                 .where(Event.semester == semester)\
                 .where(Event.meeting_type == meeting_type)\
+                .where(Event.organizer_id == org)\
                 .scalar_subquery()
     
     @hybrid_method
@@ -211,38 +212,41 @@ class Profile(db.Model, UserMixin):
             raise ValueError(f"Unknown Organization: {org}")
     
     @hybrid_method
-    def bonus_points(self, org: int, semester_only: bool = True):
-        if semester_only:
-            current_semester = (datetime.now(timezone.utc).year * 10) + (0 if datetime.now(timezone.utc).month <= 7 else 5)
-            return sum(
-                b.point_value for b in self.bonuses 
-                if b.organization_id == org and 
-                   ((b.created_at.year * 10) + (0 if b.created_at.month <= 7 else 5)) == current_semester
-            )
-        else:
-            return sum(b.point_value for b in self.bonuses if b.organization_id == org)
-    
-    
+    def bonus_points(self, org: int, semester = None):
+        if not semester:
+            semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
+
+        # if self.bonuses:
+        #     b = self.bonuses[0]
+        #     print(self.full_name)
+        #     print((b.created_at.year * 10) + (0 if b.created_at.month <= 7 else 5), semester)
+
+        return sum(
+            b.point_value for b in self.bonuses 
+            if b.organization_id == org and 
+               ((b.created_at.year * 10) + (0 if b.created_at.month <= 7 else 5)) == semester
+        )
+
     @bonus_points.expression
     @classmethod
-    def bonus_points_sql(cls, org: int, semester_only: bool = True):
-        if semester_only:
+    def bonus_points_sql(cls, org: int, semester = None):
+        if semester is None:
+            semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
             # Get current semester
-            current_semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
-            
-            # Query that selects sum of bonus points for the given organization in the current semester
-            return db.session.query(func.coalesce(func.sum(BonusPoints.point_value), 0))\
-                .where(BonusPoints.recipient_id == cls.profile_id)\
-                .where(BonusPoints.organization_id == org)\
-                .where(func.strftime('%Y', BonusPoints.created_at) * 10 + 
-                       cast(func.strftime('%m', BonusPoints.created_at) / 7, Integer) * 5 == current_semester)\
-                .scalar_subquery()
-        else:
-            # Query that selects sum of all bonus points for the given organization
-            return db.session.query(func.coalesce(func.sum(BonusPoints.point_value), 0))\
-                .where(BonusPoints.recipient_id == cls.profile_id)\
-                .where(BonusPoints.organization_id == org)\
-                .scalar_subquery()
+        
+        # Query that selects sum of bonus points for the given organization in the current semester
+        return db.session.query(func.coalesce(func.sum(BonusPoints.point_value), 0))\
+            .where(BonusPoints.recipient_id == cls.profile_id)\
+            .where(BonusPoints.organization_id == org)\
+            .where(func.strftime('%Y', BonusPoints.created_at) * 10 + 
+                   cast(func.strftime('%m', BonusPoints.created_at) / 7, Integer) * 5 == semester)\
+            .scalar_subquery()
+        # else:
+        #     # Query that selects sum of all bonus points for the given organization
+        #     return db.session.query(func.coalesce(func.sum(BonusPoints.point_value), 0))\
+        #         .where(BonusPoints.recipient_id == cls.profile_id)\
+        #         .where(BonusPoints.organization_id == org)\
+        #         .scalar_subquery()
     
     @hybrid_method
     def event_points(self, org: int):
@@ -279,11 +283,12 @@ class Profile(db.Model, UserMixin):
             ).count()
             
             if total_general_meetings > 0:
-                attended_meetings = len([e for e in org_events if e.meeting_type == MeetingType.GENERAL])
+                attended_meetings = self.count_attendance(org, MeetingType.GENERAL, semester)
                 attendance_percent = (attended_meetings / total_general_meetings) * 100
 
-                total_points += max([p['points'] for p in member_conf['attendance'] if p['percent'] <= attendance_percent], default=0)
-            
+                general_points = max([p['points'] for p in member_conf['attendance'] if p['percent'] <= attendance_percent], default=0)
+                total_points += general_points
+
             # Volunteer work points
             volunteer_hours = 0
                 
@@ -291,25 +296,34 @@ class Profile(db.Model, UserMixin):
                 if e.meeting_type == MeetingType.VOLUNTEER:
                     volunteer_hours += e.get_hours(self.profile_id)
 
-            total_points += max([p['points'] for p in member_conf['volunteer'] if p['threshold'] <= volunteer_hours], default=0)
-            
+            volunteer_points = max([p['points'] for p in member_conf['volunteer'] if p['threshold'] <= volunteer_hours], default=0)
+            total_points += volunteer_points
+
             # Mentorship program points
-            mentorship_meetings = [e for e in org_events if e.meeting_type == MeetingType.MENTORSHIP]
-            if mentorship_meetings:
+            mentorship_meetings = self.count_attendance(org, MeetingType.MENTORSHIP, semester)
+            if mentorship_meetings > 0:
                 # Base 3 points for being in the program
-                mentorship_points = member_conf['mentorship_minimum'] + len(mentorship_meetings)
+                mentorship_points = member_conf['mentorship_minimum'] + mentorship_meetings
                 # Cap at 9 points
-                total_points += min(mentorship_points, member_conf['mentorship_maximum'])
+                mentor_points = min(mentorship_points, member_conf['mentorship_maximum'])
+                total_points += mentor_points
             
             # Add bonus points from miscellaneous contributions
-            total_points += self.bonus_points(org)
+            if self.bonus_points(org, semester) == 5:
+                print(
+                    self.full_name, 
+                    total_points,
+                    general_points,
+                    volunteer_hours,
+                    volunteer_points,
+                    mentor_points,
+                    attended_meetings
+                )
+            total_points += self.bonus_points(org, semester)
             
-            # Return True if they have 16 or more points
             return total_points
         else:
             raise ValueError(f"Unknown Organization: {org}")
-
-        return self.event_points(org) + self.bonus_points(org)
 
     @points.expression
     @classmethod
@@ -373,7 +387,7 @@ class Profile(db.Model, UserMixin):
             )
             
             # Get bonus points
-            bonus_points = cls.bonus_points(org)
+            bonus_points = cls.bonus_points(org, semester)
             
             # Calculate total points
             return general_meeting_points + volunteer_points + mentorship_points + bonus_points
@@ -445,6 +459,13 @@ class Profile(db.Model, UserMixin):
                     
                 } for event in self.attendance if event.organizer_id == org_id
             ]
+            base_profile_json['bonuses'] = [
+            {
+                "value": bonus.point_value,
+                "created_at": bonus.created_at.isoformat(),
+                "granter": bonus.giver.full_name
+            }
+            for bonus in self.bonuses if bonus.organization_id == org_id]
         else:
             base_profile_json["attendance"] = [
                 {
@@ -753,12 +774,12 @@ def db_testing_setup():
           "last_name": "Peller",
           "email": "bp3940@rit.edu"
         },
-        {
-          "rit_id": "njz8626",
-          "first_name": "Nathan",
-          "last_name": "Zilora",
-          "email": "njz8626@rit.edu"
-        },
+        # {
+        #   "rit_id": "njz8626",
+        #   "first_name": "Nathan",
+        #   "last_name": "Zilora",
+        #   "email": "njz8626@rit.edu"
+        # },
         {
             "rit_id": "whb3080",
             "first_name": "Wyatt",
@@ -857,6 +878,9 @@ def db_testing_setup():
     for user in developer_profiles:
         make_admin(user.profile_id, Organizations.WIC, RoleType.ADMIN)
         make_admin(user.profile_id, Organizations.COMS, RoleType.ADMIN)
+
+    create_bonus(5, will_smith.profile_id, will_smith.profile_id, "Test Grant", Organizations.WIC)
+    create_bonus(5, will_smith.profile_id, will_smith.profile_id, "Test Grant", Organizations.COMS)
 
     db.session.commit()
 

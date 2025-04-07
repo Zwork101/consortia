@@ -40,6 +40,7 @@ def create_app(config_file: Config = DevelopmentConfig) -> Flask:
     app.jinja_env.add_extension("jinja2.ext.loopcontrols")
 
     with app.app_context():
+        db.create_all()
         defacto_admin = db.session.query(Administrator.id).join(Profile).where(Profile.rit_id == app.config['DEFACTO_ADMIN']['rit_id']).first()
         if defacto_admin is None:
             profile = db.session.query(Profile.rit_id).where(Profile.rit_id == app.config['DEFACTO_ADMIN']['rit_id']).first()

@@ -1114,6 +1114,11 @@ svg {
     border-radius: 2px;
     font-family: var(--main-font);
     font-size: 0.9rem !important;
+    width: 253.33px;
+}
+.form-group input[type=number]{
+    width: 212px;
+    padding: 20px;
 }
 
 .form-submit-button {

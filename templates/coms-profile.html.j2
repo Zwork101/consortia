@@ -18,34 +18,34 @@
                 <button class="tablinks prof-view-btn" onclick="openCity(event, 'history')">History</button>
 
                 <div class="tabcontent" id="membership"> <!--MEMBERSHIP SECTION-->
-                    <div class="points-bar">
+                    <div class="points-bar pointsbarcoms">
             <div class="chart-bar"> <!--Flexbox-->
                 <div id="mentor-bar"></div><!--Mentorship Program-->
                 <div id="voluenteer-bar"></div><!--Volunteering-->
                 <div id="attendance-bar"></div><!--Attendence-->
                 <div id="misc-bar"></div><!--Miscellaneous-->
             </div>
-            <div class="chart-labels"> <!--Flexbox-->
+            <div class="chart-labels comschartlabels"> <!--Flexbox-->
                 <div>
-                    <div></div> <!--Circle-->
+                    <div class="comscircle"></div> <!--Circle-->
                     <p>Mentorship Program (<span id="mentor-points"></span>)</p>
                 </div>
                 <div>
-                    <div></div> <!--Circle-->
+                    <div class="comscircle"></div> <!--Circle-->
                     <p>Volunteering (<span id="voluenteering-points"></span>)</p>
                 </div>
                 <div>
-                    <div></div> <!--Circle-->
+                    <div class="comscircle"></div> <!--Circle-->
                     <p>Attendance (<span id="attendance-points"></span>)</p>
                 </div>
                 <div>
-                    <div></div> <!--Circle-->
+                    <div class="comscircle"></div> <!--Circle-->
                     <p>Miscellaneous (<span id="misc-points"></span>)</p>
                 </div>
                 <p><b><span id="earned-points"></span>/<span id="min-point-requirement"></span> Points</b></p>
             </div>
         </div>
-        <div class="points-info-container">
+        <div class="points-info-container comsinfocontainer">
             <section class="info-box-gray mentorship-points-box">
                 <h2>Mentorship Program</h2>
                 <div>
@@ -126,7 +126,7 @@
                 </div> 
             </div> <!--HISTORY SECTION-->
 
-            <div class="calendar-sec"> <!--CALENDAR SECTION-->
+            <div class="calendar-sec comscalendar"> <!--CALENDAR SECTION-->
 
                 {% include "calendar.html.j2" %}
             </div>

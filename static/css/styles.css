@@ -1114,6 +1114,11 @@ svg {
     border-radius: 2px;
     font-family: var(--main-font);
     font-size: 0.9rem !important;
+    width: 253.33px;
+}
+.form-group input[type=number]{
+    width: 212px;
+    padding: 20px;
 }
 
 .form-submit-button {
@@ -1723,3 +1728,72 @@ input[type=file]::file-selector-button:hover, .upload-submit:hover {
     max-width: 600px;
     border-radius: 8px;
 }
+
+/*
+    Styling for config pages
+*/
+
+.percentage-config, .threshold-config, .semester-config {
+    margin-left: 40px;
+    font-family: var(--main-font);
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+    .percentage-config input, .threshold-config input, .semester-config input, .admin-config input, #mentorship_minimum, #mentorship_maximum,
+    #required_points, #general_meetings_requirement, #committee_meetings_requirement, #social_meetings_requirement, #volunteering_meetings_requirement {
+        margin-right: 30px;
+        margin-left: 5px;
+        height: 40px;
+        padding-left: 10px;
+        font-family: var(--main-font);
+        font-size: 0.85rem;
+    }
+
+.admin-config input {
+    margin-left: 35px;
+}
+
+#mentorship_minimum, #mentorship_maximum, #required_points, #general_meetings_requirement, #committee_meetings_requirement, #social_meetings_requirement, #volunteering_meetings_requirement {
+    margin-left: 40px;
+    font-family: var(--main-font);
+    font-size: 0.85rem;
+}
+
+.semester-report-btn{
+    margin-bottom: 50px;
+}
+
+.config-sec-sub h4{
+    margin-bottom: 10px;
+}
+
+/*
+    Filter modal styling
+*/
+
+fieldset input[type=number] {
+    padding: 5px 10px;
+    border: #000 solid 1px;
+    width: 235px;
+    border-radius: 2px;
+}
+#filter-membership-button{
+    margin-left: 160px !important;
+}
+#filter-semesters{
+    margin-left: 99px !important;
+}
+#filter-gen-meetings{
+    margin-left: 71px !important;
+}
+#filter-con-meetings{
+    margin-left: 66.5px !important;
+}
+#filter-social-event{
+    margin-left: 85px !important;
+}
+#filter-volunteering{
+    margin-left: 83.5px !important;
+}
+

@@ -152,4 +152,24 @@
     .comscalendar {
         transform: translate(-20px, 2000px);
     }
-}
+
+    .profile-subsec {
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    .secondprofcontainer {
+        height: 650px !important;
+    }
+
+    .profile-container, .stuprof-name {
+        margin-left: 20px !important;
+        width: 90vw !important;
+    }
+    .secondprof-subsec{
+        transform: translateX(-100px);
+    }
+    .profile-subsec #submit {
+        transform: translate(0px, 240px) !important;
+    }
+   }

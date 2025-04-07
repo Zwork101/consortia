@@ -42,18 +42,19 @@ def create_app(config_file: Config = DevelopmentConfig) -> Flask:
     with app.app_context():
         db.create_all()
 
+        Organizations.COMS = db.session.query(Organizer.organization_id).where(Organizer.name == "Computing Organization for Multicultural Students").first()[0]
+        Organizations.WIC = db.session.query(Organizer.organization_id).where(Organizer.name == "Women in Computing").first()[0]
+
         defacto_admin = db.session.query(Administrator.id).join(Profile).where(Profile.rit_id == app.config['DEFACTO_ADMIN']['rit_id']).first()
         if defacto_admin is None:
             profile = db.session.query(Profile.rit_id).where(Profile.rit_id == app.config['DEFACTO_ADMIN']['rit_id']).first()
             if profile is None:
                 profile = Profile(**app.config['DEFACTO_ADMIN'])
             commit(profile)
+            print("Making admin")
             make_admin(profile.profile_id, Organizations.COMS, RoleType.ADMIN)
             make_admin(profile.profile_id, Organizations.WIC, RoleType.ADMIN)
             commit()
-
-        Organizations.COMS = db.session.query(Organizer.organization_id).where(Organizer.name == "Computing Organization for Multicultural Students").first()[0]
-        Organizations.WIC = db.session.query(Organizer.organization_id).where(Organizer.name == "Women in Computing").first()[0]
 
     return app
 

@@ -883,8 +883,10 @@ def make_admin(user: int, org: int, role: RoleType):
         organization_id = org,
         role = role
     )
+    print("Made object")
 
     db.session.add(admin)
+    print("Added session")
     return admin
 
 def create_attendance(email: str, event_id: int, first_name: str = None, last_name: str = None, hours = 0):

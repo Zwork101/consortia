@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta, timezone
-from enum import Enum as EnumClass, member
+from enum import Enum as EnumClass
 from types import MethodType
 from typing import Any, Optional
 import logging

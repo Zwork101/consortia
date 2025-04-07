@@ -177,8 +177,6 @@ class Profile(db.Model, UserMixin):
                 meeting_type=MeetingType.GENERAL,
                 semester=current_semester
             ).count()
-
-            print(f"Total General: {total_general_meetings}")
             
             if total_general_meetings > 0:
                 attended_meetings = len([e for e in org_events if e.meeting_type == MeetingType.GENERAL])

@@ -44,11 +44,11 @@ $( function() {
     $("#filter-sort-by").selectmenu();
     $("#filter-sort-order").selectmenu();
     $("#filter-membership").selectmenu();
-    $("#filter-semesters").selectmenu();
-    $("#filter-gen-meetings").selectmenu();
-    $("#filter-con-meetings").selectmenu();
-    $("#filter-social-event").selectmenu();
-    $("#filter-volunteering").selectmenu();
+    //$("#filter-semesters").selectmenu();
+    //$("#filter-gen-meetings").selectmenu();
+    //$("#filter-con-meetings").selectmenu();
+    //$("#filter-social-event").selectmenu();
+    //$("#filter-volunteering").selectmenu();
 
 
     /*

@@ -1,15 +1,13 @@
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from enum import Enum as EnumClass
-from types import MethodType
 from typing import Any, Optional
-import logging
 
 from flask import current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
-from sqlalchemy.orm import foreign, mapper, relationship, DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import ForeignKey, Integer, Table, Column, func, case, cast, and_, literal
+from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
+from sqlalchemy import ForeignKey, Integer, Table, Column, func, case, cast, literal, String
 
 
 class MeetingType(EnumClass):
@@ -35,6 +33,13 @@ class Base(DeclarativeBase):
 
 
 db = SQLAlchemy(model_class=Base)
+
+# https://github.com/pallets-eco/flask-sqlalchemy/issues/1361#issuecomment-2510791437
+db.Model.registry.update_type_annotation_map(
+    {
+        str: String(255)
+    }
+)
 
 
 attendance_table = Table(

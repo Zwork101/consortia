@@ -126,7 +126,7 @@ const tableConfigs = {
                 <td>${evt.name}</td>
                 <td>${new Date(evt.start_time).toLocaleDateString()}</td>
                 <td>${new Date(evt.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${new Date(evt.end_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
-                <td>${evt.meeting_type}</td>
+                <td>${evt.type}</td>
                 <td>${evt.location}</td>
                 <td>${evt.attendance_count}</td>
                 <td>${evt.attendance_percentage}%</td>

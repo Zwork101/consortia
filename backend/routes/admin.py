@@ -299,7 +299,8 @@ def list_users(org: int):
         Profile.count_attendance(org, MeetingType.VOLUNTEER),
         Profile.count_attendance(org, MeetingType.MENTORSHIP),
         Profile.bonus_points(org),
-        Profile.points(org)
+        Profile.points(org),
+        Profile.profile_id
     ).filter(Profile.semesters(org) > 0)
     
     # Apply membership filter if requested.
@@ -368,7 +369,8 @@ def list_users(org: int):
                 "mentorship": user[9]
             },
             "bonus_points": user[10],
-            "total_points": user[11]
+            "total_points": user[11],
+            "profile_id": user[12]
         }}
         for user in users
     ])

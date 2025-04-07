@@ -22,72 +22,24 @@
                 </select>    
             </div>
             <div>
-                <label for="filter-semesters">Semesters</label>
-                <select name="filter-semesters" id="filter-semesters">
-                    <option>All</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </select>
+                <label for="filter-semesters">Minimum Semesters</label>
+                <input type="number" min="1" name="filter-semesters" id="filter-semesters" />
             </div>
             <div>
-                <label for="filter-gen-meetings">Gen. Meetings</label>
-                <select name="filter-gen-meetings" id="filter-gen-meetings">
-                    <option>All</option>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                </select>
+                <label for="filter-gen-meetings">Minimum Gen. Meetings</label>
+                <input type="number" name="filter-gen-meetings" id="filter-gen-meetings" />
             </div>
             <div>
-                <label for="filter-con-meetings">Com. Meetings</label>
-                <select name="filter-con-meetings" id="filter-con-meetings">
-                    <option>All</option>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                </select>
+                <label for="filter-con-meetings">Minimum Com. Meetings</label>
+                <input type="number" name="filter-con-meetings" id="filter-con-meetings" />
             </div>
             <div>
-                <label for="filter-social-event">Social Event</label>
-                <select name="filter-social-event" id="filter-social-event">
-                    <option>All</option>
-                    <option>0</option>
-                    <option>1</option>
-                </select>
+                <label for="filter-social-event">Minimum Social Event</label>
+                <input type="number" name="filter-social-event" id="filter-social-event" />
             </div>
             <div>
-                <label for="filter-volunteering">Volunteering</label>
-                <select name="filter-volunteering" id="filter-volunteering">
-                    <option>All</option>
-                    <option>0</option>
-                    <option>1</option>
-                </select>
+                <label for="filter-volunteering">Minimum Volunteering</label>
+                <input type="number" name="filter-volunteering" id="filter-volunteering">
             </div>
             <!-- allow for form submission without duplicating the dialog button-->
             <!-- <input type="submit" tabindex="-1" style="position: absolute; top: -1000px"> -->
@@ -146,10 +98,7 @@
     </form>
 </div>
 
-
-{% with org=org_id %}
-    {% include "widgets/meeting-upload.html.j2" %}
-{% endwith %}
+{% include "widgets/meeting-upload.html.j2" %}
 
 <div id="send-email-dialog-box" title="Send Email">
     <form name="send-email" id="send-email">

@@ -1,3 +1,4 @@
+import csv
 from datetime import datetime
 import os
 import logging
@@ -302,7 +303,6 @@ def list_users(org: int):
     ).filter(Profile.semesters(org) > 0)
     
     # Apply membership filter if requested.
-    print(membership_filter, request.args)
     if membership_filter != "All":
         if membership_filter == "Non-Active Member":
             query = query.filter(Profile.membership(org) == "inactive")
@@ -311,10 +311,15 @@ def list_users(org: int):
     
     # Filter on semesters if selected.
     if semesters_filter != "All":
-        if semesters_filter == "None":
-            query = query.filter(Profile.semesters(org) == 0)
-        else:
-            query = query.filter(Profile.semesters(org) > 0)
+        query = query.filter(Profile.semesters(org) == semesters_filter)
+
+    for query_string, db_string in {
+        "filter-gen-meetings": MeetingType.GENERAL, 
+        "filter-con-meetings": MeetingType.COMMITTEE,
+        "filter-social-event": MeetingType.SOCIAL,
+        "filter-volunteering": MeetingType.VOLUNTEER}.items():
+        if query_string in request.args:
+            query = query.filter(Profile.count_attendance(org, db_string) >= request.args.get(query_string, type=int))
     
     # Apply text search filter on first name, last name, and email.
     if search_query:
@@ -332,7 +337,7 @@ def list_users(org: int):
         "first_name": Profile.first_name,
         "last_name": Profile.last_name,
         "email": Profile.email,
-        "semesters": Profile.semesters_sql(org),
+        "semesters": Profile.semesters(org),
         "points": Profile.points(org)
         # Removed 'membership' from sortable columns
     }

@@ -4,7 +4,7 @@ from flask import Blueprint, Flask, abort, render_template
 
 report = Blueprint("report", __name__, static_folder="static/", template_folder="templates/")
 
-@report.route("/admin/<int:org>")
+@report.route("/report/<int:org>")
 def yearly_report(org: int):
     # year
     current_year = datetime.datetime.now().year

@@ -52,6 +52,12 @@ class DevelopmentConfig(Config):
     DEBUG = True
     SERVER_NAME = "localhost:8080"
     SQLALCHEMY_DATABASE_URI = "sqlite:///dev.db"
+    DEFACTO_ADMIN = {
+        "rit_id": "njz8626",
+        "first_name": "Nathan",
+        "last_name": "Zilora",
+        "email": "njz8626@rit.edu"
+    }
 
 
 class LocalConfig(Config):
@@ -65,3 +71,9 @@ class ProductionConfig(Config):
     USE_X_SENDFILE = True
     SERVER_NAME = "consortia.gccis.rit.edu"
     SQLALCHEMY_DATABASE_URI = f"mariadb+mariadbconnector://consortia:{os.environ['DB_PASSWORD']}@localhost:3306/consortia"
+    DEFACTO_ADMIN = {
+        "rit_id": "njz8626",
+        "first_name": "Nathan",
+        "last_name": "Zilora",
+        "email": "njz8626@rit.edu"
+    }

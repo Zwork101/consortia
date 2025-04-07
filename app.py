@@ -3,7 +3,7 @@ import os
 import logging
 
 from backend.auth import shib
-from backend.db import db, db_testing_setup, Event
+from backend.db import Administrator, Organizations, Profile, RoleType, commit, db, db_testing_setup, Event, make_admin
 from configs import *
 
 from flask import Flask, Blueprint, request
@@ -38,6 +38,17 @@ def create_app(config_file: Config = DevelopmentConfig) -> Flask:
         logging.info(f"Added '{blueprint.name}' blueprint.")
 
     app.jinja_env.add_extension("jinja2.ext.loopcontrols")
+
+    with app.app_context():
+        defacto_admin = db.session.query(Administrator.id).join(Profile).where(Profile.rit_id == app.config['DEFACTO_ADMIN']['rit_id']).first()
+        if defacto_admin is None:
+            profile = db.session.query(Profile.rit_id).where(Profile.rit_id == app.config['DEFACTO_ADMIN']['rit_id']).first()
+            if profile is None:
+                profile = Profile(**app.config['DEFACTO_ADMIN'])
+            commit(profile)
+            make_admin(profile.profile_id, Organizations.COMS, RoleType.ADMIN)
+            make_admin(profile.profile_id, Organizations.WIC, RoleType.ADMIN)
+            commit()
 
     return app
 

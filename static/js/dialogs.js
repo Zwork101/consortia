@@ -244,9 +244,65 @@ $( function() {
             </tr>
             `);
         })
-     });
+    });
+    
+    
+    $('#modal-rew-Btn').button().on("click", async function () {
+        const org_id = document.getElementsByTagName("body")[0].dataset.org;
+        const resp = await fetch(`/admin/${org_id}/report`);
+    
+        if (!resp.ok) {
+            throw new Error(`Response status: ${resp.status}`);
+        }
+    
+        const data = await resp.json();
+    
+        // Count data for the upper report
+        const upperReport = document.getElementById("report-upper");
+        upperReport.innerHTML = `
+            <p>Active Members: ${data.active_count_members}</p>
+            <p>Inactive Members: ${data.inactive_count_members}</p>
+            <p>Alumni Members: ${data.alumni_count_members}</p>
+        `;
+    
+        // Filling in the Graduating Members table
+        const gradTable = document.getElementById("graduation-table");
+        gradTable.innerHTML = "";
 
+        data.graduation_students.forEach((gradStudent) => {
+            gradTable.insertAdjacentHTML("beforeend", `
+                <tr class="dbTableRow">
+                    <td></td>
+                    <td>${gradStudent.first_name}</td>
+                    <td>${gradStudent.last_name}</td>
+                    <td>${gradStudent.membership ? "Active" : "Inactive"}</td>
+                    <td>${gradStudent.semesters}</td>
+                    <td>${gradStudent.email_address}</td>
+                    <td class="dbTablePH"></td>
+                    <td></td>
+                </tr>
+            `);
+        });
+    
+        // Filling in the Active Members table
+        const activeTable = document.getElementById("active-table");
+        activeTable.innerHTML = "";
 
+        data.active_students.forEach((activeStudent) => {
+            activeTable.insertAdjacentHTML("beforeend", `
+                <tr class="dbTableRow">
+                    <td></td>
+                    <td>${activeStudent.first_name}</td>
+                    <td>${activeStudent.last_name}</td>
+                    <td>${activeStudent.membership ? "Active" : "Inactive"}</td>
+                    <td>${activeStudent.semesters}</td>
+                    <td>${activeStudent.email_address}</td>
+                    <td class="dbTablePH"></td>
+                    <td></td>
+                </tr>
+            `);
+        });
+    });
 
 });
 

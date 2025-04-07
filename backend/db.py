@@ -9,7 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from sqlalchemy.orm import foreign, mapper, relationship, DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import ForeignKey, Integer, Table, Column, func, case, cast, and_
+from sqlalchemy import ForeignKey, Integer, Table, Column, func, case, cast, and_, literal
 
 
 class MeetingType(EnumClass):
@@ -167,62 +167,7 @@ class Profile(db.Model, UserMixin):
                     (social_event >= member_conf['volunteering_meetings_requirement'])
         
         elif org == Organizations.COMS:
-            # Get current semester events for COMS
-            org_events = [e for e in self.attendance if (e.organizer_id == org and e.semester == current_semester)]
-            total_points = 0
-            
-            # General meeting attendance points
-            total_general_meetings = Event.query.filter_by(
-                organizer_id=org, 
-                meeting_type=MeetingType.GENERAL,
-                semester=current_semester
-            ).count()
-            
-            if total_general_meetings > 0:
-                attended_meetings = len([e for e in org_events if e.meeting_type == MeetingType.GENERAL])
-                attendance_percent = (attended_meetings / total_general_meetings) * 100
-
-                total_points += max([p['points'] for p in member_conf['attendance'] if p['percent'] <= attendance_percent], default=0)
-                
-                # if attendance_percent >= 100:
-                #     total_points += 3
-                # elif attendance_percent >= 75:
-                #     total_points += 2
-                # elif attendance_percent >= 50:
-                #     total_points += 1
-            
-            # Volunteer work points
-            volunteer_hours = 0
-                
-            for e in org_events:
-
-                if e.meeting_type == MeetingType.VOLUNTEER:
-                    volunteer_hours += e.get_hours(self.profile_id)
-
-            total_points += max([p['points'] for p in member_conf['volunteer'] if p['threshold'] <= volunteer_hours], default=0)
-            
-            # if volunteer_hours >= 9:
-            #     total_points += 4
-            # elif volunteer_hours >= 6:
-            #     total_points += 3
-            # elif volunteer_hours >= 3:
-            #     total_points += 2
-            # elif volunteer_hours >= 1:
-            #     total_points += 1
-            
-            # Mentorship program points
-            mentorship_meetings = [e for e in org_events if e.meeting_type == MeetingType.MENTORSHIP]
-            if mentorship_meetings:
-                # Base 3 points for being in the program
-                mentorship_points = member_conf['mentorship_minimum'] + len(mentorship_meetings)
-                # Cap at 9 points
-                total_points += min(mentorship_points, member_conf['mentorship_maximum'])
-            
-            # Add bonus points from miscellaneous contributions
-            total_points += self.bonus_points(org)
-            
-            # Return True if they have 16 or more points
-            return total_points >= member_conf['required_points']
+            return self.points(org, current_semester) >= member_conf['required_points']
         else:
             raise ValueError(f"Unknown Organization: {org}")
 
@@ -251,100 +196,14 @@ class Profile(db.Model, UserMixin):
             )
         
         elif org == Organizations.COMS:
-            # Get total general meetings for the semester
-            total_general_meetings = db.session.query(func.count(Event.event_id))\
-                .where(Event.organizer_id == org)\
-                .where(Event.semester == current_semester)\
-                .where(Event.meeting_type == MeetingType.GENERAL)\
-                .scalar_subquery()
-            
-            # Calculate attended general meetings
-            attended_general_meetings = db.session.query(func.count(Event.event_id))\
-                .select_from(Event)\
-                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
-                .where(attendance_table.c.profile_id == cls.profile_id)\
-                .where(Event.organizer_id == org)\
-                .where(Event.semester == current_semester)\
-                .where(Event.meeting_type == MeetingType.GENERAL)\
-                .scalar_subquery()
-            
-            # Calculate attendance percentage
-            attendance_percent = case(
-                (total_general_meetings > 0, (cast(attended_general_meetings * 100, Integer) / total_general_meetings)),
-                else_=0
-            )
-            
-            # Calculate general meeting points
-            requirement_list = []
-            for requirement in sorted(member_conf['attendance'], key=lambda req: req['percent'], reverse=True):
-                requirement_list.append(
-                    (attendance_percent >= requirement['percent'], requirement['points'])
-                )
-            general_meeting_points = case(*requirement_list, else_=0)
-
-            # general_meeting_points = case(
-            #     (attendance_percent >= 100, 3),
-            #     (attendance_percent >= 75, 2),
-            #     (attendance_percent >= 50, 1),
-            #     else_=0
-            # )
-            
-            # Calculate volunteer hours
-            volunteer_hours = db.session.query(func.coalesce(func.sum(attendance_table.c.hours), 0))\
-                .select_from(attendance_table)\
-                .join(Event, Event.event_id == attendance_table.c.event_id)\
-                .where(attendance_table.c.profile_id == cls.profile_id)\
-                .where(Event.organizer_id == org)\
-                .where(Event.semester == current_semester)\
-                .where(Event.meeting_type == MeetingType.VOLUNTEER)\
-                .scalar_subquery()
-            
-            # Calculate volunteer points
-            requirement_list = []
-            for requirement in sorted(member_conf['volunteer'], key=lambda req: req['threshold'], reverse=True):
-                requirement_list.append(
-                    (attendance_percent >= requirement['threshold'], requirement['points'])
-                )
-            volunteer_points = case(*requirement_list, else_=0)
-
-            # volunteer_points = case(
-            #     (volunteer_hours >= 9, 4),
-            #     (volunteer_hours >= 6, 3),
-            #     (volunteer_hours >= 3, 2),
-            #     (volunteer_hours >= 1, 1),
-            #     else_=0
-            # )
-            
-            # Calculate mentorship meetings
-            mentorship_meetings = db.session.query(func.count(Event.event_id))\
-                .select_from(Event)\
-                .join(attendance_table, Event.event_id == attendance_table.c.event_id)\
-                .where(attendance_table.c.profile_id == cls.profile_id)\
-                .where(Event.organizer_id == org)\
-                .where(Event.semester == current_semester)\
-                .where(Event.meeting_type == MeetingType.MENTORSHIP)\
-                .scalar_subquery()
-            
-            mentorship_points = case(
-                ((mentorship_meetings > 0) & (member_conf['mentorship_minimum'] + mentorship_meetings <= member_conf['mentorship_maximum']), member_conf['mentorship_minimum'] + mentorship_meetings),
-                ((mentorship_meetings > 0) & (member_conf['mentorship_minimum'] + mentorship_meetings > member_conf['mentorship_maximum']), member_conf['mentorship_maximum']),
-                else_=0
-            )
-            
-            # Get bonus points
-            bonus_points = cls.bonus_points_sql(org)
-            
-            # Calculate total points
-            total_points = general_meeting_points + volunteer_points + mentorship_points + bonus_points
-            
             return case(
-                (total_points >= member_conf['required_points'], "active"),
+                (cls.points(org, current_semester) >= member_conf['required_points'], "active"),
                 else_="inactive"
             )
         
         else:
             # Default case for unknown organizations
-            return "'unknown'"
+            raise ValueError(f"Unknown Organization: {org}")
     
     @hybrid_method
     def bonus_points(self, org: int, semester_only: bool = True):
@@ -395,8 +254,126 @@ class Profile(db.Model, UserMixin):
             .scalar_subquery()
     
     @hybrid_method
-    def points(self, org: int):
+    def points(self, org: int, semester = None):
+        if semester is None:
+            semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
+
+        member_conf =  current_app.config["ORG_SETTINGS"][str(org)]
+
+        if org == Organizations.WIC:
+            return 0
+        elif org == Organizations.COMS:
+            org_events = [e for e in self.attendance if (e.organizer_id == org and e.semester == semester)]
+            total_points = 0
+            
+            # General meeting attendance points
+            total_general_meetings = Event.query.filter_by(
+                organizer_id=org, 
+                meeting_type=MeetingType.GENERAL,
+                semester=semester
+            ).count()
+            
+            if total_general_meetings > 0:
+                attended_meetings = len([e for e in org_events if e.meeting_type == MeetingType.GENERAL])
+                attendance_percent = (attended_meetings / total_general_meetings) * 100
+
+                total_points += max([p['points'] for p in member_conf['attendance'] if p['percent'] <= attendance_percent], default=0)
+            
+            # Volunteer work points
+            volunteer_hours = 0
+                
+            for e in org_events:
+                if e.meeting_type == MeetingType.VOLUNTEER:
+                    volunteer_hours += e.get_hours(self.profile_id)
+
+            total_points += max([p['points'] for p in member_conf['volunteer'] if p['threshold'] <= volunteer_hours], default=0)
+            
+            # Mentorship program points
+            mentorship_meetings = [e for e in org_events if e.meeting_type == MeetingType.MENTORSHIP]
+            if mentorship_meetings:
+                # Base 3 points for being in the program
+                mentorship_points = member_conf['mentorship_minimum'] + len(mentorship_meetings)
+                # Cap at 9 points
+                total_points += min(mentorship_points, member_conf['mentorship_maximum'])
+            
+            # Add bonus points from miscellaneous contributions
+            total_points += self.bonus_points(org)
+            
+            # Return True if they have 16 or more points
+            return total_points
+        else:
+            raise ValueError(f"Unknown Organization: {org}")
+
         return self.event_points(org) + self.bonus_points(org)
+
+    @points.expression
+    @classmethod
+    def points_sql(cls, org: int, semester = None):
+        if semester is None:
+            semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
+
+        member_conf =  current_app.config["ORG_SETTINGS"][str(org)]
+
+        if org == Organizations.WIC:
+            return literal(0)
+        elif org == Organizations.COMS:
+            total_general_meetings = db.session.query(func.count(Event.event_id))\
+                .where(Event.organizer_id == org)\
+                .where(Event.semester == semester)\
+                .where(Event.meeting_type == MeetingType.GENERAL)\
+                .scalar_subquery()
+            
+            # Calculate attended general meetings
+            attended_general_meetings = cls.count_attendance(org, MeetingType.GENERAL, semester)
+            
+            # Calculate attendance percentage
+            attendance_percent = case(
+                (total_general_meetings > 0, (cast(attended_general_meetings * 100, Integer) / total_general_meetings)),
+                else_=0
+            )
+            
+            # Calculate general meeting points
+            requirement_list = []
+            for requirement in sorted(member_conf['attendance'], key=lambda req: req['percent'], reverse=True):
+                requirement_list.append(
+                    (attendance_percent >= requirement['percent'], requirement['points'])
+                )
+            general_meeting_points = case(*requirement_list, else_=0)
+            
+            # Calculate volunteer hours
+            volunteer_hours = db.session.query(func.coalesce(func.sum(attendance_table.c.hours), 0))\
+                .select_from(attendance_table)\
+                .join(Event, Event.event_id == attendance_table.c.event_id)\
+                .where(attendance_table.c.profile_id == cls.profile_id)\
+                .where(Event.organizer_id == org)\
+                .where(Event.semester == semester)\
+                .where(Event.meeting_type == MeetingType.VOLUNTEER)\
+                .scalar_subquery()
+            
+            # Calculate volunteer points
+            requirement_list = []
+            for requirement in sorted(member_conf['volunteer'], key=lambda req: req['threshold'], reverse=True):
+                requirement_list.append(
+                    (attendance_percent >= requirement['threshold'], requirement['points'])
+                )
+            volunteer_points = case(*requirement_list, else_=0)
+            
+            # Calculate mentorship meetings
+            mentorship_meetings = cls.count_attendance(org, MeetingType.MENTORSHIP, semester)
+            
+            mentorship_points = case(
+                ((mentorship_meetings > 0) & (member_conf['mentorship_minimum'] + mentorship_meetings <= member_conf['mentorship_maximum']), member_conf['mentorship_minimum'] + mentorship_meetings),
+                ((mentorship_meetings > 0) & (member_conf['mentorship_minimum'] + mentorship_meetings > member_conf['mentorship_maximum']), member_conf['mentorship_maximum']),
+                else_=0
+            )
+            
+            # Get bonus points
+            bonus_points = cls.bonus_points(org)
+            
+            # Calculate total points
+            return general_meeting_points + volunteer_points + mentorship_points + bonus_points
+        else:
+            raise ValueError(f"Unknown Organization: {org}")
     
     
     @hybrid_method

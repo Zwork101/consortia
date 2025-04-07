@@ -5,7 +5,7 @@ from time import sleep
 
 from configs import update_org_settings
 from backend.email import create_batches, generate_award_email, get_token, send_email
-from backend.db import Administrator, Award, Organizations, ProfileAward, RoleType, award_user, create_attendance, commit, Event, Profile, create_bonus, db, make_admin
+from backend.db import Administrator, Award, MeetingType, Organizations, ProfileAward, RoleType, award_user, create_attendance, commit, Event, Profile, create_bonus, db, make_admin
 from backend.auth import admin_required
 from backend.forms import CampusGroupsValidator, AttendanceForm, AddUserForm, EditUserForm, SelectUserForm, serachId, BonusForm, WICConfigForm, COMSConfigForm
 
@@ -271,8 +271,9 @@ def id_search():
     
     abort(200)
 
-@admin.route("/admin/profiles/<int:organization>", methods=["GET"])
-def list_users(organization: int):
+@admin.route("/admin/profiles/<int:org>", methods=["GET"])
+@admin_required
+def list_users(org: int):
     try:
         skip = request.args.get("skip", 0, type=int)
         count = request.args.get("count", 100, type=int)
@@ -285,21 +286,35 @@ def list_users(organization: int):
         raise
     
     # Base query: only profiles with attendance in given org
-    query = Profile.query.filter(Profile.attendance.any(Event.organizer_id == organization))
+    query = db.session.query(
+        Profile.first_name,
+        Profile.last_name,
+        Profile.membership(org),
+        Profile.semesters(org),
+        Profile.email,
+        Profile.count_attendance(org, MeetingType.GENERAL),
+        Profile.count_attendance(org, MeetingType.COMMITTEE),
+        Profile.count_attendance(org, MeetingType.SOCIAL),
+        Profile.count_attendance(org, MeetingType.VOLUNTEER),
+        Profile.count_attendance(org, MeetingType.MENTORSHIP),
+        Profile.bonus_points(org),
+        Profile.points(org)
+    ).filter(Profile.semesters(org) > 0)
     
     # Apply membership filter if requested.
+    print(membership_filter, request.args)
     if membership_filter != "All":
         if membership_filter == "Non-Active Member":
-            query = query.filter(Profile.membership_sql(organization) == "inactive")
+            query = query.filter(Profile.membership(org) == "inactive")
         elif membership_filter == "Active Member":
-            query = query.filter(Profile.membership_sql(organization) == "active")
+            query = query.filter(Profile.membership(org) == "active")
     
     # Filter on semesters if selected.
     if semesters_filter != "All":
         if semesters_filter == "None":
-            query = query.filter(Profile.semesters_sql(organization) == 0)
+            query = query.filter(Profile.semesters(org) == 0)
         else:
-            query = query.filter(Profile.semesters_sql(organization) > 0)
+            query = query.filter(Profile.semesters(org) > 0)
     
     # Apply text search filter on first name, last name, and email.
     if search_query:
@@ -317,8 +332,8 @@ def list_users(organization: int):
         "first_name": Profile.first_name,
         "last_name": Profile.last_name,
         "email": Profile.email,
-        "semesters": Profile.semesters_sql(organization),
-        "points": Profile.points(organization)
+        "semesters": Profile.semesters_sql(org),
+        "points": Profile.points(org)
         # Removed 'membership' from sortable columns
     }
     
@@ -332,8 +347,24 @@ def list_users(organization: int):
         sort_column = sort_column.asc()
     
     users = query.order_by(sort_column).limit(count).offset(skip).all()
+
     return jsonify([
-        {"profile": user.serialize(organization)["profile"]}
+        {"profile": {
+            "first_name": user[0],
+            "last_name": user[1],
+            "membership": user[2],
+            "semesters": user[3],
+            "email": user[4],
+            "attendance": {
+                "general": user[5],
+                "committee": user[6],
+                "social": user[7],
+                "volunteering": user[8],
+                "mentorship": user[9]
+            },
+            "bonus_points": user[10],
+            "total_points": user[11]
+        }}
         for user in users
     ])
 

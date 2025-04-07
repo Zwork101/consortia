@@ -21,12 +21,13 @@ $( function() {
         buttons: [
             {
                 text: "Apply All",
-                click: function() {
+                click: async function() {
                     // Properly submit the form
-                    $("#filter-settings").trigger("submit");
+                    // $("#filter-settings").trigger("submit");
+                    filter_dialog.dialog('close');
+                    await applyFilters();
                     
                     // Close the dialog after the form is processed
-                    filter_dialog.dialog('close');
                     console.log("filter box closed");
                 }
             },

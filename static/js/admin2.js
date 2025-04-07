@@ -2,10 +2,8 @@
 function getCurrentOrgId() {
     // Check for organization ID in the page
     // Default to 1 for WiC or 2 for COMS
-    if (document.querySelector("input[name='organization_id'][value='2']")) {
-        return 2; // COMS
-    }
-    return 1; // Default to WiC
+    return parseInt(document.getElementsByTagName("body")[0].dataset.org);
+
 }
 
 // Table type configurations for different data views
@@ -27,20 +25,20 @@ const tableConfigs = {
             if (orgId === 1) { // WiC
                 return [
                     ...commonHeaders,
-                    { title: "GEN. MEETINGS", dataKey: "general" },
-                    { title: "COM. MEETINGS", dataKey: "committee" },
-                    { title: "SOCIAL EVENT", dataKey: "social" },
-                    { title: "VOLUNTEERING", dataKey: "volunteering" },
+                    { title: "GEN. MEETINGS", dataKey: "profile.attendance.general" },
+                    { title: "COM. MEETINGS", dataKey: "profile.attendance.committee" },
+                    { title: "SOCIAL EVENT", dataKey: "profile.attendance.social" },
+                    { title: "VOLUNTEERING", dataKey: "profile.attendance.volunteering" },
                     { title: "", placeholder: true },
                     { title: "", actions: true }
                 ];
             } else { // COMS
                 return [
                     ...commonHeaders,
-                    { title: "MENTORSHIP", dataKey: "mentorship" },
-                    { title: "VOLUNTEERING", dataKey: "volunteering" },
-                    { title: "ATTENDANCE", dataKey: "attendance" },
-                    { title: "MISC", dataKey: "misc" },
+                    { title: "MENTORSHIP", dataKey: "profile.attendance.mentorship" },
+                    { title: "VOLUNTEERING", dataKey: "profile.attendance.volunteering" },
+                    { title: "ATTENDANCE", dataKey: "profile.attendance.general" },
+                    { title: "MISC", dataKey: "profile.bonus_points" },
                     { title: "TOTAL POINTS", sortKey: "Points", dataKey: "profile.points", backendSortKey: "points" },
                     { title: "", placeholder: true },
                     { title: "", actions: true }
@@ -49,16 +47,16 @@ const tableConfigs = {
         },
         renderRow: (row) => {
             // Generate mentorship, volunteering and other calculated fields
-            const mentorshipCount = row.profile.attendance ? 
-                row.profile.attendance.filter(e => e.meeting_type === "MENTORSHIP").length : 0;
-            const volunteeringCount = row.profile.attendance ? 
-                row.profile.attendance.filter(e => e.meeting_type === "VOLUNTEER").length : 0;
-            const generalCount = row.profile.attendance ? 
-                row.profile.attendance.filter(e => e.meeting_type === "GENERAL").length : 0;
-            const committeeCount = row.profile.attendance ? 
-                row.profile.attendance.filter(e => e.meeting_type === "COMMITTEE").length : 0;
-            const socialCount = row.profile.attendance ? 
-                row.profile.attendance.filter(e => e.meeting_type === "SOCIAL").length : 0;
+            // const mentorshipCount = row.profile.attendance ? 
+            //     row.profile.attendance.filter(e => e.meeting_type === "MENTORSHIP").length : 0;
+            // const volunteeringCount = row.profile.attendance ? 
+            //     row.profile.attendance.filter(e => e.meeting_type === "VOLUNTEER").length : 0;
+            // const generalCount = row.profile.attendance ? 
+            //     row.profile.attendance.filter(e => e.meeting_type === "GENERAL").length : 0;
+            // const committeeCount = row.profile.attendance ? 
+            //     row.profile.attendance.filter(e => e.meeting_type === "COMMITTEE").length : 0;
+            // const socialCount = row.profile.attendance ? 
+            //     row.profile.attendance.filter(e => e.meeting_type === "SOCIAL").length : 0;
             
             // For WiC view, show different columns than COMS view
             if (getCurrentOrgId() === 1) { // WiC
@@ -75,13 +73,13 @@ const tableConfigs = {
                     <td>${row.profile.membership}</td>
                     <td>${row.profile.semesters}</td>
                     <td>${row.profile.email}</td>
-                    <td>${generalCount}/14</td>
-                    <td>${committeeCount}/6</td>
-                    <td>${socialCount}</td>
-                    <td>${volunteeringCount}</td>
+                    <td>${row.profile.attendance.general}/14</td>
+                    <td>${row.profile.attendance.committee}/6</td>
+                    <td>${row.profile.attendance.social}</td>
+                    <td>${row.profile.attendance.volunteering}</td>
                     <td class="dbTablePH"></td>
                     <td>
-                        <img src="../static/images/options.png" width="16" class="edit-profile-btn" data-user-id="${row.profile.profile_id}" />
+                        <img src="/static/images/options.png" width="16" class="edit-profile-btn" data-user-id="${row.profile.profile_id}" />
                     </td>
                 </tr>`;
             } else { // COMS
@@ -98,14 +96,14 @@ const tableConfigs = {
                     <td>${row.profile.membership}</td>
                     <td>${row.profile.semesters}</td>
                     <td>${row.profile.email}</td>
-                    <td>${mentorshipCount}</td>
-                    <td>${volunteeringCount}</td>
-                    <td>${generalCount}</td>
+                    <td>${row.profile.attendance.mentorship}</td>
+                    <td>${row.profile.attendance.volunteering}</td>
+                    <td>${row.profile.attendance.general}</td>
                     <td>${row.profile.bonus_points || 0}</td>
-                    <td>${(row.profile.points || 0)}</td>
+                    <td>${(row.profile.total_points || 0)}</td>
                     <td class="dbTablePH"></td>
                     <td>
-                        <img src="../static/images/options.png" width="16" class="edit-profile-btn" data-user-id="${row.profile.profile_id}" />
+                        <img src="/static/images/options.png" width="16" class="edit-profile-btn" data-user-id="${row.profile.profile_id}" />
                     </td>
                 </tr>`;
             }

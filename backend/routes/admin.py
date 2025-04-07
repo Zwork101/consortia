@@ -256,7 +256,6 @@ def list_users(org: int):
         raise
     
     # Base query: only profiles with attendance in given org
-    query = Profile.query.filter(Profile.attendance.any(Event.organizer_id == org))
     query = db.session.query(
         Profile.first_name,
         Profile.last_name,
@@ -266,22 +265,26 @@ def list_users(org: int):
         Profile.count_attendance(org, MeetingType.GENERAL),
         Profile.count_attendance(org, MeetingType.COMMITTEE),
         Profile.count_attendance(org, MeetingType.SOCIAL),
-        Profile.count_attendance(org, MeetingType.VOLUNTEER)
-    )
+        Profile.count_attendance(org, MeetingType.VOLUNTEER),
+        Profile.count_attendance(org, MeetingType.MENTORSHIP),
+        Profile.bonus_points(org),
+        Profile.points(org)
+    ).filter(Profile.semesters(org) > 0)
     
     # Apply membership filter if requested.
+    print(membership_filter, request.args)
     if membership_filter != "All":
         if membership_filter == "Non-Active Member":
-            query = query.filter(Profile.membership_sql(org) == "inactive")
+            query = query.filter(Profile.membership(org) == "inactive")
         elif membership_filter == "Active Member":
-            query = query.filter(Profile.membership_sql(org) == "active")
+            query = query.filter(Profile.membership(org) == "active")
     
     # Filter on semesters if selected.
     if semesters_filter != "All":
         if semesters_filter == "None":
-            query = query.filter(Profile.semesters_sql(org) == 0)
+            query = query.filter(Profile.semesters(org) == 0)
         else:
-            query = query.filter(Profile.semesters_sql(org) > 0)
+            query = query.filter(Profile.semesters(org) > 0)
     
     # Apply text search filter on first name, last name, and email.
     if search_query:
@@ -315,10 +318,23 @@ def list_users(org: int):
     
     users = query.order_by(sort_column).limit(count).offset(skip).all()
 
-    print(users)
-
     return jsonify([
-        {"profile": user.serialize(org)["profile"]}
+        {"profile": {
+            "first_name": user[0],
+            "last_name": user[1],
+            "membership": user[2],
+            "semesters": user[3],
+            "email": user[4],
+            "attendance": {
+                "general": user[5],
+                "committee": user[6],
+                "social": user[7],
+                "volunteering": user[8],
+                "mentorship": user[9]
+            },
+            "bonus_points": user[10],
+            "total_points": user[11]
+        }}
         for user in users
     ])
 

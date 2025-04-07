@@ -617,6 +617,7 @@ def list_events(org: int):
             "description": event.description,
             "location": event.location,
             "start_time": event.start_time.isoformat(),
+            "end_time": event.end_time.isoformat() if event.end_time else None,
             "attendance_count": attendees,
             "attendance_percentage": round(percentage)
         })

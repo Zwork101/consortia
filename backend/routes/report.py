@@ -1,10 +1,12 @@
 import datetime
 from backend import db
-from flask import Blueprint, Flask, abort, render_template
+from flask import Blueprint, Flask, abort, jsonify
+from backend.auth import admin_required
 
 report = Blueprint("report", __name__, static_folder="static/", template_folder="templates/")
 
-@report.route("/report/<int:org>")
+@report.route("/admin/<int:org>/report")
+@admin_required
 def yearly_report(org: int):
     # year
     current_year = datetime.datetime.now().year
@@ -17,35 +19,42 @@ def yearly_report(org: int):
         alumni_count = db.Profile.query.filter(db.Profile.graduation_year < current_year).count()
 
         # filters members for grad year
-        grad_students_year = db.Profile.query.filter(db.Profile.graduation_year == current_year).order_by(db.Profile.first_name, db.Profile.last_name).all()
+        grad_member_year = db.Profile.query.filter(db.Profile.graduation_year == current_year).order_by(db.Profile.first_name, db.Profile.last_name).all()
 
-        grad_students = [
+        grad_members = [
             {
-                "first_name": grad_student.first_name,
-                "last_name": grad_student.last_name,
-                "membership": grad_student.membership(org),
-                "semesters": grad_student.semesters(org),
-                "email_address": grad_student.email
+                "first_name": grad_member.first_name,
+                "last_name": grad_member.last_name,
+                "membership": grad_member.membership(org),
+                "semesters": grad_member.semesters(org),
+                "email_address": grad_member.email
             }
-            for grad_student in grad_students_year
+            for grad_member in grad_member_year
         ]
 
         # filters members that are active
-        active_students = db.Profile.query.filter(db.Profile.membership(org) == 'active').order_by(db.Profile.semesters(org).desc()).all()
+        total_active_members = db.Profile.query.filter(db.Profile.membership(org) == 'active').order_by(db.Profile.semesters(org).desc()).all()
 
-        active_student = [
+        active_members = [
             {
-                "first_name": active.first_name,
-                "last_name": active.last_name,
-                "membership": active.membership(org),
-                "semesters": active.semesters(org),
-                "email_address": active.email
+                "first_name": active_member.first_name,
+                "last_name": active_member.last_name,
+                "membership": active_member.membership(org),
+                "semesters": active_member.semesters(org),
+                "email_address": active_member.email
             }
-            for active in active_students
+            for active_member in total_active_members
         ]
+    
+        wic_student_data = {
+            "active_count_members": active_count,
+            "inactive_count_members": inactive_count,
+            "alumni_count_members": alumni_count,
+            "graduation_students": grad_members,
+            "active_students": active_members
+        }
 
-        return render_template('database-view-wic.html.j2', active_count_members=active_count, inactive_count_members=inactive_count, 
-                            alumni_count_members=alumni_count, graduation_students=grad_students, active=active_student)
+        return jsonify(wic_student_data)
 
     # COMs
     elif org == 2:
@@ -55,35 +64,42 @@ def yearly_report(org: int):
         alumni_count = db.Profile.query.filter(db.Profile.graduation_year < current_year).count()
 
         # filters members for grad year
-        grad_students_year = db.Profile.query.filter(db.Profile.graduation_year == current_year).order_by(db.Profile.first_name, db.Profile.last_name).all()
+        grad_member_year = db.Profile.query.filter(db.Profile.graduation_year == current_year).order_by(db.Profile.first_name, db.Profile.last_name).all()
 
-        grad_students = [
+        grad_members = [
             {
-                "first_name": grad_student.first_name,
-                "last_name": grad_student.last_name,
-                "membership": grad_student.membership(org),
-                "semesters": grad_student.semesters(org),
-                "email_address": grad_student.email
+                "first_name": grad_member.first_name,
+                "last_name": grad_member.last_name,
+                "membership": grad_member.membership(org),
+                "semesters": grad_member.semesters(org),
+                "email_address": grad_member.email
             }
-            for grad_student in grad_students_year
+            for grad_member in grad_member_year
         ]
 
         # filters members that are active
-        active_students = db.Profile.query.filter(db.Profile.membership(org) == 'active').order_by(db.Profile.semesters(org).desc()).all()
+        total_active_members = db.Profile.query.filter(db.Profile.membership(org) == 'active').order_by(db.Profile.semesters(org).desc()).all()
 
-        active_student = [
+        active_members = [
             {
-                "first_name": active.first_name,
-                "last_name": active.last_name,
-                "membership": active.membership(org),
-                "semesters": active.semesters(org),
-                "email_address": active.email
+                "first_name": active_member.first_name,
+                "last_name": active_member.last_name,
+                "membership": active_member.membership(org),
+                "semesters": active_member.semesters(org),
+                "email_address": active_member.email
             }
-            for active in active_students
+            for active_member in total_active_members
         ]
 
-        return render_template('database-view-coms.html.j2', active_count_members=active_count, inactive_count_members=inactive_count, 
-                            alumni_count_memebers=alumni_count, graduation_students=grad_students, active=active_student)
+        coms_student_data = {
+            "active_count_members": active_count,
+            "inactive_count_members": inactive_count,
+            "alumni_count_members": alumni_count,
+            "graduation_students": grad_members,
+            "active_students": active_members
+        }
+
+        return jsonify(coms_student_data)
     
     else:
         return abort(404)

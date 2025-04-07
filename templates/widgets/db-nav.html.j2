@@ -54,15 +54,15 @@
                 <label for="meeting_name">Title:</label>
                 <input type="text" name="meeting_name" id="meeting_name">
             <div class="dialog-row">
-                <div>
+                <div style="margin-top:10px;">
                     <label for="meeting-date">Date:</label>
                     <input type="date" name="meeting-date" id="meeting-date" style="padding: 8px 0px;">
                 </div>
-                <div>
+                <div style="margin-left:20px; margin-top:10px;">
                     <label for="meeting-time-start">Start Time:</label>
                     <input type="time" name="meeting-time-start" id="meeting-time-start">
                 </div> 
-                <div>
+                <div style=" margin-top:10px;">
                     <label for="meeting-time-end">End Time:</label>
                     <input type="time" name="meeting-time-end" id="meeting-time-end">
                 </div>
@@ -73,7 +73,7 @@
                     <div class="dialog-row";>
                         <label for="meeting_type">Meeting Type:</label>
                     </div>
-                    <select name="meeting_type" id="meeting_type">
+                    <select name="meeting_type" id="meeting_type" style="padding: 10px; width:250px;">
                         <option>General</option>
                         <option>Committee</option>
                         <option>Social</option>
@@ -81,12 +81,12 @@
                         <option>Mentorship</option>
                     </select>
                 </div>
-                <div style="margin-left:60px;">
+                <div style="transform:translateX(-10px);">
                     <label for="meeting_location">Meeting Location:</label>
                     <input type="text" name="meeting_location" id="meeting_location">
                 </div>
             </div>
-            <div class="dialog-item">
+            <div class="dialog-item" style="margin-top: 10px;">
                 <label for="meeting_description">Description</label>
                 <textarea id="meeting_description" name="meeting_description" rows="6" cols="58" style="min-width:520px"></textarea>
             </div>
@@ -160,17 +160,11 @@
   <button class="semester-report-btn report-btn" >Download</button>
     <span class="close">&times;</span>
     <h2 style="margin-left: 80px; margin-top: 80px;">Reports</h2>
-        <div class="report-upper" style="margin-left: 80px;">
-            <p>Active Members: {{ active_count_members }}</p>
-
-            <p>Inactive Members: {{ inactive_count_members }}</p>
-
-            <p>Alumni Members: {{ alumni_count_memebers }}</p>
-        </div>
+        <div id="report-upper" style="margin-left: 80px;"></div>
 
         <h3 style="margin-left: 80px; transform:translateY(20px);">GRADUATING MEMBERS</h3>
 
-        <table class=" smallerTable" style="margin-top: 100px;">
+        <table class=" smallerTable" style="margin-top: 50px;">
             <!--THIS TABLE SHOULD LIST ALL MEMBERS GRADUATING THIS YEAR-->
             <tr class="dbTableTop">
                 <th></th>
@@ -182,23 +176,12 @@
                 <th class="dbTablePH"></th>
                 <th></th>
             </tr>
-                {% for grad_students in graduation_students %}
-            <tr class="dbTableRow">
-                <td></td>
-                <td>{{ grad_students['first_name'] }}</td>
-                <td>{{ grad_students['last_name'] }}</td>
-                <td>{{ "Active" if grad_students['membership'] else "Inactive" }}</td>
-                <td>{{ grad_students['semesters'] }}</td>
-                <td>{{ grad_students['email_address'] }}</td>
-                <td class="dbTablePH"></td>
-                <td></td>
-            </tr>
-                {% endfor %}
+            <tbody id="graduation-table"></tbody>
         </table>
 
         <h3 style="margin-left: 80px; transform:translateY(20px);">ACTIVE MEMBERS</h3>
 
-        <table class=" smallerTable" style="margin-top: 100px;"> <!--THIS TABLE SHOULD LIST ALL ACTIVE MEMBERS DESCENDING BASED ON NUMBER OF SEMESTERS-->
+        <table class=" smallerTable" style="margin-top: 50px;"> <!--THIS TABLE SHOULD LIST ALL ACTIVE MEMBERS DESCENDING BASED ON NUMBER OF SEMESTERS-->
             <tr class="dbTableTop">
                 <th></th>
                 <th>FIRST NAME</th>
@@ -209,18 +192,7 @@
                 <th class="dbTablePH"></th>
                 <th></th>
             </tr>
-                {% for active_students in active %}
-            <tr class="dbTableRow">
-                <td></td>
-                <td>{{ active_students['first_name'] }}</td>
-                <td>{{ active_students['last_name'] }}</td>
-                <td>{{ "Active" if active_students['membership'] else "Inactive" }}</td>
-                <td>{{ active_students['semesters'] }}</td>
-                <td>{{ active_students['email_address'] }}</td>
-                <td class="dbTablePH"></td>
-                <td></td>
-            </tr>
-                {% endfor %}
+            <tbody id="active-table"></tbody>
         </table>
         </div>
     </div>

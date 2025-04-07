@@ -693,16 +693,6 @@ def db_testing_setup():
     
     users = []
     events= []
-    
-    WiC = Organizer(
-        name = "Women in Computing",
-        email = "wic@rit.edu"
-    )
-    
-    COMS = Organizer(
-        name = "Computing Organization for Multicultural Students",
-        email = "coms@rit.edu"
-    )
 
     wic_award = Award(
         organization_id = Organizations.WIC,

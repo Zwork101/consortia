@@ -64,4 +64,4 @@ class LocalConfig(Config):
 class ProductionConfig(Config):
     USE_X_SENDFILE = True
     SERVER_NAME = "consortia.gccis.rit.edu"
-    SQLALCHEMY_DATABASE_URI = f"mariadb+mariadbconnector://consortia:{os.environ["DB_PASSWORD"]}@localhost:3306/consortia"
+    SQLALCHEMY_DATABASE_URI = f"mariadb+mariadbconnector://consortia:{os.environ['DB_PASSWORD']}@localhost:3306/consortia"

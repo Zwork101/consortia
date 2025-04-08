@@ -22,7 +22,7 @@ except FileNotFoundError:
                 "attendance": [
                     {"percent": 100, "points": 3},
                     {"percent": 75, "points": 2},
-                    {"percent": 1, "points": 1}
+                    {"percent": 50, "points": 1}
                 ],
                 "volunteer": [
                     {"threshold": 9, "points": 4},

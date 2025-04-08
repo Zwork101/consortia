@@ -51,23 +51,29 @@ def return_profile():
 def upcoming_meetings(org: int):
     """Return upcoming meetings based on pagination parameters."""
     try:
+        current_time = datetime.now()
+        selected_date_str = request.args.get("selected_date")
+        if selected_date_str:
+            selected_date = datetime.strptime(selected_date_str, "%Y-%m-%d").date()
+        else:
+            selected_date = datetime.utcnow().date()
+
         skip = request.args.get("skip", 0, type=int)
         #count = request.args.get("count", 9999, type=int)
-        count = request.args.get("count", 9999, type=int)
+        count = request.args.get("count", 3, type=int)
 
         if skip < 0 or count <= 0:
             return jsonify({"Error": "Invalid pagination parameters"})
     except ValueError:
         return jsonify({"Error": "Invalid input type"})
 
-    current_time = datetime.now()
     
     meeting_results = (
         Event.query
         .filter(Event.organizer_id == org)# Event.start_time >= current_time)
         .order_by(Event.start_time)
         .offset(skip)
-        .limit(3)
+        .limit(count)
         .all()
     )
 
@@ -109,7 +115,7 @@ def upcoming_meetings(org: int):
         for meeting in meeting_results
     ]
     #old good
-    return jsonify({"meetings": meetings})
+    return jsonify({"Meetings": meetings})
     #new bad
     #return render_template("wics-profile.html.j2", meetings=meeting_results)
 

@@ -463,7 +463,8 @@ class Profile(db.Model, UserMixin):
             {
                 "value": bonus.point_value,
                 "created_at": bonus.created_at.isoformat(),
-                "granter": bonus.giver.full_name
+                "granter": bonus.giver.full_name,
+                "semester": bonus.semester
             }
             for bonus in self.bonuses if bonus.organization_id == org_id]
         else:
@@ -525,6 +526,15 @@ class BonusPoints(db.Model):
     reason: Mapped[str]
     organization_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
     created_at: Mapped[datetime] = mapped_column(default=datetime.now(timezone.utc))
+
+    @hybrid_property
+    def semester(self):
+        return (self.created_at.year * 10) + ((self.created_at.month // 7) * 5)
+
+    @semester.inplace.expression
+    def semester_sql(cls):
+        return (func.strftime('%Y', cls.created_at) * 10) + (cast(func.strftime('%m', cls.created_at) / 7, Integer) * 5)
+
 
 class Award(db.Model):
     __tablename__ = 'Award'
@@ -596,6 +606,16 @@ class Administrator(db.Model):
     # profile_id = db.Column(Integer, ForeignKey('Profile.profile_id'), nullable=False)
     # role = db.Column(Enum('roleType'), nullable=False)
     # profile = relationship('Profile', back_populates='administrator')
+
+
+class ManualMembership(db.Model):
+    __tablename__ = "ManualModel"
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
+    profile_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
+    organization_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
+    semester: Mapped[int]
+
 
 class Organizer(db.Model):
     __tablename__ = 'Organizer'

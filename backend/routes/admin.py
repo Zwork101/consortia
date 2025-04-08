@@ -31,6 +31,7 @@ def dashboard(org: int):
 def org_settings(org: int):
     org_awards = db.session.query(Award.award_id, Award.name, Award.active_semester_requirements).where(Award.organization_id == org).all()
     admins = db.session.query(Profile.email).select_from(Administrator).join(Profile, Administrator.profile_id == Profile.profile_id).where(Administrator.organization_id == org).all()
+    print(admins)
 
     if org == Organizations.WIC:
         form = WICConfigForm(
@@ -95,7 +96,11 @@ def org_settings(org: int):
                     award.name = new_award.award_name.data
 
         removed_admins = [admin[0] for admin in admins if admin not in form.admins.data]
-        admins_to_remove = db.session.query(Administrator).join(Profile).where(Profile.email.in_(removed_admins))
+        print(removed_admins)
+        admins_to_remove = db.session.query(Administrator)\
+            .join(Profile)\
+            .where(Administrator.organization_id == org)\
+            .where(Profile.email.in_(removed_admins))
         for admin in admins_to_remove:
             db.session.delete(admin)
         new_admins = [admin for admin in form.admins.data if admin not in admins]

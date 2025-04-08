@@ -84,6 +84,8 @@ async function handleFileUpload(org) {
 
     console.log(await resp.json());
 
+    $( "#import-data-dialog-box" ).dialog("close");
+
 }
 
 

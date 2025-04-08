@@ -102,7 +102,7 @@
                 console.log(selectedDate); // Log the selected date
 
                 $.get(`/meetings/{{ org }}?selected_Date=${selectedDate}`, function (data) {
-                    $('#meetings-container').html(data);
+                    $('#event').html(data);
                 })
             });                
 

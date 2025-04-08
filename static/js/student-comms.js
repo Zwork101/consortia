@@ -111,6 +111,40 @@ function showResults(pointsFromThisSemester, pointConfig){
   let earnedPoints = pointSummer(pointsFromThisSemester);
   minPointRequirements = pointConfig.required_points;
 
+  /*
+   * Points explainer (the gray boxes on the bottom)
+   */
+  // Mentorship
+  document.getElementById("joined-program-points").innerHTML = minPointRequirements;
+
+  // Volunteer
+  for (volunteerParameter of pointConfig.volunteer) {
+    var volunteerElement = `
+                  <div>
+                    <p>${volunteerParameter.threshold}+ Hours</p>
+                    <p>${volunteerParameter.points} Points</p>
+                  </div>`
+    //console.log(volunteerElement);
+    document.getElementById("volunteering-points-box").insertAdjacentHTML('afterbegin' , volunteerElement);
+    
+  }
+  document.getElementById("volunteering-points-box").insertAdjacentHTML('afterbegin' , `<h2>Volunteering</h2>`);
+
+  // Attendance
+  for (attendanceParameter of pointConfig.attendance) {
+    var attendanceElement = `
+                <div>
+                    <p>${attendanceParameter.percent}% of Meetings Attended</p>
+                    <p>${attendanceParameter.points} Points</p>
+                </div>`
+    document.getElementById("attendance-points-box").insertAdjacentHTML('afterbegin' , attendanceElement);
+  }
+  document.getElementById("attendance-points-box").insertAdjacentHTML('afterbegin' , `<h2>Attendance</h2>`);
+
+  /*
+   * Progress Bar 
+   */
+
   document.getElementById("mentor-points").innerHTML= pointsFromThisSemester.mentorshipPoints;
   document.getElementById("voluenteering-points").innerHTML= pointsFromThisSemester.volunteeringPoints;
   document.getElementById("attendance-points").innerHTML= pointsFromThisSemester.attendancePoints;

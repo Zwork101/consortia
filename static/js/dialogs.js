@@ -145,10 +145,19 @@ $( function() {
     $("#import-data-button").button().on("click", function() {
         import_data_dialog.dialog('open');
         console.log("import meeting button pressed");
-       
-
     });
    
+    // Event Details Modal close functionality
+    $(document).on('click', '#eventDetailsModal .close', function() {
+        $('#eventDetailsModal').removeClass('show-modal').hide();
+    });
+
+    // Close modals when clicking outside of them
+    $(window).on('click', function(event) {
+        if ($(event.target).is('#eventDetailsModal')) {
+            $('#eventDetailsModal').removeClass('show-modal').hide();
+        }
+    });
 
     $( "#data-event-name" )
     .selectmenu()

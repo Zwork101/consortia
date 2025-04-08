@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 from os import curdir
 
 from backend.db import Event, Profile, commit, db, Administrator, Award
@@ -11,11 +11,11 @@ student = Blueprint("student", __name__, static_folder="static/", template_folde
 
 @student.route("/wic")
 def wic_homepage():
-    return render_template("wics-profile.html.j2", title="WIC")
+    return render_template("wics-profile.html.j2", title="WIC", org=1)
 
 @student.route("/coms")
 def coms_homepage():
-    return render_template("coms-profile.html.j2", title="COMS")
+    return render_template("coms-profile.html.j2", title="COMS", org=2)
 
 @student.route("/settings/<int:org>")
 def provide_org_config(org: int):
@@ -52,19 +52,31 @@ def upcoming_meetings(org: int):
     """Return upcoming meetings based on pagination parameters."""
     try:
         skip = request.args.get("skip", 0, type=int)
-        count = request.args.get("count", 9999, type=int)
+        #count = request.args.get("count", 9999, type=int)
+        count = request.args.get("count", 3, type=int)
 
         if skip < 0 or count <= 0:
             return jsonify({"Error": "Invalid pagination parameters"})
     except ValueError:
         return jsonify({"Error": "Invalid input type"})
 
+    current_time = datetime.now()
+    
     meeting_results = (
-        Event.query.filter(Event.organizer_id == org)
+        Event.query
+        .filter(Event.organizer_id == org, Event.start_time >= current_time)
         .order_by(Event.start_time)
         .offset(skip)
+        .limit(count)
         .all()
     )
+
+    # meeting_results = (
+    #     Event.query.filter(Event.organizer_id == org)
+    #     .order_by(Event.start_time)
+    #     .offset(skip)
+    #     .all()
+    # )
 
     meetings = [
         {
@@ -73,6 +85,7 @@ def upcoming_meetings(org: int):
             "name": meeting.name,
             "start_time": meeting.start_time.isoformat(),
             "end_time": meeting.end_time.isoformat(),
+            "location": meeting.description,
             "description": meeting.description,
             "point_value": meeting.point_value,
             "organizer_id": meeting.organizer_id,
@@ -95,7 +108,10 @@ def upcoming_meetings(org: int):
         }
         for meeting in meeting_results
     ]
-    return jsonify({"Meetings": meetings})
+    #old good
+    #return jsonify({"Meetings": meetings})
+    #new bad
+    return render_template("wics-profile.html.j2", meetings=meeting_results)
 
 @student.route("/attendance")
 def member_attendance():  # What is going on in this function??

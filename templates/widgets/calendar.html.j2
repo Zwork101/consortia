@@ -50,12 +50,12 @@
                     <p> {{ meeting.start_time.strftime('%A • %I:%M %p') }} – {{ meeting.end_time.strftime('%I:%M %p') }} </p><br>
                     <p>{{ meeting.location }}</p>
                 {% else %}
-                    <li>No upcoming meetings found.</li>
+                    <p>No upcoming meetings on this day.</p>
                 {% endfor %}
         </div>
-        <div id="meetings-container">
+        <!-- <div id="meetings-container">
             <p>pauls</p>
-        </div> 
+        </div>  -->
         
     </div>
 </div>

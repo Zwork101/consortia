@@ -53,7 +53,7 @@ def upcoming_meetings(org: int):
     try:
         skip = request.args.get("skip", 0, type=int)
         #count = request.args.get("count", 9999, type=int)
-        count = request.args.get("count", 3, type=int)
+        count = request.args.get("count", 9999, type=int)
 
         if skip < 0 or count <= 0:
             return jsonify({"Error": "Invalid pagination parameters"})
@@ -64,10 +64,10 @@ def upcoming_meetings(org: int):
     
     meeting_results = (
         Event.query
-        .filter(Event.organizer_id == org, Event.start_time >= current_time)
+        .filter(Event.organizer_id == org)# Event.start_time >= current_time)
         .order_by(Event.start_time)
         .offset(skip)
-        .limit(count)
+        .limit(3)
         .all()
     )
 
@@ -109,9 +109,9 @@ def upcoming_meetings(org: int):
         for meeting in meeting_results
     ]
     #old good
-    #return jsonify({"Meetings": meetings})
+    return jsonify({"meetings": meetings})
     #new bad
-    return render_template("wics-profile.html.j2", meetings=meeting_results)
+    #return render_template("wics-profile.html.j2", meetings=meeting_results)
 
 @student.route("/attendance")
 def member_attendance():  # What is going on in this function??

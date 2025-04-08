@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Calendar Template</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="../static/css/calendar.css">
+
     <script>
         $(document).ready(function() {
             let currentDate = new Date();
@@ -46,7 +40,12 @@
                     $(this).addClass('selected');
                     let selectedDate = $(this).data('date');
                     console.log(selectedDate); // Log the selected date
-                });
+
+                    $.get(`/meetings/{{ org }}?selected_Date=${selectedDate}`, function (data)) {
+                    $('#meetings-container').html(data);
+                }
+                });                
+
             }
             
             renderCalendar(currentDate);
@@ -96,7 +95,35 @@
                 <p>THURS • 7:00PM - 8:00PM</p>
                 <p>GOL - 2350</p>
             </div>
-              
+            <div class="event">
+                    {% for meeting in meetings %}
+                        <div class="event">
+                        {% if 'GENERAL' in meeting.meeting_type.name %}
+                            <div class="meeting-marker" style="background-color: #009CBD;"></div>
+                        {% endif %}
+                        {% if 'COMMITTEE' in meeting.meeting_type.name %}
+                            <div class="meeting-marker" style="background-color: #84BC00;"></div>
+                        {% endif %}
+                        {% if 'MENTORSHIP' in meeting.meeting_type.name %}
+                            <div class="meeting-marker" style="background-color: #7D55C7;"></div>
+                        {% endif %}
+                        {% if 'SOCIAL' in meeting.meeting_type.name %}
+                            <div class="meeting-marker" style="background-color: #C099F7;"></div>
+                        {% endif %}
+                        {% if 'VOLUNTEER' in meeting.meeting_type.name %}
+                            <div class="meeting-marker" style="background-color: #66B4C4;"></div>
+                        {% endif %}
+                        <strong>{{ meeting.name }} Meeting</strong><br>
+                        <p> {{ meeting.start_time.strftime('%A • %I:%M %p') }} – {{ meeting.end_time.strftime('%I:%M %p') }} </p><br>
+                        <p>{{ meeting.location }}</p>
+                    {% else %}
+                        <li>No upcoming meetings found.</li>
+                    {% endfor %}
+                        </div>
+            </div>
+            <div id="meetings-container">
+                <p>pauls</p>
+            </div> 
             
         </div>
     </div>

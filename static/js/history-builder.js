@@ -98,9 +98,11 @@ function convertAwardDatesToCustomTimestamp(awardList){
  *  - If builderMode.COMS is entered in, it will compute the points earned
  * @param {Object} userObject The object that represents the user 
  * @param {Object} allMeetingsObject The object that represents all meetings.
+ * @param {Object} settingsAndConfigObject The object that contains all of the settings and configuration data.
  */
-function historyBuilder(mode, userObject, allMeetingsObject){
+function historyBuilder(mode, userObject, allMeetingsObject, settingsAndConfigObject){
 
+    let configData = settingsAndConfigObject.config;
     let sortedUserMeetings = meetingsSortedBySemester(userObject.profile.attendance, sortingOrder.Descending);
     let userAwards = convertAwardDatesToCustomTimestamp(userObject.profile.awards);
     sortedUserMeetings.forEach(userSemester => {
@@ -116,10 +118,10 @@ function historyBuilder(mode, userObject, allMeetingsObject){
             let userMeetingDataForThisSemester = getMeetingData(userSemester.meetings);
             let allMeetingDataForThisSemester = getMeetingData(matchedSemester.meetings);
             awardValues = `
-                                    <span>${userMeetingDataForThisSemester.generalEvents}/${allMeetingDataForThisSemester.generalEvents} General Meetings</span>
-                                    <span>${userMeetingDataForThisSemester.committeeEvents}/${allMeetingDataForThisSemester.committeeEvents} Committee Meetings</span>
-                                    <span>${userMeetingDataForThisSemester.socialEvents}/${allMeetingDataForThisSemester.socialEvents} Social Event</span>
-                                    <span>${userMeetingDataForThisSemester.voluenteeringEvents}/${allMeetingDataForThisSemester.voluenteeringEvents} Volunteering</span>
+                                    <span>${userMeetingDataForThisSemester.generalEvents}/${configData.committee_meetings_requirement} General Meetings</span>
+                                    <span>${userMeetingDataForThisSemester.committeeEvents}/${configData.committee_meetings_requirement} Committee Meetings</span>
+                                    <span>${userMeetingDataForThisSemester.socialEvents}/${configData.social_meetings_requirement} Social Event</span>
+                                    <span>${userMeetingDataForThisSemester.voluenteeringEvents}/${configData.volunteering_meetings_requirement} Volunteering</span>
             `
             
             // Set user to be active if they are a member
@@ -136,7 +138,7 @@ function historyBuilder(mode, userObject, allMeetingsObject){
             //console.log("COMSMODE")
 
             // Set up total point Calculation
-            let userSemesterPoints = getPointObject(userSemester.meetings, userObject.profile.bonus_points);
+            let userSemesterPoints = getPointObject(userSemester.meetings, configData, userObject.profile.bonus_points);
             let userSemesterTotalPoints = pointSummer(userSemesterPoints);
             //console.log(userSemesterPoints);
             awardValues = `<span>${userSemesterTotalPoints}/${minPointRequirements} Total Points</span>`;
@@ -145,7 +147,7 @@ function historyBuilder(mode, userObject, allMeetingsObject){
             if (userSemesterPoints.mentorshipPoints > 0){
                 isUserActive = activeUser.Active;
             }
-            
+
             // Award image if year matches with userAwards
             let findAward = userAwards.find(awardYear => awardYear == userSemester.semester);
             if (findAward != undefined){

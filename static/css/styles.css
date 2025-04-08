@@ -1802,3 +1802,22 @@ fieldset input[type=number] {
     margin-left: 83.5px !important;
 }
 
+/* Event row styling for clickable rows */
+.event-row {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.event-row:hover {
+    background-color: rgba(247, 105, 2, 0.1);
+}
+
+.event-row:hover td {
+    text-decoration: underline;
+}
+
+.event-row td:first-child {
+    color: #F76902;
+    font-weight: bold;
+}
+

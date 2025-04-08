@@ -728,9 +728,14 @@ input[type="text"] {
     border-bottom: solid 1.5px #DEDEDE;
 }
 
-    .dbTableTop th, .dbTableRow td {
-        padding: 8px 16px;
-    }
+.dbTableTop th, .dbTableRow td {
+    padding: 8px 16px;
+}
+
+.event-row:hover{
+    background-color: #DEDEDE;
+    cursor: pointer;
+}
 
 .dbTablePH {
     width: 15%;

@@ -60,7 +60,7 @@ def upcoming_meetings(org: int):
 
         skip = request.args.get("skip", 0, type=int)
         #count = request.args.get("count", 9999, type=int)
-        count = request.args.get("count", 3, type=int)
+        count = request.args.get("count", 99999, type=int)
 
         if skip < 0 or count <= 0:
             return jsonify({"Error": "Invalid pagination parameters"})

@@ -1,5 +1,8 @@
-from datetime import date
+from datetime import datetime
 from os import curdir
+import select
+
+from sqlalchemy import func
 
 from backend.db import Event, Profile, commit, db, Administrator, Award
 from backend.forms import EditUserForm
@@ -11,11 +14,11 @@ student = Blueprint("student", __name__, static_folder="static/", template_folde
 
 @student.route("/wic")
 def wic_homepage():
-    return render_template("wics-profile.html.j2", title="WIC")
+    return render_template("wics-profile.html.j2", title="WIC", org=1)
 
 @student.route("/coms")
 def coms_homepage():
-    return render_template("coms-profile.html.j2", title="COMS")
+    return render_template("coms-profile.html.j2", title="COMS", org=2)
 
 @student.route("/settings/<int:org>")
 def provide_org_config(org: int):
@@ -51,7 +54,11 @@ def return_profile():
 def upcoming_meetings(org: int):
     """Return upcoming meetings based on pagination parameters."""
     try:
+        selected_time = request.args.get("selected", type=datetime.fromisoformat, default=None)
+        print(selected_time)
+
         skip = request.args.get("skip", 0, type=int)
+        #count = request.args.get("count", 9999, type=int)
         count = request.args.get("count", 9999, type=int)
 
         if skip < 0 or count <= 0:
@@ -59,12 +66,26 @@ def upcoming_meetings(org: int):
     except ValueError:
         return jsonify({"Error": "Invalid input type"})
 
+
     meeting_results = (
-        Event.query.filter(Event.organizer_id == org)
+        db.session.query(Event)
+        .where(Event.organizer_id == org)
         .order_by(Event.start_time)
-        .offset(skip)
-        .all()
     )
+
+    if selected_time:
+        meeting_results = meeting_results.where(
+            func.DATE(Event.start_time) == selected_time.date()
+        )
+
+    meeting_results = meeting_results.offset(skip).limit(count)
+
+    # meeting_results = (
+    #     Event.query.filter(Event.organizer_id == org)
+    #     .order_by(Event.start_time)
+    #     .offset(skip)
+    #     .all()
+    # )
 
     meetings = [
         {
@@ -73,6 +94,7 @@ def upcoming_meetings(org: int):
             "name": meeting.name,
             "start_time": meeting.start_time.isoformat(),
             "end_time": meeting.end_time.isoformat(),
+            "location": meeting.description,
             "description": meeting.description,
             "point_value": meeting.point_value,
             "organizer_id": meeting.organizer_id,
@@ -93,9 +115,12 @@ def upcoming_meetings(org: int):
                  for attendee in meeting.attendants
              ]
         }
-        for meeting in meeting_results
+        for meeting in meeting_results.all()
     ]
+    #old good
     return jsonify({"Meetings": meetings})
+    #new bad
+    #return render_template("wics-profile.html.j2", meetings=meeting_results)
 
 @student.route("/attendance")
 def member_attendance():  # What is going on in this function??

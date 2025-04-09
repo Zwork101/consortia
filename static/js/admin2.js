@@ -122,12 +122,12 @@ const tableConfigs = {
         ],
         renderRow: (evt) => {
             return `
-            <tr class="dbTableRow">
+            <tr class="dbTableRow event-row" data-event-id="${evt.event_id}">
                 <td>${evt.name}</td>
                 <td>${new Date(evt.start_time).toLocaleDateString()}</td>
-                <td>${new Date(evt.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${new Date(evt.end_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
+                <td>${new Date(evt.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${evt.end_time ? new Date(evt.end_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'N/A'}</td>
                 <td>${evt.type}</td>
-                <td>${evt.location}</td>
+                <td>${evt.location || 'N/A'}</td>
                 <td>${evt.attendance_count}</td>
                 <td>${evt.attendance_percentage}%</td>
             </tr>`;
@@ -407,6 +407,7 @@ const openEditProfileModal = async (userId) => {
         document.getElementById('edit-pronouns').value = data.profile.pronouns || '';
         document.getElementById('edit-avatar_path').value = data.profile.avatar_path || '';
         document.getElementById('edit-user-id').value = data.profile.profile_id;
+        document.getElementById('override_membership').checked = data.profile.membership_override || false;
         
         // Show modal by adding the show-modal class
         modalElement.classList.add('show-modal');
@@ -441,6 +442,80 @@ $(function() {
         track: true
     });
 });
+
+// Function to open Event Details Modal
+const openEventDetailsModal = async (eventId) => {
+    try {
+        console.log("Opening event details modal for event ID:", eventId);
+        
+        const modalElement = document.getElementById('eventDetailsModal');
+        if (!modalElement) {
+            console.error("Event details modal element not found");
+            alert("Error: Modal element not found");
+            return;
+        }
+        
+        const org = getCurrentOrgId();
+        
+        // First, get the event details
+        const eventResponse = await fetch(`/admin/events/${org}`);
+        if (!eventResponse.ok) throw new Error('Event fetch error');
+        const eventsData = await eventResponse.json();
+        
+        // Find the specific event
+        const eventData = eventsData.find(e => e.event_id === parseInt(eventId));
+        if (!eventData) throw new Error('Event not found');
+        
+        // Populate event details in the modal
+        document.getElementById('event-title').textContent = eventData.name;
+        document.getElementById('event-date').textContent = new Date(eventData.start_time).toLocaleDateString();
+        document.getElementById('event-time').textContent = `${new Date(eventData.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${eventData.end_time ? new Date(eventData.end_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'N/A'}`;
+        document.getElementById('event-type').textContent = eventData.type;
+        document.getElementById('event-location').textContent = eventData.location || 'N/A';
+        document.getElementById('event-attendance-count').textContent = eventData.attendance_count;
+        document.getElementById('event-attendance-percentage').textContent = eventData.attendance_percentage;
+        document.getElementById('event-description').textContent = eventData.description || 'No description available';
+        
+        // Now fetch the attendance data for this event
+        const attendanceResponse = await fetch(`/meetings/${org}/${eventId}/attendance`);
+        if (!attendanceResponse.ok) throw new Error('Attendance data fetch error');
+        const attendanceData = await attendanceResponse.json();
+        
+        // Populate the attendees table
+        const attendeesTable = document.getElementById('attendees-table');
+        // Keep the header row
+        attendeesTable.innerHTML = `
+            <tr class="dbTableTop">
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+                <th>EMAIL</th>
+                <th>HOURS</th>
+            </tr>
+        `;
+        
+        // Add each attendee
+        attendanceData.forEach(attendee => {
+            const row = document.createElement('tr');
+            row.className = 'dbTableRow';
+            row.innerHTML = `
+                <td>${attendee.first_name}</td>
+                <td>${attendee.last_name}</td>
+                <td>${attendee.email}</td>
+                <td>${attendee.hours || 0}</td>
+            `;
+            attendeesTable.appendChild(row);
+        });
+        
+        // Show the modal
+        modalElement.classList.add('show-modal');
+        modalElement.style.display = 'block';
+        
+    } catch (error) {
+        console.error("Error in openEventDetailsModal:", error);
+        console.error("Error loading event details:", error);
+        alert("An error occurred while loading event details. Please try again later.");
+    }
+};
 
 // Current view (default: profiles)
 let currentView = 'profiles';
@@ -506,5 +581,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 modal.style.display = 'none';
             }
         });
+    });
+
+    // Add event delegation for event row clicks
+    document.getElementById('dbTable').addEventListener('click', (e) => {
+        const eventRow = e.target.closest('.event-row');
+        if (eventRow && currentView === 'events') {
+            const eventId = eventRow.getAttribute('data-event-id');
+            openEventDetailsModal(eventId);
+        }
     });
 });

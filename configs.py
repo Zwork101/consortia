@@ -22,7 +22,7 @@ except FileNotFoundError:
                 "attendance": [
                     {"percent": 100, "points": 3},
                     {"percent": 75, "points": 2},
-                    {"percent": 1, "points": 1}
+                    {"percent": 50, "points": 1}
                 ],
                 "volunteer": [
                     {"threshold": 9, "points": 4},
@@ -53,10 +53,10 @@ class DevelopmentConfig(Config):
     SERVER_NAME = "localhost:8080"
     SQLALCHEMY_DATABASE_URI = "sqlite:///dev.db"
     DEFACTO_ADMIN = {
-        "rit_id": "njz8626",
-        "first_name": "Nathan",
-        "last_name": "Zilora",
-        "email": "njz8626@rit.edu"
+        "rit_id": "wls1234",
+        "first_name": "Will",
+        "last_name": "Smith",
+        "email": "wls1234@rit.edu"
     }
 
 
@@ -70,7 +70,8 @@ class LocalConfig(Config):
 class ProductionConfig(Config):
     USE_X_SENDFILE = True
     SERVER_NAME = "consortia.gccis.rit.edu"
-    SQLALCHEMY_DATABASE_URI = f"mariadb+mariadbconnector://consortia:{os.environ['DB_PASSWORD']}@localhost:3306/consortia"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///dev.db"
+    #SQLALCHEMY_DATABASE_URI = f"mariadb+mariadbconnector://consortia:{os.environ['DB_PASSWORD']}@localhost:3306/consortia"
     DEFACTO_ADMIN = {
         "rit_id": "njz8626",
         "first_name": "Nathan",

@@ -48,7 +48,7 @@ const getStudentPoints = (endpointData) => {
 	if (endpointOrganizationID == organizationID.WIC){
 		processDataWIC(studentData, allMeetingData, settingsData);
 	} else if (endpointOrganizationID == organizationID.COMS){
-		processDataCOMS(studentData, allMeetingData);
+		processDataCOMS(studentData, allMeetingData, settingsData);
 	} else {
 		console.log("Invalid Endpoint");
 	}

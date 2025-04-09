@@ -110,12 +110,44 @@
                     <label for="edit-avatar_path">Avatar Path:</label>
                     <input type="text" id="edit-avatar_path" name="avatar_path">
                 </div>
+
+                <div class="form-group">
+                    <label for="override_membership">Make Active for Semester:</label>
+                    <input type="checkbox" id="override_membership" name="override_membership" value="true"/>
+                </div>
                 
                 <button type="submit" class="form-submit-button">Save Changes</button>
             </form>
         </div>
     </div>
    
+    <!-- Event Details Modal -->
+    <div id="eventDetailsModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('eventDetailsModal').classList.remove('show-modal')">&times;</span>
+            <h2 id="event-title">Event Details</h2>
+            <div class="event-info">
+                <p><strong>Date:</strong> <span id="event-date"></span></p>
+                <p><strong>Time:</strong> <span id="event-time"></span></p>
+                <p><strong>Type:</strong> <span id="event-type"></span></p>
+                <p><strong>Location:</strong> <span id="event-location"></span></p>
+                <p><strong>Attendance:</strong> <span id="event-attendance-count"></span> (<span id="event-attendance-percentage"></span>%)</p>
+                <p><strong>Description:</strong> <span id="event-description"></span></p>
+            </div>
+            <h3>Attendees</h3>
+            <div class="attendees-container" style="max-height: 300px; overflow-y: auto;">
+                <table id="attendees-table" class="dbTable" style="width: 100%;">
+                    <tr class="dbTableTop">
+                        <th>FIRST NAME</th>
+                        <th>LAST NAME</th>
+                        <th>EMAIL</th>
+                        <th>HOURS</th>
+                    </tr>
+                    <!-- Attendees will be loaded here -->
+                </table>
+            </div>
+        </div>
+    </div>
 
 </main>
 <script>

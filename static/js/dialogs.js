@@ -352,14 +352,14 @@ $( function() {
                     const org_name = org_id === '1' ? "WIC" : "COMS";
         
                     const pdfLayout = {
-                        margin: 1,
+                        margin: 0,
                         filename: `${org_name}_Report_${year}.pdf`,
                         image: { type: 'jpeg', quality: 0.98 },
                         html2canvas: { scale: 2 },
                         jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
                     };
         
-                    html2pdf().set(pdfLayout).from(element).save().finally(() => {
+                    html2pdf().set(pdfLayout).from(element.innerHTML).save().finally(() => {
                         downloadButton.style.display = "block";
                         console.log("Generated PDF...");
                     });

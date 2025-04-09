@@ -34,7 +34,6 @@ function getVolunteeringPoints(hours, volunteer){
  */
 function getAttendancePoints(attendedMeetings, totalMeetings, attendanceRules){
   let meetingAttendedPercentage = (attendedMeetings/totalMeetings)*100;
-  console.log(meetingAttendedPercentage);
 
   for (attendanceParameter of attendanceRules) {
     if (meetingAttendedPercentage >= attendanceParameter.percent){
@@ -51,7 +50,7 @@ function getAttendancePoints(attendedMeetings, totalMeetings, attendanceRules){
  * @param {Array} bonusPoints The list of objects containing the number of bonus points to award.
  * @returns An Object containg values of points
  */
-function getPointObject(listOfUserMeetings, pointConfig, bonusPoints){
+function getPointObject(listOfUserMeetings, listOfAllMeetings, pointConfig, bonusPoints){
   let pointObject = {};
 
   let volunteeringHours = 0;
@@ -78,9 +77,15 @@ function getPointObject(listOfUserMeetings, pointConfig, bonusPoints){
 
     if (semester == 0){
       semester = attendanceDay.semester;
-      console.log("set to:" + semester);
     }
   })
+
+  listOfAllMeetings.forEach(attendanceDay =>{
+    if (attendanceDay.meeting_type == "GENERAL" ){
+      totalMeetings += 1;
+    }
+  })
+
   if (mentorshipPoints > 0){
     mentorshipPoints += pointConfig.mentorship_minimum;
   }
@@ -120,13 +125,13 @@ function pointSummer(pointObject){
  */
 function showResults(pointsFromThisSemester, pointConfig){
   let earnedPoints = pointSummer(pointsFromThisSemester);
-  minPointRequirements = pointConfig.mentorship_minimum;
+  minPointRequirements = pointConfig.required_points;
 
   /*
    * Points explainer (the gray boxes on the bottom)
    */
   // Mentorship
-  document.getElementById("joined-program-points").innerHTML = minPointRequirements;
+  document.getElementById("joined-program-points").innerHTML = pointConfig.mentorship_minimum;
 
   // Volunteer
   for (volunteerParameter of pointConfig.volunteer) {
@@ -189,9 +194,8 @@ function processDataCOMS(studentData, allMeetingData, settingsAndConfigData){
 
   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
   let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
-  console.log(attendance);
 
-  let pointsFromThisSemester = getPointObject(attendance, settingsAndConfigData.config, studentData.profile.bonuses);
+  let pointsFromThisSemester = getPointObject(attendance, listOfAllMeetings, settingsAndConfigData.config, studentData.profile.bonuses);
 
   showResults(pointsFromThisSemester, settingsAndConfigData.config);
 

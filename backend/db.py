@@ -473,7 +473,6 @@ class Profile(db.Model, UserMixin):
         
         if org_id is not None:
             base_profile_json['membership'] = self.membership(org_id)
-            base_profile_json['membership_override'] = True if self.check_override(org_id) else False
             base_profile_json['semesters'] = self.semesters(org_id)
             base_profile_json["bonus_points"] = self.bonus_points(org_id)
             base_profile_json["attendance"] = [
@@ -498,6 +497,10 @@ class Profile(db.Model, UserMixin):
                 "semester": bonus.semester
             }
             for bonus in self.bonuses if bonus.organization_id == org_id]
+            base_profile_json['membership_overrides'] = [{
+                "org": override.organization_id,
+                "semester": override.semester
+            } for override in self.manual_memberships]
         else:
             base_profile_json["attendance"] = [
                 {

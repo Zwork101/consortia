@@ -12,13 +12,18 @@ const displayEvent = (eventName, eventDate, eventType, eventDescription) => {
     )
     newEvent.find(".description").text(eventDescription)
     let color;
-    switch (eventType) {
-        case "GENERAL": color = "var(--label-yellow)";
-        case "SOCIAL": color = "var(--label-purple)";
-        case "COMMITTEE": color = "var(--label-green)";
-        case "VOLUNTEER":  color = "var(--label-blue)";
-        case "MENTORSHIP": color = "var(--label-purple)";
+    if (eventType == "GENERAL") {
+        color = "var(--label-yellow)";
+    } else if (eventType == "SOCIAL") {
+        color = "var(--label-purple)";
+    } else if (eventType == "COMMITTEE") {
+        color = "var(--label-green)";
+    } else if (eventType == "VOLUNTEER") {
+        color = "var(--label-blue)";
+    } else if (eventType == "MENTORSHIP") {
+        color = "var(--label-purple)";
     }
+
     newEvent.attr("id", "")
     newEvent.css("borderColor", color);
     newEvent.insertAfter(lastEvent);

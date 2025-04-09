@@ -47,9 +47,10 @@ function getMeetingData(listOfMeetings){
 function drawProgressBar(mainBarID, fillerBarID, minMeetingsRequirements, meetingsAttended, meetingMaxUIValue){
 
   if (meetingsAttended < minMeetingsRequirements){
-    let polyfillAmount = minSocialEventsRequirements - userMeetingsForCurrentSemester.socialEvents;
+    let polyfillAmount = minMeetingsRequirements - meetingsAttended;
     // add code for gray polyfill
-    document.getElementByID(fillerBarID).style.width = `${(polyfillAmount/meetingMaxUIValue)*100}%`;
+    console.log(polyfillAmount);
+    document.getElementById(fillerBarID).style.width = `${(polyfillAmount/meetingMaxUIValue)*100}%`;
   }
 
   document.getElementById(mainBarID).style.width = `${(meetingsAttended/meetingMaxUIValue)*100}%`;

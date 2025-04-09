@@ -19,6 +19,7 @@ def request_loader(request: Request):
 			last_name = request.environ["sn"],
 			email = request.environ.get("email", request.environ.get('mail'))
 		)
+		commit(user)
 
 	return user
 

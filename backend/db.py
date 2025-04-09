@@ -497,10 +497,8 @@ class Profile(db.Model, UserMixin):
                 "semester": bonus.semester
             }
             for bonus in self.bonuses if bonus.organization_id == org_id]
-            base_profile_json['membership_overrides'] = [{
-                "org": override.organization_id,
-                "semester": override.semester
-            } for override in self.manual_memberships]
+            base_profile_json['membership_overrides'] = [override.semester
+            for override in self.manual_memberships if override.organization_id == org_id]
         else:
             base_profile_json["attendance"] = [
                 {

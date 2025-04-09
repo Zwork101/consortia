@@ -1160,11 +1160,13 @@ svg {
     border: none !important;
     background-color: var(--orange) !important;
     font-family: var( --main-font);
-    transform: translate(65vw, 180px) !important;
     border-radius: 2px !important;
     font-weight: 600 !important;
 }
 
+#notify-students{
+    transform: translate(65vw, 180px) !important;
+}
 .semester-report-btn:hover, .semester-config .trashbtn:hover {
     background-color: #000 !important;
 }

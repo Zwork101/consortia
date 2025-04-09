@@ -118,8 +118,13 @@ $( function() {
 
    $("#save-changes-button").click(function() {
     console.log("Button clicked!");
-    success_banner.text("Changes saved successfully!").fadeIn().delay(3000).fadeOut();
-});
+    success_banner.text("Changes saved successfully!").fadeIn().delay(4000).fadeOut();
+   });
+
+    $("#submit-file").click(function () {
+        console.log("Button clicked!");
+        success_banner.text("File uploaded successfully!!").fadeIn().delay(4000).fadeOut();
+    });
 
     /*
 

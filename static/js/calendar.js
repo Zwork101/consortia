@@ -20,7 +20,7 @@ const displayEvent = (eventName, eventDate, eventType, eventDescription) => {
         case "MENTORSHIP": color = "var(--label-purple)";
     }
     newEvent.attr("id", "")
-    newEvent.find(".meeting-marker").css("backgroundColor", color);
+    newEvent.css("borderColor", color);
     newEvent.insertAfter(lastEvent);
     newEvent.attr("hidden", false);
 }

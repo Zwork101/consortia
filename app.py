@@ -17,6 +17,8 @@ def create_app(config_file: Config = DevelopmentConfig) -> Flask:
 
     app.config.from_object(config_file)
 
+    app.jinja_env.cache = None
+
     db.init_app(app)
     shib.init_app(app)
 
@@ -95,5 +97,5 @@ if __name__ == "__main__":
         request.environ["sn"] = "Smith"
         request.environ["email"] = "wls1234@rit.edu"
 
-    # database_setup(app)
+    database_setup(app)
     app.run()

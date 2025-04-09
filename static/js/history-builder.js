@@ -132,11 +132,6 @@ function historyBuilder(mode, userObject, allMeetingsObject, settingsAndConfigOb
                 isUserActive = activeUser.Active;
             }
 
-            // // Award image if year matches with userAwards
-            // let findAward = userAwards.find(awardYear => awardYear == userSemester.semester);
-            // if (findAward != undefined){
-            //     awardImage = awardHTML;
-            // }
         } else if (mode == builderMode.COMS) {
             //console.log("COMSMODE")
 
@@ -151,17 +146,11 @@ function historyBuilder(mode, userObject, allMeetingsObject, settingsAndConfigOb
                 isUserActive = activeUser.Active;
             }
 
-            // // Award image if year matches with userAwards
-            // let findAward = userAwards.find(awardYear => awardYear == userSemester.semester);
-            // if (findAward != undefined){
-            //     awardImage = awardHTML;
-            // }
         } else {
             console.log("Error: invalid mode entered in.");
         }
         // force an override if the user has one
         let findOverride = userObject.profile.membership_overrides.find(overrideSemester => overrideSemester == userSemester.semester);
-        console.log(findOverride);
         if (findOverride != undefined){
             isUserActive = activeUser.Active;
         }

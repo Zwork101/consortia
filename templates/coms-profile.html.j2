@@ -5,103 +5,99 @@
 <script src="{{ url_for("static", filename="js/student-comms.js") }}" defer></script>
 <script src="{{ url_for("static", filename="js/student-data-processing-common.js") }}" defer></script>
 {% endblock %}
+{% block org %}987{% endblock %}
 {% block content %}
+{% include "nav.html.j2" %} 
+<main>
+    <div class="profile-view-grid">
+        <div class="membership-sec">
+            <h2>Computing Organization for Multicultural Students</h2>
+            <h3>Status: {% if not current_user.membership(2) %}Non-{% endif %}Active Member</h3>
+            <button class="tablinks prof-view-btn active" onclick="openCity(event, 'membership')">Current Semester</button>
+            <button class="tablinks prof-view-btn" onclick="openCity(event, 'history')">History</button>
 
-<body data-profile-id="{{ current_user.profile_id }}">
- {% include "nav.html.j2" %} 
-    <main>
-        <div class="profile-view-grid">
-            <div class="membership-sec">
-                <h2>Computing Organization for Multicultural Students</h2>
-                <h3>Status: {% if not current_user.membership(2) %}Non-{% endif %}Active Member</h3>
-                <button class="tablinks prof-view-btn active" onclick="openCity(event, 'membership')">Current Semester</button>
-                <button class="tablinks prof-view-btn" onclick="openCity(event, 'history')">History</button>
-
-                <div class="tabcontent" id="membership"> <!--MEMBERSHIP SECTION-->
-                    <div class="points-bar pointsbarcoms">
-            <div class="chart-bar"> <!--Flexbox-->
-                <div id="mentor-bar"></div><!--Mentorship Program-->
-                <div id="voluenteer-bar"></div><!--Volunteering-->
-                <div id="attendance-bar"></div><!--Attendence-->
-                <div id="misc-bar"></div><!--Miscellaneous-->
-            </div>
-            <div class="chart-labels comschartlabels"> <!--Flexbox-->
-                <div>
-                    <div class="comscircle"></div> <!--Circle-->
-                    <p>Mentorship Program (<span id="mentor-points"></span>)</p>
-                </div>
-                <div>
-                    <div class="comscircle"></div> <!--Circle-->
-                    <p>Volunteering (<span id="voluenteering-points"></span>)</p>
-                </div>
-                <div>
-                    <div class="comscircle"></div> <!--Circle-->
-                    <p>Attendance (<span id="attendance-points"></span>)</p>
-                </div>
-                <div>
-                    <div class="comscircle"></div> <!--Circle-->
-                    <p>Miscellaneous (<span id="misc-points"></span>)</p>
-                </div>
-                <p><b><span id="earned-points"></span>/<span id="min-point-requirement"></span> Points</b></p>
-            </div>
+            <div class="tabcontent" id="membership"> <!--MEMBERSHIP SECTION-->
+                <div class="points-bar pointsbarcoms">
+        <div class="chart-bar"> <!--Flexbox-->
+            <div id="mentor-bar"></div><!--Mentorship Program-->
+            <div id="voluenteer-bar"></div><!--Volunteering-->
+            <div id="attendance-bar"></div><!--Attendence-->
+            <div id="misc-bar"></div><!--Miscellaneous-->
         </div>
-        <div class="points-info-container comsinfocontainer">
-            <section class="info-box-gray mentorship-points-box">
-                <h2>Mentorship Program</h2>
-                <div>
-                    <p>Joined Program</p>
-                    <p><span id="joined-program-points"></span> Points</p>
-                </div>
-                <div>
-                    <p>Per Meeting</p>
-                    <p>1 Point</p>
-                </div>
-                <p class="small-text">Students are limited to a maximum of 9 points through the Membership Program.
-                </p>
-                <div class="extra-info">
-                    <p>To find more information about the Mentorship Program, please visit COMS' Linktree.</p>
-                     <button class="learn-more" onclick="window.open('https://linktr.ee/rit_coms', '_blank')">Learn More</button>
-                    
-                </div>
-            </section>
-            <section class="info-box-gray volunteering-points-box" id="volunteering-points-box">
-                <div class="extra-info">
-                    <p>To find more information about volunteering opportunities, please visit COMS' Events Page. </p>
-                     <button class="learn-more" onclick="window.open('https://www.rit.edu/computing/coms/events', '_blank')">Learn More</button>
-                </div>
-                
-
-                
-            </section>
-            <section class="info-box-gray attendance-points-box" id="attendance-points-box">
-            </section>
-            <section class="info-box-gray miscellaneous-points-box">
-                <h2>Miscellaneous</h2>
-                <p>Miscellaneous points are available for helping the organization. Please reach out to <span class="external-url"><a href="mailto:coms@rit.edu">coms@rit.edu</a></span> to find out more.</p>
-            </section>
+        <div class="chart-labels comschartlabels"> <!--Flexbox-->
+            <div>
+                <div class="comscircle"></div> <!--Circle-->
+                <p>Mentorship Program (<span id="mentor-points"></span>)</p>
+            </div>
+            <div>
+                <div class="comscircle"></div> <!--Circle-->
+                <p>Volunteering (<span id="voluenteering-points"></span>)</p>
+            </div>
+            <div>
+                <div class="comscircle"></div> <!--Circle-->
+                <p>Attendance (<span id="attendance-points"></span>)</p>
+            </div>
+            <div>
+                <div class="comscircle"></div> <!--Circle-->
+                <p>Miscellaneous (<span id="misc-points"></span>)</p>
+            </div>
+            <p><b><span id="earned-points"></span>/<span id="min-point-requirement"></span> Points</b></p>
         </div>
-                </div> <!--MEMBERSHIP SECTION-->
+    </div>
+    <div class="points-info-container comsinfocontainer">
+        <section class="info-box-gray mentorship-points-box">
+            <h2>Mentorship Program</h2>
+            <div>
+                <p>Joined Program</p>
+                <p><span id="joined-program-points"></span> Points</p>
+            </div>
+            <div>
+                <p>Per Meeting</p>
+                <p>1 Point</p>
+            </div>
+            <p class="small-text">Students are limited to a maximum of 9 points through the Membership Program.
+            </p>
+            <div class="extra-info">
+                <p>To find more information about the Mentorship Program, please visit COMS' Linktree.</p>
+                 <button class="learn-more" onclick="window.open('https://linktr.ee/rit_coms', '_blank')">Learn More</button>
+                
+            </div>
+        </section>
+        <section class="info-box-gray volunteering-points-box" id="volunteering-points-box">
+            <div class="extra-info">
+                <p>To find more information about volunteering opportunities, please visit COMS' Events Page. </p>
+                 <button class="learn-more" onclick="window.open('https://www.rit.edu/computing/coms/events', '_blank')">Learn More</button>
+            </div>
+            
 
-                <div id="history" class="tabcontent"> <!--HISTORY SECTION-->
-                    <div class="table-container membership-history-container" id="history-container">
+            
+        </section>
+        <section class="info-box-gray attendance-points-box" id="attendance-points-box">
+        </section>
+        <section class="info-box-gray miscellaneous-points-box">
+            <h2>Miscellaneous</h2>
+            <p>Miscellaneous points are available for helping the organization. Please reach out to <span class="external-url"><a href="mailto:coms@rit.edu">coms@rit.edu</a></span> to find out more.</p>
+        </section>
+    </div>
+            </div> <!--MEMBERSHIP SECTION-->
+
+            <div id="history" class="tabcontent"> <!--HISTORY SECTION-->
+                <div class="table-container membership-history-container" id="history-container">
+                    <div>
                         <div>
-                            <div>
-                                <p><b>Membership History by Semester</b></p>
-                            </div>
-                            <div>
-                                <p><b>Awards</b></p>
-                            </div>
+                            <p><b>Membership History by Semester</b></p>
+                        </div>
+                        <div>
+                            <p><b>Awards</b></p>
                         </div>
                     </div>
-                </div> 
-            </div> <!--HISTORY SECTION-->
+                </div>
+            </div> 
+        </div> <!--HISTORY SECTION-->
 
-            <div class="calendar-sec comscalendar"> <!--CALENDAR SECTION-->
-                {% include "widgets/calendar.html.j2" %}
-            </div>
+        <div class="calendar-sec comscalendar"> <!--CALENDAR SECTION-->
+            {% include "widgets/calendar.html.j2" %}
         </div>
-    </main>
-
-</body>
-
+    </div>
+</main>
 {% endblock %}

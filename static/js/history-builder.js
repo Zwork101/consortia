@@ -161,7 +161,6 @@ function historyBuilder(mode, userObject, allMeetingsObject, settingsAndConfigOb
         }
         // force an override if the user has one
         let findOverride = userObject.profile.membership_overrides.find(overrideSemester => overrideSemester == userSemester.semester);
-        console.log(findOverride);
         if (findOverride != undefined){
             isUserActive = activeUser.Active;
         }

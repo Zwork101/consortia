@@ -49,7 +49,6 @@ function drawProgressBar(mainBarID, fillerBarID, minMeetingsRequirements, meetin
   if (meetingsAttended < minMeetingsRequirements){
     let polyfillAmount = minMeetingsRequirements - meetingsAttended;
     // add code for gray polyfill
-    console.log(polyfillAmount);
     document.getElementById(fillerBarID).style.width = `${(polyfillAmount/meetingMaxUIValue)*100}%`;
   }
 

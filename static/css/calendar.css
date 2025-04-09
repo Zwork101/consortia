@@ -117,6 +117,7 @@
     padding: 4px; 
     margin-bottom: 10px; 
     padding-top: 20px;
+    border-left: solid 6px #fff;
 }
 
 .event strong{

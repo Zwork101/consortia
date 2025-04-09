@@ -98,61 +98,78 @@ function convertAwardDatesToCustomTimestamp(awardList){
  *  - If builderMode.COMS is entered in, it will compute the points earned
  * @param {Object} userObject The object that represents the user 
  * @param {Object} allMeetingsObject The object that represents all meetings.
+ * @param {Object} settingsAndConfigObject The object that contains all of the settings and configuration data.
  */
-function historyBuilder(mode, userObject, allMeetingsObject){
+function historyBuilder(mode, userObject, allMeetingsObject, settingsAndConfigObject){
 
+    let configData = settingsAndConfigObject.config;
     let sortedUserMeetings = meetingsSortedBySemester(userObject.profile.attendance, sortingOrder.Descending);
+    let sortedAllMeetings = meetingsSortedBySemester(allMeetingsObject.Meetings);
     let userAwards = convertAwardDatesToCustomTimestamp(userObject.profile.awards);
     sortedUserMeetings.forEach(userSemester => {
-        semesterDateData = semesterTermAndYear(userSemester.semester);
+        let semesterDateData = semesterTermAndYear(userSemester.semester);
         let isUserActive = activeUser.NonActive;
         let awardValues, awardImage = ``
+        let matchedSemester = sortedAllMeetings.find(semesterDate => semesterDate.semester === userSemester.semester);
         if (mode == builderMode.WIC){
             //console.log("WICMODE")
 
             // Find the semester in allMeetings Object
-            let sortedAllMeetings = meetingsSortedBySemester(allMeetingsObject.Meetings);
-            let matchedSemester = sortedAllMeetings.find(semesterDate => semesterDate.semester === userSemester.semester);
             let userMeetingDataForThisSemester = getMeetingData(userSemester.meetings);
-            let allMeetingDataForThisSemester = getMeetingData(matchedSemester.meetings);
             awardValues = `
-                                    <span>${userMeetingDataForThisSemester.generalEvents}/${allMeetingDataForThisSemester.generalEvents} General Meetings</span>
-                                    <span>${userMeetingDataForThisSemester.committeeEvents}/${allMeetingDataForThisSemester.committeeEvents} Committee Meetings</span>
-                                    <span>${userMeetingDataForThisSemester.socialEvents}/${allMeetingDataForThisSemester.socialEvents} Social Event</span>
-                                    <span>${userMeetingDataForThisSemester.voluenteeringEvents}/${allMeetingDataForThisSemester.voluenteeringEvents} Volunteering</span>
+                                    <span>${userMeetingDataForThisSemester.generalEvents}/${configData.committee_meetings_requirement} General Meetings</span>
+                                    <span>${userMeetingDataForThisSemester.committeeEvents}/${configData.committee_meetings_requirement} Committee Meetings</span>
+                                    <span>${userMeetingDataForThisSemester.socialEvents}/${configData.social_meetings_requirement} Social Event</span>
+                                    <span>${userMeetingDataForThisSemester.voluenteeringEvents}/${configData.volunteering_meetings_requirement} Volunteering</span>
             `
             
             // Set user to be active if they are a member
-            if (userObject.profile.membership == true){
+            if (userMeetingDataForThisSemester.generalEvents >= configData.committee_meetings_requirement &&
+                userMeetingDataForThisSemester.committeeEvents >= configData.committee_meetings_requirement &&
+                userMeetingDataForThisSemester.socialEvents >= configData.social_meetings_requirement &&
+                userMeetingDataForThisSemester.voluenteeringEvents >= configData.volunteering_meetings_requirement
+            ){
                 isUserActive = activeUser.Active;
             }
 
-            // Award image if year matches with userAwards
-            let findAward = userAwards.find(awardYear => awardYear == userSemester.semester);
-            if (findAward != undefined){
-                awardImage = awardHTML;
-            }
+            // // Award image if year matches with userAwards
+            // let findAward = userAwards.find(awardYear => awardYear == userSemester.semester);
+            // if (findAward != undefined){
+            //     awardImage = awardHTML;
+            // }
         } else if (mode == builderMode.COMS) {
             //console.log("COMSMODE")
 
             // Set up total point Calculation
-            let userSemesterPoints = getPointObject(userSemester.meetings, userObject.profile.bonus_points);
+            let userSemesterPoints = getPointObject(userSemester.meetings, matchedSemester.meetings, configData, userObject.profile.bonuses);
             let userSemesterTotalPoints = pointSummer(userSemesterPoints);
             //console.log(userSemesterPoints);
             awardValues = `<span>${userSemesterTotalPoints}/${minPointRequirements} Total Points</span>`;
 
             // Set user to be active if they were active (by going to a mentorship meeting)
-            if (userSemesterPoints.mentorshipPoints > 0){
+            if (userSemesterTotalPoints >= minPointRequirements){
                 isUserActive = activeUser.Active;
             }
-            
-            // Award image if year matches with userAwards
-            let findAward = userAwards.find(awardYear => awardYear == userSemester.semester);
-            if (findAward != undefined){
-                awardImage = awardHTML;
-            }
+
+            // // Award image if year matches with userAwards
+            // let findAward = userAwards.find(awardYear => awardYear == userSemester.semester);
+            // if (findAward != undefined){
+            //     awardImage = awardHTML;
+            // }
         } else {
             console.log("Error: invalid mode entered in.");
+        }
+        // force an override if the user has one
+        let findOverride = userObject.profile.membership_overrides.find(overrideSemester => overrideSemester == userSemester.semester);
+        console.log(findOverride);
+        if (findOverride != undefined){
+            isUserActive = activeUser.Active;
+        }
+
+        // Award image if year matches with userAwards
+        let findAward = userAwards.find(awardYear => awardYear == userSemester.semester);
+        if (findAward != undefined){
+            awardImage = awardHTML;
         }
 
         table = document.getElementById("history-container");

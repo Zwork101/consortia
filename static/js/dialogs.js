@@ -118,8 +118,13 @@ $( function() {
 
    $("#save-changes-button").click(function() {
     console.log("Button clicked!");
-    success_banner.text("Changes saved successfully!").fadeIn().delay(3000).fadeOut();
-});
+    success_banner.text("Changes saved successfully!").fadeIn().delay(4000).fadeOut();
+   });
+
+    $("#submit-file").click(function () {
+        console.log("Button clicked!");
+        success_banner.text("File uploaded successfully!!").fadeIn().delay(4000).fadeOut();
+    });
 
     /*
 
@@ -145,10 +150,19 @@ $( function() {
     $("#import-data-button").button().on("click", function() {
         import_data_dialog.dialog('open');
         console.log("import meeting button pressed");
-       
-
     });
    
+    // Event Details Modal close functionality
+    $(document).on('click', '#eventDetailsModal .close', function() {
+        $('#eventDetailsModal').removeClass('show-modal').hide();
+    });
+
+    // Close modals when clicking outside of them
+    $(window).on('click', function(event) {
+        if ($(event.target).is('#eventDetailsModal')) {
+            $('#eventDetailsModal').removeClass('show-modal').hide();
+        }
+    });
 
     $( "#data-event-name" )
     .selectmenu()
@@ -301,6 +315,49 @@ $( function() {
                     <td></td>
                 </tr>
             `);
+        });
+
+        document.querySelector(".semester-report-btn").addEventListener("click", function () {
+            console.log("Download button clicked");
+        
+            const modal = document.getElementById("modal-rew");
+            const downloadButton = document.querySelector(".semester-report-btn");
+        
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+    
+            script.onload = function () {
+                console.log("html2pdf.js loaded successfully");
+    
+                const element = document.getElementById("modal-rew");
+                if (!element) {
+                    console.error("Modal element not found.");
+                    return;
+                }
+    
+                downloadButton.style.display = "none";
+                console.log("Modal text content:", element.textContent);
+                console.log("Generating PDF...");
+    
+                const year = new Date().getFullYear();
+                const org_name = org_id === '1' ? "WIC" : "COMS";
+    
+                const pdfLayout = {
+                    margin: 0,
+                    filename: `${org_name}_Report_${year}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'mm', format: 'letter', orientation: 'landscape' }
+                };
+    
+                html2pdf().set(pdfLayout).from(element.innerHTML).save().finally(() => {
+                    downloadButton.style.display = "block";
+                    console.log("Generated PDF...");
+                });
+            };
+
+            document.body.appendChild(script);
         });
     });
 

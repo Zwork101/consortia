@@ -2,7 +2,7 @@ import csv
 
 from flask import request
 from flask_wtf import FlaskForm
-from wtforms import EmailField, FileField, Form, IntegerField, StringField, SelectField, SubmitField, FieldList, FormField, HiddenField
+from wtforms import BooleanField, EmailField, FileField, Form, IntegerField, StringField, SelectField, SubmitField, FieldList, FormField, HiddenField
 from wtforms.validators import DataRequired, ValidationError, Email, NumberRange, Length
 
 class NonValidatingSelectField(SelectField):
@@ -59,6 +59,7 @@ class EditUserForm(FlaskForm):
     degree = StringField("Degree (Optional)")
     pronouns = StringField("Pronouns (Optional)")
     # avatar_path = StringField("Avatar Path (Optional)")
+    membership_override = BooleanField("Enable Semester Membership", default=False)
     t_shirt_size = SelectField("Select a T-Shirt Size", choices=[
         ("Unset", "Unset"),
         ("Small", "Small"),

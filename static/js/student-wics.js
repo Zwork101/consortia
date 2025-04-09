@@ -62,16 +62,20 @@ function drawProgressBar(mainBarID, fillerBarID, minMeetingsRequirements, meetin
  * @param {Object} settingsAndConfigData An object containing all the settings and configuration data
  */
 function showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemester, settingsAndConfigData){
-    
+  let minSocialEventsRequirements = settingsAndConfigData.config.social_meetings_requirement;
+  let minVolunteeringEventsRequirements = settingsAndConfigData.config.volunteering_meetings_requirement;
+  let minCommitteeEventsRequirements = settingsAndConfigData.config.committee_meetings_requirement;
+  let minGeneralEventsRequirements = settingsAndConfigData.config.general_meetings_requirement;
+
   document.getElementById("social-events").innerHTML = userMeetingsForCurrentSemester.socialEvents;
   document.getElementById("volunteering-events").innerHTML = userMeetingsForCurrentSemester.voluenteeringEvents;
   document.getElementById("committee-events").innerHTML = userMeetingsForCurrentSemester.committeeEvents;
   document.getElementById("general-events").innerHTML = userMeetingsForCurrentSemester.generalEvents;
 
-  document.getElementById("total-social-events").innerHTML = allMeetingsForCurrentSemester.socialEvents;
-  document.getElementById("total-volunteering-events").innerHTML = allMeetingsForCurrentSemester.voluenteeringEvents;
-  document.getElementById("total-committee-events").innerHTML = allMeetingsForCurrentSemester.committeeEvents;
-  document.getElementById("total-general-events").innerHTML = allMeetingsForCurrentSemester.generalEvents;
+  document.getElementById("total-social-events").innerHTML = minSocialEventsRequirements;
+  document.getElementById("total-volunteering-events").innerHTML = minVolunteeringEventsRequirements;
+  document.getElementById("total-committee-events").innerHTML = minCommitteeEventsRequirements;
+  document.getElementById("total-general-events").innerHTML = minGeneralEventsRequirements;
   
   // If the user exceeds the max events, we want to resize the bar so that it does not cause UI conflicts.
   let maximumUIValue = Math.max(
@@ -86,11 +90,6 @@ function showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemest
   } else {
     meetingMaxUIValue = maxEvents;
   }
-
-  let minSocialEventsRequirements = settingsAndConfigData.config.social_meetings_requirement;
-  let minVolunteeringEventsRequirements = settingsAndConfigData.config.volunteering_meetings_requirement;
-  let minCommitteeEventsRequirements = settingsAndConfigData.config.committee_meetings_requirement;
-  let minGeneralEventsRequirements = settingsAndConfigData.config.general_meetings_requirement;
 
   drawProgressBar("social-total-points-bar", "social-min-requirements", minSocialEventsRequirements, userMeetingsForCurrentSemester.socialEvents, meetingMaxUIValue);
   drawProgressBar("volunteering-total-points-bar", "volunteering-min-requirements", minVolunteeringEventsRequirements, userMeetingsForCurrentSemester.voluenteeringEvents, meetingMaxUIValue);
@@ -113,5 +112,5 @@ function processDataWIC(studentData, allMeetingData, settingsAndConfigurationDat
 
   showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemester, settingsAndConfigurationData);
 
-  historyBuilder(builderMode.WIC, studentData, allMeetingData);
+  historyBuilder(builderMode.WIC, studentData, allMeetingData, settingsAndConfigurationData);
 }

@@ -20,6 +20,6 @@ from sqlalchemy import create_engine
 # raise ValueError(sys.prefix + str(sys.path), site.USER_BASE, site.USER_SITE)
 
 application = create_app(ProductionConfig)
-Base.metadata.create_all(
-    create_engine(application.config['SQLALCHEMY_DATABASE_URI'])
-)
+#Base.metadata.create_all(
+#    create_engine(application.config['SQLALCHEMY_DATABASE_URI'])
+#)

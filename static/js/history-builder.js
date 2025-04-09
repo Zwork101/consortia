@@ -147,7 +147,7 @@ function historyBuilder(mode, userObject, allMeetingsObject, settingsAndConfigOb
             awardValues = `<span>${userSemesterTotalPoints}/${minPointRequirements} Total Points</span>`;
 
             // Set user to be active if they were active (by going to a mentorship meeting)
-            if (userSemesterPoints >= minPointRequirements){
+            if (userSemesterTotalPoints >= minPointRequirements){
                 isUserActive = activeUser.Active;
             }
 

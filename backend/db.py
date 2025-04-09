@@ -747,15 +747,9 @@ def db_testing_setup():
     users = []
     events= []
 
-    WiC = Organizer(
-        name = "Women in Computing",
-        email = "wic@rit.edu"
-    )
+    WiC = Organizer.query.get(Organizations.WIC)
     
-    COMS = Organizer(
-        name = "Computing Organization for Multicultural Students",
-        email = "coms@rit.edu"
-    )
+    COMS = Organizer.query.get(Organizations.COMS)
 
     wic_award = Award(
         organization_id = Organizations.WIC,
@@ -859,18 +853,23 @@ def db_testing_setup():
 
     developer_profiles = [Profile(**data) for data in developer_profiles_data]
 
-    will_smith = Profile(
-        rit_id = "wls1234",
-        first_name = "Will",
-        last_name = "Smith",
-        email = "wls1234@rit.edu",
-        graduation_year = 2025,
-        degree = "Acting",
-        pronouns = "He/Him"
-    )
+    will_smith =  Profile.query.where(Profile.email == "wls1234@rit.edu").first()
+
+    if will_smith is None:
+
+        will_smith = Profile(
+            rit_id = "wls1234",
+            first_name = "Will",
+            last_name = "Smith",
+            email = "wls1234@rit.edu",
+            graduation_year = 2025,
+            degree = "Acting",
+            pronouns = "He/Him"
+        )
+        db.session.add(will_smith)
 
     db.session.add_all([
-        *users, *events, WiC, COMS, will_smith, *developer_profiles, wic_award, coms_award
+        *users, *events, *developer_profiles, wic_award, coms_award
     ])
     db.session.commit()
 

@@ -95,5 +95,5 @@ if __name__ == "__main__":
         request.environ["sn"] = "Smith"
         request.environ["email"] = "wls1234@rit.edu"
 
-    # database_setup(app)
+    database_setup(app)
     app.run()

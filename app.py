@@ -39,13 +39,28 @@ def create_app(config_file: Config = DevelopmentConfig) -> Flask:
 
     app.jinja_env.add_extension("jinja2.ext.loopcontrols")
 
-    if config_file is not DevelopmentConfig:
+    if config_file:
 
         with app.app_context():
             db.create_all()
 
-            Organizations.COMS = db.session.query(Organizer.organization_id).where(Organizer.name == "Computing Organization for Multicultural Students").first()[0]
-            Organizations.WIC = db.session.query(Organizer.organization_id).where(Organizer.name == "Women in Computing").first()[0]
+            try:
+                Organizations.COMS = db.session.query(Organizer.organization_id).where(Organizer.name == "Computing Organization for Multicultural Students").first()[0]
+                Organizations.WIC = db.session.query(Organizer.organization_id).where(Organizer.name == "Women in Computing").first()[0]
+            except TypeError:
+                WiC = Organizer(
+                    name = "Women in Computing",
+                    email = "wic@rit.edu"
+                )
+                
+                COMS = Organizer(
+                    name = "Computing Organization for Multicultural Students",
+                    email = "coms@rit.edu"
+                )
+
+                commit(WiC, COMS)
+                Organizations.WIC = WiC.organization_id
+                Organizations.COMS = COMS.organization_id
 
             defacto_admin = db.session.query(Administrator.id).join(Profile).where(Profile.rit_id == app.config['DEFACTO_ADMIN']['rit_id']).first()
             if defacto_admin is None:
@@ -80,5 +95,5 @@ if __name__ == "__main__":
         request.environ["sn"] = "Smith"
         request.environ["email"] = "wls1234@rit.edu"
 
-    database_setup(app)
+    # database_setup(app)
     app.run()

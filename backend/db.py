@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from enum import Enum as EnumClass
 from typing import Any, Optional
 
@@ -473,7 +473,6 @@ class Profile(db.Model, UserMixin):
         
         if org_id is not None:
             base_profile_json['membership'] = self.membership(org_id)
-            base_profile_json['membership_override'] = True if self.check_override(org_id) else False
             base_profile_json['semesters'] = self.semesters(org_id)
             base_profile_json["bonus_points"] = self.bonus_points(org_id)
             base_profile_json["attendance"] = [
@@ -498,6 +497,8 @@ class Profile(db.Model, UserMixin):
                 "semester": bonus.semester
             }
             for bonus in self.bonuses if bonus.organization_id == org_id]
+            base_profile_json['membership_overrides'] = [override.semester
+            for override in self.manual_memberships if override.organization_id == org_id]
         else:
             base_profile_json["attendance"] = [
                 {
@@ -814,10 +815,8 @@ def db_testing_setup():
             MeetingType.MENTORSHIP,
             MeetingType.COMMITTEE
         ])
-        events[-1].start_time = datetime.strptime(events[-1].start_time, "%Y-%m-%d %H:%M:%S")
-        events[-1].start_time = events[-1].start_time.replace(year=datetime.now().year, month=datetime.now().month - 1)
-        events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S")
-        events[-1].end_time = events[-1].end_time.replace(year=datetime.now().year, month=datetime.now().month - 1)
+        events[-1].start_time = datetime.strptime(events[-1].start_time, "%Y-%m-%d %H:%M:%S") + timedelta(days=random.randint(-200, 10))
+        events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S") + timedelta(days=random.randint(-200, 10))
 
     developer_profiles_data = [
         {

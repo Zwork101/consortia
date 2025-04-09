@@ -53,10 +53,10 @@ class DevelopmentConfig(Config):
     SERVER_NAME = "localhost:8080"
     SQLALCHEMY_DATABASE_URI = "sqlite:///dev.db"
     DEFACTO_ADMIN = {
-        "rit_id": "njz8626",
-        "first_name": "Nathan",
-        "last_name": "Zilora",
-        "email": "njz8626@rit.edu"
+        "rit_id": "wls1234",
+        "first_name": "Will",
+        "last_name": "Smith",
+        "email": "wls1234@rit.edu"
     }
 
 

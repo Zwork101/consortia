@@ -6,134 +6,129 @@
 <script src="{{ url_for("static", filename="js/student-data-processing-common.js") }}" defer></script>
 {% endblock %}
 {% block content %}
+{% include "nav.html.j2" %} 
+<main>
+    <div class="profile-view-grid">
+        <div class="membership-sec">
+            <h2>Women in Computing</h2>
+            <h3>Status: {% if not current_user.membership(1) %}Non-{% endif %}Active Member</h3>
+            <button class="tablinks prof-view-btn active" onclick="openCity(event, 'membership')">Current Semester</button>
+            <button class="tablinks prof-view-btn" onclick="openCity(event, 'history')">History</button>
 
-<body data-profile-id="{{ current_user.profile_id }}">
- {% include "nav.html.j2" %} 
-    <main>
-        <div class="profile-view-grid">
-            <div class="membership-sec">
-                <h2>Women in Computing</h2>
-                <h3>Status: {% if not current_user.membership(1) %}Non-{% endif %}Active Member</h3>
-                <button class="tablinks prof-view-btn active" onclick="openCity(event, 'membership')">Current Semester</button>
-                <button class="tablinks prof-view-btn" onclick="openCity(event, 'history')">History</button>
+            <div class="tabcontent" id="membership"> <!--MEMBERSHIP SECTION-->
+                <!--Chart Background-->
+                <div class="chart-background">
+                    <div class="chart-bckg1 one-dig-num"></div>
+                    <div class="chart-bckg2 one-dig-num"></div>
+                    <div class="chart-bckg3 one-dig-num"></div>
+                    <div class="chart-bckg4 one-dig-num"></div>
+                    <div class="chart-bckg5"></div>
+                    <div class="chart-bckg6"></div>
+                    <div class="chart-bckg7"></div>
 
-                <div class="tabcontent" id="membership"> <!--MEMBERSHIP SECTION-->
-                    <!--Chart Background-->
-                    <div class="chart-background">
-                        <div class="chart-bckg1 one-dig-num"></div>
-                        <div class="chart-bckg2 one-dig-num"></div>
-                        <div class="chart-bckg3 one-dig-num"></div>
-                        <div class="chart-bckg4 one-dig-num"></div>
-                        <div class="chart-bckg5"></div>
-                        <div class="chart-bckg6"></div>
-                        <div class="chart-bckg7"></div>
-
-                    </div>
-                    <div class="points-bar">
-                        <div class="chart-bar wic-bar" id="social-total-points-bar" style="width:0%">
-                            <!--Flexbox-->
-                            <div id="social-earned-points-bar" style="width:100%"></div><!--Social Event--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
-                            <div style="width:0%"></div><!--Placeholder-->
-                            <div style="width:0%"></div><!--Placeholder-->
-                            <div style="width:0%"></div><!--Placeholder-->
-                            <div id="social-min-requirements"style="width:0%"></div><!--Placeholder-->
-                        </div>
-                        <div class="chart-bar wic-bar" id="volunteering-total-points-bar" style="width:0%">
-                            <!--Flexbox-->
-                            <div style="width:0%"></div><!--Placeholder-->
-                            <div id="volunteering-earned-points-bar" style="width:100%"></div><!--Volunteering--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
-                            <div style="width:0%"></div><!--Placeholder-->
-                            <div style="width:0%"></div><!--Placeholder-->
-                            <div id="volunteering-min-requirements" style="width:0%"></div><!--Placeholder-->
-                        </div>
-                        <div class="chart-bar wic-bar" id="committee-total-points-bar" style="width:0%">
-                            <!--Flexbox-->
-                            <div style="width:0%"></div><!--Placeholder-->
-                            <div style="width:0%"></div><!--Placeholder-->
-                            <div id="committee-earned-points-bar" style="width:100%"></div><!--Committee Meetings--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
-                            <div style="width:0%"></div><!--Placeholder-->
-                            <div id="committee-min-requirements" style="width:0%"></div><!--Placeholder-->
-                        </div>
-                        <div class="chart-bar wic-bar" id="general-total-points-bar" style="width:0%">
-                            <!--Flexbox-->
-                            <div style="width:0%"></div><!--Placeholder-->
-                            <div style="width:0%"></div><!--Placeholder-->
-                            <div style="width:0%"></div><!--Placeholder-->
-                            <div id="general-earned-points-bar" style="width:100%"></div><!--General Meetings--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
-                            <div id="general-min-requirements" style="width:0%"></div><!--Placeholder-->
-                        </div>
-                    </div>
-                    <div class="chart-placeholder"></div>
-                    <div class="chart-labels">
+                </div>
+                <div class="points-bar">
+                    <div class="chart-bar wic-bar" id="social-total-points-bar" style="width:0%">
                         <!--Flexbox-->
-                        <div>
-                            <div></div> <!--Circle-->
-                            <p>Social Event (<span id="social-events"></span>/<span id="total-social-events"></span>)</p><!--display numerical points here-->
-                        </div>
-                        <div>
-                            <div></div> <!--Circle-->
-                            <p>Volunteering (<span id="volunteering-events"></span>/<span id="total-volunteering-events"></span>)</p><!--display numerical points here-->
-                        </div>
-                        <div>
-                            <div></div> <!--Circle-->
-                            <p>Committee Meetings (<span id="committee-events"></span>/<span id="total-committee-events"></span>)</p><!--display numerical points here-->
-                        </div>
-                        <div>
-                            <div></div> <!--Circle-->
-                            <p>General Meetings (<span id="general-events"></span>/<span id="total-general-events"></span>)</p><!--display numerical points here-->
-                        </div>
-                        <p><b></b></p>
+                        <div id="social-earned-points-bar" style="width:100%"></div><!--Social Event--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
+                        <div style="width:0%"></div><!--Placeholder-->
+                        <div style="width:0%"></div><!--Placeholder-->
+                        <div style="width:0%"></div><!--Placeholder-->
+                        <div id="social-min-requirements"style="width:0%"></div><!--Placeholder-->
                     </div>
-
-                    <!--Gray Boxes-->
-                    <div class="points-info-container2">
-
-                        <section class="info-box-gray social-events">
-                            <h2>Volunteering</h2>
-                            <p>
-                                WiC is committed to be a part of the community. To find more information about volunteering opportunities, please visit WiC's Events Page.
-                            </p>
-                            <span class="learn-more-cont">
-                                <button class="learn-more" onclick="window.open('https://www.rit.edu/womenincomputing/events', '_blank')">
-                                    Learn More
-                                </button>
-                            </span>
-
-                        </section>
-                        <section class="info-box-gray volunteering">
-                            <h2>Social Events</h2>
-                            <p>
-                                There are various social events hosted by WiC throughout the year. To find out more about these events, please visit WiC's Events Page.
-                            </p>
-                            <span class="learn-more-cont">
-                                <button class="learn-more" onclick="window.open('https://www.rit.edu/womenincomputing/events', '_blank')">
-                                    Learn More
-                                </button>
-                            </span>
-                        </section>
+                    <div class="chart-bar wic-bar" id="volunteering-total-points-bar" style="width:0%">
+                        <!--Flexbox-->
+                        <div style="width:0%"></div><!--Placeholder-->
+                        <div id="volunteering-earned-points-bar" style="width:100%"></div><!--Volunteering--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
+                        <div style="width:0%"></div><!--Placeholder-->
+                        <div style="width:0%"></div><!--Placeholder-->
+                        <div id="volunteering-min-requirements" style="width:0%"></div><!--Placeholder-->
                     </div>
-                </div> <!--MEMBERSHIP SECTION-->
+                    <div class="chart-bar wic-bar" id="committee-total-points-bar" style="width:0%">
+                        <!--Flexbox-->
+                        <div style="width:0%"></div><!--Placeholder-->
+                        <div style="width:0%"></div><!--Placeholder-->
+                        <div id="committee-earned-points-bar" style="width:100%"></div><!--Committee Meetings--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
+                        <div style="width:0%"></div><!--Placeholder-->
+                        <div id="committee-min-requirements" style="width:0%"></div><!--Placeholder-->
+                    </div>
+                    <div class="chart-bar wic-bar" id="general-total-points-bar" style="width:0%">
+                        <!--Flexbox-->
+                        <div style="width:0%"></div><!--Placeholder-->
+                        <div style="width:0%"></div><!--Placeholder-->
+                        <div style="width:0%"></div><!--Placeholder-->
+                        <div id="general-earned-points-bar" style="width:100%"></div><!--General Meetings--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
+                        <div id="general-min-requirements" style="width:0%"></div><!--Placeholder-->
+                    </div>
+                </div>
+                <div class="chart-placeholder"></div>
+                <div class="chart-labels">
+                    <!--Flexbox-->
+                    <div>
+                        <div></div> <!--Circle-->
+                        <p>Social Event (<span id="social-events"></span>/<span id="total-social-events"></span>)</p><!--display numerical points here-->
+                    </div>
+                    <div>
+                        <div></div> <!--Circle-->
+                        <p>Volunteering (<span id="volunteering-events"></span>/<span id="total-volunteering-events"></span>)</p><!--display numerical points here-->
+                    </div>
+                    <div>
+                        <div></div> <!--Circle-->
+                        <p>Committee Meetings (<span id="committee-events"></span>/<span id="total-committee-events"></span>)</p><!--display numerical points here-->
+                    </div>
+                    <div>
+                        <div></div> <!--Circle-->
+                        <p>General Meetings (<span id="general-events"></span>/<span id="total-general-events"></span>)</p><!--display numerical points here-->
+                    </div>
+                    <p><b></b></p>
+                </div>
 
-                <div id="history" class="tabcontent"> <!--HISTORY SECTION-->
-                    <div class="table-container membership-history-container" id="history-container">
+                <!--Gray Boxes-->
+                <div class="points-info-container2">
+
+                    <section class="info-box-gray social-events">
+                        <h2>Volunteering</h2>
+                        <p>
+                            WiC is committed to be a part of the community. To find more information about volunteering opportunities, please visit WiC's Events Page.
+                        </p>
+                        <span class="learn-more-cont">
+                            <button class="learn-more" onclick="window.open('https://www.rit.edu/womenincomputing/events', '_blank')">
+                                Learn More
+                            </button>
+                        </span>
+
+                    </section>
+                    <section class="info-box-gray volunteering">
+                        <h2>Social Events</h2>
+                        <p>
+                            There are various social events hosted by WiC throughout the year. To find out more about these events, please visit WiC's Events Page.
+                        </p>
+                        <span class="learn-more-cont">
+                            <button class="learn-more" onclick="window.open('https://www.rit.edu/womenincomputing/events', '_blank')">
+                                Learn More
+                            </button>
+                        </span>
+                    </section>
+                </div>
+            </div> <!--MEMBERSHIP SECTION-->
+
+            <div id="history" class="tabcontent"> <!--HISTORY SECTION-->
+                <div class="table-container membership-history-container" id="history-container">
+                    <div>
                         <div>
-                            <div>
-                                <p><b>Membership History by Semester</b></p>
-                            </div>
-                            <div>
-                                <p><b>Awards</b></p>
-                            </div>
+                            <p><b>Membership History by Semester</b></p>
+                        </div>
+                        <div>
+                            <p><b>Awards</b></p>
                         </div>
                     </div>
-                </div> 
-            </div> <!--HISTORY SECTION-->
+                </div>
+            </div> 
+        </div> <!--HISTORY SECTION-->
 
-            <div class="calendar-sec"> <!--CALENDAR SECTION-->
-                {% include "widgets/calendar.html.j2" %}
-            </div>
+        <div class="calendar-sec"> <!--CALENDAR SECTION-->
+            {% include "widgets/calendar.html.j2" %}
         </div>
-    </main>
-
-</body>
-
+    </div>
+</main>
 {% endblock %}

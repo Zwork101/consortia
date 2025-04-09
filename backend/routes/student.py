@@ -14,7 +14,7 @@ student = Blueprint("student", __name__, static_folder="static/", template_folde
 
 @student.route("/wic")
 def wic_homepage():
-    return render_template("wics-profile.html.j2", title="WIC", org=1)
+    return render_template("wics-profile.html.j2", title="WIC", org_id=1)
 
 @student.route("/coms")
 def coms_homepage():

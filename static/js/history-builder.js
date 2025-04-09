@@ -104,17 +104,17 @@ function historyBuilder(mode, userObject, allMeetingsObject, settingsAndConfigOb
 
     let configData = settingsAndConfigObject.config;
     let sortedUserMeetings = meetingsSortedBySemester(userObject.profile.attendance, sortingOrder.Descending);
+    let sortedAllMeetings = meetingsSortedBySemester(allMeetingsObject.Meetings);
     let userAwards = convertAwardDatesToCustomTimestamp(userObject.profile.awards);
     sortedUserMeetings.forEach(userSemester => {
         semesterDateData = semesterTermAndYear(userSemester.semester);
         let isUserActive = activeUser.NonActive;
         let awardValues, awardImage = ``
+        let matchedSemester = sortedAllMeetings.find(semesterDate => semesterDate.semester === userSemester.semester);
         if (mode == builderMode.WIC){
             //console.log("WICMODE")
 
             // Find the semester in allMeetings Object
-            let sortedAllMeetings = meetingsSortedBySemester(allMeetingsObject.Meetings);
-            let matchedSemester = sortedAllMeetings.find(semesterDate => semesterDate.semester === userSemester.semester);
             let userMeetingDataForThisSemester = getMeetingData(userSemester.meetings);
             let allMeetingDataForThisSemester = getMeetingData(matchedSemester.meetings);
             awardValues = `
@@ -138,7 +138,7 @@ function historyBuilder(mode, userObject, allMeetingsObject, settingsAndConfigOb
             //console.log("COMSMODE")
 
             // Set up total point Calculation
-            let userSemesterPoints = getPointObject(userSemester.meetings, configData, userObject.profile.bonus_points);
+            let userSemesterPoints = getPointObject(userSemester.meetings, configData, userObject.profile.bonuses);
             let userSemesterTotalPoints = pointSummer(userSemesterPoints);
             //console.log(userSemesterPoints);
             awardValues = `<span>${userSemesterTotalPoints}/${minPointRequirements} Total Points</span>`;

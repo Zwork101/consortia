@@ -1150,16 +1150,19 @@ svg {
     All classes containing styling for admin notifications page
 */
 .semester-report-btn {
-    padding: 8px 12px;
+    padding: 12px 20px !important;
     margin-left: 8px;
-    color: #fff;
-    border: none;
-    background-color: var(--orange);
+    color: #fff !important;
+    border: none !important;
+    background-color: var(--orange) !important;
     font-family: var( --main-font);
+    transform: translate(65vw, 180px) !important;
+    border-radius: 2px !important;
+    font-weight: 600 !important;
 }
 
 .semester-report-btn:hover, .semester-config .trashbtn:hover {
-    background-color: #000;
+    background-color: #000 !important;
 }
 
 /*
@@ -1391,10 +1394,15 @@ svg {
         border-color: #000;
         background-color: #000;
     }
+
+#override_membership {
+    transform: translateX(-120px);
+}
+
 /* Student view */
 .studentattendance {
     display: flex;
-    gap: 20px; 
+    gap: 20px;
 }
 .titletabssectionattendance{
     font-family: var(--main-font);
@@ -1817,7 +1825,7 @@ fieldset input[type=number] {
 }
 
 .event-row td:first-child {
-    color: #F76902;
+    color: #000;
     font-weight: bold;
 }
 

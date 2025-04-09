@@ -1,19 +1,17 @@
 import csv
 from datetime import datetime, timezone
-import os
-import logging
 from time import sleep
 
 from configs import update_org_settings
-from backend.email import create_batches, generate_award_email, get_token, send_email
-from backend.db import Administrator, Award, ManualMembership, MeetingType, Organizations, ProfileAward, RoleType, award_user, create_attendance, commit, Event, Profile, create_bonus, db, make_admin
+from backend.email import create_batches, generate_award_email, get_token
+from backend.db import Administrator, Award, ManualMembership, MeetingType, Organizations, RoleType, award_user, create_attendance, commit, Event, Profile, create_bonus, db, make_admin
 from backend.auth import admin_required
-from backend.forms import CampusGroupsValidator, AttendanceForm, AddUserForm, EditUserForm, SelectUserForm, serachId, BonusForm, WICConfigForm, COMSConfigForm
+from backend.forms import AttendanceForm, AddUserForm, EditUserForm, SelectUserForm, serachId, BonusForm, WICConfigForm, COMSConfigForm
 
 from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, abort, current_app
 from flask_login import current_user
-from sqlalchemy.orm import Session
-from sqlalchemy import func, or_, delete
+from sqlalchemy import or_
+import pytz
 
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
 
@@ -31,7 +29,6 @@ def dashboard(org: int):
 def org_settings(org: int):
     org_awards = db.session.query(Award.award_id, Award.name, Award.active_semester_requirements).where(Award.organization_id == org).all()
     admins = db.session.query(Profile.email).select_from(Administrator).join(Profile, Administrator.profile_id == Profile.profile_id).where(Administrator.organization_id == org).all()
-    print(admins)
 
     if org == Organizations.WIC:
         form = WICConfigForm(
@@ -139,18 +136,34 @@ def create_event(org: int):
         flash("Meeting name and start time are required", "error")
         return redirect(url_for("admin.dashboard", org=org))
     
-    # Convert ISO datetime strings to Python datetime objects
-    from datetime import datetime
-    
+    # Convert ISO datetime strings to Python datetime objects    
     try:
         # Parse the ISO format datetime strings
-        start_time = datetime.fromisoformat(meeting_start_time.replace('Z', '+00:00'))
+        year, month, day = map(int, request.form.get("meeting-date").split("-"))
+        hour_start, minute_start = map(int, request.form.get("meeting-time-start").split(":"))
+        start_time = datetime(
+            year=year,
+            month=month,
+            day=day,
+            hour=hour_start,
+            minute=minute_start,
+            tzinfo=pytz.timezone("US/Eastern")
+        )
         
         # Only parse end_time if it exists
         end_time = None
         if meeting_end_time:
-            end_time = datetime.fromisoformat(meeting_end_time.replace('Z', '+00:00'))
-        
+            hour_end, minute_end = map(int, request.form.get("meeting-time-end").split(":"))
+            end_time = datetime(
+            year=year,
+            month=month,
+            day=day,
+            hour=hour_end,
+            minute=minute_end,
+            tzinfo=pytz.timezone("US/Eastern")
+        )
+
+
         db.session.add(Event(
             name=meeting_name,
             description=meeting_description,

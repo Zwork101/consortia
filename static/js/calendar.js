@@ -8,7 +8,7 @@ const displayEvent = (eventName, eventDate, eventType, eventDescription) => {
 
     newEvent.find(".event-name").text(eventName);
     newEvent.find(".event-time").text(
-        eventDate.toUTCString()
+        eventDate.toString()
     )
     newEvent.find(".description").text(eventDescription)
     let color;
@@ -19,7 +19,6 @@ const displayEvent = (eventName, eventDate, eventType, eventDescription) => {
         case "VOLUNTEER":  color = "var(--label-blue)";
         case "MENTORSHIP": color = "var(--label-purple)";
     }
-    console.log(color);
     newEvent.attr("id", "")
     newEvent.find(".meeting-marker").css("backgroundColor", color);
     newEvent.insertAfter(lastEvent);

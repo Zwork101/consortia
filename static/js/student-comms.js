@@ -48,13 +48,14 @@ function getAttendancePoints(attendedMeetings, totalMeetings, attendanceRules){
  * @param {Array} listOfUserMeetings The list of meetings for this semester
  * @param {Array} listOfAllMeetings The list of all meetings for this semester 
  * @param {Object} pointConfig An object containing point configuration data.
- * @param {Number} bonusPoints The number of bonus points to award.
+ * @param {Array} bonusPoints The list of objects containing the number of bonus points to award.
  * @returns An Object containg values of points
  */
 function getPointObject(listOfUserMeetings, pointConfig, bonusPoints){
   let pointObject = {};
 
   let volunteeringHours = 0;
+  let semester = 0;
 
   // For attendence
   let attendedMeetings = 0;
@@ -74,6 +75,11 @@ function getPointObject(listOfUserMeetings, pointConfig, bonusPoints){
     } else if (attendanceDay.meeting_type == "MENTORSHIP"){
       mentorshipPoints += 1;
     }
+
+    if (semester == 0){
+      semester = attendanceDay.semester;
+      console.log("set to:" + semester);
+    }
   })
   if (mentorshipPoints > 0){
     mentorshipPoints += pointConfig.mentorship_minimum;
@@ -82,7 +88,12 @@ function getPointObject(listOfUserMeetings, pointConfig, bonusPoints){
   mentorshipPoints = Math.min(mentorshipPoints, pointConfig.mentorship_maximum);
   volunteeringPoints = getVolunteeringPoints(volunteeringHours, pointConfig.volunteer);
   attendancePoints = getAttendancePoints(attendedMeetings, totalMeetings, pointConfig.attendance);
-  miscPoints = bonusPoints;
+
+  bonusPoints.forEach(bonusEvent =>{
+    if (bonusEvent.semester == semester){
+      miscPoints = bonusEvent.value;
+    }
+  })
 
   pointObject.mentorshipPoints = mentorshipPoints;
   pointObject.volunteeringPoints = volunteeringPoints;
@@ -178,8 +189,9 @@ function processDataCOMS(studentData, allMeetingData, settingsAndConfigData){
 
   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
   let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
+  console.log(attendance);
 
-  let pointsFromThisSemester = getPointObject(attendance, settingsAndConfigData.config, studentData.profile.bonus_points);
+  let pointsFromThisSemester = getPointObject(attendance, settingsAndConfigData.config, studentData.profile.bonuses);
 
   showResults(pointsFromThisSemester, settingsAndConfigData.config);
 

@@ -138,7 +138,7 @@ function historyBuilder(mode, userObject, allMeetingsObject, settingsAndConfigOb
             //console.log("COMSMODE")
 
             // Set up total point Calculation
-            let userSemesterPoints = getPointObject(userSemester.meetings, configData, userObject.profile.bonus_points);
+            let userSemesterPoints = getPointObject(userSemester.meetings, configData, userObject.profile.bonuses);
             let userSemesterTotalPoints = pointSummer(userSemesterPoints);
             //console.log(userSemesterPoints);
             awardValues = `<span>${userSemesterTotalPoints}/${minPointRequirements} Total Points</span>`;

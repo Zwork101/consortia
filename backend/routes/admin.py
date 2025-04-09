@@ -1,12 +1,12 @@
 import csv
-from datetime import datetime
+from datetime import datetime, timezone
 import os
 import logging
 from time import sleep
 
 from configs import update_org_settings
 from backend.email import create_batches, generate_award_email, get_token, send_email
-from backend.db import Administrator, Award, MeetingType, Organizations, ProfileAward, RoleType, award_user, create_attendance, commit, Event, Profile, create_bonus, db, make_admin
+from backend.db import Administrator, Award, ManualMembership, MeetingType, Organizations, ProfileAward, RoleType, award_user, create_attendance, commit, Event, Profile, create_bonus, db, make_admin
 from backend.auth import admin_required
 from backend.forms import CampusGroupsValidator, AttendanceForm, AddUserForm, EditUserForm, SelectUserForm, serachId, BonusForm, WICConfigForm, COMSConfigForm
 
@@ -447,26 +447,26 @@ def edit_user():
 
 @admin.route("/admin/edit_user/confirm", methods=["POST"])
 @admin_required
-def confirm_edit_user():
+def confirm_edit_user(): # WARNING: CSRF ISSUE, USE FlaskForm!!!
     user_id = request.form.get("user_id", type=int)
     if not user_id:
         return "User ID required", 400
 
-    user = Profile.query.get(user_id)
+    user: Profile = Profile.query.get(user_id)
     if not user:
         return f"No user found with ID {user_id}", 404
 
     # Update basic profile data
-    user.email = request.form.get("email")
-    user.first_name = request.form.get("first_name")
-    user.last_name = request.form.get("last_name")
-    user.rit_id = request.form.get("rit_id", type=int)
-    user.graduation_year = request.form.get("graduation_year", type=int)
-    user.degree = request.form.get("degree")
-    user.pronouns = request.form.get("pronouns")
-    user.avatar_path = request.form.get("avatar_path")
+    user.email = request.form.get("email") or user.email
+    user.first_name = request.form.get("first_name") or user.first_name
+    user.last_name = request.form.get("last_name") or user.last_name
+    user.rit_id = request.form.get("rit_id") or user.rit_id
+    user.graduation_year = request.form.get("graduation_year", type=int) or user.graduation_year
+    user.degree = request.form.get("degree") or user.degree
+    user.pronouns = request.form.get("pronouns") or user.pronouns
+    user.avatar_path = request.form.get("avatar_path") or user.avatar_path
     
-    org_id = request.form.get("organization_id", type=int) or Organizations.COMS
+    org_id = request.form.get("organization_id", type=int) or Organizations.COMS # Why default COMS?
 
     # Process bonus points for COMS profiles if provided
     bonus_points = request.form.get("bonus_points", type=int)
@@ -479,6 +479,18 @@ def confirm_edit_user():
             bonus_reason,
             org_id
         )
+
+    membership_override = request.form.get("override_membership", False)
+    existing_override = user.check_override(org_id)
+    if membership_override and not existing_override:
+        override_obj = ManualMembership(
+            profile_id = user.profile_id,
+            organization_id = org_id,
+            semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
+        )
+        db.session.add(override_obj)
+    elif not membership_override and existing_override:
+        db.session.delete(existing_override)
     
     db.session.commit()
     flash("User updated successfully.")

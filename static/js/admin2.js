@@ -407,6 +407,7 @@ const openEditProfileModal = async (userId) => {
         document.getElementById('edit-pronouns').value = data.profile.pronouns || '';
         document.getElementById('edit-avatar_path').value = data.profile.avatar_path || '';
         document.getElementById('edit-user-id').value = data.profile.profile_id;
+        document.getElementById('override_membership').checked = data.profile.membership_override || false;
         
         // Show modal by adding the show-modal class
         modalElement.classList.add('show-modal');

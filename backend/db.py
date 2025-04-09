@@ -78,7 +78,8 @@ class Profile(db.Model, UserMixin):
     positions: Mapped[list["Administrator"]] = relationship("Administrator", foreign_keys="[Administrator.profile_id]", back_populates="profile")
     bonuses: Mapped[list["BonusPoints"]] = relationship("BonusPoints", foreign_keys="[BonusPoints.recipient_id]", back_populates="recipient")
     grants: Mapped[list["BonusPoints"]] = relationship("BonusPoints", foreign_keys="[BonusPoints.giver_id]", back_populates="giver")
-    
+    manual_memberships: Mapped[list["ManualMembership"]] = relationship("ManualMembership", foreign_keys="[ManualMembership.profile_id]", back_populates="profile")
+
     # @hybrid_method
     # def membership(self, org: int):
     #     count = 0
@@ -148,6 +149,9 @@ class Profile(db.Model, UserMixin):
         if current_semester is None:
             current_semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
         
+        if self.check_override(org, current_semester):
+            return True
+
         member_conf =  current_app.config["ORG_SETTINGS"][str(org)]
 
         if org == Organizations.WIC:
@@ -182,7 +186,7 @@ class Profile(db.Model, UserMixin):
     def membership_sql(cls, org: int):
         current_semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
         
-        member_conf =  current_app.config["ORG_SETTINGS"][str(org)]
+        member_conf = current_app.config["ORG_SETTINGS"][str(org)]
 
         if org == Organizations.WIC:
             general_meeting_query = cls.count_attendance(org, MeetingType.GENERAL, current_semester)
@@ -198,18 +202,44 @@ class Profile(db.Model, UserMixin):
                     (committee_meeting_query >= member_conf['committee_meetings_requirement']) & \
                     (social_meeting_query >= member_conf['social_meetings_requirement']) & \
                     (volunteer_meeting_query >= member_conf['volunteering_meetings_requirement']), "active"),
+                (cls.check_override(org, current_semester) > 0, 'active'),
                 else_="inactive"
             )
         
         elif org == Organizations.COMS:
             return case(
                 (cls.points(org, current_semester) >= member_conf['required_points'], "active"),
+                (cls.check_override(org, current_semester) > 0, 'active'),
                 else_="inactive"
             )
         
         else:
             # Default case for unknown organizations
             raise ValueError(f"Unknown Organization: {org}")
+
+    @hybrid_method
+    def check_override(self, org: int, semester = None):
+        if not semester:
+            semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
+
+        manual_membership = next((membership for membership in self.manual_memberships if membership.semester == semester), None)
+        if manual_membership is not None:
+            return manual_membership
+        return None
+
+    @check_override.expression
+    @classmethod
+    def check_override_sql(cls, org: int, semester = None):
+        if not semester:
+            semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
+
+        return db.session.query(func.count(ManualMembership.id))\
+            .correlate(cls)\
+            .select_from(ManualMembership)\
+            .where(ManualMembership.profile_id == cls.profile_id)\
+            .where(ManualMembership.organization_id == org)\
+            .where(ManualMembership.semester == semester)\
+            .scalar_subquery()
     
     @hybrid_method
     def bonus_points(self, org: int, semester = None):
@@ -443,6 +473,7 @@ class Profile(db.Model, UserMixin):
         
         if org_id is not None:
             base_profile_json['membership'] = self.membership(org_id)
+            base_profile_json['membership_override'] = True if self.check_override(org_id) else False
             base_profile_json['semesters'] = self.semesters(org_id)
             base_profile_json["bonus_points"] = self.bonus_points(org_id)
             base_profile_json["attendance"] = [
@@ -613,6 +644,7 @@ class ManualMembership(db.Model):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, unique=True, nullable=False)
     profile_id: Mapped[int] = mapped_column(ForeignKey("Profile.profile_id"))
+    profile: Mapped["Profile"] = relationship("Profile", back_populates="manual_memberships")
     organization_id: Mapped[int] = mapped_column(ForeignKey("Organizer.organization_id"))
     semester: Mapped[int]
 

@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from enum import Enum as EnumClass
 from typing import Any, Optional
 
@@ -817,10 +817,8 @@ def db_testing_setup():
             MeetingType.MENTORSHIP,
             MeetingType.COMMITTEE
         ])
-        events[-1].start_time = datetime.strptime(events[-1].start_time, "%Y-%m-%d %H:%M:%S")
-        events[-1].start_time = events[-1].start_time.replace(year=datetime.now().year, month=datetime.now().month - 1)
-        events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S")
-        events[-1].end_time = events[-1].end_time.replace(year=datetime.now().year, month=datetime.now().month - 1)
+        events[-1].start_time = datetime.strptime(events[-1].start_time, "%Y-%m-%d %H:%M:%S") + timedelta(days=random.randint(-200, 10))
+        events[-1].end_time = datetime.strptime(events[-1].end_time, "%Y-%m-%d %H:%M:%S") + timedelta(days=random.randint(-200, 10))
 
     developer_profiles_data = [
         {

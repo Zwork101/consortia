@@ -16,7 +16,7 @@
     {% block head %}
     {% endblock %}
 </head>
-<body data-org="{{ org_id }}">
+<body data-org="{{ org_id if org_id is defined else org }}">
 {% block content %}
 {% endblock %}
 </body>

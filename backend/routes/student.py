@@ -1,5 +1,8 @@
 from datetime import datetime
 from os import curdir
+import select
+
+from sqlalchemy import func
 
 from backend.db import Event, Profile, commit, db, Administrator, Award
 from backend.forms import EditUserForm
@@ -51,12 +54,8 @@ def return_profile():
 def upcoming_meetings(org: int):
     """Return upcoming meetings based on pagination parameters."""
     try:
-        current_time = datetime.now()
-        selected_date_str = request.args.get("selected")
-        if selected_date_str:
-            selected_date = datetime.strptime(selected_date_str, "%Y-%m-%d").date()
-        else:
-            selected_date = datetime.utcnow().date()
+        selected_time = request.args.get("selected", type=datetime.fromisoformat, default=None)
+        print(selected_time)
 
         skip = request.args.get("skip", 0, type=int)
         #count = request.args.get("count", 9999, type=int)
@@ -67,21 +66,19 @@ def upcoming_meetings(org: int):
     except ValueError:
         return jsonify({"Error": "Invalid input type"})
 
-    start_datetime = datetime.combine(selected_date, datetime.min.time())
-    end_datetime = datetime.combine(selected_date, datetime.max.time())
 
     meeting_results = (
-        Event.query
-        .filter(
-            Event.organizer_id == org,Event.start_time >= current_time
-            # Event.start_time >= start_datetime,
-            # Event.start_time <= end_datetime
-        )
+        db.session.query(Event)
+        .where(Event.organizer_id == org)
         .order_by(Event.start_time)
-        .offset(skip)
-        .limit(count)
-        .all()
     )
+
+    if selected_time:
+        meeting_results = meeting_results.where(
+            func.DATE(Event.start_time) == selected_time.date()
+        )
+
+    meeting_results = meeting_results.offset(skip).limit(count)
 
     # meeting_results = (
     #     Event.query.filter(Event.organizer_id == org)
@@ -118,7 +115,7 @@ def upcoming_meetings(org: int):
                  for attendee in meeting.attendants
              ]
         }
-        for meeting in meeting_results
+        for meeting in meeting_results.all()
     ]
     #old good
     return jsonify({"Meetings": meetings})

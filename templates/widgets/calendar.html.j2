@@ -8,56 +8,17 @@
             </div>
             <div class="calendar-grid"></div>
         </div>
-        <div id="event" class="events-container"></div>
-         <!-- placeholder data
-        <div class="events-container">
-            <div class="event">
-                <div class="meeting-marker" style="background-color: #009CBD;"></div>
-                <p class="calendar-status">Status: Attended</p>
-                <strong>General Meeting</strong>
-                <p>WED • 6:30PM - 7:30PM</p>
-                <p>GOL - 2400 / Zoom</p>
+        <div id="events" class="events-container">
+            <div class="event" id="event-template" hidden>
+                <div class="meeting-marker"></div>
+                <strong class='event-name'>General Meeting</strong>
+                <p class='event-time'>WED • 6:30PM - 7:30PM</p>
+                <p class='description'>GOL - 2400 / Zoom</p>
             </div>
-            <div class="event">
-                <div class="meeting-marker" style="background-color: #84BC00;"></div>
-                <p class="calendar-status">Status: Unattended</p>
-                <strong>Projects Committee</strong> 
-                <p>THURS • 6:30PM - 7:30PM</p>
-                <p>GOL - 2400</p>
-            </div>
-            <div class="event">
-                <div class="meeting-marker" style="background-color: #7D55C7;"></div>
-                <p class="calendar-status">Status: Unattended</p>
-                <strong>WiCHacks Committee</strong> 
-                <p>THURS • 7:00PM - 8:00PM</p>
-                <p>GOL - 2350</p>
-            </div> -->
 
             <!-- <div id="event" class="events-container"></div> -->
             
             <!-- <div class="event">
-                    {% for meeting in meetings %}
-                        {% if 'GENERAL' in meeting.meeting_type.name %}
-                            <div class="meeting-marker" style="background-color: #009CBD;"></div>
-                        {% endif %}
-                        {% if 'COMMITTEE' in meeting.meeting_type.name %}
-                            <div class="meeting-marker" style="background-color: #84BC00;"></div>
-                        {% endif %}
-                        {% if 'MENTORSHIP' in meeting.meeting_type.name %}
-                            <div class="meeting-marker" style="background-color: #7D55C7;"></div>
-                        {% endif %}
-                        {% if 'SOCIAL' in meeting.meeting_type.name %}
-                            <div class="meeting-marker" style="background-color: #C099F7;"></div>
-                        {% endif %}
-                        {% if 'VOLUNTEER' in meeting.meeting_type.name %}
-                            <div class="meeting-marker" style="background-color: #66B4C4;"></div>
-                        {% endif %}
-                        <strong>{{ meeting.meeting_type.name }} Meeting</strong><br>
-                        <p> {{ meeting.start_time.strftime('%A • %I:%M %p') }} – {{ meeting.end_time.strftime('%I:%M %p') }} </p>
-                        <p>{{ meeting.location }}</p>
-                    {% else %}
-                        <p>No upcoming meetings on this day.</p>
-                    {% endfor %}
             </div> -->
             <!-- <div id="meetings-container">
                 <p>pauls</p>
@@ -66,95 +27,3 @@
         </div>
     </div>
 </body>
-<script>
-    $(document).ready(function() {
-        let currentDate = new Date();
-        const org = $('body').data('org');
-
-        function renderCalendar(date) {
-            let month = date.toLocaleString('default', { month: 'long' });
-            let year = date.getFullYear();
-            $('#month-title').text(`${month} ${year}`);
-
-            let firstDay = new Date(year, date.getMonth(), 1).getDay();
-            let lastDate = new Date(year, date.getMonth() + 1, 0).getDate();
-            
-            let calendarHTML = "";
-            let weekdays = ["S", "M", "T", "W", "T", "F", "S"];
-            weekdays.forEach(day => {
-                calendarHTML += `<div class="weekday">${day}</div>`;
-            });
-            for (let i = 0; i < firstDay; i++) {
-                calendarHTML += '<div class="day empty"></div>';
-            }
-            for (let i = 1; i <= lastDate; i++) {
-                calendarHTML += `<div class="day" data-date="${year}-${date.getMonth() + 1}-${i}">${i}</div>`;
-            }
-            $('.calendar-grid').html(calendarHTML);
-
-            // Highlight today's date by default
-            let today = new Date();
-            if (today.getMonth() === date.getMonth() && today.getFullYear() === date.getFullYear()) {
-                $('.day').each(function() {
-                    if ($(this).text() == today.getDate()) {
-                        $(this).addClass('selected');
-                    }
-                });
-            }
-
-            // Add click event to select a date
-            $('.day').click(function() {
-                $('.day').removeClass('selected');
-                $(this).addClass('selected');
-                let selectedDate = $(this).data('date');
-                console.log(selectedDate); // Log the selected date
-
-                //$.get(`/meetings/{{ org }}?selected=${selectedDate}`, function (data) {
-                //     //$('#event').html(data);
-                //     document.getElementByID('event').innerHTML='';
-                $.get(`/meetings/${org}?start_time=${selectedDate}`, function (data) {
-                    let eventsHTML = '';
-                    if (data.Meetings.length > 0) {
-                        data.Meetings.forEach(meeting => {
-                            let color = '#000';
-                            switch (meeting.meeting_type) {
-                                case 'GENERAL': color = '#009CBD'; break;
-                                case 'COMMITTEE': color = '#84BC00'; break;
-                                case 'MENTORSHIP': color = '#7D55C7'; break;
-                                case 'SOCIAL': color = '#C099F7'; break;
-                                case 'VOLUNTEER': color = '#66B4C4'; break;
-                            }
-
-                            eventsHTML += `
-                                <div class="meeting-marker" style="background-color: ${color};"></div>
-                                <strong>${meeting.meeting_type} Meeting</strong><br>
-                                <p>${new Date(meeting.start_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} – 
-                                ${new Date(meeting.end_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</p>
-                                <p>${meeting.location}</p>
-                                <hr>
-                            `;
-                        });
-                    } else {
-                        eventsHTML = '<p>No upcoming meetings on this day.</p>';
-                    }
-
-                    $('#event').html(eventsHTML);
-                                })
-                            });                
-
-                        }
-        
-        renderCalendar(currentDate);
-        
-        $('#prev').click(function() {
-            currentDate.setMonth(currentDate.getMonth() - 1);
-            renderCalendar(currentDate);
-        });
-
-        $('#next').click(function() {
-            currentDate.setMonth(currentDate.getMonth() + 1);
-            renderCalendar(currentDate);
-        });
-    });
-</script>
-

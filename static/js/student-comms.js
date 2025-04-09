@@ -120,7 +120,7 @@ function pointSummer(pointObject){
  */
 function showResults(pointsFromThisSemester, pointConfig){
   let earnedPoints = pointSummer(pointsFromThisSemester);
-  minPointRequirements = pointConfig.required_points;
+  minPointRequirements = pointConfig.mentorship_minimum;
 
   /*
    * Points explainer (the gray boxes on the bottom)

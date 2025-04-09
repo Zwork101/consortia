@@ -129,13 +129,6 @@
     margin: 12px;
 }
 
-.meeting-marker {
-    position: absolute;
-    width: 4px;
-    height: 115.85px;
-    transform: translate(-4px, -20px);
-}
-
 .calendar-status{
     position: absolute;
     transform: translate(17vw, -12px);

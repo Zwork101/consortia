@@ -54,7 +54,7 @@ def create_app(config_file: Config = DevelopmentConfig) -> Flask:
             print("Making admin")
             make_admin(profile.profile_id, Organizations.COMS, RoleType.ADMIN)
             make_admin(profile.profile_id, Organizations.WIC, RoleType.ADMIN)
-            commit()
+            db.session.commit()
 
     return app
 

@@ -52,7 +52,7 @@ def upcoming_meetings(org: int):
     """Return upcoming meetings based on pagination parameters."""
     try:
         current_time = datetime.now()
-        selected_date_str = request.args.get("selected_date")
+        selected_date_str = request.args.get("selected")
         if selected_date_str:
             selected_date = datetime.strptime(selected_date_str, "%Y-%m-%d").date()
         else:
@@ -60,17 +60,23 @@ def upcoming_meetings(org: int):
 
         skip = request.args.get("skip", 0, type=int)
         #count = request.args.get("count", 9999, type=int)
-        count = request.args.get("count", 99999, type=int)
+        count = request.args.get("count", 9999, type=int)
 
         if skip < 0 or count <= 0:
             return jsonify({"Error": "Invalid pagination parameters"})
     except ValueError:
         return jsonify({"Error": "Invalid input type"})
 
-    
+    start_datetime = datetime.combine(selected_date, datetime.min.time())
+    end_datetime = datetime.combine(selected_date, datetime.max.time())
+
     meeting_results = (
         Event.query
-        .filter(Event.organizer_id == org)# Event.start_time >= current_time)
+        .filter(
+            Event.organizer_id == org,Event.start_time >= current_time
+            # Event.start_time >= start_datetime,
+            # Event.start_time <= end_datetime
+        )
         .order_by(Event.start_time)
         .offset(skip)
         .limit(count)

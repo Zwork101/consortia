@@ -897,8 +897,9 @@ input[type="text"] {
 }
 
     .wicscomsbutton:hover {
-        border-color: #000;
-        background-color: #000;
+        border-color: #fff;
+        background-color: #fff;
+        color: #000;
     }
 
     .wicscomsbutton:active {
@@ -1031,21 +1032,24 @@ svg {
 }
 
 .indexdbbutton {
-    transform: translate(-400px, 14px);
-    background-color: transparent;
+    transform: translate(-420px, 0px);
+    background-color: #000;
     border: none;
-    text-decoration: underline;
-    color: #F76902;
     width: 200px;
     position: absolute;
     font-family: var(--main-font);
     font-size: 1.5em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: white;
     cursor: pointer;
-    color: --orange;
+    text-align: center;
+    font-weight: bold;
+    height: 60px;
 }
 
 .indexdbbutton:hover{
     color: #000;
+    background-color: #fff;
 }
 
 /* Modal styling - update with !important to ensure these take precedence */

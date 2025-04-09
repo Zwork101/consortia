@@ -311,6 +311,63 @@ $( function() {
                 </tr>
             `);
         });
+
+        document.querySelector(".semester-report-btn").addEventListener("click", function () {
+            console.log("Download button clicked");
+        
+            const modal = document.getElementById("modal-rew");
+            const downloadButton = document.querySelector(".semester-report-btn");
+        
+            modal.style.display = "block";
+            modal.style.visibility = "visible";
+            modal.style.opacity = "1";
+        
+            // Added because was causing a 404 error
+            const font = document.createElement('link');
+            font.rel = 'stylesheet';
+            font.href = 'https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap';
+            document.head.appendChild(font);
+        
+            font.onload = function () {
+                console.log("Roboto font loaded");
+        
+                const script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+        
+                script.onload = function () {
+                    console.log("html2pdf.js loaded successfully");
+        
+                    const element = document.getElementById("modal-rew");
+                    if (!element) {
+                        console.error("Modal element not found.");
+                        return;
+                    }
+        
+                    downloadButton.style.display = "none";
+                    console.log("Modal text content:", element.textContent);
+                    console.log("Generating PDF...");
+        
+                    const year = new Date().getFullYear();
+                    const org_name = org_id === '1' ? "WIC" : "COMS";
+        
+                    const pdfLayout = {
+                        margin: 1,
+                        filename: `${org_name}_Report_${year}.pdf`,
+                        image: { type: 'jpeg', quality: 0.98 },
+                        html2canvas: { scale: 2 },
+                        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                    };
+        
+                    html2pdf().set(pdfLayout).from(element).save().finally(() => {
+                        downloadButton.style.display = "block";
+                        console.log("Generated PDF...");
+                    });
+                };
+
+                document.body.appendChild(script);
+            };
+        });
     });
 
 });

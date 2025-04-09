@@ -1,127 +1,192 @@
 import csv
-import os
-import logging
-from functools import wraps
+from datetime import datetime, timezone
+from time import sleep
 
-from backend.email import send_email
-from backend.db import Organizations, create_attendance, commit, Event, Profile, create_bonus
+from configs import update_org_settings
+from backend.email import create_batches, generate_award_email, get_token
+from backend.db import Administrator, Award, ManualMembership, MeetingType, Organizations, RoleType, award_user, create_attendance, commit, Event, Profile, create_bonus, db, make_admin
+from backend.auth import admin_required
+from backend.forms import AttendanceForm, AddUserForm, EditUserForm, SelectUserForm, serachId, BonusForm, WICConfigForm, COMSConfigForm
 
-from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, abort
-from flask_wtf import FlaskForm
+from flask import Blueprint, jsonify, render_template, request, redirect, url_for, flash, abort, current_app
 from flask_login import current_user
-from wtforms import FileField, IntegerField, StringField, SelectField
-from wtforms.validators import DataRequired, ValidationError, Email
-
-from backend.db import Event, commit, create_attendance, Profile, db
-from backend.email import send_email
-
-from sqlalchemy.orm import Session
-from sqlalchemy import func, or_
-from wtforms import FileField, IntegerField, StringField, SubmitField
-from wtforms.validators import DataRequired, ValidationError, NumberRange, Length
-
-
-class NonValidatingSelectField(SelectField):
-    """
-    Attempt to make an open ended select multiple field that can accept dynamic
-    choices added by the browser.
-    """
-    def pre_validate(self, form):
-        pass
-
-
-class CampusGroupsValidator:
-
-    def __init__(self, parse_error_msg: str, invalid_fields_msg: str):
-        self.parse_error_msg = parse_error_msg
-        self.invalid_fields_msg = invalid_fields_msg
-
-    def __call__(self, _: FlaskForm, field: FileField):
-        reader = csv.DictReader(line.decode() for line in request.files[field.name])
-        if reader.fieldnames is None or "Email" not in reader.fieldnames:
-            raise ValidationError(self.invalid_fields_msg)
-        request.files[field.name].seek(0)  # Reset stream to start to re-read later
-        
-
-class AttendanceForm(FlaskForm):
-    meeting_id = NonValidatingSelectField("Meeting", validators=[DataRequired("Please provide a meeting ID")], choices=[("", "Select an Event")])
-    csv_data = FileField("Data Upload", validators=[DataRequired("Please upload a CSV file with attendance data"), CampusGroupsValidator(
-        "Unable to parse attendance file, ensure correct file was uploaded.",
-        "Invalid fields in CSV file, missing 'Email' column. Ensure correct file was uploaded.",
-    )])
-
-
-class AddUserForm(FlaskForm):
-    email = StringField("Email", validators=[DataRequired("Email is required"), Email(message="Invalid email address")])
-    first_name = StringField("First Name", validators=[DataRequired("First name is required")])
-    last_name = StringField("Last Name", validators=[DataRequired("Last name is required")])
-    rit_id = IntegerField("RIT ID (Optional)")
-    graduation_year = IntegerField("Graduation Year (Optional)")
-    degree = StringField("Degree (Optional)")
-    pronouns = StringField("Pronouns (Optional)")
-    avatar_path = StringField("Avatar Path (Optional)")
-
-    def validate_email(self, field):
-        if not field.data.lower().endswith("@rit.edu"):
-            raise ValidationError("Email must be a @rit.edu email address")
-
-
-class EditUserForm(FlaskForm):
-    email = StringField("Email", validators=[DataRequired("Email is required"), Email(message="Invalid email address")])
-    first_name = StringField("First Name", validators=[DataRequired("First name is required")])
-    last_name = StringField("Last Name", validators=[DataRequired("Last name is required")])
-    rit_id = IntegerField("RIT ID (Optional)")
-    graduation_year = IntegerField("Graduation Year (Optional)")
-    degree = StringField("Degree (Optional)")
-    pronouns = StringField("Pronouns (Optional)")
-    avatar_path = StringField("Avatar Path (Optional)")
-    submit = SubmitField("Update User")
-
-    def validate_email(self, field):
-        if not field.data.lower().endswith("@rit.edu"):
-            raise ValidationError("Email must be a @rit.edu email address")
-
-
-class SelectUserForm(FlaskForm):
-    user_id = IntegerField("User ID", validators=[DataRequired("Please provide a user ID")])
-
-# creates a search bar and searches rit id
-class serachId(FlaskForm):
-    rit_id = StringField("RIT ID", validators=[DataRequired("Please provide a RIT ID")], render_kw = {'hidden': 'true'})
-    submit = SubmitField("Check RIT ID")
-
-class BonusForm(FlaskForm):
-    giver_id = IntegerField("Giver ID", validators=[DataRequired("Please provide a profile ID to grant the points."), DataRequired()])
-    point_value = IntegerField("Point Value", validators=[NumberRange(min=1, message="Please provide a point value greater than 0"), DataRequired()])
-    reason = StringField("Reason for points", validators=[Length(min=2, max=500, message="Please keep the reason between 2 and 500 characters."), DataRequired()])
-
+from sqlalchemy import or_
+import pytz
 
 admin = Blueprint("admin", __name__, static_folder="static/", template_folder="templates/")
-
-def admin_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        org = kwargs.get('org')
-
-        if org:
-            if org not in [a.organization_id for a in current_user.positions]:
-                abort(403)
-        else:
-            if not current_user.positions:
-                abort(403)
-
-        return f(*args, **kwargs)
-    return decorated_function
-
 
 @admin.route("/admin/<int:org>")
 @admin_required
 def dashboard(org: int):
     if org == Organizations.WIC:
-        return render_template("database-view-wic.html.j2", title="WIC Dashboard", upload_form=AttendanceForm())
+        return render_template("database-view-wic.html.j2", title="WIC Dashboard", upload_form=AttendanceForm(), org_id=org)
     elif org == Organizations.COMS:
-        return render_template("database-view-coms.html.j2", title="COMS Dashboard", upload_form=AttendanceForm())
+        return render_template("database-view-coms.html.j2", title="COMS Dashboard", upload_form=AttendanceForm(), org_id=org)
+    return abort(404)
 
+@admin.route("/admin/<int:org>/settings", methods=["GET", "POST"])
+@admin_required
+def org_settings(org: int):
+    org_awards = db.session.query(Award.award_id, Award.name, Award.active_semester_requirements).where(Award.organization_id == org).all()
+    admins = db.session.query(Profile.email).select_from(Administrator).join(Profile, Administrator.profile_id == Profile.profile_id).where(Administrator.organization_id == org).all()
+
+    if org == Organizations.WIC:
+        form = WICConfigForm(
+            **current_app.config["ORG_SETTINGS"][str(org)],
+            award_settings=[
+            {"award_id": award[0], "semester": award[2], "award_name": award[1]}
+            for award in org_awards],
+            admins=map(lambda x: x[0], admins)
+        )
+    elif org == Organizations.COMS:
+        form = COMSConfigForm(
+            **current_app.config["ORG_SETTINGS"][str(org)],
+            award_settings=[
+            {"award_id": award[0], "semester": award[2], "award_name": award[1]}
+            for award in org_awards],
+            admins=map(lambda x: x[0], admins)
+        )
+    else:
+        abort(404)
+
+
+
+    if form.validate_on_submit():
+        if org == Organizations.WIC:
+            update_org_settings(org, 
+                general_meetings_requirement = form.general_meetings_requirement.data,
+                committee_meetings_requirement = form.committee_meetings_requirement.data,
+                social_meetings_requirement = form.social_meetings_requirement.data,
+                volunteering_meetings_requirement = form.volunteering_meetings_requirement.data
+            )
+        elif org == Organizations.COMS:
+            update_org_settings(org,
+                attendance = [
+                    {"percent": requirement.percent.data, "points": requirement.points.data}
+                for requirement in form.attendance],
+                volunteer = [
+                    {"threshold": requirement.threshold.data, "points": requirement.points.data}
+                for requirement in form.volunteer],
+                mentorship_minimum = form.mentorship_minimum.data,
+                mentorship_maximum = form.mentorship_maximum.data,
+                required_points = form.required_points.data
+            )
+
+        for award in org_awards:
+            if award[0] not in map(lambda x: x.award_id.data, form.award_settings):
+                db.session.query(Award).where(Award.award_id == award[0]).delete()
+
+        for new_award in form.award_settings:
+            existing_award = next((oa for oa in org_awards if oa[0] == new_award.award_id.data), None)
+            if existing_award is None:
+                db.session.add(
+                    Award(
+                        name = new_award.award_name.data,
+                        organization_id = org,
+                        active_semester_requirements = new_award.semester.data
+                    )
+                )
+            else:
+                if existing_award[2] != new_award.semester.data or existing_award[1] != new_award.award_name.data:
+                    award = db.session.get_one(Award, existing_award[0])
+                    award.active_semester_requirements = new_award.semester.data
+                    award.name = new_award.award_name.data
+
+        removed_admins = [admin[0] for admin in admins if admin not in form.admins.data]
+        print(removed_admins)
+        admins_to_remove = db.session.query(Administrator)\
+            .join(Profile)\
+            .where(Administrator.organization_id == org)\
+            .where(Profile.email.in_(removed_admins))
+        for admin in admins_to_remove:
+            db.session.delete(admin)
+        new_admins = [admin for admin in form.admins.data if admin not in admins]
+        for admin in new_admins:
+            user_id = db.session.query(Profile.profile_id).where(Profile.email == admin).one_or_none()
+            if user_id is not None:
+                make_admin(user_id[0], org, RoleType.ADMIN)
+
+        commit()
+
+        return redirect(
+            url_for("admin.org_settings", org=org)
+        )
+
+    for fieldName, errorMessages in form.errors.items():
+        print(fieldName, errorMessages)
+
+    if org == Organizations.WIC:
+        return render_template("configuration-wics.html.j2", title="WiC Configuration", org_id=org, form=form)
+    elif org == Organizations.COMS:
+        return render_template("configuration-coms.html.j2", title="COMS Configuration", org_id=org, form=form)
+
+@admin.route("/admin/<int:org>/create", methods=["POST"])
+@admin_required
+def create_event(org: int):
+    meeting_org = org
+    meeting_name = request.form.get("meeting_name")
+    meeting_description = request.form.get("meeting_description")
+    meeting_start_time = request.form.get("meeting_start_time")
+    meeting_end_time = request.form.get("meeting_end_time")
+    meeting_location = request.form.get("meeting_location")
+    meeting_type = request.form.get("meeting_type", "GENERAL").upper()
+    
+    # Validate required fields
+    if not meeting_name or not meeting_start_time:
+        flash("Meeting name and start time are required", "error")
+        return redirect(url_for("admin.dashboard", org=org))
+    
+    # Convert ISO datetime strings to Python datetime objects    
+    try:
+        # Parse the ISO format datetime strings
+        year, month, day = map(int, request.form.get("meeting-date").split("-"))
+        hour_start, minute_start = map(int, request.form.get("meeting-time-start").split(":"))
+        start_time = datetime(
+            year=year,
+            month=month,
+            day=day,
+            hour=hour_start,
+            minute=minute_start,
+            tzinfo=pytz.timezone("US/Eastern")
+        )
+        
+        # Only parse end_time if it exists
+        end_time = None
+        if meeting_end_time:
+            hour_end, minute_end = map(int, request.form.get("meeting-time-end").split(":"))
+            end_time = datetime(
+            year=year,
+            month=month,
+            day=day,
+            hour=hour_end,
+            minute=minute_end,
+            tzinfo=pytz.timezone("US/Eastern")
+        )
+
+
+        db.session.add(Event(
+            name=meeting_name,
+            description=meeting_description,
+            start_time=start_time,
+            end_time=end_time,
+            location=meeting_location,
+            organizer_id=meeting_org,
+            meeting_type=meeting_type
+        ))
+        db.session.commit()
+        flash("Meeting created successfully!", "success")
+        
+    except ValueError as e:
+        # Handle date parsing errors
+        flash(f"Invalid date format: {str(e)}", "error")
+        print(f"Date parsing error: {str(e)}")
+    except Exception as e:
+        # Handle other errors
+        flash(f"Error creating meeting: {str(e)}", "error")
+        print(f"Error creating meeting: {str(e)}")
+    
+    return redirect(url_for("admin.dashboard", org=org))
+    
 
 @admin.route("/meetings/<int:org>/upload", methods=["POST", "GET"])
 @admin_required
@@ -225,24 +290,13 @@ def id_search():
     
     abort(200)
 
-@admin.route("/email")
-def send_update():
-    send_email(
-        subject="This is an email test",
-        body="Hello, I hope you received this email",
-        sender=os.environ["EMAIL"],
-        recipients=["njz8626@g.rit.edu"],
-        password=os.environ["EMAIL_PASSWORD"]
-    )
-    return "Email sent!"
-
-
-@admin.route("/admin/profiles/<int:organization>", methods=["GET"])
-def list_users(organization: int):
+@admin.route("/admin/profiles/<int:org>", methods=["GET"])
+@admin_required
+def list_users(org: int):
     try:
         skip = request.args.get("skip", 0, type=int)
         count = request.args.get("count", 100, type=int)
-        sort_by = request.args.get("filter-sort-by", "First Name")
+        sort_by = request.args.get("filter-sort-by", "first_name")
         sort_order = request.args.get("filter-sort-order", "Ascending")
         membership_filter = request.args.get("filter-membership", "All")
         semesters_filter = request.args.get("filter-semesters", "All")
@@ -251,21 +305,40 @@ def list_users(organization: int):
         raise
     
     # Base query: only profiles with attendance in given org
-    query = Profile.query.filter(Profile.attendance.any(Event.organizer_id == organization))
+    query = db.session.query(
+        Profile.first_name,
+        Profile.last_name,
+        Profile.membership(org),
+        Profile.semesters(org),
+        Profile.email,
+        Profile.count_attendance(org, MeetingType.GENERAL),
+        Profile.count_attendance(org, MeetingType.COMMITTEE),
+        Profile.count_attendance(org, MeetingType.SOCIAL),
+        Profile.count_attendance(org, MeetingType.VOLUNTEER),
+        Profile.count_attendance(org, MeetingType.MENTORSHIP),
+        Profile.bonus_points(org),
+        Profile.points(org),
+        Profile.profile_id
+    ).filter(Profile.semesters(org) > 0)
     
     # Apply membership filter if requested.
     if membership_filter != "All":
         if membership_filter == "Non-Active Member":
-            query = query.filter(Profile.membership_sql(organization) == "inactive")
+            query = query.filter(Profile.membership(org) == "inactive")
         elif membership_filter == "Active Member":
-            query = query.filter(Profile.membership_sql(organization) == "active")
+            query = query.filter(Profile.membership(org) == "active")
     
     # Filter on semesters if selected.
     if semesters_filter != "All":
-        if semesters_filter == "None":
-            query = query.filter(Profile.semesters_sql(organization) == 0)
-        else:
-            query = query.filter(Profile.semesters_sql(organization) > 0)
+        query = query.filter(Profile.semesters(org) == semesters_filter)
+
+    for query_string, db_string in {
+        "filter-gen-meetings": MeetingType.GENERAL, 
+        "filter-con-meetings": MeetingType.COMMITTEE,
+        "filter-social-event": MeetingType.SOCIAL,
+        "filter-volunteering": MeetingType.VOLUNTEER}.items():
+        if query_string in request.args:
+            query = query.filter(Profile.count_attendance(org, db_string) >= request.args.get(query_string, type=int))
     
     # Apply text search filter on first name, last name, and email.
     if search_query:
@@ -277,25 +350,48 @@ def list_users(organization: int):
             )
         )
     
-    # Determine sort column.
-    if sort_by.lower() == "first name":
-        sort_column = Profile.first_name
-    elif sort_by.lower() == "last name":
-        sort_column = Profile.last_name
-    else:
-        sort_column = Profile.first_name
+    # Determine sort column - only for allowed sortable columns
+    # Map the frontend sort keys to actual model attributes
+    sort_column_map = {
+        "first_name": Profile.first_name,
+        "last_name": Profile.last_name,
+        "email": Profile.email,
+        "semesters": Profile.semesters(org),
+        "points": Profile.points(org)
+        # Removed 'membership' from sortable columns
+    }
     
+    # Get the sort column or default to first_name
+    sort_column = sort_column_map.get(sort_by.lower(), Profile.first_name)
+    
+    # Apply sort direction
     if sort_order.lower().startswith("desc"):
         sort_column = sort_column.desc()
     else:
         sort_column = sort_column.asc()
     
     users = query.order_by(sort_column).limit(count).offset(skip).all()
+
     return jsonify([
-        {"profile": user.serialize(organization)["profile"]}
+        {"profile": {
+            "first_name": user[0],
+            "last_name": user[1],
+            "membership": user[2],
+            "semesters": user[3],
+            "email": user[4],
+            "attendance": {
+                "general": user[5],
+                "committee": user[6],
+                "social": user[7],
+                "volunteering": user[8],
+                "mentorship": user[9]
+            },
+            "bonus_points": user[10],
+            "total_points": user[11],
+            "profile_id": user[12]
+        }}
         for user in users
     ])
-
 
 @admin.route("/admin/add_user", methods=["GET", "POST"])
 @admin_required
@@ -364,26 +460,50 @@ def edit_user():
 
 @admin.route("/admin/edit_user/confirm", methods=["POST"])
 @admin_required
-def confirm_edit_user():
+def confirm_edit_user(): # WARNING: CSRF ISSUE, USE FlaskForm!!!
     user_id = request.form.get("user_id", type=int)
     if not user_id:
         return "User ID required", 400
 
-    user = Profile.query.get(user_id)
+    user: Profile = Profile.query.get(user_id)
     if not user:
         return f"No user found with ID {user_id}", 404
 
-    # The confirmation form submits updated fields as hidden values.
-    user.email = request.form.get("email")
-    user.first_name = request.form.get("first_name")
-    user.last_name = request.form.get("last_name")
-    user.rit_id = request.form.get("rit_id", type=int)
-    user.graduation_year = request.form.get("graduation_year", type=int)
-    user.degree = request.form.get("degree")
-    user.pronouns = request.form.get("pronouns")
-    user.avatar_path = request.form.get("avatar_path")
+    # Update basic profile data
+    user.email = request.form.get("email") or user.email
+    user.first_name = request.form.get("first_name") or user.first_name
+    user.last_name = request.form.get("last_name") or user.last_name
+    user.rit_id = request.form.get("rit_id") or user.rit_id
+    user.graduation_year = request.form.get("graduation_year", type=int) or user.graduation_year
+    user.degree = request.form.get("degree") or user.degree
+    user.pronouns = request.form.get("pronouns") or user.pronouns
+    user.avatar_path = request.form.get("avatar_path") or user.avatar_path
+    
+    org_id = request.form.get("organization_id", type=int) or Organizations.COMS # Why default COMS?
 
-    org_id = request.form.get("organization_id", type=int) or Organizations.COMS
+    # Process bonus points for COMS profiles if provided
+    bonus_points = request.form.get("bonus_points", type=int)
+    bonus_reason = request.form.get("bonus_reason")
+    if org_id == Organizations.COMS and bonus_points and bonus_reason:
+        create_bonus(
+            bonus_points,
+            user.profile_id,
+            current_user.profile_id,
+            bonus_reason,
+            org_id
+        )
+
+    membership_override = request.form.get("override_membership", False)
+    existing_override = user.check_override(org_id)
+    if membership_override and not existing_override:
+        override_obj = ManualMembership(
+            profile_id = user.profile_id,
+            organization_id = org_id,
+            semester = (datetime.now(timezone.utc).year * 10) + ((datetime.now(timezone.utc).month // 7) * 5)
+        )
+        db.session.add(override_obj)
+    elif not membership_override and existing_override:
+        db.session.delete(existing_override)
     
     db.session.commit()
     flash("User updated successfully.")
@@ -414,3 +534,128 @@ def delete_user():
         db.session.commit()
         flash("User deleted successfully.")
         return redirect(url_for("admin.admin_interface"))
+
+@admin.route("/admin/profiles/<int:org>/worthy")
+@admin_required
+def worthy_members(org: int):
+    # This code is so, so bad. And so slow :(
+    org_profiles = db.session.query(Profile) \
+                        .filter(Profile.semesters(org) > 0) \
+                        .all()
+
+    awards = []
+    awards_db = []
+
+    reached_active = [p for p in org_profiles if p.membership(org)]
+    print(reached_active)
+
+    for profile in reached_active:
+        award = db.session.query(Award.award_id, Award.name, Award.active_semester_requirements)\
+            .filter(Award.active_semester_requirements == profile.membership_semesters(org))\
+            .filter(Award.organization_id == org)\
+            .first()
+        if award:
+            awards.append((profile, award))
+
+    return jsonify([
+        {
+            "profile_id": award[0].profile_id,
+            "first_name": award[0].first_name,
+            "last_name": award[0].last_name,
+            "award_id": award[1][0],
+            "award_name": award[1][1],
+            "award_requirement": award[1][2]
+        } for award in awards
+    ])
+
+@admin.route("/admin/awards/<int:org>/notify", methods=["POST"])
+@admin_required
+def send_awards(org: int):
+    selected_users = request.get_json()
+    awards = []
+    
+    for user in selected_users:
+        awards.append(award_user(user['award_id'], user['profile_id']))
+
+    commit(*awards)
+
+    profiles = [Profile.query.get(int(u['profile_id'])) for u in selected_users]
+    awards = [Award.query.get(int(u['award_id'])) for u in selected_users]
+
+    emails = []
+
+    for profile, award in zip(profiles, awards):
+        emails.append(
+            generate_award_email(profile, award, org)
+        )
+
+    cred_emails = get_token(org)
+
+    if not cred_emails:
+        return jsonify({
+            "success": False,
+            "url": url_for("oauth.authorize_email", org=org)
+            })
+
+    for i, batch in enumerate(create_batches(emails, cred_emails[1], cred_emails[0], "You've earned a reward!")):
+        if i != 0:
+            sleep(2)
+        batch.execute()
+
+    return jsonify({
+        "success": True
+    })
+
+@admin.route("/admin/events/<int:org>", methods=["GET"])
+@admin_required
+def list_events(org: int):
+    # Get sorting parameters
+    sort_by = request.args.get("filter-sort-by", "date")
+    sort_order = request.args.get("filter-sort-order", "Descending")
+    
+    # Count profiles that have attended any event for this org
+    total_profiles = Profile.query.filter(Profile.attendance.any(Event.organizer_id == org)).count()
+    
+    # Base query
+    query = Event.query.filter_by(organizer_id=org)
+    
+    # Map frontend sort keys to actual model attributes
+    sort_column_map = {
+        "name": Event.name,
+        "date": Event.start_time
+    }
+    
+    # Get the sort column
+    sort_column = sort_column_map.get(sort_by.lower(), Event.start_time)
+    
+    # Apply sort direction
+    if sort_order.lower().startswith("desc"):
+        query = query.order_by(sort_column.desc())
+    else:
+        query = query.order_by(sort_column.asc())
+    
+    events = query.all()
+    
+    result = []
+    for event in events:
+        attendees = len(event.attendants)
+        percentage = (attendees / total_profiles * 100) if total_profiles > 0 else 0
+        result.append({
+            "event_id": event.event_id,
+            "name": event.name,
+            "type": event.meeting_type.value, 
+            "description": event.description,
+            "location": event.location,
+            "start_time": event.start_time.isoformat(),
+            "end_time": event.end_time.isoformat() if event.end_time else None,
+            "attendance_count": attendees,
+            "attendance_percentage": round(percentage)
+        })
+    
+    # For attendance_count and percentage sorting, we need to sort the result list
+    if sort_by.lower() in ["attendees", "percentage"]:
+        sort_key = "attendance_count" if sort_by.lower() == "attendees" else "attendance_percentage"
+        reverse = sort_order.lower().startswith("desc")
+        result.sort(key=lambda x: x[sort_key], reverse=reverse)
+    
+    return jsonify(result)

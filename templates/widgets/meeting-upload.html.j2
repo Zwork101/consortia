@@ -1,5 +1,5 @@
 <div id="import-data-dialog-box" title="Import Data">
-    <form action="{{ url_for("admin.update_attendance_data", org=org) }}" name="import-data" id="import-data" method="post" enctype="multipart/form-data">
+    <form action="{{ url_for("admin.update_attendance_data", org=org_id) }}" name="import-data" id="import-data" method="post" enctype="multipart/form-data">
         <fieldset>
             {{ upload_form.csrf_token }}
             <div>
@@ -14,13 +14,13 @@
             </div>
             <br>
             <div>
-                {{ upload_form.meeting_id(id="meeting-select", onmousedown="refreshMeetingSelection({})".format(org)) | safe }}
+                {{ upload_form.meeting_id(id="meeting-select", onmousedown="refreshMeetingSelection({})".format(org_id)) | safe }}
             </div>
             <br>
             <div>
-                <button type="button" id="submit-file" class="upload-submit" onclick="handleFileUpload({{ org }})">Upload File</button>
+                <button type="button" id="submit-file" class="upload-submit" onclick="handleFileUpload({{ org_id }})">Upload File</button>
             </div>
-            
+  
         </fieldset>
     </form>
 </div>

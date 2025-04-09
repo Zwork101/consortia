@@ -48,21 +48,23 @@
 <body>
     <div class="emailcontainer">
         <div class="emailheader">
-            <h2>Congratulations, you have received an award</h2>
+            <h2>Congratulations, you have received an award!</h2>
         </div>
         <div class="emailcontent">
-            <p>Dear {{ member_name }},</p>
-            <p>We are excited to share that you have received <strong> {{ award }} </strong>  by meeting the following requirements.</p>
+            <p>Dear {{ user.full_name }},</p>
+            <p>We are excited to share that you have received <strong> {{ award.name }} </strong>  by meeting the following requirements.</p>
             <h3>Requirements met</h3>
-            <p>Number of Semesters: {{ semesters }}</p>
+            <p>Number of Semesters: {{ award.active_semester_requirements }}</p>
+            {#  
             <p>General Meetings: {{ general_meetings }}/14</p>
             <p>Committee Meetings: {{ committee_meetings }}/6</p>
             <p>Volunteering: {{ volunteering }}/1</p>
             <p>Social Events: {{ social_events }}/1</p>
+            #}
             <br>
             <p>Keep up the great work!</p>
             <p>Best regards,</p>
-            <p><strong>{{ signature }}</strong></p>
+            <p><strong>{{ org_name }}</strong></p>
         </div>
     </div>
 </body>

@@ -10,6 +10,7 @@
     --label-blue: #66B4C4;
     --label-green: #B7D478;
     --label-yellow: #EEDA8F;
+    --label-gray: #ededed;
     --medium-gray: #E9ECEF;
     --stroke-gray: #DEDEDE;
     --label-opacity: .5;
@@ -249,6 +250,10 @@ Classes related to "chart-bar" and related subitems
         background-color: var(--label-yellow);
     }
 
+    .chart-bar div:nth-child(5){
+        background-color: var(--label-gray);
+    }
+
 .wic-bar {
     margin-bottom: 32px;
 }
@@ -305,7 +310,6 @@ Classes related to "chart-labels" and related subitems
     flex-direction: row;
     flex-wrap: wrap;
     padding-bottom: 16px;
-    transform: translateY(-16px)
 }
 
     .chart-labels div {
@@ -451,9 +455,9 @@ Items specifc to COMMS below
     grid-column: 3;
 }
 
-    .attendance-points-box p {
+    /* .attendance-points-box p {
         font-size: 0.75em;
-    }
+    } */
 
 .miscellaneous-points-box {
     grid-row: 2;
@@ -724,9 +728,14 @@ input[type="text"] {
     border-bottom: solid 1.5px #DEDEDE;
 }
 
-    .dbTableTop th, .dbTableRow td {
-        padding: 8px 16px;
-    }
+.dbTableTop th, .dbTableRow td {
+    padding: 8px 16px;
+}
+
+.event-row:hover{
+    background-color: #DEDEDE;
+    cursor: pointer;
+}
 
 .dbTablePH {
     width: 15%;
@@ -888,8 +897,9 @@ input[type="text"] {
 }
 
     .wicscomsbutton:hover {
-        border-color: #000;
-        background-color: #000;
+        border-color: #fff;
+        background-color: #fff;
+        color: #000;
     }
 
     .wicscomsbutton:active {
@@ -1022,21 +1032,24 @@ svg {
 }
 
 .indexdbbutton {
-    transform: translate(-380px, 14px);
-    background-color: transparent;
+    transform: translate(-420px, 0px);
+    background-color: #000;
     border: none;
-    text-decoration: underline;
-    color: #F76902;
     width: 200px;
     position: absolute;
     font-family: var(--main-font);
     font-size: 1.5em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: white;
     cursor: pointer;
-    color: --orange;
+    text-align: center;
+    font-weight: bold;
+    height: 60px;
 }
 
 .indexdbbutton:hover{
     color: #000;
+    background-color: #fff;
 }
 
 /* Modal styling - update with !important to ensure these take precedence */
@@ -1104,12 +1117,17 @@ svg {
     font-weight: 500;
 }
 
-.form-group input {
+.form-group input, .form-group input[type=number] {
     padding: 8px;
     border: 1px solid var(--stroke-gray);
     border-radius: 2px;
     font-family: var(--main-font);
     font-size: 0.9rem !important;
+    width: 253.33px;
+}
+.form-group input[type=number]{
+    width: 212px;
+    padding: 20px;
 }
 
 .form-submit-button {
@@ -1136,16 +1154,21 @@ svg {
     All classes containing styling for admin notifications page
 */
 .semester-report-btn {
-    padding: 8px 12px;
+    padding: 12px 20px !important;
     margin-left: 8px;
-    color: #fff;
-    border: none;
-    background-color: var(--orange);
+    color: #fff !important;
+    border: none !important;
+    background-color: var(--orange) !important;
     font-family: var( --main-font);
+    border-radius: 2px !important;
+    font-weight: 600 !important;
 }
 
-.semester-report-btn:hover {
-    background-color: #000;
+#notify-students{
+    transform: translate(65vw, 180px) !important;
+}
+.semester-report-btn:hover, .semester-config .trashbtn:hover {
+    background-color: #000 !important;
 }
 
 /*
@@ -1154,7 +1177,7 @@ svg {
 .profile-container {
     border: 1px solid #727578;
     border-radius: 8px;
-    width: 40vw;
+    width: 600px;
     display: inline-block;
     margin-left: 80px;
 }
@@ -1168,33 +1191,123 @@ svg {
     display: inline-block;
 }
 
-    .profile-subsec input {
+    .profile-subsec input, #graduation-year {
         height: 20px;
         padding: 7px 10px;
         margin-top: 10px;
         margin-left: 20px;
         width: 160px;
+        font-family: var( --main-font);
+        border: 1px solid #727578;
     }
 
-    .profile-subsec h4 {
+    #graduation-year{
+        height: 17px;
+    }
+
+    .profile-subsec select{
+        width: 182px; 
+        margin-left:20px; 
+        padding: 6px; 
+        font-family: var( --main-font);
+        margin-top: 10px;
+        border: 1px solid #727578;
+    }
+
+.profile-subsec #submit {
+    font-family: var(--main-font);
+    font-size: 1rem;
+    width: auto;
+    align-self: flex-start;
+    padding: 8px 20px;
+    border: 2px solid var(--orange);
+    background-color: var(--orange);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    height: 40px;
+    border-radius: 2px;
+    position: absolute;
+    transform: translate(-200px, 80px)
+}
+
+    .profile-subsec h4, .config-sec h4 {
         font-size: 0.8rem;
         color: #727578;
         margin-bottom: 0px;
         margin-left: 20px;
     }
 
-    .profile-subsec p {
-        margin-top: 4px;
-        margin-bottom: 40px;
-        margin-left: 20px;
-    }
+.profile-subsec p, .profile-subsec li {
+    margin-top: 4px;
+    margin-bottom: 40px;
+    margin-left: 20px;
+    font-family: var( --main-font);
+    font-size: 1rem;
+}
+
+.profile-subsec li{
+    margin-bottom: 0px;
+}
 
 .savebtn {
     position: absolute;
     transform: translateY(-60px);
     margin-left: 120px;
 }
+/*
+    All classes containing styling for config pages
+*/
+.config-sec {
+    border: 1px solid #727578;
+    border-radius: 8px;
+    width: calc(100vw - 13vw);
+    display: inline-block;
+    margin-left: 80px;
+}
 
+.config-sec h3{
+    margin-top: 60px;
+}
+.config-sec h4, .config-sec select, .config-sec input{
+    margin-left: 40px;
+}
+
+.config-sec-sub {
+    margin-left: 120px;
+}
+
+.config-sec-sub select{
+    width: 258px; 
+    padding: 20px 0px;
+    display: inline-block;
+    font-family: var(--main-font);
+}
+
+.semester-config, .admin-config{
+    height: 80px !important;
+}
+
+.semester-config input {
+}
+
+.trashbtn {
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    border: none;
+    margin-left: 20px;
+    background-color: var(--orange);
+    font-family: var( --main-font);
+}
+
+.addsem {
+    width: fit-content;
+}
+
+#last-of-config{
+    margin-bottom: 40px;
+}
 
 /* Modal styling - update with !important to ensure these take precedence */
 .modal {
@@ -1287,10 +1400,15 @@ svg {
         border-color: #000;
         background-color: #000;
     }
+
+#override_membership {
+    transform: translateX(-120px);
+}
+
 /* Student view */
 .studentattendance {
     display: flex;
-    gap: 20px; 
+    gap: 20px;
 }
 .titletabssectionattendance{
     font-family: var(--main-font);
@@ -1418,7 +1536,6 @@ input[type=file]::file-selector-button:hover, .upload-submit:hover {
     text-align: left;
     border-collapse: collapse;
     table-layout: auto;
-    /* Remove negative transform since we're not overlapping anymore */
     margin-top: 20px;
 }
 
@@ -1452,7 +1569,7 @@ input[type=file]::file-selector-button:hover, .upload-submit:hover {
     border: none;
     outline: none;
     color: white;
-    padding: 14px 16px;
+    padding: 14px 56px;
     background-color: inherit;
     font-family: inherit;
     margin: 0;
@@ -1493,5 +1610,228 @@ input[type=file]::file-selector-button:hover, .upload-submit:hover {
 
 .dropdown:focus-within .dropdown-content {
     display: block;
+}
+
+/*
+    Rewards Modal
+*/
+.modal-rew, .modal-rep {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-rew-content, .modal-rep-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close, .close2 {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus, .close2:hover, .close2:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.smallerTable {
+    width: 70vw;
+    font-family: var(--main-font);
+    font-size: 0.75rem;
+    margin-left: 64px;
+    text-align: left;
+    border-collapse: collapse;
+    table-layout: auto;
+    margin-top: 20px;
+}
+
+.report-btn{
+    position: absolute;
+    transform:translate(65vw, 80px);
+}
+
+#meeting-type{
+    padding: 0.7rem;
+}
+
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #F76902;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+    background: white;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.hidden {
+    display: none;
+}
+
+.sort-indicator {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+#dbTable th[data-column] {
+    cursor: pointer;
+    position: relative;
+}
+
+    #dbTable th[data-column]:hover {
+        background-color: #f5f5f5;
+    }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow: auto;
+}
+
+    .modal.show-modal {
+        display: block;
+    }
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+}
+
+/*
+    Styling for config pages
+*/
+
+.percentage-config, .threshold-config, .semester-config {
+    margin-left: 40px;
+    font-family: var(--main-font);
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+    .percentage-config input, .threshold-config input, .semester-config input, .admin-config input, #mentorship_minimum, #mentorship_maximum,
+    #required_points, #general_meetings_requirement, #committee_meetings_requirement, #social_meetings_requirement, #volunteering_meetings_requirement {
+        margin-right: 30px;
+        margin-left: 5px;
+        height: 40px;
+        padding-left: 10px;
+        font-family: var(--main-font);
+        font-size: 0.85rem;
+    }
+
+.admin-config input {
+    margin-left: 35px;
+}
+
+#mentorship_minimum, #mentorship_maximum, #required_points, #general_meetings_requirement, #committee_meetings_requirement, #social_meetings_requirement, #volunteering_meetings_requirement {
+    margin-left: 40px;
+    font-family: var(--main-font);
+    font-size: 0.85rem;
+}
+
+.semester-report-btn{
+    margin-bottom: 50px;
+}
+
+.config-sec-sub h4{
+    margin-bottom: 10px;
+}
+
+/*
+    Filter modal styling
+*/
+
+fieldset input[type=number] {
+    padding: 5px 10px;
+    border: #000 solid 1px;
+    width: 235px;
+    border-radius: 2px;
+}
+#filter-membership-button{
+    margin-left: 160px !important;
+}
+#filter-semesters{
+    margin-left: 99px !important;
+}
+#filter-gen-meetings{
+    margin-left: 71px !important;
+}
+#filter-con-meetings{
+    margin-left: 66.5px !important;
+}
+#filter-social-event{
+    margin-left: 85px !important;
+}
+#filter-volunteering{
+    margin-left: 83.5px !important;
+}
+
+/* Event row styling for clickable rows */
+.event-row {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.event-row:hover {
+    background-color: rgba(247, 105, 2, 0.1);
+}
+
+.event-row:hover td {
+    text-decoration: underline;
+}
+
+.event-row td:first-child {
+    color: #000;
+    font-weight: bold;
 }
 

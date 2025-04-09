@@ -1,7 +1,9 @@
 {% extends "base.html.j2" %}
 {% block head %}
 <script src="{{ url_for("static", filename="js/semester-sort-and-filter.js") }}" defer></script>
+<script src="{{ url_for("static", filename="js/history-builder.js") }}" defer></script>
 <script src="{{ url_for("static", filename="js/student-wics.js") }}" defer></script>
+<script src="{{ url_for("static", filename="js/student-data-processing-common.js") }}" defer></script>
 {% endblock %}
 {% block content %}
 
@@ -28,33 +30,37 @@
 
                     </div>
                     <div class="points-bar">
-                        <div class="chart-bar wic-bar" id="social-total-points-bar" style="width:7.14%">
+                        <div class="chart-bar wic-bar" id="social-total-points-bar" style="width:0%">
                             <!--Flexbox-->
                             <div id="social-earned-points-bar" style="width:100%"></div><!--Social Event--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
+                            <div id="social-min-requirements"style="width:0%"></div><!--Placeholder-->
                         </div>
-                        <div class="chart-bar wic-bar" id="volunteering-total-points-bar" style="width:7.14%">
+                        <div class="chart-bar wic-bar" id="volunteering-total-points-bar" style="width:0%">
                             <!--Flexbox-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div id="volunteering-earned-points-bar" style="width:100%"></div><!--Volunteering--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
+                            <div id="volunteering-min-requirements" style="width:0%"></div><!--Placeholder-->
                         </div>
-                        <div class="chart-bar wic-bar" id="committee-total-points-bar" style="width:42.86%">
+                        <div class="chart-bar wic-bar" id="committee-total-points-bar" style="width:0%">
                             <!--Flexbox-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div id="committee-earned-points-bar" style="width:100%"></div><!--Committee Meetings--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
                             <div style="width:0%"></div><!--Placeholder-->
+                            <div id="committee-min-requirements" style="width:0%"></div><!--Placeholder-->
                         </div>
-                        <div class="chart-bar wic-bar" id="general-total-points-bar">
+                        <div class="chart-bar wic-bar" id="general-total-points-bar" style="width:0%">
                             <!--Flexbox-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div style="width:0%"></div><!--Placeholder-->
                             <div id="general-earned-points-bar" style="width:100%"></div><!--General Meetings--><!--change percentage based on point. ex: 2 out of 4 points is 50%-->
+                            <div id="general-min-requirements" style="width:0%"></div><!--Placeholder-->
                         </div>
                     </div>
                     <div class="chart-placeholder"></div>
@@ -85,26 +91,31 @@
                         <section class="info-box-gray social-events">
                             <h2>Volunteering</h2>
                             <p>
-                                WiC is committed to be a part of the community. To find more information about volunteering opportunities, please visit  <span class="external-url">WiC's Events Page</span>.
+                                WiC is committed to be a part of the community. To find more information about volunteering opportunities, please visit WiC's Events Page.
                             </p>
                             <span class="learn-more-cont">
-                                <button class="learn-more" onclick="location.href='https://www.rit.edu/womenincomputing/events'">Learn More</button>
+                                <button class="learn-more" onclick="window.open('https://www.rit.edu/womenincomputing/events', '_blank')">
+                                    Learn More
+                                </button>
                             </span>
+
                         </section>
                         <section class="info-box-gray volunteering">
                             <h2>Social Events</h2>
                             <p>
-                                There are various social events hosted by WiC throughout the year. To find out more about these events, please visit <span class="external-url">WiC's Events Page</span>.
+                                There are various social events hosted by WiC throughout the year. To find out more about these events, please visit WiC's Events Page.
                             </p>
                             <span class="learn-more-cont">
-                                <button class="learn-more" onclick="location.href='https://www.rit.edu/womenincomputing/events'">Learn More</button>
+                                <button class="learn-more" onclick="window.open('https://www.rit.edu/womenincomputing/events', '_blank')">
+                                    Learn More
+                                </button>
                             </span>
                         </section>
                     </div>
                 </div> <!--MEMBERSHIP SECTION-->
 
                 <div id="history" class="tabcontent"> <!--HISTORY SECTION-->
-                    <div class="table-container membership-history-container">
+                    <div class="table-container membership-history-container" id="history-container">
                         <div>
                             <div>
                                 <p><b>Membership History by Semester</b></p>
@@ -113,96 +124,12 @@
                                 <p><b>Awards</b></p>
                             </div>
                         </div>
-                        <div>
-                            <div>
-                                <p><b>Fall 2024:</b> Non-Active Member</p>
-                                <p>
-                                    <span>11/14 General Meetings</span>
-                                    <span>5/6 Committee Meetings</span>
-                                    <span>0/1 Social Event</span>
-                                    <span>1/1 Volunteering</span>
-                                </p>
-                            </div>
-                            <div>
-            
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p><b>Spring 2024:</b> Active Member</p>
-                                <p>
-                                    <span>14/14 General Meetings</span>
-                                    <span>6/6 Committee Meetings</span>
-                                    <span>1/1 Social Event</span>
-                                    <span>1/1 Volunteering</span>
-                                </p>
-                            </div>
-                            <div>
-                                <img src="../static/images/awards.webp" alt="Award" >
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p><b>Fall 2023:</b> Active Member</p>
-                                <p>
-                                    <span>14/14 General Meetings</span>
-                                    <span>6/6 Committee Meetings</span>
-                                    <span>1/1 Social Event</span>
-                                    <span>1/1 Volunteering</span>
-                                </p>
-                            </div>
-                            <div>
-            
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p><b>Spring 2023:</b> Active Member</p>
-                                <p>
-                                    <span>14/14 General Meetings</span>
-                                    <span>6/6 Committee Meetings</span>
-                                    <span>1/1 Social Event</span>
-                                    <span>1/1 Volunteering</span>
-                                </p>
-                            </div>
-                            <div>
-            
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p><b>Fall 2022:</b> Non-Active Member</p>
-                                <p>
-                                    <span>13/14 General Meetings</span>
-                                    <span>4/6 Committee Meetings</span>
-                                    <span>1/1 Social Event</span>
-                                    <span>1/1 Volunteering</span>
-                                </p>
-                            </div>
-                            <div>
-                                <img src="../static/images/awards.webp" alt="Award" >
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p><b>Spring 2022:</b> Active Member</p>
-                                <p>
-                                    <span>11/14 General Meetings</span>
-                                    <span>6/6 Committee Meetings</span>
-                                    <span>1/1 Social Event</span>
-                                    <span>1/1 Volunteering</span>
-                                </p>
-                            </div>
-                            <div>
-            
-                            </div>
-                        </div>
                     </div>
                 </div> 
             </div> <!--HISTORY SECTION-->
 
             <div class="calendar-sec"> <!--CALENDAR SECTION-->
-                {% include "calendar.html.j2" %}
+                {% include "widgets/calendar.html.j2" %}
             </div>
         </div>
     </main>

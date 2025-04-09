@@ -1,22 +1,47 @@
+from datetime import datetime
+from os import curdir
+import select
+
+from sqlalchemy import func
+
+from backend.db import Event, Profile, commit, db, Administrator, Award
+from backend.forms import EditUserForm
+
 from flask_login import current_user
-from sqlalchemy import case, desc
-from backend import db
-from backend.db import Event, Profile
-from flask import Blueprint, jsonify, request, render_template, abort
-from datetime import date
+from flask import Blueprint, abort, current_app, jsonify, redirect, request, render_template, url_for
 
 student = Blueprint("student", __name__, static_folder="static/", template_folder="templates/")
 
-
 @student.route("/wic")
 def wic_homepage():
-    return render_template("wics-profile.html.j2", title="WIC")
+    return render_template("wics-profile.html.j2", title="WIC", org=1)
 
 @student.route("/coms")
 def coms_homepage():
-    return render_template("coms-profile.html.j2", title="COMS")
+    return render_template("coms-profile.html.j2", title="COMS", org=2)
 
-@student.route("/profile")
+@student.route("/settings/<int:org>")
+def provide_org_config(org: int):
+    org_awards = db.session.query(Award.award_id, Award.name, Award.active_semester_requirements).where(Award.organization_id == org).all()
+    admins = db.session.query(Profile.email, Profile.first_name, Profile.last_name)\
+        .select_from(Administrator)\
+        .join(Profile, Administrator.profile_id == Profile.profile_id)\
+        .where(Administrator.organization_id == org).all()
+
+    return jsonify({
+        "config": current_app.config["ORG_SETTINGS"][str(org)],
+        "awards": [{
+            "award_id": award[0],
+            "award_name": award[1],
+            "semester_requirement": award[2]
+        } for award in org_awards],
+        "admins": [{
+            "admin_name": admin[1] + " " + admin[2],
+            "admin_email": admin[0]
+        } for admin in admins]
+    })
+
+@student.route("/profile", methods=["GET"])
 def return_profile():
     org = request.args.get("org", type=int)
     if org:
@@ -29,7 +54,11 @@ def return_profile():
 def upcoming_meetings(org: int):
     """Return upcoming meetings based on pagination parameters."""
     try:
+        selected_time = request.args.get("selected", type=datetime.fromisoformat, default=None)
+        print(selected_time)
+
         skip = request.args.get("skip", 0, type=int)
+        #count = request.args.get("count", 9999, type=int)
         count = request.args.get("count", 9999, type=int)
 
         if skip < 0 or count <= 0:
@@ -37,12 +66,26 @@ def upcoming_meetings(org: int):
     except ValueError:
         return jsonify({"Error": "Invalid input type"})
 
+
     meeting_results = (
-        Event.query.filter(Event.organizer_id == org)
+        db.session.query(Event)
+        .where(Event.organizer_id == org)
         .order_by(Event.start_time)
-        .offset(skip)
-        .all()
     )
+
+    if selected_time:
+        meeting_results = meeting_results.where(
+            func.DATE(Event.start_time) == selected_time.date()
+        )
+
+    meeting_results = meeting_results.offset(skip).limit(count)
+
+    # meeting_results = (
+    #     Event.query.filter(Event.organizer_id == org)
+    #     .order_by(Event.start_time)
+    #     .offset(skip)
+    #     .all()
+    # )
 
     meetings = [
         {
@@ -51,6 +94,7 @@ def upcoming_meetings(org: int):
             "name": meeting.name,
             "start_time": meeting.start_time.isoformat(),
             "end_time": meeting.end_time.isoformat(),
+            "location": meeting.description,
             "description": meeting.description,
             "point_value": meeting.point_value,
             "organizer_id": meeting.organizer_id,
@@ -71,12 +115,15 @@ def upcoming_meetings(org: int):
                  for attendee in meeting.attendants
              ]
         }
-        for meeting in meeting_results
+        for meeting in meeting_results.all()
     ]
+    #old good
     return jsonify({"Meetings": meetings})
+    #new bad
+    #return render_template("wics-profile.html.j2", meetings=meeting_results)
 
 @student.route("/attendance")
-def member_attendance():
+def member_attendance():  # What is going on in this function??
     profile_id = 5 # request.get_json()
     # if not profile_id not in profile_id:
     #     return jsonify({"error": "Missing profile_id in request"})
@@ -94,6 +141,24 @@ def member_attendance():
         for attendee in attendance
     ]
     return jsonify(user_attendance)
+
+
+@student.route("/profile/attendance/<int:meeting_id>")
+def get_attendance(meeting_id: int):
+
+    meeting = Event.query.get(Event.event_id)
+
+    if meeting is None:
+        return abort(404)
+    
+    record = Profile.query.filter(meeting==meeting_id, Profile.profile_id==current_user.rit_id).all()
+    
+    if record is None:
+        return abort(404)
+    
+    return jsonify(
+        record.serialize(meeting_id)
+    )
 
 @student.route('/?sort=semester')
 def sort_semester():
@@ -124,3 +189,30 @@ def sort_semester():
     ]
 
     return jsonify(semester_wics, semester_coms)
+# Reused from admin.py... 
+
+@student.route("/account", methods=["POST", "GET"])
+def account():
+    form = EditUserForm(
+        graduation_year=current_user.graduation_year,
+        first_name=current_user.first_name,
+        last_name=current_user.last_name,
+        degree=current_user.degree,
+        pronouns=current_user.pronouns,
+        t_shirt_size=current_user.t_shirt_size if current_user.t_shirt_size else "Unset",
+        email=current_user.email
+    )
+
+    if form.validate_on_submit():
+        current_user.email = form.email.data
+        current_user.first_name = form.first_name.data
+        current_user.last_name = form.last_name.data
+        current_user.graduation_year = form.graduation_year.data
+        current_user.degree = form.degree.data
+        current_user.pronouns = form.pronouns.data
+        if form.t_shirt_size.data != "Unset":
+            current_user.t_shirt_size = form.t_shirt_size.data
+        commit(current_user)
+        return redirect(url_for("student.account"))
+    
+    return render_template("student-profile.html.j2", title="Student Profile", form=form)

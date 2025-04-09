@@ -4,7 +4,7 @@
 	<nav>
 		 {% if request.url_rule.endpoint != 'home.homepage' %}
 			<a href="{{ url_for('home.homepage') }}">
-				<img class="backarrow" src="../static/images/back-arrow.png" width="16" />
+				<img class="backarrow" src="{{ url_for("static", filename="images/home.png") }}" width="20" color="white"/>
 			</a>
 	    {% endif %}
       <div class="menu-toggle" onclick="toggleMenu()">
@@ -16,16 +16,15 @@
 				<button class="dropbtn">
 					<b>{{ current_user.full_name | upper }}</b>
 					<span class="dropDownArrow-nav">
-						<img src="/static/images/down-arrow-white.png" width="10">
+						<img src="{{ url_for("static", filename="images/down-arrow-white.png") }}" width="10">
 					</span>
 				</button>
 				<div class="dropdown-content">
-					<a href="#">Profile</a>
-					<a href="#">Logout</a>
+					<a href='{{ url_for('student.account') }}'>Profile</a>
+					<a href="/Shibboleth.sso/Logout">Logout</a>
 				</div>
 			</div>
-			<a style="float:right;">SETTINGS</a>
-			<a style="float:right; padding-left: 40px;">NOTIFICATIONS</a>
+
 		</div>
         </nav>
 		

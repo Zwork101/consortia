@@ -1,130 +1,116 @@
+const endpointOrganizationID = 1;
 let maxEvents = 14;
 
-// user variables
-let socialEvents = 0;
-let voluenteeringEvents = 0;
-let committeeEvents = 0;
-let generalEvents = 0;
-let otherEvents = 0;
+/**
+ * Creates an object of meeting data
+ * @param {Array} listOfMeetings The array of meetings to be passed in
+ * @returns An object of meeting data.
+ */
+function getMeetingData(listOfMeetings){
 
-// all variables 
-let allSocialEvents = 0;
-let allVoluenteeringEvents = 0;
-let allCommitteeEvents = 0;
-let allGeneralEvents = 0;
-let allOtherEvents = 0;
-
-const getProfile = async () => {
-  const userId = document.getElementsByTagName("body")[0].dataset.profileId;
-	const profileEndpoint = `/profile?org=1`;
-  const meetingsEndpoint = "/meetings/1";
-	try {
-      var endpointList = []
-    	const response = await fetch(profileEndpoint);
-	    if (!response.ok) {
-	      throw new Error(`Response status: ${response.status}`);
-	    }
-
-	    const json = await response.json();
-      endpointList.push(json);
-
-	    const response2 = await fetch(meetingsEndpoint);
-	    if (!response2.ok) {
-	      throw new Error(`Response status: ${response2.status}`);
-	    }
-
-	    const json2 = await response2.json();
-      endpointList.push(json2);
-      
-      return endpointList;
-	 } catch (error) {
-	    console.error(error.message);
+  const meetingObject = {
+    socialEvents: 0,
+    voluenteeringEvents: 0,
+    committeeEvents: 0,
+    generalEvents: 0,
+    otherEvents: 0,
   }
+  listOfMeetings.forEach(meeting =>{
+    switch (meeting.meeting_type){
+      case "SOCIAL":
+        meetingObject.socialEvents += 1;
+        break;
+      case "VOLUNTEER":
+        meetingObject.voluenteeringEvents +=1;
+        break;
+      case "COMMITTEE":
+        meetingObject.committeeEvents +=1;
+        break;
+      case "GENERAL":
+        meetingObject.generalEvents +=1;
+        break;
+      default:
+        meetingObject.otherEvents +=1;
+    }
+  });
+  return meetingObject;
 }
 
-const getStudentPoints = (endpointData) => {
+/**
+ * Draws the progress bar on the WIC webpage. This does not return anything.
+ * @param {String} mainBarID The CSS ID of the main element to target.
+ * @param {String} fillerBarID The CSS ID of the filler (gray) bar to target.
+ * @param {Number} minMeetingsRequirements A number representing the minimum number of meetings one needs to attend.
+ * @param {Number} meetingsAttended A number representing the actual number of meetings attended.
+ * @param {Number} meetingMaxUIValue A number representing the upper bounds of the meeting bar. This is for the UI of the meeting bar.
+ */
+function drawProgressBar(mainBarID, fillerBarID, minMeetingsRequirements, meetingsAttended, meetingMaxUIValue){
 
-  let studentData = endpointData[0];
-  let allMeetingData = endpointData[1];
+  if (meetingsAttended < minMeetingsRequirements){
+    let polyfillAmount = minSocialEventsRequirements - userMeetingsForCurrentSemester.socialEvents;
+    // add code for gray polyfill
+    document.getElementByID(fillerBarID).style.width = `${(polyfillAmount/meetingMaxUIValue)*100}%`;
+  }
 
-  // Trim down list to current semester only
-  console.log(endpointData)
+  document.getElementById(mainBarID).style.width = `${(meetingsAttended/meetingMaxUIValue)*100}%`;
+}
+
+/**
+ * Display values for the bar on the "Current Semester" tab
+ * @param {Object} userMeetingsForCurrentSemester An object representing the user with values from the most recent semester
+ * @param {Object} allMeetingsForCurrentSemester An object representing all meetings with values from the most recent semester
+ * @param {Object} settingsAndConfigData An object containing all the settings and configuration data
+ */
+function showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemester, settingsAndConfigData){
+  let minSocialEventsRequirements = settingsAndConfigData.config.social_meetings_requirement;
+  let minVolunteeringEventsRequirements = settingsAndConfigData.config.volunteering_meetings_requirement;
+  let minCommitteeEventsRequirements = settingsAndConfigData.config.committee_meetings_requirement;
+  let minGeneralEventsRequirements = settingsAndConfigData.config.general_meetings_requirement;
+
+  document.getElementById("social-events").innerHTML = userMeetingsForCurrentSemester.socialEvents;
+  document.getElementById("volunteering-events").innerHTML = userMeetingsForCurrentSemester.voluenteeringEvents;
+  document.getElementById("committee-events").innerHTML = userMeetingsForCurrentSemester.committeeEvents;
+  document.getElementById("general-events").innerHTML = userMeetingsForCurrentSemester.generalEvents;
+
+  document.getElementById("total-social-events").innerHTML = minSocialEventsRequirements;
+  document.getElementById("total-volunteering-events").innerHTML = minVolunteeringEventsRequirements;
+  document.getElementById("total-committee-events").innerHTML = minCommitteeEventsRequirements;
+  document.getElementById("total-general-events").innerHTML = minGeneralEventsRequirements;
+  
+  // If the user exceeds the max events, we want to resize the bar so that it does not cause UI conflicts.
+  let maximumUIValue = Math.max(
+        userMeetingsForCurrentSemester.socialEvents,
+        userMeetingsForCurrentSemester.voluenteeringEvents,
+        userMeetingsForCurrentSemester.committeeEvents,
+        userMeetingsForCurrentSemester.generalEvents
+      ) 
+  let meetingMaxUIValue;
+  if (maximumUIValue > maxEvents) {
+    meetingMaxUIValue = maximumUIValue;
+  } else {
+    meetingMaxUIValue = maxEvents;
+  }
+
+  drawProgressBar("social-total-points-bar", "social-min-requirements", minSocialEventsRequirements, userMeetingsForCurrentSemester.socialEvents, meetingMaxUIValue);
+  drawProgressBar("volunteering-total-points-bar", "volunteering-min-requirements", minVolunteeringEventsRequirements, userMeetingsForCurrentSemester.voluenteeringEvents, meetingMaxUIValue);
+  drawProgressBar("committee-total-points-bar", "committee-min-requirements", minCommitteeEventsRequirements, userMeetingsForCurrentSemester.committeeEvents, meetingMaxUIValue);
+  drawProgressBar("general-total-points-bar", "general-min-requirements" , minGeneralEventsRequirements, userMeetingsForCurrentSemester.generalEvents, meetingMaxUIValue);
+}
+
+/**
+ * Process the data for WIC.
+ * @param {Object} studentData An Object representing the data of a student.
+ * @param {Object} allMeetingData An Object that represents the data of all meetings.
+ * @param {Object} settingsAndConfigurationData An Object that represents the settings and configuration data.
+ */
+function processDataWIC(studentData, allMeetingData, settingsAndConfigurationData){
   let attendance = getMeetingsFromThisSemester(studentData.profile.attendance);
   let listOfAllMeetings = getMeetingsFromThisSemester(allMeetingData.Meetings);
 
-  // Calculate total meetings of user
-  attendance.forEach(attendanceDay =>{
-    switch (attendanceDay.meeting_type){
-      case "SOCIAL":
-        socialEvents += 1;
-        break;
-      case "VOLUNTEER":
-        voluenteeringEvents +=1;
-        break;
-      case "COMMITTEE":
-        committeeEvents +=1;
-        break;
-      case "GENERAL":
-        generalEvents +=1;
-        break;
-      default:
-        otherEvents +=1;
-    }
-  });
+  let userMeetingsForCurrentSemester = getMeetingData(attendance);
+  let allMeetingsForCurrentSemester = getMeetingData(listOfAllMeetings);
 
-  // Calculate total meetings per category
-  listOfAllMeetings.forEach(meeting =>{
-    switch (meeting.meeting_type){
-      case "SOCIAL":
-        allSocialEvents += 1;
-        break;
-      case "VOLUNTEER":
-        allVoluenteeringEvents +=1;
-        break;
-      case "COMMITTEE":
-        allCommitteeEvents +=1;
-        break;
-      case "GENERAL":
-        allGeneralEvents +=1;
-        break;
-      default:
-        allOtherEvents +=1;
-    }
-  });
+  showResults(userMeetingsForCurrentSemester, allMeetingsForCurrentSemester, settingsAndConfigurationData);
 
-  // Draw bars and display numbers.
-  document.getElementById("social-total-points-bar").style.width = `${(socialEvents/maxEvents)*100}%`;
-  document.getElementById("volunteering-total-points-bar").style.width = `${(voluenteeringEvents/maxEvents)*100}%`;
-  document.getElementById("committee-total-points-bar").style.width = `${(committeeEvents/maxEvents)*100}%`;
-  document.getElementById("general-total-points-bar").style.width = `${(generalEvents/maxEvents)*100}%`;
-    
-  document.getElementById("social-events").innerHTML = socialEvents;
-  document.getElementById("volunteering-events").innerHTML = voluenteeringEvents;
-  document.getElementById("committee-events").innerHTML = committeeEvents;
-  document.getElementById("general-events").innerHTML = generalEvents;
-
-  document.getElementById("total-social-events").innerHTML = allSocialEvents;
-  document.getElementById("total-volunteering-events").innerHTML = allVoluenteeringEvents;
-  document.getElementById("total-committee-events").innerHTML = allCommitteeEvents;
-  document.getElementById("total-general-events").innerHTML = allGeneralEvents;
+  historyBuilder(builderMode.WIC, studentData, allMeetingData, settingsAndConfigurationData);
 }
-
-
-getProfile().then(
-  getStudentPoints
-);
-console.log("Loaded profile");
-
-const loadSemesters = () => {
-  const container = document.getElementById("semestersContainer");
-  container.innerHTML = "";
-
-  semesters_wics.forEach(sem => {
-      const semElement = document.createElement("div");
-      semElement.innerHTML = 
-      `<h3>${sem.semester_wics} ${sem.year_wics}</h3>` +
-      `<p>${sem.organizer_wics}, ${sem.meeting_type_wics}: ${sem.description_wics}, ${sem.point_value_wics}</p>`;
-      container.appendChild(semElement);
-    }
-  );
-};

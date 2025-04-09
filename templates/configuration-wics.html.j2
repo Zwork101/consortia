@@ -1,82 +1,73 @@
 {% extends "base.html.j2" %}
 {% block head %}
-<script src="../static/js/mainjavascript.js"></script>
+<script defer src="{{ url_for("static", filename="js/admin-config.js") }}"></script>
 {% endblock %}
 {% block content %}
 {% include "nav.html.j2" %} 
 
-<main>
+    <main>
+        <form method="POST" action={{ url_for("admin.org_settings", org=org_id) }}>
+            {{ form.csrf_token }}
+            <h2 style="margin-left: 80px; margin-top: 80px;">Settings</h2>
 
-        <h2 style="margin-left: 80px; margin-top: 80px;">Configuration</h2>
-        <div class="profile-container">
-            <div class="profile-sec">
-                <h3>MEMBERSHIP REQURIMENTS</h3>
-                <div class="profile-subsec">
+            <div class="config-sec">
+                <div class="config-sec-sub">
+                    <!--This is where meeting amounts can be configured-->
+                    <h3>MEMBERSHIP REQUIREMENTS</h3>
                     <h4>General Meetings Required:</h4>
-                    <input type="text" id="GenMeet" name="GenMeetReq" value="DataHere">
+                    {{ form.general_meetings_requirement() }}
 
                     <h4>Committee Meetings Required:</h4>
-                    <input type="text" id="ComMeet" name="ComMeetReq" value="DataHere">
+                    {{ form.committee_meetings_requirement() }}
 
                     <h4>Social Events Required:</h4>
-                    <input type="text" id="SocEven" name="SocEvenReq" value="DataHere">
+                    {{ form.social_meetings_requirement() }}
 
                     <h4>Volunteering Required:</h4>
-                    <input type="text" id="Volun" name="VolunReq" value="DataHere">
+                    {{ form.volunteering_meetings_requirement() }}
                 </div>
-                <div class="profile-subsec" style="margin-left: 100px;">
-                    <h4 style="opacity:0%;">placeholder</h4>
-                    <p style="opacity:0%;">placeholder</p>
 
-                    <h4 style="opacity:0%;">placeholder</h4>
-                    <p style="opacity:0%;">placeholder</p>
-
-                    <h4 style="opacity:0%;">placeholder</h4>
-                    <p style="opacity:0%;">placeholder</p>
-
-                    <h4 style="opacity:0%;">placeholder</h4>
-                    <p style="opacity:0%;">placeholder</p>
-
-                    <button class="semester-report-btn savebtn">Save Changes</button>
+                <div class="config-sec-sub" id="award-list">
+                    <!--This is where semester amounts can be configured-->
+                    <h3>SEMESTER AWARDS</h3>
+                    
+                    <div class="semester-config" id="semester-template" hidden>
+                        <input min="1" name="award_settings-0-semester" required="" type="number" value="" disabled>
+                        <input maxlength="40" name="award_settings-0-award_name" required="" type="text" value="" disabled>
+                        <button type="button" class="trashbtn" onclick="rmConfig(this)"><img width="20" src="{{ url_for("static", filename="images/trash.png") }}" /></button>
+                    </div>
+                    
+                    {% for award_form in form.award_settings %}
+                     <div class="semester-config">
+                        {{ award_form.award_id() }}
+                        {{ award_form.semester() }}
+                        {{ award_form.award_name() }}
+                        <button type="button" class="trashbtn" onclick="rmConfig(this)"><img width="20" src="{{ url_for("static", filename="images/trash.png") }}" /></button>
+                    </div>
+                    {% endfor %}
+                    <button type="button" class="semester-report-btn addsem" onclick="addAward()">Add Semester</button>  <!--If this button is pressed, a row should be added-->
                 </div>
-            </div>
-        </div>
-        <div class="profile-container">
-            <div class="profile-sec">
-                <form>
-                    <h3>AWARDS</h3>
-                    <div class="profile-subsec">
-                        <h4>2nd Semester:</h4>
-                        <input type="text" id="2sem-award" name="2sem-award" value="DataHere">
 
-                        <h4>4th Semester:</h4>
-                        <input type="text" id="4sem-award" name="4sem-award" value="DataHere">
-
-                        <h4>6th Semester:</h4>
-                        <input type="text" id="6sem-award" name="6sem-award" value="DataHere">
-
-                        <h4>8th Semester:</h4>
-                        <input type="text" id="8sem-award" name="8sem-award" value="DataHere">
+                <div class="config-sec-sub" id="last-of-config">
+                    <!--This is where admins can be configured-->
+                    <h3>ADMINISTRATORS</h3>
+                    <div class="admin-config" id="admin-template" hidden>
+                        <h4>Please type in an email address</h4>
+                        {{ form.admins[0](value="", disabled=True)}}
+                        <button type="button" class="trashbtn" onclick="rmConfig(this)"><img width="20" src="{{ url_for("static", filename="images/trash.png") }}" /></button>
                     </div>
-                    <div class="profile-subsec" style="margin-left: 100px;">
-                        <h4 style="opacity:0%;">placeholder</h4>
-                        <p style="opacity:0%;">placeholder</p>
-
-                        <h4 style="opacity:0%;">placeholder</h4>
-                        <p style="opacity:0%;">placeholder</p>
-
-                        <h4 style="opacity:0%;">placeholder</h4>
-                        <p style="opacity:0%;">placeholder</p>
-
-                        <h4 style="opacity:0%;">placeholder</h4>
-                        <p style="opacity:0%;">placeholder</p>
-
-                        <button class="semester-report-btn savebtn">Save Changes</button>
+                    {% for admin in form.admins %}
+                    <div class="admin-config">
+                        <h4>Please type in an email address</h4>
+                        {{ admin() }} <!--Email address should be given admin priviliges for that group-->
+                        <button type="button" class="trashbtn" onclick="rmConfig(this)"><img width="20" src="{{ url_for("static", filename="images/trash.png") }}" /></button> <!--If this button is pressed, this row should be deleted-->
                     </div>
-                </form>
+                    {% endfor %}
+                    <button type="button" style="margin-top:16px" class="semester-report-btn addsem" onclick="addAdmin()">Add Administrator</button> <!--If this button is pressed, a row should be added-->
+                </div>
+                <button type="submit" style="margin:20px; float:right" class="wicscomsbutton">Save Changes</button>
             </div>
-        </div>
-
+        </form>
     </main>
 
 {% endblock %}

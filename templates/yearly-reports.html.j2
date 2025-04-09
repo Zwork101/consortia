@@ -7,13 +7,13 @@
 {% include "nav.html.j2" %} 
 <main>
 
-        <h2 style="margin-left: 80px; margin-top: 80px;">2024-2025 Yearly Report</h2>
+        <h2 style="margin-left: 80px; margin-top: 80px;">Reports</h2>
         <div class="report-upper" style="margin-left: 80px;">
-            <p>Active Members: <!--PUT TOTAL NUMBER HERE--></p>
+            <p>Active Members: {{ active_count_members }}</p>
 
-            <p>Inactive Members: <!--PUT TOTAL NUMBER HERE--></p>
+            <p>Inactive Members: {{ inactive_count_members }}</p>
 
-            <p>Alumni Members: <!--PUT TOTAL NUMBER HERE--></p>
+            <p>Alumni Members: {{ alumni_count_members }}</p>
         </div>
 
         <h3 style="margin-left: 80px; transform:translateY(20px);">GRADUATING MEMBERS</h3>
@@ -26,20 +26,22 @@
                 <th>LAST NAME</th>
                 <th>MEMBERSHIP</th>
                 <th>SEMESTER</th>
-                <th>E-MAIL ADRESS</th>
+                <th>EMAIL ADDRESS</th>
                 <th class="dbTablePH"></th>
                 <th></th>
             </tr>
+                {% for grad_students in graduation_students %}
             <tr class="dbTableRow">
                 <td></td>
-                <td>Will</td>
-                <td>Smith</td>
-                <td>non-active</td>
-                <td>9 semesters</td>
-                <td>wms6730@rit.edu</td>
+                <td>{{ grad_students['first_name'] }}</td>
+                <td>{{ grad_students['last_name'] }}</td>
+                <td>{{ "Active" if grad_students['membership'] else "Inactive" }}</td>
+                <td>{{ grad_students['semesters'] }}</td>
+                <td>{{ grad_students['email_address'] }}</td>
                 <td class="dbTablePH"></td>
                 <td></td>
             </tr>
+                {% endfor %}
         </table>
 
         <h3 style="margin-left: 80px; transform:translateY(20px);">ACTIVE MEMBERS</h3>
@@ -51,20 +53,22 @@
                 <th>LAST NAME</th>
                 <th>MEMBERSHIP</th>
                 <th>SEMESTER</th>
-                <th>E-MAIL ADRESS</th>
+                <th>EMAIL ADDRESS</th>
                 <th class="dbTablePH"></th>
                 <th></th>
             </tr>
+                {% for active_students in active %}
             <tr class="dbTableRow">
                 <td></td>
-                <td>Will</td>
-                <td>Smith</td>
-                <td>non-active</td>
-                <td>9 semesters</td>
-                <td>wms6730@rit.edu</td>
+                <td>{{ active_students['first_name'] }}</td>
+                <td>{{ active_students['last_name'] }}</td>
+                <td>{{ "Active" if active_students['membership'] else "Inactive" }}</td>
+                <td>{{ active_students['semesters'] }}</td>
+                <td>{{ active_students['email_address'] }}</td>
                 <td class="dbTablePH"></td>
                 <td></td>
             </tr>
+                {% endfor %}
         </table>
 
     </main>

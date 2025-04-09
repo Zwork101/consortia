@@ -1,3 +1,36 @@
+const org = document.getElementsByTagName("body")[0].dataset.org;
+const eventList = $( "#events" );
+const eventTemplate = $( "#event-template" );
+
+const displayEvent = (eventName, eventDate, eventType, eventDescription) => {
+    const newEvent = eventTemplate.clone();
+    const lastEvent = eventList.find(".event:last-of-type");
+
+    newEvent.find(".event-name").text(eventName);
+    newEvent.find(".event-time").text(
+        eventDate.toString()
+    )
+    newEvent.find(".description").text(eventDescription)
+    let color;
+    if (eventType == "GENERAL") {
+        color = "var(--label-yellow)";
+    } else if (eventType == "SOCIAL") {
+        color = "var(--label-purple)";
+    } else if (eventType == "COMMITTEE") {
+        color = "var(--label-green)";
+    } else if (eventType == "VOLUNTEER") {
+        color = "var(--label-blue)";
+    } else if (eventType == "MENTORSHIP") {
+        color = "var(--label-purple)";
+    }
+
+    newEvent.attr("id", "")
+    newEvent.css("borderColor", color);
+    newEvent.insertAfter(lastEvent);
+    newEvent.attr("hidden", false);
+}
+
+
 $(document).ready(function () {
     let currentDate = new Date();
 
@@ -33,11 +66,26 @@ $(document).ready(function () {
         }
 
         // Add click event to select a date
-        $('.day').click(function () {
+        $('.day').click(async function () {
             $('.day').removeClass('selected');
             $(this).addClass('selected');
-            let selectedDate = $(this).data('date');
-            console.log(selectedDate); // Log the selected date
+            let selectedDate = new Date($(this).data('date'));
+            
+            const resp = await fetch(`/meetings/${org}?` +
+                new URLSearchParams({
+                    selected: selectedDate.toISOString()
+                }).toString()
+            )
+
+            const meetings = await resp.json();
+
+            $(".event:not([hidden])").remove();
+
+            meetings.Meetings.forEach((meeting) => {
+                displayEvent(meeting.name, new Date(meeting.start_time), meeting.meeting_type, meeting.description)
+            })
+
+            console.log(meetings)
         });
     }
 

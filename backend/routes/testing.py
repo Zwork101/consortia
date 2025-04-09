@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template
+from backend.email import get_token, send_email
+
+from flask import Blueprint, render_template, redirect, url_for
 
 test = Blueprint("testing", __name__, static_folder="static/", template_folder="templates/")
 
@@ -39,6 +41,10 @@ def return_wic():
 @test.route("/coms")
 def return_coms():
     return render_template("coms-profile.html.j2")
+
+@test.route("/coms_settings")
+def return_coms_settings():
+    return render_template("configuration-coms.html.j2")
 
 
 
@@ -123,3 +129,28 @@ def attendance_data():
 @test.route('/meetings/student', methods=['GET', 'POST'])
 def student_view_data():
     return render_template('database-view-student.html.j2')
+
+# @test.route("/testemail/<int:org>")
+# def test_email(org: int):
+#     cred = get_token(org)
+#     if cred is None:
+#         return redirect(
+#             url_for("oauth.authorize_email", org=org)
+#         )
+#     else:
+#         send_email(
+#             "<h1>Hello</h1><br><p>World</p>",
+#             "Email Test!",
+#             cred[1],
+#             ["njz8626@g.rit.edu", "rl2939@rit.edu"],
+#             cred[0]
+#         )
+#         return "Sent!"
+
+@test.route("/notifications")
+def return_notifications():
+    return render_template("admin-notification-page.html.j2")
+
+@test.route("/yearlyreports")
+def return_yearlyreports():
+    return render_template("yearly-reports.html.j2")

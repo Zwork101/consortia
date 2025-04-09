@@ -9,6 +9,7 @@ venv/
 
 # Ignore database file
 instance/*
+settings.json
 
 .vs/
 
@@ -17,3 +18,8 @@ instance/*
 pyrightconfig.json
 
 development.log
+
+# Creds
+client_secret.json
+
+/backend/routes/report.py

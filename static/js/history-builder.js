@@ -116,7 +116,6 @@ function historyBuilder(mode, userObject, allMeetingsObject, settingsAndConfigOb
 
             // Find the semester in allMeetings Object
             let userMeetingDataForThisSemester = getMeetingData(userSemester.meetings);
-            let allMeetingDataForThisSemester = getMeetingData(matchedSemester.meetings);
             awardValues = `
                                     <span>${userMeetingDataForThisSemester.generalEvents}/${configData.committee_meetings_requirement} General Meetings</span>
                                     <span>${userMeetingDataForThisSemester.committeeEvents}/${configData.committee_meetings_requirement} Committee Meetings</span>
@@ -125,7 +124,11 @@ function historyBuilder(mode, userObject, allMeetingsObject, settingsAndConfigOb
             `
             
             // Set user to be active if they are a member
-            if (userObject.profile.membership == true){
+            if (userMeetingDataForThisSemester.generalEvents >= configData.committee_meetings_requirement &&
+                userMeetingDataForThisSemester.committeeEvents >= configData.committee_meetings_requirement &&
+                userMeetingDataForThisSemester.socialEvents >= configData.social_meetings_requirement &&
+                userMeetingDataForThisSemester.voluenteeringEvents >= configData.volunteering_meetings_requirement
+            ){
                 isUserActive = activeUser.Active;
             }
 
@@ -144,7 +147,7 @@ function historyBuilder(mode, userObject, allMeetingsObject, settingsAndConfigOb
             awardValues = `<span>${userSemesterTotalPoints}/${minPointRequirements} Total Points</span>`;
 
             // Set user to be active if they were active (by going to a mentorship meeting)
-            if (userSemesterPoints.mentorshipPoints > 0){
+            if (userSemesterPoints >= minPointRequirements){
                 isUserActive = activeUser.Active;
             }
 

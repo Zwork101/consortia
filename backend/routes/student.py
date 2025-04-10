@@ -1,4 +1,5 @@
 from datetime import datetime
+from dateutil import parser
 from os import curdir
 import select
 
@@ -14,11 +15,12 @@ student = Blueprint("student", __name__, static_folder="static/", template_folde
 
 @student.route("/wic")
 def wic_homepage():
+    print("Wic Homepage Hit")
     return render_template("wics-profile.html.j2", title="WIC", org_id=1)
 
 @student.route("/coms")
 def coms_homepage():
-    return render_template("coms-profile.html.j2", title="COMS", org=2)
+    return render_template("coms-profile.html.j2", title="COMS", org_id=2)
 
 @student.route("/settings/<int:org>")
 def provide_org_config(org: int):
@@ -54,8 +56,14 @@ def return_profile():
 def upcoming_meetings(org: int):
     """Return upcoming meetings based on pagination parameters."""
     try:
-        selected_time = request.args.get("selected", type=datetime.fromisoformat, default=None)
+        selected_time = request.args.get("selected", type=parser.isoparse, default=None)
         print(selected_time)
+        print(request.args)
+        print('selected' in request.args)
+        try:
+            print(request.args['selected'])
+        except:
+            print("Index error")
 
         skip = request.args.get("skip", 0, type=int)
         #count = request.args.get("count", 9999, type=int)
